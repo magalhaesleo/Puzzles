@@ -16,6 +16,11 @@ namespace GeradorDeTestes.Domain
         public string Nome { get { return this._nome; } set { this._nome = value; } }
         public Disciplina Disciplina { get { return this._disciplina; } set { this._disciplina = value; } }
 
+        public Materia()
+        {
+
+        }
+
         public Materia(string nome, Disciplina disciplina)
         {
             this.Nome = nome;

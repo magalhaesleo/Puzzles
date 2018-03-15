@@ -16,6 +16,11 @@ namespace GeradorDeTestes.Domain
 
         //public List<Materia> listaMaterias;
 
+        public Disciplina()
+        {
+
+        }
+
         public Disciplina(string nome)
         {
             this.Nome = nome;
