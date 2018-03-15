@@ -8,25 +8,28 @@ namespace GeradorDeTestes.Domain
 {
     public class Disciplina
     {
+        private int _id;
+        private string _nome;
 
-        public string nome;
+        public int Id { get { return this._id; } set { this._id = value; } }
+        public string Nome { get { return this._nome; } set { this._nome = value; } }
 
         //public List<Materia> listaMaterias;
 
         public Disciplina(string nome)
         {
-            this.nome = nome;
+            this.Nome = nome;
         }
 
         public void Validate()
         {
-            if (nome.Length < 4 || String.IsNullOrEmpty(nome))
-                throw new Exception("O nome deve ter pelo menos quatro caracteres.");         
+            if (Nome.Length < 4 || String.IsNullOrEmpty(Nome))
+                throw new Exception("O nome deve ter pelo menos quatro caracteres.");
         }
 
         public override string ToString()
         {
-            return String.Format("Nome: {0} ", nome);
+            return String.Format("Nome: {0} ", Nome);
         }
 
     }
