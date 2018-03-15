@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeradorDeTestes.Domain
+namespace GeradorDeTestes.Infra
 {
-    public class Disciplina
+    public class Class1
     {
     }
 }
