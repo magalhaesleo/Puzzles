@@ -51,6 +51,7 @@
     <Compile Include="Features\DisciplinaModule\CadastroDisciplina.Designer.cs">
       <DependentUpon>CadastroDisciplina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\DisciplinaModule\DisciplinaGerenciadorFormulario.cs" />
     <Compile Include="GerenciadorFormulario.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -88,6 +89,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GeradorDeTestes.Application\GeradorDeTestes.Application.csproj">
+      <Project>{BD69F748-2F36-4936-A764-0E7D3C4DFD27}</Project>
+      <Name>GeradorDeTestes.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeradorDeTestes.Domain\GeradorDeTestes.Domain.csproj">
+      <Project>{B74EACE8-06D1-4A2A-98D5-D30FE1DFDF05}</Project>
+      <Name>GeradorDeTestes.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

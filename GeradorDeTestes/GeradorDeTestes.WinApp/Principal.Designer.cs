@@ -34,6 +34,7 @@
             this.matériaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.questãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciadorDeDisciplinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,6 +42,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastrarToolStripMenuItem,
+            this.gerenciadorDeDisciplinasToolStripMenuItem,
             this.ajudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -82,6 +84,12 @@
             this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.ajudaToolStripMenuItem.Text = "Ajuda";
             // 
+            // gerenciadorDeDisciplinasToolStripMenuItem
+            // 
+            this.gerenciadorDeDisciplinasToolStripMenuItem.Name = "gerenciadorDeDisciplinasToolStripMenuItem";
+            this.gerenciadorDeDisciplinasToolStripMenuItem.Size = new System.Drawing.Size(158, 20);
+            this.gerenciadorDeDisciplinasToolStripMenuItem.Text = "Gerenciador de Disciplinas";
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -106,6 +114,7 @@
         private System.Windows.Forms.ToolStripMenuItem matériaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem questãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerenciadorDeDisciplinasToolStripMenuItem;
     }
 }
 
