@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Infra
 {
-    public class Class1
+    public class DBManager
     {
     }
 }
