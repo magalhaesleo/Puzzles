@@ -43,5 +43,15 @@
     <Compile Include="DisciplinaDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeradorDeTestes.Domain\GeradorDeTestes.Domain.csproj">
+      <Project>{b74eace8-06d1-4a2a-98d5-d30fe1dfdf05}</Project>
+      <Name>GeradorDeTestes.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeradorDeTestes.Infra\GeradorDeTestes.Infra.csproj">
+      <Project>{bee7fcd4-6a19-4d3d-a50b-2be9c8948b89}</Project>
+      <Name>GeradorDeTestes.Infra</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,121 +1,117 @@
 ﻿using System;
-using System.Configuration;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.SqlClient;
+using System.Data.Common;
+using System.Configuration;
+using System.Data;
 
 namespace GeradorDeTestes.Infra
 {
     public static class DBManager
     {
-        #region Attributes
 
-        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["GERADORDETESTES"].ConnectionString;
-        private static readonly string _providerName = ConfigurationManager.ConnectionStrings["GERADORDETESTES"].ProviderName;
+        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["GeradorDeTestes"].ConnectionString;
 
-        private static readonly DbProviderFactory _factory = DbProviderFactories.GetFactory(_providerName); //Pega a factory lendo o providerName que está configurado no App.config
+        private static readonly string _providerName = ConfigurationManager.AppSettings.Get("DataProvider");
 
-        #endregion Attributes
+        private static DbProviderFactory _providerType = DbProviderFactories.GetFactory(_providerName);
 
-        #region Properties
+        /*
 
-        /// <summary>
-        /// Define o prefixo do parametro pelo seu provider
-        /// </summary>
-        public static string ParameterPrefix
+        private DbConnection _connection = _providerType.CreateConnection();
+        private DbDataReader _reader;
+        private static DbCommand _command =_providerType.CreateCommand();
+        private DbParameter _parameter;
+
+
+       //Criando parametro ProviderName que irá retornar o valor da variável _dataProvider
+        public string ProviderName { get { return _providerName; } }
+
+        //Criando parametro ConnectionString que irá retornar a String de conexão com o Banco
+        public string ConnectionString { get { return _connectionString; } }
+
+        //Criando o parametro BDCommand, que irá criar um DBCommand para o DbProviderFactory
+        public DbCommand Command { get { return _providerType.CreateCommand(); } }
+
+        //Criando o parametro DbCOnnection, que irá retornar a criação da conexão
+        public DbConnection Connection { get { return _providerType.CreateConnection(); } }
+        */
+
+        public static void Insert(string sql, Dictionary<string, object> dictionary)
         {
-            get
-            {
-                switch (_providerName)
-                {
-                    // Microsoft Access não tem suporte a esse tipo de comando
-                    case "System.Data.OleDb": return "@";
-                    case "System.Data.SqlClient": return "@";
-                    case "System.Data.OracleClient": return ":";
-                    case "MySql.Data.MySqlClient": return "?";
-
-                    default:
-                        return "@";
-                }
-            }
+           InitializeConnection(sql, dictionary).ExecuteScalar();
         }
 
-        #endregion Properties
-
-
-        public static int Insert(string sql, Dictionary<string, object> parms = null, bool identitySelect = true)
+        public static void Update(string sql, Dictionary<string, object> dictionary)
         {
-            sql = string.Format(sql, ParameterPrefix);
-
-            using (var connection = _factory.CreateConnection())
-            {
-                connection.ConnectionString = _connectionString;
-
-                using (var command = _factory.CreateCommand())
-                {
-                    command.Connection = connection;
-                    command.SetParameters(parms); // Extension method
-                    command.CommandText = identitySelect ? sql.AppendIdentitySelect() : sql; // Extension method
-
-                    connection.Open();
-
-                    int id = 0;
-
-                    if (identitySelect)
-                        id = Convert.ToInt32(command.ExecuteScalar());
-                    else
-                        command.ExecuteNonQuery();
-
-                    return id;
-                }
-            }
+            InitializeConnection(sql, dictionary).ExecuteScalar();
         }
 
-        #region Private methods
-
-        /// <summary>
-        /// Métode de extensão da classe DbCommand que seta os parametros adicionando o seus respectivos prefixos.
-        /// </summary>
-        /// <param name="command">Classe command que o método utilizará para adcionar os parametros.</param>
-        /// <param name="parms">Parametros do script.</param>
-        private static void SetParameters(this DbCommand command, Dictionary<string, object> parms)
+        public static void Delete(string sql, Dictionary<string, object> dictionary)
         {
-            if (parms != null)
+            InitializeConnection(sql, dictionary).ExecuteScalar();
+        }
+
+        private static void SetParameters(this DbCommand command, Dictionary<string, object> dictionary)
+        {
+            if (dictionary != null)
             {
-                foreach (var item in parms)
+
+                foreach (var item in dictionary)
                 {
                     var dbParameter = command.CreateParameter();
                     dbParameter.ParameterName = item.Key;
                     dbParameter.Value = item.Value;
-
                     command.Parameters.Add(dbParameter);
+                }
+            }
+        }
+
+        //ok
+        public static IQueryable<T> GetAll<T>(String sql, Func<IDataReader, T> convertRelactionalData)
+        {
+            using (DbCommand retCommand = InitializeConnection(sql))
+            {
+
+                var reader = retCommand.ExecuteReader();
+
+                var list = new List<T>();
+
+                while (reader.Read())
+                {
+                    var obj = convertRelactionalData(reader);
+                    list.Add(obj);
+                }
+
+                return list.AsQueryable();
+            }
+        }
+
+        // Connection SQL
+        private static DbCommand InitializeConnection(string sql, Dictionary<string, object> parms = null)
+        {
+            using (DbConnection connection = _providerType.CreateConnection())
+            {
+                connection.ConnectionString = _connectionString;
+
+                using (DbCommand command = _providerType.CreateCommand())
+                {
+
+                    command.Connection = connection;
+                    command.CommandText = sql;
+                    SetParameters(command, parms);
+                    connection.Open();
+
+                    return command;
                 }
 
             }
+
+
         }
 
-        /// <summary>
-        /// Concatena no script de inserção o select do id
-        /// </summary>
-        /// <param name="sql">Script de Insert</param>
-        /// <returns></returns>
-        private static string AppendIdentitySelect(this string sql)
-        {
-            switch (_providerName)
-            {
-                // Microsoft Access não tem suporte a esse tipo de comando
-                case "System.Data.OleDb": return sql;
-                case "System.Data.SqlClient": return sql + ";SELECT SCOPE_IDENTITY()";
-                case "System.Data.OracleClient": return sql + ";SELECT MySequence.NEXTVAL FROM DUAL";
-                case "Firebird.Data.FbClient": return sql + ";GENERATOR(x=>x.identity)";
-                default: return sql + ";SELECT @@IDENTITY";
-            }
-        }
-
-        #endregion Private methods
     }
 }

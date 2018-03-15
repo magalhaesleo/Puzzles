@@ -15,10 +15,10 @@ namespace GeradorDeTestes.Infra.Data
         /// <summary>
         /// Scripts para manipulação das tabelas do banco de dados
         /// </summary>
-        public const string _sqlInsert = @"INSERT INTO DISCIPLINA
+        public const string _sqlInsert = @"INSERT INTO TBDISCIPLINA
                                                            (NOME)
                                                       VALUES
-                                                            ({0}NOME";
+                                                            ({0}NOME)";
 
         #endregion Scripts SQL
 
@@ -27,11 +27,11 @@ namespace GeradorDeTestes.Infra.Data
         /// </summary>
         /// <param name="product">É o product que será adicionado da base de dados</param>
         /// <returns>Retorna o novo product com os atributos atualizados (como id)</returns>
-        public Disciplina Add(Disciplina disciplina)
+        public void Add(Disciplina disciplina)
         {
-            disciplina.Id = DBManager.Insert(_sqlInsert, Take(disciplina));
+            DBManager.Insert(_sqlInsert, Take(disciplina));
 
-            return disciplina;
+            return;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace GeradorDeTestes.Infra.Data
             return new Dictionary<string, object>
             {
                 { "ID", disciplina.Id },
-                { "TITLE", disciplina.Nome }
+                { "NOME", disciplina.Nome }
             };
         }
 
@@ -52,7 +52,7 @@ namespace GeradorDeTestes.Infra.Data
           new Disciplina
           {
               Id = Convert.ToInt32(reader["ID"]),
-              Nome = Convert.ToString(reader["nome"])
+              Nome = Convert.ToString(reader["NOME"])
           };
     }
 }
