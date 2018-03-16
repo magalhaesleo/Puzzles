@@ -30,7 +30,7 @@ namespace GeradorDeTestes.Applications
             }
             catch (Exception e)
             {
-                throw new Exception("Não foi possível gravar a disciplina no banco de dados");
+                throw new Exception(e.Message);
             }
             return disciplina;
         }

@@ -28,6 +28,5 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                 return disciplina;
             }
         }
-
     }
 }

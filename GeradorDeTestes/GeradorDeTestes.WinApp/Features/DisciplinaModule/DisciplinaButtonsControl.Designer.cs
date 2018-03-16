@@ -31,6 +31,7 @@
             this.btnCadastrarDisciplina = new System.Windows.Forms.Button();
             this.btnEditarDisciplina = new System.Windows.Forms.Button();
             this.btnExcluirDisciplina = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCadastrarDisciplina
@@ -62,16 +63,27 @@
             this.btnExcluirDisciplina.UseVisualStyleBackColor = true;
             this.btnExcluirDisciplina.Click += new System.EventHandler(this.btnExcluirDisciplina_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 294);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Gerenciador de Disciplinas";
+            // 
             // DisciplinaButtonsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExcluirDisciplina);
             this.Controls.Add(this.btnEditarDisciplina);
             this.Controls.Add(this.btnCadastrarDisciplina);
             this.Name = "DisciplinaButtonsControl";
             this.Size = new System.Drawing.Size(150, 316);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -80,5 +92,6 @@
         private System.Windows.Forms.Button btnCadastrarDisciplina;
         private System.Windows.Forms.Button btnEditarDisciplina;
         private System.Windows.Forms.Button btnExcluirDisciplina;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -46,8 +46,16 @@ namespace GeradorDeTestes.Infra.Data
 
 
         public void Add(Disciplina disciplina)
-        {   
-            _dbManager.Insert(_sqlInsert, RetornaDictionaryDeDisciplina(disciplina));
+        {
+            try
+            {
+                _dbManager.Insert(_sqlInsert, RetornaDictionaryDeDisciplina(disciplina));
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            
         }
 
         public void Excluir(Disciplina disciplina)
