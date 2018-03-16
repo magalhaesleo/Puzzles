@@ -12,9 +12,14 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
     public class DisciplinaGerenciadorFormulario : GerenciadorFormulario
     {
 
-        DisciplinaService _disciplinaService = new DisciplinaService();
+        DisciplinaService _disciplinaService;
         DisciplinaControl _disciplinaControl;
         DisciplinaButtonsControl _disciplinaButtonsControl;
+
+        public DisciplinaGerenciadorFormulario()
+        {
+            _disciplinaService = new DisciplinaService();
+        }
 
         public override void Adicionar(Object disciplina)
         {

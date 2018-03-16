@@ -12,9 +12,13 @@ namespace GeradorDeTestes.Applications
     public class DisciplinaService
     {
 
-        private DisciplinaDAO _disciplinaDAO = new DisciplinaDAO();
+        private DisciplinaDAO _disciplinaDAO;
 
+        public DisciplinaService()
+        {
+            _disciplinaDAO = new DisciplinaDAO();
 
+        }
 
         public Disciplina AdicionarDisciplina(Disciplina disciplina)
         {
