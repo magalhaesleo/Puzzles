@@ -5,41 +5,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GeradorDeTestes.Domain;
+using GeradorDeTestes.Infra;
 
 namespace GeradorDeTestes.Infra.Data
 {
     public class DisciplinaDAO
     {
+        private DBManager _dbManager;
+        public DisciplinaDAO(DBManager dBManager)
+        {
+            this._dbManager = dBManager;
+        }
+
         #region Scripts SQL
 
-        /// <summary>
-        /// Scripts para manipulação das tabelas do banco de dados
-        /// </summary>
+        
         public const string _sqlInsert = @"INSERT INTO TBDISCIPLINA
                                                            (NOME)
                                                       VALUES
-                                                            ({0}NOME)";
+                                                            (@NOME)";
 
         #endregion Scripts SQL
 
-        /// <summary>
-        /// Adiciona um novo product na base de dados
-        /// </summary>
-        /// <param name="product">É o product que será adicionado da base de dados</param>
-        /// <returns>Retorna o novo product com os atributos atualizados (como id)</returns>
+
         public void Add(Disciplina disciplina)
-        {
-            DBManager.Insert(_sqlInsert, Take(disciplina));
+        {   
+            _dbManager.Insert(_sqlInsert, RetornaDictionaryDeDisciplina(disciplina));
 
             return;
         }
 
-        /// <summary>
-        /// Cria a lista de parametros do objeto product para passar para o comando Sql.
-        /// </summary>
-        /// <param name="product">Objeto produto passado por parâmetro.</param>
-        /// <returns>Lista de parâmetros.</returns>
-        private Dictionary<string, object> Take(Disciplina disciplina)
+        private Dictionary<string, object> RetornaDictionaryDeDisciplina(Disciplina disciplina)
         {
             return new Dictionary<string, object>
             {
@@ -48,7 +44,7 @@ namespace GeradorDeTestes.Infra.Data
             };
         }
 
-        private static Func<IDataReader, Disciplina> Make = reader =>
+        private static Func<IDataReader, Disciplina> FormaObjetoDisciplina = reader =>
           new Disciplina
           {
               Id = Convert.ToInt32(reader["ID"]),

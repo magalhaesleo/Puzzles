@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GeradorDeTestes.Application\GeradorDeTestes.Application.csproj">
+      <Project>{bd69f748-2f36-4936-a764-0e7d3c4dfd27}</Project>
+      <Name>GeradorDeTestes.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GeradorDeTestes.Domain\GeradorDeTestes.Domain.csproj">
       <Project>{b74eace8-06d1-4a2a-98d5-d30fe1dfdf05}</Project>
       <Name>GeradorDeTestes.Domain</Name>
