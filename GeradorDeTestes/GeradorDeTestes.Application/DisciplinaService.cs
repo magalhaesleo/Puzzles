@@ -22,8 +22,10 @@ namespace GeradorDeTestes.Applications
 
         public Disciplina AdicionarDisciplina(Disciplina disciplina)
         {
+            
             try
             {
+                disciplina.Validate();
                 _disciplinaDAO.Add(disciplina);
             }
             catch (Exception e)
