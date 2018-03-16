@@ -45,11 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\DisciplinaModule\DisciplinaButtonsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\DisciplinaModule\DisciplinaButtonsControl.Designer.cs">
+      <DependentUpon>DisciplinaButtonsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\DisciplinaModule\CadastroDisciplina.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Features\DisciplinaModule\CadastroDisciplina.Designer.cs">
       <DependentUpon>CadastroDisciplina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\DisciplinaModule\DisciplinaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\DisciplinaModule\DisciplinaControl.Designer.cs">
+      <DependentUpon>DisciplinaControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\DisciplinaModule\DisciplinaGerenciadorFormulario.cs" />
     <Compile Include="GerenciadorFormulario.cs" />
@@ -61,8 +73,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Features\DisciplinaModule\DisciplinaButtonsControl.resx">
+      <DependentUpon>DisciplinaButtonsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\DisciplinaModule\CadastroDisciplina.resx">
       <DependentUpon>CadastroDisciplina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\DisciplinaModule\DisciplinaControl.resx">
+      <DependentUpon>DisciplinaControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
@@ -98,6 +116,9 @@
       <Project>{B74EACE8-06D1-4A2A-98D5-D30FE1DFDF05}</Project>
       <Name>GeradorDeTestes.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\MateriaModule\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

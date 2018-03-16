@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace GeradorDeTestes.Application
+namespace GeradorDeTestes.Applications
 {
     public class DisciplinaService
     {
@@ -19,7 +20,7 @@ namespace GeradorDeTestes.Application
         {
             try
             {
-
+                MessageBox.Show("Sucesso!");
             }
             catch
             {

@@ -1,4 +1,5 @@
-﻿using GeradorDeTestes.Application;
+﻿using GeradorDeTestes.Applications;
+using GeradorDeTestes.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +9,32 @@ using System.Windows.Forms;
 
 namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 {
-    class DisciplinaGerenciadorFormulario : GerenciadorFormulario
+    public class DisciplinaGerenciadorFormulario : GerenciadorFormulario
     {
 
         DisciplinaService _disciplinaService = new DisciplinaService();
+        DisciplinaControl _disciplinaControl;
+        DisciplinaButtonsControl _disciplinaButtonsControl;
 
-        public override void Adicionar()
+        public override void Adicionar(Object disciplina)
         {
-
-            CadastroDisciplina dialog = new CadastroDisciplina();
-
-            DialogResult resultado = dialog.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
-                _disciplinaService.AdicionarDisciplina(dialog.NovaDisciplina);
-            }
+            _disciplinaService.AdicionarDisciplina(disciplina as Disciplina);
         }
 
-        public override void CarregarListagem()
+        public override UserControl CarregarButtonsControl()
         {
-            throw new NotImplementedException();
+            if (_disciplinaButtonsControl == null)
+                _disciplinaButtonsControl = new DisciplinaButtonsControl(this);
+
+            return _disciplinaButtonsControl;
+        }
+
+        public override UserControl CarregarListControl()
+        {
+            if (_disciplinaControl == null)
+                _disciplinaControl = new DisciplinaControl();
+
+            return _disciplinaControl;
         }
 
         public override void Excluir()
