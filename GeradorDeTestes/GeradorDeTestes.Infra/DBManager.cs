@@ -46,7 +46,7 @@ namespace GeradorDeTestes.Infra
         }
 
         //ok
-        public IQueryable<T> GetAll<T>(String sql, Func<IDataReader, T> convertRelactionalData)
+        public IList<T> GetAll<T>(String sql, Func<IDataReader, T> convertRelactionalData)
         {
             using (DbConnection connection = _providerType.CreateConnection())
             {
@@ -54,6 +54,10 @@ namespace GeradorDeTestes.Infra
 
                 using (DbCommand command = _providerType.CreateCommand())
                 {
+                    command.Connection = connection;
+                    command.CommandText = sql;   
+                    connection.Open();
+
                     var reader = command.ExecuteReader();
 
                     var list = new List<T>();
@@ -63,7 +67,7 @@ namespace GeradorDeTestes.Infra
                         var obj = convertRelactionalData(reader);
                         list.Add(obj);
                     }
-                    return list.AsQueryable();
+                    return list;
                 }
             }
         }
@@ -71,6 +75,7 @@ namespace GeradorDeTestes.Infra
         // Connection SQL
         public static void InitializeConnection(string sql, Dictionary<string, object> parms = null)
         {
+            sql = string.Format(sql, ParameterPrefix);
             using (DbConnection connection = _providerType.CreateConnection())
             {
                 connection.ConnectionString = _connectionString;
@@ -83,6 +88,24 @@ namespace GeradorDeTestes.Infra
                     connection.Open();
 
                     command.ExecuteScalar();
+                }
+            }
+        }
+
+        public static string ParameterPrefix
+        {
+            get
+            {
+                switch (_providerName)
+                {
+                    // Microsoft Access não tem suporte a esse tipo de comando
+                    case "System.Data.OleDb": return "@";
+                    case "System.Data.SqlClient": return "@";
+                    case "System.Data.OracleClient": return ":";
+                    case "MySql.Data.MySqlClient": return "?";
+
+                    default:
+                        return "@";
                 }
             }
         }

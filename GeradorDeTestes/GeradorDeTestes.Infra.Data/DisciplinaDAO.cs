@@ -12,9 +12,9 @@ namespace GeradorDeTestes.Infra.Data
     public class DisciplinaDAO
     {
         private DBManager _dbManager;
-        public DisciplinaDAO(DBManager dBManager)
+        public DisciplinaDAO()
         {
-            this._dbManager = dBManager;
+            this._dbManager = new DBManager();
         }
 
         #region Scripts SQL
@@ -23,7 +23,23 @@ namespace GeradorDeTestes.Infra.Data
         public const string _sqlInsert = @"INSERT INTO TBDISCIPLINA
                                                            (NOME)
                                                       VALUES
-                                                            (@NOME)";
+                                                            ({0}NOME)";
+
+        public const string _sqlSelectAll = @"SELECT ID
+                                                    ,NOME
+                                                FROM TBDISCIPLINA";
+
+        public const string _sqlSelect = @"SELECT ID
+                                                    NOME
+                                                 FROM TBDISCIPLINA
+                                                 WHERE TITLE LIKE {0}WORD";
+
+        public const string _sqlUpdate = @"UPDATE TBDISCIPLINA
+                                                        SET NOME = {0}NOME
+                                             WHERE ID = {0}ID";
+
+        public static string _sqlDelete = @"DELETE FROM TBDISCIPLINA
+                                             WHERE ID = @ID";
 
         #endregion Scripts SQL
 
@@ -33,6 +49,10 @@ namespace GeradorDeTestes.Infra.Data
             _dbManager.Insert(_sqlInsert, RetornaDictionaryDeDisciplina(disciplina));
 
             return;
+        }
+        public IList<Disciplina> GetAll()
+        {
+            return _dbManager.GetAll(_sqlSelectAll, FormaObjetoDisciplina);
         }
 
         private Dictionary<string, object> RetornaDictionaryDeDisciplina(Disciplina disciplina)
@@ -45,6 +65,7 @@ namespace GeradorDeTestes.Infra.Data
         }
 
         private static Func<IDataReader, Disciplina> FormaObjetoDisciplina = reader =>
+         
           new Disciplina
           {
               Id = Convert.ToInt32(reader["ID"]),
