@@ -1,31 +1,97 @@
 ﻿using System;
-using System.Configuration;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace GeradorDeTestes.Infra
 {
-    public static class DBManager
+
+    public class DBManager
     {
-        #region Attributes
+        private static string _connectionString = ConfigurationManager.ConnectionStrings["GERADORDETESTE"].ConnectionString;
 
-        private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["GERADORDETESTES"].ConnectionString;
-        private static readonly string _providerName = ConfigurationManager.ConnectionStrings["GERADORDETESTES"].ProviderName;
+        private static string _providerName = ConfigurationManager.AppSettings.Get("DataProvider");
 
-        private static readonly DbProviderFactory _factory = DbProviderFactories.GetFactory(_providerName); //Pega a factory lendo o providerName que está configurado no App.config
+        private static DbProviderFactory _providerType = DbProviderFactories.GetFactory(_providerName);
 
-        #endregion Attributes
+        public void Insert(string sql, Dictionary<string, object> dictionary)
+        {
+            InitializeConnection(sql, dictionary);
+        }
 
-        #region Properties
+        public void Update(string sql, Dictionary<string, object> dictionary)
+        {
+            InitializeConnection(sql, dictionary);
+        }
 
-        /// <summary>
-        /// Define o prefixo do parametro pelo seu provider
-        /// </summary>
+        public void Delete(string sql, Dictionary<string, object> dictionary)
+        {
+            InitializeConnection(sql, dictionary);
+        }
+
+        public static void SetParameters(DbCommand command, Dictionary<string, object> dictionary)
+        {
+            if (dictionary != null)
+            {
+                foreach (var item in dictionary)
+                {
+                    var dbParameter = command.CreateParameter();
+                    dbParameter.ParameterName = item.Key;
+                    dbParameter.Value = item.Value;
+                    command.Parameters.Add(dbParameter);
+                }
+            }
+        }
+
+        //ok
+        public IList<T> GetAll<T>(String sql, Func<IDataReader, T> convertRelactionalData)
+        {
+            using (DbConnection connection = _providerType.CreateConnection())
+            {
+                connection.ConnectionString = _connectionString;
+
+                using (DbCommand command = _providerType.CreateCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = sql;   
+                    connection.Open();
+
+                    var reader = command.ExecuteReader();
+
+                    var list = new List<T>();
+
+                    while (reader.Read())
+                    {
+                        var obj = convertRelactionalData(reader);
+                        list.Add(obj);
+                    }
+                    return list;
+                }
+            }
+        }
+
+        // Connection SQL
+        public static void InitializeConnection(string sql, Dictionary<string, object> parms = null)
+        {
+            sql = string.Format(sql, ParameterPrefix);
+            using (DbConnection connection = _providerType.CreateConnection())
+            {
+                connection.ConnectionString = _connectionString;
+                using (DbCommand command = _providerType.CreateCommand())
+                {
+
+                    command.Connection = connection;
+                    command.CommandText = sql;
+                    SetParameters(command, parms);
+                    connection.Open();
+
+                    command.ExecuteScalar();
+                }
+            }
+        }
+
         public static string ParameterPrefix
         {
             get
@@ -43,79 +109,8 @@ namespace GeradorDeTestes.Infra
                 }
             }
         }
-
-        #endregion Properties
-
-
-        public static int Insert(string sql, Dictionary<string, object> parms = null, bool identitySelect = true)
-        {
-            sql = string.Format(sql, ParameterPrefix);
-
-            using (var connection = _factory.CreateConnection())
-            {
-                connection.ConnectionString = _connectionString;
-
-                using (var command = _factory.CreateCommand())
-                {
-                    command.Connection = connection;
-                    command.SetParameters(parms); // Extension method
-                    command.CommandText = identitySelect ? sql.AppendIdentitySelect() : sql; // Extension method
-
-                    connection.Open();
-
-                    int id = 0;
-
-                    if (identitySelect)
-                        id = Convert.ToInt32(command.ExecuteScalar());
-                    else
-                        command.ExecuteNonQuery();
-
-                    return id;
-                }
-            }
-        }
-
-        #region Private methods
-
-        /// <summary>
-        /// Métode de extensão da classe DbCommand que seta os parametros adicionando o seus respectivos prefixos.
-        /// </summary>
-        /// <param name="command">Classe command que o método utilizará para adcionar os parametros.</param>
-        /// <param name="parms">Parametros do script.</param>
-        private static void SetParameters(this DbCommand command, Dictionary<string, object> parms)
-        {
-            if (parms != null)
-            {
-                foreach (var item in parms)
-                {
-                    var dbParameter = command.CreateParameter();
-                    dbParameter.ParameterName = item.Key;
-                    dbParameter.Value = item.Value;
-
-                    command.Parameters.Add(dbParameter);
-                }
-
-            }
-        }
-
-        /// <summary>
-        /// Concatena no script de inserção o select do id
-        /// </summary>
-        /// <param name="sql">Script de Insert</param>
-        /// <returns></returns>
-        private static string AppendIdentitySelect(this string sql)
-        {
-            switch (_providerName)
-            {
-                // Microsoft Access não tem suporte a esse tipo de comando
-                case "System.Data.OleDb": return sql;
-                case "System.Data.SqlClient": return sql + ";SELECT SCOPE_IDENTITY()";
-                case "System.Data.OracleClient": return sql + ";SELECT MySequence.NEXTVAL FROM DUAL";
-                case "Firebird.Data.FbClient": return sql + ";GENERATOR(x=>x.identity)";
-                default: return sql + ";SELECT @@IDENTITY";
-            }
-        }
-
-        #endregion Private methods
     }
+
 }
+
+

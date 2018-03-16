@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeradorDeTestes.WinApp", "GeradorDeTestes.WinApp\GeradorDeTestes.WinApp.csproj", "{DC34BBFC-49AE-4EEE-AE4B-F09621B18E0C}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeradorDeTestes.Infra", "GeradorDeTestes.Infra\GeradorDeTestes.Infra.csproj", "{BEE7FCD4-6A19-4D3D-A50B-2BE9C8948B89}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeradorDeTestes.Infra.Data", "GeradorDeTestes.Infra.Data\GeradorDeTestes.Infra.Data.csproj", "{C57587A4-E14A-4434-9E3E-5085D9216FEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. DataBase", "5. DataBase", "{F601EBAB-0A9A-4B30-82DE-6D6E894BD2D5}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GeradorDeTestes.DataBase", "GeradorDeTestes.DataBase\GeradorDeTestes.DataBase.sqlproj", "{1CA833E1-C333-4694-9DBD-A4975213E2A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,12 @@ Global
 		{C57587A4-E14A-4434-9E3E-5085D9216FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C57587A4-E14A-4434-9E3E-5085D9216FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C57587A4-E14A-4434-9E3E-5085D9216FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA833E1-C333-4694-9DBD-A4975213E2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA833E1-C333-4694-9DBD-A4975213E2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA833E1-C333-4694-9DBD-A4975213E2A5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1CA833E1-C333-4694-9DBD-A4975213E2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA833E1-C333-4694-9DBD-A4975213E2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA833E1-C333-4694-9DBD-A4975213E2A5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +67,9 @@ Global
 		{BD69F748-2F36-4936-A764-0E7D3C4DFD27} = {471B390D-182D-449B-A53D-1E7996ADA736}
 		{BEE7FCD4-6A19-4D3D-A50B-2BE9C8948B89} = {FCCC0811-EFD4-4B57-978D-D57F01551929}
 		{C57587A4-E14A-4434-9E3E-5085D9216FEA} = {FCCC0811-EFD4-4B57-978D-D57F01551929}
+		{1CA833E1-C333-4694-9DBD-A4975213E2A5} = {F601EBAB-0A9A-4B30-82DE-6D6E894BD2D5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DC05586-7299-48B6-A881-31D76FB64D47}
 	EndGlobalSection
 EndGlobal
