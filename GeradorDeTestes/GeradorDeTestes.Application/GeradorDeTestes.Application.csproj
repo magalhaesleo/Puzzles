@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,16 @@
   <ItemGroup>
     <Compile Include="DisciplinaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeradorDeTestes.Domain\GeradorDeTestes.Domain.csproj">
+      <Project>{B74EACE8-06D1-4A2A-98D5-D30FE1DFDF05}</Project>
+      <Name>GeradorDeTestes.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeradorDeTestes.Infra.Data\GeradorDeTestes.Infra.Data.csproj">
+      <Project>{C57587A4-E14A-4434-9E3E-5085D9216FEA}</Project>
+      <Name>GeradorDeTestes.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
