@@ -60,6 +60,7 @@
             this.btnExcluirDisciplina.TabIndex = 2;
             this.btnExcluirDisciplina.Text = "Excluir";
             this.btnExcluirDisciplina.UseVisualStyleBackColor = true;
+            this.btnExcluirDisciplina.Click += new System.EventHandler(this.btnExcluirDisciplina_Click);
             // 
             // DisciplinaButtonsControl
             // 

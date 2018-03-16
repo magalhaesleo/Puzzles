@@ -19,17 +19,28 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         public DisciplinaGerenciadorFormulario()
         {
             _disciplinaService = new DisciplinaService();
+           
         }
 
         public override void Adicionar(Object disciplina)
         {
-            _disciplinaService.AdicionarDisciplina(disciplina as Disciplina);
+            try
+            {
+                _disciplinaService.AdicionarDisciplina(disciplina as Disciplina);
+                MessageBox.Show("Disciplina adicionada");
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         public override UserControl CarregarButtonsControl()
         {
             if (_disciplinaButtonsControl == null)
                 _disciplinaButtonsControl = new DisciplinaButtonsControl(this);
+           
+
 
             return _disciplinaButtonsControl;
         }
@@ -38,13 +49,18 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         {
             if (_disciplinaControl == null)
                 _disciplinaControl = new DisciplinaControl();
-
+            AtualizarListagemDisciplinas();
             return _disciplinaControl;
         }
 
-        public override void Excluir()
+        public override void Excluir(Object objeto)
         {
-            throw new NotImplementedException();
+            _disciplinaService.ExcluirDisciplina(objeto as Disciplina);
+        }
+
+        public void AtualizarListagemDisciplinas()
+        {
+            _disciplinaControl.listarDisciplinas(_disciplinaService.SelecionarTodasDisciplinas());
         }
     }
 }

@@ -50,7 +50,7 @@
       <Name>GeradorDeTestes.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\GeradorDeTestes.Infra.Data\GeradorDeTestes.Infra.Data.csproj">
-      <Project>{C57587A4-E14A-4434-9E3E-5085D9216FEA}</Project>
+      <Project>{c57587a4-e14a-4434-9e3e-5085d9216fea}</Project>
       <Name>GeradorDeTestes.Infra.Data</Name>
     </ProjectReference>
   </ItemGroup>

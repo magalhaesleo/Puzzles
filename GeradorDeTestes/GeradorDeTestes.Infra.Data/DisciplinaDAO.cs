@@ -12,6 +12,7 @@ namespace GeradorDeTestes.Infra.Data
     public class DisciplinaDAO
     {
         private DBManager _dbManager;
+
         public DisciplinaDAO()
         {
             this._dbManager = new DBManager();

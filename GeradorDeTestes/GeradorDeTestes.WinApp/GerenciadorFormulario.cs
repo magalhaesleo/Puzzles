@@ -11,7 +11,7 @@ namespace GeradorDeTestes.WinApp
     {
         public abstract void Adicionar(Object objeto);
 
-        public abstract void Excluir();
+        public abstract void Excluir(Object objecto);
 
         public abstract UserControl CarregarListControl();
 
