@@ -47,10 +47,18 @@ namespace GeradorDeTestes.Infra.Data
         public void Add(Disciplina disciplina)
         {   
             _dbManager.Insert(_sqlInsert, RetornaDictionaryDeDisciplina(disciplina));
-
-            return;
         }
-        public IList<Disciplina> GetAll()
+
+        public void Excluir(Disciplina disciplina)
+        {
+            _dbManager.Delete(_sqlDelete, RetornaDictionaryDeDisciplina(disciplina));
+        }
+
+        public void Editar(Disciplina disciplina)
+        {
+            _dbManager.Update(_sqlUpdate, RetornaDictionaryDeDisciplina(disciplina));
+        }
+        public List<Disciplina> GetAll()
         {
             return _dbManager.GetAll(_sqlSelectAll, FormaObjetoDisciplina);
         }

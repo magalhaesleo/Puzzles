@@ -46,7 +46,7 @@ namespace GeradorDeTestes.Infra
         }
 
         //ok
-        public IList<T> GetAll<T>(String sql, Func<IDataReader, T> convertRelactionalData)
+        public List<T> GetAll<T>(String sql, Func<IDataReader, T> convertRelactionalData)
         {
             using (DbConnection connection = _providerType.CreateConnection())
             {
