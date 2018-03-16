@@ -33,6 +33,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             {
                 MessageBox.Show(e.Message);
             }
+            AtualizarListagemDisciplinas();
         }
 
         public override UserControl CarregarButtonsControl()
