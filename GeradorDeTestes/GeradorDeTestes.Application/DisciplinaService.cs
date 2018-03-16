@@ -24,27 +24,18 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                MessageBox.Show("Sucesso!");
+                _disciplinaDAO.Add(disciplina);
             }
-            catch
+            catch (Exception e)
             {
-
+                throw new Exception("Não foi possível gravar a disciplina no banco de dados");
             }
-
             return disciplina;
         }
 
         public Disciplina AtualizarDisciplina(Disciplina disciplina)
         {
-            try
-            {
-
-            }
-            catch
-            {
-
-            }
-
+            
             return disciplina;
         }
 
@@ -62,22 +53,14 @@ namespace GeradorDeTestes.Applications
             return disciplina;
         }
 
-        /*
-        public IList<Disciplina> SelecionarTodasDisciplinas()
+        
+       public List<Disciplina> SelecionarTodasDisciplinas()
         {
-            try
-            {
+          return  _disciplinaDAO.GetAll();
 
-            }
-            catch
-            {
-
-            }
-
-            //getAll()
-            //return new IList<Disciplina> lista;
+           
         }
-        */
+        
 
         public Disciplina SelecionarDisciplina(int id)
         {

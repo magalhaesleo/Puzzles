@@ -39,5 +39,10 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         }
 
+        private void btnExcluirDisciplina_Click(object sender, EventArgs e)
+        {
+            //var controlDisciplina = GerenciadorDeDisciplina.CarregarListControl();
+            
+        }
     }
 }

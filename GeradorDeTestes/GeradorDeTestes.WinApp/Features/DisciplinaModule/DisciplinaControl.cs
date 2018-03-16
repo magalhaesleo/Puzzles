@@ -49,5 +49,14 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         {
 
         }
+
+        public void listarDisciplinas(List<Disciplina> listDisciplinas)
+        {
+            listDisciplina.Items.Clear();
+            foreach (var item in listDisciplinas)
+            {
+                listDisciplina.Items.Add(item);
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace GeradorDeTestes.Infra.Data
     public class DisciplinaDAO
     {
         private DBManager _dbManager;
+
         public DisciplinaDAO()
         {
             this._dbManager = new DBManager();
@@ -50,7 +51,7 @@ namespace GeradorDeTestes.Infra.Data
 
             return;
         }
-        public IList<Disciplina> GetAll()
+        public List<Disciplina> GetAll()
         {
             return _dbManager.GetAll(_sqlSelectAll, FormaObjetoDisciplina);
         }
