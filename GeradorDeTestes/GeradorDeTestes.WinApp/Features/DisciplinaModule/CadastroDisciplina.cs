@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GeradorDeTestes.Domain;
+using GeradorDeTestes.Domain.Entidades;
 
 namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 {
