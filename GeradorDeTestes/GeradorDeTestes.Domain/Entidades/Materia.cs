@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeradorDeTestes.Domain
+namespace GeradorDeTestes.Domain.Entidades
 {
     public class Materia
     {
