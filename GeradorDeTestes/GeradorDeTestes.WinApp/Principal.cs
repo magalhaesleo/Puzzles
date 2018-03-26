@@ -14,18 +14,18 @@ namespace GeradorDeTestes.WinApp
     public partial class Principal : Form
     {
         private GerenciadorFormulario _gerenciador;
-
+        private DisciplinaGerenciadorFormulario _gerenciadorDisciplina;
         public Principal()
         {
             InitializeComponent();
-
+            _gerenciadorDisciplina = new DisciplinaGerenciadorFormulario();
             //Trocar para iniciar na janela de Geração de Testes
-            CarregarCadastro(new DisciplinaGerenciadorFormulario());
+            CarregarCadastro(_gerenciadorDisciplina);
         }
 
         private void gerenciadorDeDisciplinasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CarregarCadastro(new DisciplinaGerenciadorFormulario());
+            CarregarCadastro(_gerenciadorDisciplina);
         }
 
         private void CarregarCadastro(GerenciadorFormulario gerenciador)

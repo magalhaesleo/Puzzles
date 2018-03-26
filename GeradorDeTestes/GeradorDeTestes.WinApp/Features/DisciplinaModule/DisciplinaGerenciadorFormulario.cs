@@ -19,6 +19,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         public DisciplinaGerenciadorFormulario()
         {
             _disciplinaService = new DisciplinaService();
+            
 
            
         }
