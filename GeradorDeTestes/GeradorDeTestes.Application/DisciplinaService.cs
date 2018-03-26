@@ -1,4 +1,4 @@
-﻿using GeradorDeTestes.Domain;
+﻿using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;

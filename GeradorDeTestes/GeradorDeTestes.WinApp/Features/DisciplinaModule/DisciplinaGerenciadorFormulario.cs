@@ -1,5 +1,5 @@
 ﻿using GeradorDeTestes.Applications;
-using GeradorDeTestes.Domain;
+using GeradorDeTestes.Domain.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
