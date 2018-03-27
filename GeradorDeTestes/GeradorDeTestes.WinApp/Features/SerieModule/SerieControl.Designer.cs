@@ -1,6 +1,6 @@
-﻿namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
+﻿namespace GeradorDeTestes.WinApp.Features.SerieModule
 {
-    partial class DisciplinaControl
+    partial class SerieControl
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -28,32 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listDisciplina = new System.Windows.Forms.ListBox();
+            this.listSerie = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // listDisciplina
+            // listSerie
             // 
-            this.listDisciplina.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listDisciplina.FormattingEnabled = true;
-            this.listDisciplina.Location = new System.Drawing.Point(0, 0);
-            this.listDisciplina.Name = "listDisciplina";
-            this.listDisciplina.Size = new System.Drawing.Size(825, 282);
-            this.listDisciplina.TabIndex = 1;
+            this.listSerie.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listSerie.FormattingEnabled = true;
+            this.listSerie.Location = new System.Drawing.Point(0, 0);
+            this.listSerie.Name = "listSerie";
+            this.listSerie.Size = new System.Drawing.Size(825, 282);
+            this.listSerie.TabIndex = 2;
             // 
-            // DisciplinaControl
+            // SerieControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoSize = true;
-            this.Controls.Add(this.listDisciplina);
-            this.Name = "DisciplinaControl";
+            this.Controls.Add(this.listSerie);
+            this.Name = "SerieControl";
             this.Size = new System.Drawing.Size(825, 282);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ListBox listDisciplina;
+
+        private System.Windows.Forms.ListBox listSerie;
     }
 }

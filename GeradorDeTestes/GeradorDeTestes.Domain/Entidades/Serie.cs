@@ -12,11 +12,14 @@ namespace GeradorDeTestes.Domain.Entidades
 
         private int _numero;
 
-
         public int Id { get { return _id; } set { _id = value; } }
         
         public int Numero { get {return _numero; } set {_numero = value; } }
 
+        public Serie()
+        {
+
+        }
         public Serie(int numero)
         {
             this.Numero = numero;

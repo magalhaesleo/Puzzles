@@ -11,59 +11,61 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 {
     public class DisciplinaGerenciadorFormulario : GerenciadorFormulario
     {
-
         DisciplinaService _disciplinaService;
         DisciplinaControl _disciplinaControl;
-        DisciplinaButtonsControl _disciplinaButtonsControl;
 
         public DisciplinaGerenciadorFormulario()
         {
-            _disciplinaService = new DisciplinaService();
-            
-
-           
+            _disciplinaService = new DisciplinaService();  
         }
 
-        public override void Adicionar(Object disciplina)
+        public override void Adicionar()
         {
-            try
+            CadastroDisciplina dialogDisciplina = new CadastroDisciplina();
+
+            DialogResult resultado = dialogDisciplina.ShowDialog();
+
+            if (resultado == DialogResult.OK)
             {
-                _disciplinaService.AdicionarDisciplina(disciplina as Disciplina);
-                MessageBox.Show("Disciplina adicionada");
+                try
+                {
+                    _disciplinaService.AdicionarDisciplina(dialogDisciplina.NovaDisciplina);
+                    MessageBox.Show("Disciplina adicionada");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+                AtualizarListagem();
             }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            AtualizarListagemDisciplinas();
-        }
-
-        public override UserControl CarregarButtonsControl()
-        {
-            if (_disciplinaButtonsControl == null)
-                _disciplinaButtonsControl = new DisciplinaButtonsControl(this);
-           
-
-
-            return _disciplinaButtonsControl;
         }
 
         public override UserControl CarregarListControl()
         {
             if (_disciplinaControl == null)
                 _disciplinaControl = new DisciplinaControl();
-            AtualizarListagemDisciplinas();
+            AtualizarListagem();
             return _disciplinaControl;
         }
 
-        public override void Excluir(Object objeto)
+        public override void Excluir()
         {
-            _disciplinaService.ExcluirDisciplina(objeto as Disciplina);
+            //_disciplinaService.ExcluirDisciplina(objeto as Disciplina);
         }
 
-        public void AtualizarListagemDisciplinas()
+        public override void AtualizarListagem()
         {
-            _disciplinaControl.listarDisciplinas(_disciplinaService.SelecionarTodasDisciplinas());
+            //_disciplinaControl.listarDisciplinas(_disciplinaService.SelecionarTodasDisciplinas());
+        }
+
+        public override void Editar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ObtemTipo()
+        {
+            return "Disciplina";
         }
     }
 }
