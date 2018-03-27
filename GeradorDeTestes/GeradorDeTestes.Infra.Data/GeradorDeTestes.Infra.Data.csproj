@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DisciplinaDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerieDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeradorDeTestes.Domain\GeradorDeTestes.Domain.csproj">
