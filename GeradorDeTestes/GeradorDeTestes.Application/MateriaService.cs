@@ -19,6 +19,7 @@ namespace GeradorDeTestes.Applications
             try
             {
                 materia.Validate();
+                validarExistenciaMateria(materia);
                 _materiaDAO.Add(materia);
             }
             catch (Exception e)
@@ -33,6 +34,7 @@ namespace GeradorDeTestes.Applications
             try
             {
                 materia.Validate();
+                validarExistenciaMateria(materia);
                 _materiaDAO.Editar(materia);
             }
             catch (Exception e)
@@ -68,5 +70,19 @@ namespace GeradorDeTestes.Applications
                 throw new Exception(e.Message);
             }
         }
+
+
+       private void validarExistenciaMateria(Materia materia)
+        {
+            var listMaterias = SelecionarTodasMaterias();
+
+            foreach (var materiaListada in listMaterias)
+            {
+                if (materiaListada.Nome == materia.Nome)
+                {
+                    throw new Exception("A materia ja esta cadastrada no banco de dados");
+                }
+            }
+       }
     }
 }

@@ -26,6 +26,7 @@ namespace GeradorDeTestes.Applications
             try
             {
                 disciplina.Validate();
+                validarExistenciaDisciplina(disciplina);
                 _disciplinaDAO.Add(disciplina);
             }
             catch (Exception e)
@@ -37,7 +38,17 @@ namespace GeradorDeTestes.Applications
 
         public Disciplina AtualizarDisciplina(Disciplina disciplina)
         {
-            
+            try
+            {
+                disciplina.Validate();
+                validarExistenciaDisciplina(disciplina);
+                _disciplinaDAO.Editar(disciplina);
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
             return disciplina;
         }
 
@@ -45,11 +56,11 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-
+                _disciplinaDAO.Excluir(disciplina);
             }
-            catch
+            catch(Exception e)
             {
-
+                throw new Exception(e.Message);
             }
 
             return disciplina;
@@ -60,8 +71,7 @@ namespace GeradorDeTestes.Applications
         {
           return  _disciplinaDAO.GetAll();
 
-           
-        }
+         }
         
 
         public Disciplina SelecionarDisciplina(int id)
@@ -79,6 +89,18 @@ namespace GeradorDeTestes.Applications
             return new Disciplina();
         }
 
+        private void validarExistenciaDisciplina(Disciplina disciplina)
+        {
+            var listDisciplinas = SelecionarTodasDisciplinas();
+
+            foreach (var disciplinaListada in listDisciplinas)
+            {
+                if (disciplinaListada.Nome == disciplinaListada.Nome)
+                {
+                    throw new Exception("A disciplina ja esta cadastrada no banco de dados");
+                }
+            }
+        }
 
 
     }

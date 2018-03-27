@@ -12,10 +12,10 @@ namespace GeradorDeTestes.Domain.Entidades
 
         private int _numero;
 
-
         public int Id { get { return _id; } set { _id = value; } }
         
         public int Numero { get {return _numero; } set {_numero = value; } }
+
         public Serie()
         {
 
@@ -24,9 +24,6 @@ namespace GeradorDeTestes.Domain.Entidades
         {
             this.Numero = numero;
         }
-        public override string ToString()
-        {
-            return String.Format("{0}ª serie", Numero);
-        }
+        
     }
 }
