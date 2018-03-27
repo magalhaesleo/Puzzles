@@ -37,9 +37,24 @@
             // numSerie
             // 
             this.numSerie.Location = new System.Drawing.Point(24, 12);
+            this.numSerie.Maximum = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.numSerie.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numSerie.Name = "numSerie";
             this.numSerie.Size = new System.Drawing.Size(38, 20);
             this.numSerie.TabIndex = 0;
+            this.numSerie.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label1
             // 
