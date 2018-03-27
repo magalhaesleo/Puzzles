@@ -14,6 +14,8 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
     public partial class CadastroMateria : Form
     {
+        private Materia materiaSelecionadaNoListBox;
+
         public CadastroMateria(List<Disciplina> listDisciplina, List<Serie> listSerie)
         {
             InitializeComponent();
@@ -23,6 +25,11 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         public CadastroMateria()
         {
             InitializeComponent();
+        }
+
+        public CadastroMateria(Materia materiaSelecionadaNoListBox)
+        {
+            this.materiaSelecionadaNoListBox = materiaSelecionadaNoListBox;
         }
 
         public Materia NovaMateria
