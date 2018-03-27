@@ -58,5 +58,10 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                 listDisciplina.Items.Add(item);
             }
         }
+        
+        public Disciplina retornaItemSelecionadoNoListBox()
+        {
+           return listDisciplina.SelectedItem as Disciplina;
+        }
     }
 }

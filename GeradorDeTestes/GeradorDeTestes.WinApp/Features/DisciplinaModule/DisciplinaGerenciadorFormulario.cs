@@ -51,7 +51,31 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override void Excluir()
         {
-            //_disciplinaService.ExcluirDisciplina(objeto as Disciplina);
+            var disciplinasSelecionadaNoListBox = _disciplinaControl.retornaItemSelecionadoNoListBox();
+            try
+            {
+
+                if (disciplinasSelecionadaNoListBox != null)
+                {
+                    DialogResult resultado = MessageBox.Show("Deseja excluir a disciplina?", disciplinasSelecionadaNoListBox.Nome, MessageBoxButtons.YesNo);
+
+                    if (DialogResult.Yes == resultado)
+                    {
+                        _disciplinaService.ExcluirDisciplina(disciplinasSelecionadaNoListBox);
+                    }
+                }
+                else
+                {
+                    throw new Exception("Nenhuma disciplina selecionada");
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            AtualizarListagem();
         }
 
         public override void AtualizarListagem()

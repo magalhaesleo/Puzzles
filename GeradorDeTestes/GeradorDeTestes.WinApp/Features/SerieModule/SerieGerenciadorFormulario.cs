@@ -14,6 +14,11 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
         SerieService _serieService;
         SerieControl _serieControl;
 
+        public SerieGerenciadorFormulario()
+        {
+            _serieService = new SerieService();
+        }
+
         public override void Adicionar()
         {
             CadastroSerie dialogSerie = new CadastroSerie();
@@ -24,7 +29,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
             {
                 try
                 {
-                    obterSerieService().AdicionarSerie(dialogSerie.NovaSerie);
+                    _serieService.AdicionarSerie(dialogSerie.NovaSerie);
                     MessageBox.Show("Série adicionada");
                 }
                 catch (Exception e)
@@ -42,7 +47,30 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            var serieSelecionadaNoListBox = _serieControl.retornaSerieSelecionadaNoListBox();
+            try
+            {
+
+                if (serieSelecionadaNoListBox != null)
+                {
+                    DialogResult resultado = MessageBox.Show("Deseja excluir a matéria?", Convert.ToString(serieSelecionadaNoListBox.Numero), MessageBoxButtons.YesNo);
+
+                    if (DialogResult.Yes == resultado)
+                    {
+                        _serieService.ExcluirSerie(serieSelecionadaNoListBox);
+                        MessageBox.Show("Série excluída com sucesso");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Nenhuma série selecionada");
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         public override UserControl CarregarListControl()
@@ -55,7 +83,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
         public override void AtualizarListagem()
         {
-            _serieControl.listarSeries(obterSerieService().SelecionarTodasSeries());
+            // _serieControl.listarSeries(_serieService.SelecionarTodasSeries());
         }
 
         public override string ObtemTipo()
