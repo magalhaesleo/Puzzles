@@ -13,6 +13,11 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
     public partial class CadastroMateria : Form
     {
+        public CadastroMateria(Materia materia)
+        {
+            InitializeComponent();
+        }
+
         public CadastroMateria()
         {
             InitializeComponent();

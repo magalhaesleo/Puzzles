@@ -26,5 +26,10 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                 listMateria.Items.Add(item);
             }
         }
+
+        public Materia RetornaMateriaSelecionadaNoListBox()
+        {
+            return listMateria.SelectedItem as Materia;
+        }
     }
 }
