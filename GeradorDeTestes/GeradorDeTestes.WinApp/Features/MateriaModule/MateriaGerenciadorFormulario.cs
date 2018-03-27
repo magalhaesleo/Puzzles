@@ -55,7 +55,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                     _materiaService.AtualizarMateria(cadastroDialog.NovaMateria);
                 }catch(Exception e)
                 {
-
+                    MessageBox.Show(e.Message);
                 }
             }
 
@@ -102,7 +102,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public override void AtualizarListagem()
         {
-            // _materiaControl.listarMaterias(_materiaService.SelecionarTodasMaterias());
+            _materiaControl.listarMaterias(_materiaService.SelecionarTodasMaterias());
         }
 
         public override string ObtemTipo()

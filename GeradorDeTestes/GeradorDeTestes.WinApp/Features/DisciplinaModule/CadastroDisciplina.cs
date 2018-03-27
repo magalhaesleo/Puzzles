@@ -18,6 +18,8 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             InitializeComponent();
         }
 
+        
+        
         public Disciplina NovaDisciplina
         {
             get

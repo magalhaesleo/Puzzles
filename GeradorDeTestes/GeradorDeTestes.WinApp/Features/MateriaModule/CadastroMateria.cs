@@ -16,6 +16,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         public CadastroMateria(Materia materia)
         {
             InitializeComponent();
+
         }
 
         public CadastroMateria()

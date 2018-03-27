@@ -26,5 +26,10 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
                 listSerie.Items.Add(item);
             }
         }
+
+        public Serie retornaSerieSelecionadaNoListBox()
+        {
+            return listSerie.SelectedItem as Serie;
+        }
     }
 }
