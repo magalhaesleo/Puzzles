@@ -48,6 +48,7 @@
             0,
             0});
             this.numSerie.Name = "numSerie";
+            this.numSerie.ReadOnly = true;
             this.numSerie.Size = new System.Drawing.Size(38, 20);
             this.numSerie.TabIndex = 0;
             this.numSerie.Value = new decimal(new int[] {
@@ -68,6 +69,7 @@
             // 
             // btnCriarSerie
             // 
+            this.btnCriarSerie.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCriarSerie.Location = new System.Drawing.Point(27, 53);
             this.btnCriarSerie.Name = "btnCriarSerie";
             this.btnCriarSerie.Size = new System.Drawing.Size(75, 23);
