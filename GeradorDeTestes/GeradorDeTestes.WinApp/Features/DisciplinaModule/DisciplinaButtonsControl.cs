@@ -35,7 +35,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             {
                 GerenciadorDeDisciplina.Adicionar(dialogDisciplina.NovaDisciplina);
             }
-            else throw new Exception("Não foi possível criar uma disciplina.");
+            //else throw new Exception("Não foi possível criar uma disciplina.");
 
         }
 

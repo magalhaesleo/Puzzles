@@ -72,7 +72,7 @@
             this.MinimizeBox = false;
             this.Name = "CadastroDisciplina";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CadastroDisciplina";
+            this.Text = "Cadastro de Disciplina";
             this.ResumeLayout(false);
             this.PerformLayout();
 
