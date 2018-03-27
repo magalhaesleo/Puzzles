@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Entidades
@@ -31,6 +32,16 @@ namespace GeradorDeTestes.Domain.Entidades
         {
             if (Nome.Length < 4 || String.IsNullOrEmpty(Nome))
                 throw new Exception("O nome deve ter pelo menos quatro caracteres.");
+
+            if ((char.IsNumber(Nome[0])))  
+                throw new Exception("O nome não deve iniciar com números ou ser só números!");
+
+            Regex regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+
+            
+            if (regexItem.IsMatch(Nome[0].ToString()))
+                throw new Exception("O nome não pode possuir caracteres especiais!");
+
         }
 
         public override string ToString()
