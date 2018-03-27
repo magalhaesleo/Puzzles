@@ -71,17 +71,39 @@ namespace GeradorDeTestes.WinApp
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            _gerenciador.Adicionar();
+            try
+            {
+                _gerenciador.Adicionar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            _gerenciador.Editar();
+            try
+            {
+                _gerenciador.Editar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
-        {
-            _gerenciador.Excluir();
+        {            
+            try
+            {
+                _gerenciador.Excluir();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private DisciplinaGerenciadorFormulario obterGerenciadorDisciplina()
