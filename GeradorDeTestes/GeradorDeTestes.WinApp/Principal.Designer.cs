@@ -70,28 +70,28 @@
             // deDisciplinaToolStripMenuItem
             // 
             this.deDisciplinaToolStripMenuItem.Name = "deDisciplinaToolStripMenuItem";
-            this.deDisciplinaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deDisciplinaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.deDisciplinaToolStripMenuItem.Text = "Disciplina";
             this.deDisciplinaToolStripMenuItem.Click += new System.EventHandler(this.deDisciplinaToolStripMenuItem_Click);
             // 
             // materiaToolStripMenuItem
             // 
             this.materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-            this.materiaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.materiaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.materiaToolStripMenuItem.Text = "Matéria";
             this.materiaToolStripMenuItem.Click += new System.EventHandler(this.materiaToolStripMenuItem_Click);
             // 
             // questaoToolStripMenuItem
             // 
             this.questaoToolStripMenuItem.Name = "questaoToolStripMenuItem";
-            this.questaoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.questaoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.questaoToolStripMenuItem.Text = "Questão";
             this.questaoToolStripMenuItem.Click += new System.EventHandler(this.questaoToolStripMenuItem_Click);
             // 
             // sérieToolStripMenuItem
             // 
             this.sérieToolStripMenuItem.Name = "sérieToolStripMenuItem";
-            this.sérieToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sérieToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.sérieToolStripMenuItem.Text = "Série";
             this.sérieToolStripMenuItem.Click += new System.EventHandler(this.sérieToolStripMenuItem_Click);
             // 

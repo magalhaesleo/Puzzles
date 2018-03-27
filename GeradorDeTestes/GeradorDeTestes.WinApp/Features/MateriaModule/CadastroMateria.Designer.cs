@@ -81,6 +81,7 @@
             // 
             // btnSalvarMateria
             // 
+            this.btnSalvarMateria.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSalvarMateria.Location = new System.Drawing.Point(343, 124);
             this.btnSalvarMateria.Name = "btnSalvarMateria";
             this.btnSalvarMateria.Size = new System.Drawing.Size(107, 23);

@@ -68,6 +68,7 @@
             // 
             // btnCriarSerie
             // 
+            this.btnCriarSerie.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnCriarSerie.Location = new System.Drawing.Point(27, 53);
             this.btnCriarSerie.Name = "btnCriarSerie";
             this.btnCriarSerie.Size = new System.Drawing.Size(75, 23);

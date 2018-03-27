@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeradorDeTestes.Applications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
     class SerieGerenciadorFormulario : GerenciadorFormulario
     {
 
-        //  SerieService _serieService;
+        SerieService _serieService;
         SerieControl _serieControl;
 
         public override void Adicionar()
@@ -23,8 +24,8 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
             {
                 try
                 {
-                    //  _materiaService.AdicionarDisciplina(dialogDisciplina.NovaMateria);
-                    MessageBox.Show("descomentar linha a cima Série adicionada");
+                    obterSerieService().AdicionarSerie(dialogSerie.NovaSerie);
+                    MessageBox.Show("Série adicionada");
                 }
                 catch (Exception e)
                 {
@@ -48,18 +49,30 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
         {
             if (_serieControl == null)
                 _serieControl = new SerieControl();
-            //AtualizarListagem();
+            AtualizarListagem();
             return _serieControl;
         }
 
         public override void AtualizarListagem()
         {
-            // _serieControl.listarSeries(_serieService.SelecionarTodasSeries());
+            _serieControl.listarSeries(obterSerieService().SelecionarTodasSeries());
         }
 
         public override string ObtemTipo()
         {
             return "Série";
+        }
+
+        private SerieService obterSerieService()
+        {
+            if (_serieService == null)
+            {
+                return new SerieService();
+            }
+            else
+            {
+                return _serieService;
+            }
         }
     }
 }

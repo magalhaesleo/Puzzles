@@ -14,6 +14,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         DisciplinaService _disciplinaService;
         DisciplinaControl _disciplinaControl;
 
+
         public DisciplinaGerenciadorFormulario()
         {
             _disciplinaService = new DisciplinaService();  
@@ -55,7 +56,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override void AtualizarListagem()
         {
-            //_disciplinaControl.listarDisciplinas(_disciplinaService.SelecionarTodasDisciplinas());
+            _disciplinaControl.listarDisciplinas(_disciplinaService.SelecionarTodasDisciplinas());
         }
 
         public override void Editar()

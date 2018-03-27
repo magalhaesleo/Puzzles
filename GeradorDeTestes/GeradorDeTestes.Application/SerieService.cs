@@ -18,6 +18,7 @@ namespace GeradorDeTestes.Applications
         {            
             try
             {
+                validarExistenciaSerie(serie);
                 _serieDAO.Add(serie);
             }
             catch (Exception e)
@@ -64,6 +65,19 @@ namespace GeradorDeTestes.Applications
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+
+        private void validarExistenciaSerie(Serie serie)
+        {
+            var listSeries = SelecionarTodasSeries();
+
+            foreach (var serieListada in listSeries)
+            {
+                if (serieListada.Numero == serieListada.Numero)
+                {
+                    throw new Exception("A série já esta cadastrada no banco de dados");
+                }
             }
         }
     }

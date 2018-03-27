@@ -97,7 +97,7 @@ namespace GeradorDeTestes.Applications
             {
                 if (disciplinaListada.Nome == disciplinaListada.Nome)
                 {
-                    throw new Exception("A disciplina ja esta cadastrada no banco de dados");
+                    throw new Exception("A disciplina já esta cadastrada no banco de dados");
                 }
             }
         }

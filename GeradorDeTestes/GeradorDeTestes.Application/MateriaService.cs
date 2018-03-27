@@ -80,7 +80,7 @@ namespace GeradorDeTestes.Applications
             {
                 if (materiaListada.Nome == materia.Nome)
                 {
-                    throw new Exception("A materia ja esta cadastrada no banco de dados");
+                    throw new Exception("A materia já esta cadastrada no banco de dados");
                 }
             }
        }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeradorDeTestes.Applications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,20 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
     class MateriaGerenciadorFormulario : GerenciadorFormulario
     {
-        //  MateriaService _materiaService;
+        MateriaService _materiaService;
         MateriaControl _materiaControl;
-
+        DisciplinaService _disciplinaService;
+        SerieService _serieService;
         public MateriaGerenciadorFormulario()
         {
+            _disciplinaService = new DisciplinaService();
+            _serieService = new SerieService();
             //inicializar service
         }
 
         public override void Adicionar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria();
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries());
 
             DialogResult resultado = dialogMateria.ShowDialog();
 
@@ -27,8 +31,8 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             {
                 try
                 {
-                    //  _materiaService.AdicionarDisciplina(dialogDisciplina.NovaMateria);
-                    MessageBox.Show("descomentar linha a cima Matéria adicionada");
+                    obterMateriaService().AdicionarMateria(dialogMateria.NovaMateria);
+                    MessageBox.Show("Matéria adicionada");
                 }
                 catch (Exception e)
                 {
@@ -52,18 +56,30 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         {
             if (_materiaControl == null)
                 _materiaControl = new MateriaControl();
-            //AtualizarListagem();
+            AtualizarListagem();
             return _materiaControl;
         }
 
         public override void AtualizarListagem()
         {
-            // _materiaControl.listarMaterias(_materiaService.SelecionarTodasMaterias());
+            _materiaControl.listarMaterias(obterMateriaService().SelecionarTodasMaterias());
         }
 
         public override string ObtemTipo()
         {
             return "Materia";
+        }
+
+        private MateriaService obterMateriaService()
+        {
+            if (_materiaService == null)
+            {
+                return new MateriaService();
+            }
+            else
+            {
+                return _materiaService;
+            }
         }
     }
 }
