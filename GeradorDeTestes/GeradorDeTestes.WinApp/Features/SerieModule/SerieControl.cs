@@ -21,6 +21,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
         public void listarSeries(List<Serie> listSeries)
         {
             listSerie.Items.Clear();
+
             foreach (var item in listSeries)
             {
                 listSerie.Items.Add(item);

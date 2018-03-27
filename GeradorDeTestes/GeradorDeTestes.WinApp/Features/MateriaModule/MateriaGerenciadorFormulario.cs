@@ -10,18 +10,18 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
     class MateriaGerenciadorFormulario : GerenciadorFormulario
     {
-        //  MateriaService _materiaService;
-        MateriaControl _materiaControl;
         MateriaService _materiaService;
-
+        MateriaControl _materiaControl;
+        DisciplinaService _disciplinaService;
+        SerieService _serieService;
         public MateriaGerenciadorFormulario()
         {
-            _materiaService = new MateriaService();
+            //inicializar service
         }
 
         public override void Adicionar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria();
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries());
 
             DialogResult resultado = dialogMateria.ShowDialog();
 
@@ -29,8 +29,8 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             {
                 try
                 {
-                    _materiaService.AdicionarMateria(dialogMateria.NovaMateria);
-                    MessageBox.Show("Matéria adicionada com sucesso");
+                    //  _materiaService.AdicionarDisciplina(dialogDisciplina.NovaMateria);
+                    MessageBox.Show("descomentar linha a cima Matéria adicionada");
                 }
                 catch (Exception e)
                 {
@@ -108,6 +108,18 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         public override string ObtemTipo()
         {
             return "Materia";
+        }
+
+        private MateriaService obterMateriaService()
+        {
+            if (_materiaService == null)
+            {
+                return new MateriaService();
+            }
+            else
+            {
+                return _materiaService;
+            }
         }
     }
 }

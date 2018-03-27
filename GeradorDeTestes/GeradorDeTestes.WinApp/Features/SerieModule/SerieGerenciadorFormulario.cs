@@ -83,12 +83,24 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
         public override void AtualizarListagem()
         {
-            _serieControl.listarSeries(_serieService.SelecionarTodasSeries());
+            // _serieControl.listarSeries(_serieService.SelecionarTodasSeries());
         }
 
         public override string ObtemTipo()
         {
             return "Série";
+        }
+
+        private SerieService obterSerieService()
+        {
+            if (_serieService == null)
+            {
+                return new SerieService();
+            }
+            else
+            {
+                return _serieService;
+            }
         }
     }
 }

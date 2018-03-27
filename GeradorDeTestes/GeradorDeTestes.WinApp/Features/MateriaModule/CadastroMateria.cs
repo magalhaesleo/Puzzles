@@ -1,4 +1,5 @@
-﻿using GeradorDeTestes.Domain.Entidades;
+﻿using GeradorDeTestes.Applications;
+using GeradorDeTestes.Domain.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +14,22 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
     public partial class CadastroMateria : Form
     {
-        public CadastroMateria(Materia materia)
+        private Materia materiaSelecionadaNoListBox;
+
+        public CadastroMateria(List<Disciplina> listDisciplina, List<Serie> listSerie)
         {
             InitializeComponent();
-
+            popularComboBoxDisciplina(listDisciplina);
+            popularComboBoxSerie(listSerie);
         }
-
         public CadastroMateria()
         {
             InitializeComponent();
+        }
+
+        public CadastroMateria(Materia materiaSelecionadaNoListBox)
+        {
+            this.materiaSelecionadaNoListBox = materiaSelecionadaNoListBox;
         }
 
         public Materia NovaMateria
@@ -32,6 +40,24 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                 materia.Nome = txtMateria.Text;
 
                 return materia;
+            }
+        }
+
+        public void popularComboBoxDisciplina(List<Disciplina> list)
+        {
+            foreach (var item in list)
+            {
+                cmbDisciplina.Items.Add(item);
+            }
+        }
+
+        public void popularComboBoxSerie(List<Serie> list)
+        {
+            //list.Sort();
+
+            foreach (var item in list)
+            {
+                cmbSerie.Items.Add(item);
             }
         }
     }
