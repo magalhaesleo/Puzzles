@@ -67,11 +67,12 @@
             this.Controls.Add(this.btnSalvarCadastroDisciplina);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CadastroDisciplina";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CadastroDisciplina";
+            this.Text = "Cadastro de Disciplina";
             this.ResumeLayout(false);
             this.PerformLayout();
 
