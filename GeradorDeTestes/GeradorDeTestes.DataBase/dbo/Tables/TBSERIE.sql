@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[TBSERIE]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Numero] NCHAR(10) NOT NULL
+)
