@@ -48,6 +48,7 @@
             0,
             0});
             this.numSerie.Name = "numSerie";
+            this.numSerie.ReadOnly = true;
             this.numSerie.Size = new System.Drawing.Size(38, 20);
             this.numSerie.TabIndex = 0;
             this.numSerie.Value = new decimal(new int[] {

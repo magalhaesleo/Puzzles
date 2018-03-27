@@ -66,6 +66,7 @@ namespace GeradorDeTestes.WinApp
         private void sérieToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CarregarGerenciador(obterGerenciadorSerie());
+            btnEditar.Enabled = false;
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)

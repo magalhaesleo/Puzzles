@@ -29,6 +29,5 @@ namespace GeradorDeTestes.Domain.Entidades
             this.Numero = numero;
         }
 
-      
     }
 }

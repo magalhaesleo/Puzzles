@@ -74,7 +74,7 @@ namespace GeradorDeTestes.Applications
 
             foreach (var serieListada in listSeries)
             {
-                if (serieListada.Numero == serieListada.Numero)
+                if (serieListada.Numero == serie.Numero)
                 {
                     throw new Exception("A série já esta cadastrada no banco de dados");
                 }
