@@ -1,6 +1,6 @@
-﻿namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
+﻿namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
-    partial class DisciplinaControl
+    partial class MateriaControl
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -28,32 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listDisciplina = new System.Windows.Forms.ListBox();
+            this.listMateria = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // listDisciplina
+            // listMateria
             // 
-            this.listDisciplina.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listDisciplina.FormattingEnabled = true;
-            this.listDisciplina.Location = new System.Drawing.Point(0, 0);
-            this.listDisciplina.Name = "listDisciplina";
-            this.listDisciplina.Size = new System.Drawing.Size(825, 282);
-            this.listDisciplina.TabIndex = 1;
+            this.listMateria.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listMateria.FormattingEnabled = true;
+            this.listMateria.Location = new System.Drawing.Point(0, 0);
+            this.listMateria.Name = "listMateria";
+            this.listMateria.Size = new System.Drawing.Size(825, 282);
+            this.listMateria.TabIndex = 3;
             // 
-            // DisciplinaControl
+            // MateriaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoSize = true;
-            this.Controls.Add(this.listDisciplina);
-            this.Name = "DisciplinaControl";
+            this.Controls.Add(this.listMateria);
+            this.Name = "MateriaControl";
             this.Size = new System.Drawing.Size(825, 282);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ListBox listDisciplina;
+
+        private System.Windows.Forms.ListBox listMateria;
     }
 }

@@ -45,12 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\DisciplinaModule\DisciplinaButtonsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Features\DisciplinaModule\DisciplinaButtonsControl.Designer.cs">
-      <DependentUpon>DisciplinaButtonsControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Features\DisciplinaModule\CadastroDisciplina.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +58,32 @@
       <DependentUpon>DisciplinaControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\DisciplinaModule\DisciplinaGerenciadorFormulario.cs" />
+    <Compile Include="Features\MateriaModule\CadastroMateria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\MateriaModule\CadastroMateria.Designer.cs">
+      <DependentUpon>CadastroMateria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\MateriaModule\MateriaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\MateriaModule\MateriaControl.Designer.cs">
+      <DependentUpon>MateriaControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\MateriaModule\MateriaGerenciadorFormulario.cs" />
+    <Compile Include="Features\SerieModule\CadastroSerie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\SerieModule\CadastroSerie.Designer.cs">
+      <DependentUpon>CadastroSerie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\SerieModule\SerieControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\SerieModule\SerieControl.Designer.cs">
+      <DependentUpon>SerieControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\SerieModule\SerieGerenciadorFormulario.cs" />
     <Compile Include="GerenciadorFormulario.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -73,14 +93,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Features\DisciplinaModule\DisciplinaButtonsControl.resx">
-      <DependentUpon>DisciplinaButtonsControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Features\DisciplinaModule\CadastroDisciplina.resx">
       <DependentUpon>CadastroDisciplina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\DisciplinaModule\DisciplinaControl.resx">
       <DependentUpon>DisciplinaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\MateriaModule\CadastroMateria.resx">
+      <DependentUpon>CadastroMateria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\MateriaModule\MateriaControl.resx">
+      <DependentUpon>MateriaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\SerieModule\CadastroSerie.resx">
+      <DependentUpon>CadastroSerie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\SerieModule\SerieControl.resx">
+      <DependentUpon>SerieControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
@@ -117,8 +146,6 @@
       <Name>GeradorDeTestes.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\MateriaModule\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

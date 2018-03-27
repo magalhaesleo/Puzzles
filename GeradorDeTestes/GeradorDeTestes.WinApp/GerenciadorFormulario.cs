@@ -9,12 +9,16 @@ namespace GeradorDeTestes.WinApp
 {
     public abstract class GerenciadorFormulario
     {
-        public abstract void Adicionar(Object objeto);
+        public abstract void Adicionar();
 
-        public abstract void Excluir(Object objecto);
+        public abstract void Editar();
+
+        public abstract void Excluir();
 
         public abstract UserControl CarregarListControl();
 
-        public abstract UserControl CarregarButtonsControl();
+        public abstract void AtualizarListagem();
+
+        public abstract string ObtemTipo();
     }
 }
