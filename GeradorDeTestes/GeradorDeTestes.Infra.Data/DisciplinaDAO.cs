@@ -40,7 +40,7 @@ namespace GeradorDeTestes.Infra.Data
                                              WHERE ID = {0}ID";
 
         public static string _sqlDelete = @"DELETE FROM TBDISCIPLINA
-                                             WHERE ID = @ID";
+                                             WHERE ID = {0}ID";
 
         #endregion Scripts SQL
 
