@@ -12,17 +12,19 @@ namespace GeradorDeTestes.Domain.Entidades
         private int _id;
         private string _nome;
         private Disciplina _disciplina;
+        private Serie _serie;
 
         public int Id { get { return this._id; } set { this._id = value; } }
         public string Nome { get { return this._nome; } set { this._nome = value; } }
         public Disciplina Disciplina { get { return this._disciplina; } set { this._disciplina = value; } }
+        public Serie Serie { get { return _serie;  } set { _serie = value;  } }
+
 
         public Materia()
         {
-
         }
 
-        public Materia(string nome, Disciplina disciplina)
+        public Materia(string nome, Disciplina disciplina, Serie serie)
         {
             this.Nome = nome;
             this.Disciplina = disciplina;
