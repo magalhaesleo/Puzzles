@@ -48,7 +48,7 @@ namespace GeradorDeTestes.Domain.Entidades
 
         public override string ToString()
         {
-            return String.Format("Matéria: {0}; Disciplina: {1}", Nome, Disciplina.Nome);
+            return String.Format("Matéria: {0} Disciplina: {1} Serie: {2}", Nome, Disciplina.Nome, Serie.Numero);
         }
 
 
