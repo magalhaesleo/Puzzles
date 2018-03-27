@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.gerenciadorDeDisciplinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciadorDeDisciplinasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciadorDeMatériasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciadorDeQuestõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelControl = new System.Windows.Forms.Panel();
@@ -51,19 +51,19 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // gerenciadorDeDisciplinasToolStripMenuItem
-            // 
-            this.gerenciadorDeDisciplinasToolStripMenuItem.Name = "gerenciadorDeDisciplinasToolStripMenuItem";
-            this.gerenciadorDeDisciplinasToolStripMenuItem.Size = new System.Drawing.Size(158, 20);
-            this.gerenciadorDeDisciplinasToolStripMenuItem.Text = "Gerenciador de Disciplinas";
-            this.gerenciadorDeDisciplinasToolStripMenuItem.Click += new System.EventHandler(this.gerenciadorDeDisciplinasToolStripMenuItem_Click);
-            // 
             // ajudaToolStripMenuItem
             // 
             this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
             this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
             this.ajudaToolStripMenuItem.Text = "Gerador de Testes";
             this.ajudaToolStripMenuItem.Click += new System.EventHandler(this.ajudaToolStripMenuItem_Click);
+            // 
+            // gerenciadorDeDisciplinasToolStripMenuItem
+            // 
+            this.gerenciadorDeDisciplinasToolStripMenuItem.Name = "gerenciadorDeDisciplinasToolStripMenuItem";
+            this.gerenciadorDeDisciplinasToolStripMenuItem.Size = new System.Drawing.Size(158, 20);
+            this.gerenciadorDeDisciplinasToolStripMenuItem.Text = "Gerenciador de Disciplinas";
+            this.gerenciadorDeDisciplinasToolStripMenuItem.Click += new System.EventHandler(this.gerenciadorDeDisciplinasToolStripMenuItem_Click);
             // 
             // gerenciadorDeMatériasToolStripMenuItem
             // 
@@ -99,6 +99,7 @@
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.panelControl);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Principal";
             this.Text = "Form1";
