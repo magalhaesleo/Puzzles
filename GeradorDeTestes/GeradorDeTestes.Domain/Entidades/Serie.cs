@@ -24,6 +24,9 @@ namespace GeradorDeTestes.Domain.Entidades
         {
             this.Numero = numero;
         }
-        
+        public override string ToString()
+        {
+            return String.Format("{0}ª serie", Numero);
+        }
     }
 }
