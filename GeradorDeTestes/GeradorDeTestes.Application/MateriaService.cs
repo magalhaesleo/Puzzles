@@ -18,7 +18,6 @@ namespace GeradorDeTestes.Applications
         {            
             try
             {
-                materia.Validate();
                 validarExistenciaMateria(materia);
                 _materiaDAO.Add(materia);
             }
@@ -33,8 +32,6 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                materia.Validate();
-                validarExistenciaMateria(materia);
                 _materiaDAO.Editar(materia);
             }
             catch (Exception e)
@@ -76,9 +73,9 @@ namespace GeradorDeTestes.Applications
         {
             var listMaterias = SelecionarTodasMaterias();
 
-            foreach (var materiaListada in listMaterias)
+            foreach (var materiaAtual in listMaterias)
             {
-                if (materiaListada.Nome == materia.Nome)
+                if (materiaAtual.Nome == materia.Nome)
                 {
                     throw new Exception("A materia já esta cadastrada no banco de dados");
                 }

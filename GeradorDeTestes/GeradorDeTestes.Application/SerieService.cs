@@ -8,10 +8,12 @@ namespace GeradorDeTestes.Applications
     public class SerieService
     {
         private SerieDAO _serieDAO;
+        private MateriaDAO _materiaDAO;
 
         public SerieService()
         {
             _serieDAO = new SerieDAO();
+            _materiaDAO = new MateriaDAO();
         }
 
         public Serie AdicionarSerie(Serie serie)
@@ -46,6 +48,14 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
+                List<Materia> listaMateria = _materiaDAO.GetAll();
+                foreach (Materia materia in listaMateria)
+                {
+                    if (serie.Id == materia.Serie.Id)
+                    {
+                        throw new Exception("Não foi possivel excluir, a serie está sendo utilizada!");
+                    }
+                }
                 _serieDAO.Excluir(serie);
             }
             catch(Exception e)

@@ -1,10 +1,13 @@
 ﻿using GeradorDeTestes.Applications;
+using GeradorDeTestes.Domain.helpers;
+using GeradorDeTestes.Domain.helpers.ButtonsEnable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GeradorDeTestes.Domain.helpers.ToolStripVisible;
 
 namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
@@ -16,12 +19,14 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         SerieService _serieService;
         public MateriaGerenciadorFormulario()
         {
-            //inicializar service
+           _serieService = new SerieService();
+           _disciplinaService = new DisciplinaService();
+           _materiaService = new MateriaService();
         }
 
         public override void Adicionar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries());
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(),_materiaControl, true,_materiaService.SelecionarTodasMaterias());
 
             DialogResult resultado = dialogMateria.ShowDialog();
 
@@ -29,36 +34,39 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             {
                 try
                 {
-                    //  _materiaService.AdicionarDisciplina(dialogDisciplina.NovaMateria);
-                    MessageBox.Show("descomentar linha a cima Matéria adicionada");
+                    _materiaService.AdicionarMateria(dialogMateria.NovaMateria);
+                    MessageBox.Show("Matéria adicionada com sucesso");
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
                 }
-                AtualizarListagem();
+               
             }
+            AtualizarListagem();
         }
 
         public override void Editar()
         {
-            var materiaSelecionadaNoListBox = _materiaControl.RetornaMateriaSelecionadaNoListBox();
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(),_materiaControl, false, _materiaService.SelecionarTodasMaterias());
+            
+            DialogResult resultado = dialogMateria.ShowDialog();
 
-            CadastroMateria cadastroDialog = new CadastroMateria(materiaSelecionadaNoListBox);
-
-            DialogResult result = cadastroDialog.ShowDialog();
-
-            if ( DialogResult.OK == result)
+            if (resultado == DialogResult.OK)
             {
                 try
                 {
-                    _materiaService.AtualizarMateria(cadastroDialog.NovaMateria);
-                }catch(Exception e)
+                    _materiaService.AtualizarMateria(dialogMateria.MateriaEditada);
+                    MessageBox.Show("Matéria atualizada com sucesso");
+                }
+                catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
                 }
+
             }
 
+            definirEnableButtons(ObtemEnableButtons());
             AtualizarListagem();
         }
 
@@ -68,27 +76,21 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             var materiaSelecionadaNoListBox = _materiaControl.RetornaMateriaSelecionadaNoListBox();
             try
             {
+                DialogResult resultado = MessageBox.Show("Deseja excluir a matéria? " + materiaSelecionadaNoListBox.Nome,"Informativo", MessageBoxButtons.YesNo);
 
-                if (materiaSelecionadaNoListBox != null)
+                if (DialogResult.Yes == resultado)
                 {
-                    DialogResult resultado = MessageBox.Show("Deseja excluir a matéria?", materiaSelecionadaNoListBox.Nome, MessageBoxButtons.YesNo);
-
-                    if (DialogResult.Yes == resultado)
-                    {
                         _materiaService.ExcluirMateria(materiaSelecionadaNoListBox);
-                    }
-                }
-                else
-                {
-                    throw new Exception("Nenhuma matéria selecionada");
                 }
                 
             }
+
             catch(Exception e)
             {
                 MessageBox.Show(e.Message);
             }
 
+            definirEnableButtons(ObtemEnableButtons());
             AtualizarListagem();
         }
 
@@ -110,16 +112,39 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             return "Materia";
         }
 
-        private MateriaService obterMateriaService()
+        public override ButtonsVisible ObtemVisibleButtons()
         {
-            if (_materiaService == null)
+            return new ButtonsVisible
             {
-                return new MateriaService();
-            }
-            else
+                btnAdicionar = true,
+                btnEditar = true,
+                btnExcluir = true
+            };
+        }
+
+        public override ButtonsEnable ObtemEnableButtons()
+        {
+            return new ButtonsEnable
             {
-                return _materiaService;
-            }
+                btnAdicionar = true,
+                btnEditar = false,
+                btnExcluir = false
+            };
+        }
+
+        public void definirEnableButtons(ButtonsEnable buttonsEnable)
+        {
+
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = buttonsEnable.btnExcluir;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
+        }
+
+        public override ToolStripVisible ObtemVisibleToolStrip()
+        {
+            return new ToolStripVisible
+            {
+                toolStripBotoes = true
+            };
         }
     }
 }

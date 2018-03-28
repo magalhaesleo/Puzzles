@@ -76,6 +76,7 @@
             this.btnCriarSerie.TabIndex = 2;
             this.btnCriarSerie.Text = "Criar Série";
             this.btnCriarSerie.UseVisualStyleBackColor = true;
+            this.btnCriarSerie.Click += new System.EventHandler(this.btnCriarSerie_Click);
             // 
             // CadastroSerie
             // 

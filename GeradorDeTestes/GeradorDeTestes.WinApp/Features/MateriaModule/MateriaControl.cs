@@ -31,5 +31,14 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         {
             return listMateria.SelectedItem as Materia;
         }
+
+        private void listMateria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listMateria.SelectedIndex >= 0)
+            {
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = true;
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = true;
+            }
+        }
     }
 }

@@ -13,9 +13,11 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 {
     public partial class CadastroSerie : Form
     {
-        public CadastroSerie()
+        public List<Serie> ListadeSeries { get; private set; }
+        public CadastroSerie(List<Serie> listSeries)
         {
             InitializeComponent();
+            ListadeSeries = listSeries;
         }
 
         public Serie NovaSerie
@@ -28,5 +30,30 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
             }
         }
 
+
+
+        private void btnCriarSerie_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NovaSerie != null)
+                {
+
+                    foreach (var item in ListadeSeries)
+                    {
+                        if (item.Numero == NovaSerie.Numero)
+                        {
+                            throw new Exception("Esta serie já esta cadastrada!");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.DialogResult = DialogResult.None;
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }

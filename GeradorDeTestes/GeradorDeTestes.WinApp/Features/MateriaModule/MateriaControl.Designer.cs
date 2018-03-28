@@ -39,6 +39,7 @@
             this.listMateria.Name = "listMateria";
             this.listMateria.Size = new System.Drawing.Size(825, 282);
             this.listMateria.TabIndex = 3;
+            this.listMateria.SelectedIndexChanged += new System.EventHandler(this.listMateria_SelectedIndexChanged);
             // 
             // MateriaControl
             // 
@@ -53,6 +54,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listMateria;
+        public System.Windows.Forms.ListBox listMateria;
     }
 }

@@ -39,6 +39,7 @@
             this.listSerie.Name = "listSerie";
             this.listSerie.Size = new System.Drawing.Size(825, 282);
             this.listSerie.TabIndex = 2;
+            this.listSerie.SelectedIndexChanged += new System.EventHandler(this.listSerie_SelectedIndexChanged);
             // 
             // SerieControl
             // 

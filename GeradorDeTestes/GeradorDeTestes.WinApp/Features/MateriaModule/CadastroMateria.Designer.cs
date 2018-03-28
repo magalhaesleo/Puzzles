@@ -73,6 +73,7 @@
             // 
             // cmbDisciplina
             // 
+            this.cmbDisciplina.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDisciplina.FormattingEnabled = true;
             this.cmbDisciplina.Location = new System.Drawing.Point(64, 55);
             this.cmbDisciplina.Name = "cmbDisciplina";
@@ -88,9 +89,11 @@
             this.btnSalvarMateria.TabIndex = 6;
             this.btnSalvarMateria.Text = "Salvar Matéria";
             this.btnSalvarMateria.UseVisualStyleBackColor = true;
+            this.btnSalvarMateria.Click += new System.EventHandler(this.btnSalvarMateria_Click);
             // 
             // cmbSerie
             // 
+            this.cmbSerie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSerie.FormattingEnabled = true;
             this.cmbSerie.Location = new System.Drawing.Point(64, 86);
             this.cmbSerie.Name = "cmbSerie";

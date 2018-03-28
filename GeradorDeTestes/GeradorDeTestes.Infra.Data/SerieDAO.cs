@@ -24,7 +24,7 @@ namespace GeradorDeTestes.Infra.Data
 
         public const string _sqlSelectAll = @"SELECT ID
                                                     ,NUMERO
-                                                FROM TBSERIE";
+                                                FROM TBSERIE ORDER BY NUMERO ASC";
 
         public const string _sqlUpdate = @"UPDATE TBSERIE
                                                         SET NUMERO = {0}NUMERO
@@ -94,8 +94,8 @@ namespace GeradorDeTestes.Infra.Data
         }
 
         private static Func<IDataReader, Serie> FormaObjetoSerie = reader =>
-
-          new Serie
+          
+           new Serie
           {
               Id = Convert.ToInt32(reader["ID"]),
               Numero = Convert.ToInt32(reader["NUMERO"])

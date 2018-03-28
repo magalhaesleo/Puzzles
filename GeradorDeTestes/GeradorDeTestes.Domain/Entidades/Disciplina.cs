@@ -15,7 +15,7 @@ namespace GeradorDeTestes.Domain.Entidades
         public int Id { get { return this._id; } set { this._id = value; } }
         public string Nome { get { return this._nome; } set { this._nome = value; } }
 
-        //public List<Materia> listaMaterias;
+       
 
         public Disciplina()
         {
@@ -29,21 +29,33 @@ namespace GeradorDeTestes.Domain.Entidades
 
         public void Validate()
         {
-            if (Nome.Length < 4 )
+            if (Nome.Contains("  "))
+                throw new Exception("O nome não deve possuir mais que um espaço consecutivos.");
+
+            if (Nome.Length < 4)
+            {
                 throw new Exception("O nome deve ter pelo menos quatro caracteres.");
-            if (String.IsNullOrEmpty(Nome))
+            }
+
+            if (String.IsNullOrEmpty(Nome) || Nome.Trim() == "")
+            {
                 throw new Exception("O nome não pode ser em branco.");
-            if (Nome.Length > 15)
-                throw new Exception("O nome não pode ultrapassar 15 caracteres.");
-            if (Nome.All(char.IsDigit) == true)
-                throw new Exception("Não pode conter numeros!");
-            if (Nome.All(char.IsDigit) == true)
-                throw new Exception("Não pode conter numeros!");
+            }
 
-            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+            if (Nome.Length > 25){
+                throw new Exception("O nome não pode ultrapassar 25 caracteres.");
+            }
 
-            if (regexItem.IsMatch(Nome))
-                throw new Exception("Não pode conter caracteres especiais!");
+            if (Regex.IsMatch(Nome, (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))
+            {
+                throw new Exception("O nome da disciplina Não pode conter caracteres especiais!");
+            }
+
+            if ((char.IsNumber(Nome[0])))
+                throw new Exception("O nome não deve iniciar com números ou conter apenas números!");
+
+            if (!Regex.IsMatch(Nome, @"^[ a-zA-Z á]*$"))
+                    throw new Exception("O nome não deve conter números!");
         }
 
         public override string ToString()
