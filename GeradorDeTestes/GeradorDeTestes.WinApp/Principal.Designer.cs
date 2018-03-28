@@ -36,14 +36,14 @@
             this.questaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sérieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelControl = new System.Windows.Forms.Panel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripBotoes = new System.Windows.Forms.ToolStrip();
             this.btnAdicionar = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripBotoes.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -102,20 +102,19 @@
             this.panelControl.Size = new System.Drawing.Size(825, 282);
             this.panelControl.TabIndex = 1;
             // 
-            // toolStrip1
+            // toolStripBotoes
             // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripBotoes.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripBotoes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAdicionar,
             this.btnEditar,
             this.btnExcluir,
             this.toolStripSeparator1,
             this.labelTipoCadastro});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(849, 39);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripBotoes.Location = new System.Drawing.Point(0, 24);
+            this.toolStripBotoes.Name = "toolStripBotoes";
+            this.toolStripBotoes.Size = new System.Drawing.Size(849, 39);
+            this.toolStripBotoes.TabIndex = 2;
             // 
             // btnAdicionar
             // 
@@ -166,17 +165,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(849, 360);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStripBotoes);
             this.Controls.Add(this.panelControl);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gerador de Testes";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripBotoes.ResumeLayout(false);
+            this.toolStripBotoes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,10 +191,10 @@
         private System.Windows.Forms.ToolStripMenuItem materiaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem questaoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sérieToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnAdicionar;
-        private System.Windows.Forms.ToolStripButton btnEditar;
-        private System.Windows.Forms.ToolStripButton btnExcluir;
+        private System.Windows.Forms.ToolStrip toolStripBotoes;
+        public System.Windows.Forms.ToolStripButton btnAdicionar;
+        public System.Windows.Forms.ToolStripButton btnEditar;
+        public System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
     }

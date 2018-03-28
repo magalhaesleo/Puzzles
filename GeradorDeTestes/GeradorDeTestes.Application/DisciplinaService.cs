@@ -25,8 +25,7 @@ namespace GeradorDeTestes.Applications
             
             try
             {
-                disciplina.Validate();
-                validarExistenciaDisciplina(disciplina);
+                 validarExistenciaDisciplina(disciplina);
                 _disciplinaDAO.Add(disciplina);
             }
             catch (Exception e)
@@ -40,8 +39,6 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                disciplina.Validate();
-                validarExistenciaDisciplina(disciplina);
                 _disciplinaDAO.Editar(disciplina);
             }
             catch(Exception e)
@@ -66,36 +63,27 @@ namespace GeradorDeTestes.Applications
             return disciplina;
         }
 
-        
-       public List<Disciplina> SelecionarTodasDisciplinas()
-        {
-          return  _disciplinaDAO.GetAll();
-
-         }
-        
-
-        public Disciplina SelecionarDisciplina(int id)
+        public List<Disciplina> SelecionarTodasDisciplinas()
         {
             try
             {
-
+                return _disciplinaDAO.GetAll();
             }
-            catch
+            catch (Exception e)
             {
-
+                MessageBox.Show(e.Message);
+                return _disciplinaDAO.GetAll();
             }
 
-            //getById
-            return new Disciplina();
-        }
-
+         }
+        
         private void validarExistenciaDisciplina(Disciplina disciplina)
         {
             var listDisciplinas = SelecionarTodasDisciplinas();
 
             foreach (var disciplinaListada in listDisciplinas)
             {
-                if (disciplinaListada.Nome == disciplinaListada.Nome)
+                if (disciplinaListada.Nome == disciplina.Nome)
                 {
                     throw new Exception("A disciplina já esta cadastrada no banco de dados");
                 }

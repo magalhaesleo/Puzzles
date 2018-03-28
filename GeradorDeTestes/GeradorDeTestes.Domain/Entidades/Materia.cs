@@ -36,19 +36,17 @@ namespace GeradorDeTestes.Domain.Entidades
                 throw new Exception("O nome deve ter pelo menos quatro caracteres.");
 
             if ((char.IsNumber(Nome[0])))  
-                throw new Exception("O nome não deve iniciar com números ou ser só números!");
+                throw new Exception("O nome não deve iniciar com números ou conter apenas números!");
 
-            Regex regexItem = new Regex("^[a-zA-Z0-9 ]*$");
-
-            
-            if (regexItem.IsMatch(Nome[0].ToString()))
-                throw new Exception("O nome não pode possuir caracteres especiais!");
-
+            if (Regex.IsMatch(Nome[0].ToString(), (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))
+            {
+                throw new Exception("O nome não deve iniciar com um caracter especial");
+            }
         }
 
         public override string ToString()
         {
-            return String.Format("Matéria: {0} Disciplina: {1} Serie: {2}", Nome, Disciplina.Nome, Serie.Numero);
+            return String.Format("Matéria: {0} - Disciplina: {1} - Serie: {2}", Nome, Disciplina.Nome, Serie.Numero);
         }
 
 

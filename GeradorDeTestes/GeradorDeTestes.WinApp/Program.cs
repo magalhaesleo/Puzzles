@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace GeradorDeTestes.WinApp
 {
+    public static class ControleDeReferencia
+    {
+      public static Principal ReferenciaFormularioPrincipal { get; set; }
+    }
     static class Program
     {
         /// <summary>
@@ -14,9 +18,14 @@ namespace GeradorDeTestes.WinApp
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Principal());
+            Principal formularioPrincipal = new Principal();
+            Application.EnableVisualStyles();
+            ControleDeReferencia.ReferenciaFormularioPrincipal = formularioPrincipal;
+            Application.Run(formularioPrincipal);
+
+            
+            
         }
     }
 }

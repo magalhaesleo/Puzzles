@@ -43,6 +43,9 @@
     <Compile Include="Entidades\Disciplina.cs" />
     <Compile Include="Entidades\Materia.cs" />
     <Compile Include="Entidades\Serie.cs" />
+    <Compile Include="helpers\ButtonsEnable\ButtonsEnable.cs" />
+    <Compile Include="helpers\ButtonsVisible\ButtonsVisible.cs" />
+    <Compile Include="helpers\ToolStripVisible\ToolStripVisible.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -88,6 +88,7 @@
             this.btnSalvarMateria.TabIndex = 6;
             this.btnSalvarMateria.Text = "Salvar Matéria";
             this.btnSalvarMateria.UseVisualStyleBackColor = true;
+            this.btnSalvarMateria.Click += new System.EventHandler(this.btnSalvarMateria_Click);
             // 
             // cmbSerie
             // 

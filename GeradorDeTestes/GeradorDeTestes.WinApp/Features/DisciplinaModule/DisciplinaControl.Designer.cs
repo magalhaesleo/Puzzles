@@ -39,6 +39,7 @@
             this.listDisciplina.Name = "listDisciplina";
             this.listDisciplina.Size = new System.Drawing.Size(825, 282);
             this.listDisciplina.TabIndex = 1;
+            this.listDisciplina.SelectedIndexChanged += new System.EventHandler(this.listDisciplina_SelectedIndexChanged);
             // 
             // DisciplinaControl
             // 

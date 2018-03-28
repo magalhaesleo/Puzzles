@@ -51,19 +51,19 @@
             // 
             // btnSalvarCadastroDisciplina
             // 
-            this.btnSalvarCadastroDisciplina.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSalvarCadastroDisciplina.Location = new System.Drawing.Point(149, 93);
+            this.btnSalvarCadastroDisciplina.Location = new System.Drawing.Point(149, 55);
             this.btnSalvarCadastroDisciplina.Name = "btnSalvarCadastroDisciplina";
             this.btnSalvarCadastroDisciplina.Size = new System.Drawing.Size(111, 23);
             this.btnSalvarCadastroDisciplina.TabIndex = 2;
             this.btnSalvarCadastroDisciplina.Text = "Salvar Disciplina";
             this.btnSalvarCadastroDisciplina.UseVisualStyleBackColor = true;
+            this.btnSalvarCadastroDisciplina.Click += new System.EventHandler(this.btnSalvarCadastroDisciplina_Click);
             // 
             // CadastroDisciplina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 154);
+            this.ClientSize = new System.Drawing.Size(268, 83);
             this.Controls.Add(this.btnSalvarCadastroDisciplina);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);

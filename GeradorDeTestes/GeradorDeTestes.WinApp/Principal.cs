@@ -1,4 +1,7 @@
-﻿using GeradorDeTestes.WinApp.Features.DisciplinaModule;
+﻿using GeradorDeTestes.Domain.helpers;
+using GeradorDeTestes.Domain.helpers.ButtonsEnable;
+using GeradorDeTestes.Domain.helpers.ToolStripVisible;
+using GeradorDeTestes.WinApp.Features.DisciplinaModule;
 using GeradorDeTestes.WinApp.Features.MateriaModule;
 using GeradorDeTestes.WinApp.Features.SerieModule;
 using System;
@@ -25,18 +28,25 @@ namespace GeradorDeTestes.WinApp
         public Principal()
         {
             InitializeComponent();
+            toolStripBotoes.Visible = false;
         }
 
         private void gerenciadorDeDisciplinasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CarregarGerenciador(_gerenciadorDisciplina);
+            CarregarGerenciador(obterGerenciadorDisciplina());
         }
 
         private void CarregarGerenciador(GerenciadorFormulario gerenciador)
         {
             _gerenciador = gerenciador;
 
-            UserControl list = _gerenciador.CarregarListControl();
+            definirPropriedadeEnableDosBotoes(_gerenciador.ObtemEnableButtons());
+            definirPropriedadeVisibleDosBotoes(_gerenciador.ObtemVisibleButtons());
+            definirPropriedadeVisibleToolStrip(_gerenciador.ObtemVisibleToolStrip());
+            
+
+            UserControl userControlType = _gerenciador.CarregarListControl();
+
             labelTipoCadastro.Text = "Gerenciador de " + _gerenciador.ObtemTipo();
             btnAdicionar.Text = "Adicionar " + _gerenciador.ObtemTipo();
             btnEditar.Text = "Editar " + _gerenciador.ObtemTipo();
@@ -45,7 +55,7 @@ namespace GeradorDeTestes.WinApp
 
             panelControl.Controls.Clear();
 
-            panelControl.Controls.Add(list);
+            panelControl.Controls.Add(userControlType);
         }
 
         private void deDisciplinaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -66,8 +76,7 @@ namespace GeradorDeTestes.WinApp
         private void sérieToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CarregarGerenciador(obterGerenciadorSerie());
-            btnEditar.Enabled = false;
-        }
+         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
@@ -110,7 +119,7 @@ namespace GeradorDeTestes.WinApp
         {
             if (_gerenciadorDisciplina == null)
             {
-                return new DisciplinaGerenciadorFormulario();
+                return _gerenciadorDisciplina = new DisciplinaGerenciadorFormulario();
             }
             else
             {
@@ -121,7 +130,7 @@ namespace GeradorDeTestes.WinApp
         {
             if (_gerenciadorSerie == null)
             {
-                return new SerieGerenciadorFormulario();
+                return _gerenciadorSerie = new SerieGerenciadorFormulario();
             }
             else
             {
@@ -132,7 +141,7 @@ namespace GeradorDeTestes.WinApp
         {
             if (_gerenciadorMateria == null)
             {
-                return new MateriaGerenciadorFormulario();
+                return _gerenciadorMateria = new MateriaGerenciadorFormulario();
             }
             else
             {
@@ -140,5 +149,22 @@ namespace GeradorDeTestes.WinApp
             }
         }
 
+        private void definirPropriedadeVisibleDosBotoes(ButtonsVisible buttonsVisible)
+        {
+            btnAdicionar.Visible = buttonsVisible.btnAdicionar;
+            btnEditar.Visible = buttonsVisible.btnEditar;
+            btnExcluir.Visible = buttonsVisible.btnExcluir;
+        }
+
+        private void definirPropriedadeEnableDosBotoes(ButtonsEnable buttonsEnable)
+        {
+            btnAdicionar.Enabled = buttonsEnable.btnAdicionar;
+            btnEditar.Enabled = buttonsEnable.btnEditar;
+            btnExcluir.Enabled = buttonsEnable.btnExcluir;
+        }
+        private void definirPropriedadeVisibleToolStrip(ToolStripVisible toolStripVisible)
+        {
+            toolStripBotoes.Visible = toolStripVisible.toolStripBotoes;
+        }
     }
 }
