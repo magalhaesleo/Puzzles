@@ -20,6 +20,36 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             InitializeComponent();
         }
 
+        private void btnCadastrarDisciplina_Click(object sender, EventArgs e)
+        {
+            _disciplinaService.AdicionarDisciplina(Adicionar());
+            //Adicionar
+        }
+
+        public Disciplina Adicionar()
+        {
+            CadastroDisciplina dialog = new CadastroDisciplina();
+
+            DialogResult resultado = dialog.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                return dialog.NovaDisciplina;
+            }
+            else throw new Exception("Não foi possível criar uma disciplina.");
+
+        }
+
+        private void btnEditarDisciplina_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExcluirDisciplina_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public void listarDisciplinas(List<Disciplina> listDisciplinas)
         {
             listDisciplina.Items.Clear();
@@ -33,14 +63,5 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         {
            return listDisciplina.SelectedItem as Disciplina;
         }
-
-        private void listDisciplina_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listDisciplina.SelectedIndex >= 0)
-            {
-                ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = true;
-                ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = true;
-            }
-         }
     }
 }
