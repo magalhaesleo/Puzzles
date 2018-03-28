@@ -51,6 +51,7 @@
             // 
             // btnSalvarCadastroDisciplina
             // 
+            this.btnSalvarCadastroDisciplina.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSalvarCadastroDisciplina.Location = new System.Drawing.Point(149, 55);
             this.btnSalvarCadastroDisciplina.Name = "btnSalvarCadastroDisciplina";
             this.btnSalvarCadastroDisciplina.Size = new System.Drawing.Size(111, 23);

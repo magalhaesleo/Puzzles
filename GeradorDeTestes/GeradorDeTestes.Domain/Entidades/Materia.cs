@@ -32,6 +32,9 @@ namespace GeradorDeTestes.Domain.Entidades
 
         public void Validate()
         {
+            if (Nome.Contains("  "))
+                throw new Exception("O nome não deve possuir mais que um espaço consecutivos.");
+
             if (Nome.Length < 4 || String.IsNullOrEmpty(Nome))
                 throw new Exception("O nome deve ter pelo menos quatro caracteres.");
 

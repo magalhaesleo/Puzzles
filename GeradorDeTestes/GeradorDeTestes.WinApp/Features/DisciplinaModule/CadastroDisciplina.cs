@@ -24,20 +24,24 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                 return this._disciplinaParaEdicao;
             }
 
-            set { this._disciplinaParaEdicao = value;} 
+            set { this._disciplinaParaEdicao = value; }
         }
-        public CadastroDisciplina(DisciplinaControl disciplinaControl)
+        public CadastroDisciplina(DisciplinaControl disciplinaControl, Boolean OperacaoDeAdicao)
         {
             InitializeComponent();
 
-            if (disciplinaControl.retornaItemSelecionadoNoListBox() != null)
+            if (!OperacaoDeAdicao)
             {
-                _disciplinaParaEdicao = disciplinaControl.retornaItemSelecionadoNoListBox();
-                txtNome.Text = _disciplinaParaEdicao.Nome;
+                if (disciplinaControl.retornaItemSelecionadoNoListBox() != null)
+                {
+                    _disciplinaParaEdicao = disciplinaControl.retornaItemSelecionadoNoListBox();
+                    txtNome.Text = _disciplinaParaEdicao.Nome;
+                }
             }
+
         }
 
-        
+
         public Disciplina NovaDisciplina
         {
             get
@@ -49,27 +53,11 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             }
         }
 
-        private void ValidarIntegridadeDoObjeto()
-        {
-            var disciplinaAuxiliar = new Disciplina()
-            {
-                Nome = txtNome.Text,
-            };
-            try
-            { 
-                disciplinaAuxiliar.Validate();
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            
-        }
+
 
         public void ValidarPreenchimentoDosCampos()
         {
-            try
-            {
+
                 if (txtNome.Text == null)
                 {
                     txtNome.BackColor = Color.Red;
@@ -84,28 +72,36 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                         throw new Exception("Digite um nome diferente do atual, caso contrário feche a janela");
                     }
                 }
-            }catch(Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+         
+
         }
 
         private void btnSalvarCadastroDisciplina_Click(object sender, EventArgs e)
         {
-           // this.DialogResult = DialogResult.None;
+
+
             try
             {
                 ValidarPreenchimentoDosCampos();
-                ValidarIntegridadeDoObjeto();
-                this.DialogResult = DialogResult.OK;
+
+                if (_disciplinaParaEdicao != null)
+                {
+                    DisciplinaEditada.Validate();
+                }
+                else
+                {
+                    NovaDisciplina.Validate();
+                }
             }
             catch (Exception ex)
             {
-               
+                this.DialogResult = DialogResult.None;
                 MessageBox.Show(ex.Message);
             }
+
+
         }
 
-      
+
     }
 }

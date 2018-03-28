@@ -73,6 +73,7 @@
             // 
             // cmbDisciplina
             // 
+            this.cmbDisciplina.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDisciplina.FormattingEnabled = true;
             this.cmbDisciplina.Location = new System.Drawing.Point(64, 55);
             this.cmbDisciplina.Name = "cmbDisciplina";
@@ -92,6 +93,7 @@
             // 
             // cmbSerie
             // 
+            this.cmbSerie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSerie.FormattingEnabled = true;
             this.cmbSerie.Location = new System.Drawing.Point(64, 86);
             this.cmbSerie.Name = "cmbSerie";

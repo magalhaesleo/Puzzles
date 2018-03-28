@@ -24,7 +24,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
         public override void Adicionar()
         {
-            CadastroSerie dialogSerie = new CadastroSerie();
+            CadastroSerie dialogSerie = new CadastroSerie(_serieService.SelecionarTodasSeries());
 
             DialogResult resultado = dialogSerie.ShowDialog();
 
@@ -53,10 +53,9 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
         {
             var serieSelecionadaNoListBox = _serieControl.retornaSerieSelecionadaNoListBox();
 
-
             try
             {
-                DialogResult resultado = MessageBox.Show("Deseja excluir a serie de número: ", Convert.ToString(serieSelecionadaNoListBox.Numero) + "?", MessageBoxButtons.YesNo);
+                DialogResult resultado = MessageBox.Show("Deseja excluir a serie de número: "+ Convert.ToString(serieSelecionadaNoListBox.Numero) + "?", "Atenção", MessageBoxButtons.YesNo);
 
                 if (DialogResult.Yes == resultado)
                 {

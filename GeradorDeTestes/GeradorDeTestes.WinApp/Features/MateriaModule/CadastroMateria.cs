@@ -14,12 +14,11 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
     public partial class CadastroMateria : Form
     {
-        private Materia _materiaParaEdicao; 
+        private Materia _materiaParaEdicao;
         public Materia MateriaEditada
         {
             get
             {
-                
                 _materiaParaEdicao.Nome = txtMateria.Text;
                 _materiaParaEdicao.Disciplina = cmbDisciplina.SelectedItem as Disciplina;
                 _materiaParaEdicao.Serie = cmbSerie.SelectedItem as Serie;
@@ -29,18 +28,41 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
             set { this._materiaParaEdicao = value; }
         }
-        public CadastroMateria(List<Disciplina> listDisciplina, List<Serie> listSerie, MateriaControl materiaControl)
+
+        public List<Materia> ListMaterias { get; set; }
+        public CadastroMateria(List<Disciplina> listDisciplina, List<Serie> listSerie, MateriaControl materiaControl, Boolean OperacaoDeAdicao,List<Materia> listMaterias)
         {
             InitializeComponent();
             popularComboBoxDisciplina(listDisciplina);
             popularComboBoxSerie(listSerie);
-
-            if(materiaControl.RetornaMateriaSelecionadaNoListBox()!=null)
+            ListMaterias = listMaterias;
+            if (!OperacaoDeAdicao)
             {
-                _materiaParaEdicao = materiaControl.RetornaMateriaSelecionadaNoListBox();
-                txtMateria.Text = materiaControl.RetornaMateriaSelecionadaNoListBox().Nome;
+                if (materiaControl.RetornaMateriaSelecionadaNoListBox() != null)
+                {
+                    _materiaParaEdicao = materiaControl.RetornaMateriaSelecionadaNoListBox();
+                    txtMateria.Text = materiaControl.RetornaMateriaSelecionadaNoListBox().Nome;
+
+                    foreach (var item in listDisciplina)
+                    {
+                        if (item.Id == _materiaParaEdicao.Disciplina.Id)
+                        {
+                            cmbDisciplina.SelectedItem = item;
+                        }
+                    }
+
+                    foreach (var item in listSerie)
+                    {
+                        if (item.Id == _materiaParaEdicao.Serie.Id)
+                        {
+                            cmbSerie.SelectedItem = item;
+                        }
+                    }
+                }
+
             }
-            
+
+
         }
 
         public Materia NovaMateria
@@ -61,7 +83,6 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         {
             cmbDisciplina.Items.Clear();
 
-
             foreach (var item in listDisciplina)
             {
                 cmbDisciplina.Items.Add(item);
@@ -78,54 +99,70 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             }
         }
 
-    
 
-    private void btnSalvarMateria_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            ValidarPreenchimentoDosCampos();
-            ValidarIntegridadeDoObjeto();
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
-    }
 
-    private void ValidarIntegridadeDoObjeto()
-    {
-        var materiaAuxiliar = new Materia()
+        private void btnSalvarMateria_Click(object sender, EventArgs e)
         {
-            Nome = txtMateria.Text,
-            Disciplina = cmbDisciplina.SelectedItem as Disciplina,
-            Serie = cmbDisciplina.SelectedItem as Serie,
-        };
+            try
+            {
+                ValidarPreenchimentoDosCampos();
 
-        materiaAuxiliar.Validate();
-    }
+                if (_materiaParaEdicao != null)
+                {
+                    MateriaEditada.Validate();
 
-    public void ValidarPreenchimentoDosCampos()
-    {
-        if (cmbDisciplina.SelectedItem == null)
-        {
-            cmbDisciplina.BackColor = Color.Red;
-            throw new Exception("A disciplina deve ser selecionada");
-        }
+                    foreach (var item in ListMaterias )
+                    {
+                        if(MateriaEditada.Nome == item.Nome && MateriaEditada.Serie.Id == item.Serie.Id && MateriaEditada.Disciplina.Id == item.Disciplina.Id)
+                        {
+                            throw new Exception("Não houve alteração na matéria");
+                        }
+                    }
+                }
+                else
+                {
+                    NovaMateria.Validate();
 
-        if (cmbSerie.SelectedItem == null)
-        {
-            cmbSerie.BackColor = Color.Red;
-            throw new Exception("A serie deve ser selecionada");
-        }
+                    foreach (var item in ListMaterias)
+                    {
+                        if(NovaMateria.Nome == item.Nome && NovaMateria.Serie.Id == item.Serie.Id && NovaMateria.Disciplina.Id == item.Disciplina.Id)
+                        {
+                            throw new Exception("A matéria ja esta cadastrada no banco de dados");
+                        }
+                    }
+                }
 
-        if (txtMateria.Text == null)
-        {
-            cmbDisciplina.BackColor = Color.Red;
-            throw new Exception("O campo nome deve ser preenchido");
+            }
+            catch (Exception ex)
+            {
+                this.DialogResult = DialogResult.None;
+                MessageBox.Show(ex.Message);
+            }
         }
 
-          
+
+
+        public void ValidarPreenchimentoDosCampos()
+        {
+            if (cmbDisciplina.SelectedItem == null)
+            {
+                cmbDisciplina.BackColor = Color.Red;
+                throw new Exception("A disciplina deve ser selecionada");
+            }
+
+            if (cmbSerie.SelectedItem == null)
+            {
+                cmbSerie.BackColor = Color.Red;
+                throw new Exception("A serie deve ser selecionada");
+            }
+
+            if (txtMateria.Text == null)
+            {
+                cmbDisciplina.BackColor = Color.Red;
+                throw new Exception("O campo nome deve ser preenchido");
+            }
+
+
         }
 
 

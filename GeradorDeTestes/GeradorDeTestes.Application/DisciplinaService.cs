@@ -13,10 +13,11 @@ namespace GeradorDeTestes.Applications
     {
 
         private DisciplinaDAO _disciplinaDAO;
-
+        private MateriaDAO _materiaDAO;
         public DisciplinaService()
         {
             _disciplinaDAO = new DisciplinaDAO();
+            _materiaDAO = new MateriaDAO();
 
         }
 
@@ -53,6 +54,14 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
+                List<Materia> listmateria = _materiaDAO.GetAll();
+                foreach (Materia materia in listmateria)
+                {
+                    if (materia.Disciplina.Id == disciplina.Id)
+                    {
+                        throw new Exception("Não foi possivel excluir, a disciplina esta sendo utilizada!");
+                    }
+                }
                 _disciplinaDAO.Excluir(disciplina);
             }
             catch(Exception e)
