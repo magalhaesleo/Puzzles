@@ -1,13 +1,10 @@
 ﻿using GeradorDeTestes.Applications;
-using GeradorDeTestes.Domain.helpers;
-using GeradorDeTestes.Domain.helpers.ButtonsEnable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GeradorDeTestes.Domain.helpers.ToolStripVisible;
 
 namespace GeradorDeTestes.WinApp.Features.SerieModule
 {
@@ -39,55 +36,54 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
                 {
                     MessageBox.Show(e.Message);
                 }
+                AtualizarListagem();
             }
-            AtualizarListagem();
         }
 
-        //O processo de edição não esta presente para a entidade série
-        /*public override void Editar()
+        public override void Editar()
         {
             throw new NotImplementedException();
-        }*/
+        }
 
         public override void Excluir()
         {
             var serieSelecionadaNoListBox = _serieControl.retornaSerieSelecionadaNoListBox();
-
-
             try
             {
-                DialogResult resultado = MessageBox.Show("Deseja excluir a serie de número: ", Convert.ToString(serieSelecionadaNoListBox.Numero) + "?", MessageBoxButtons.YesNo);
 
-                if (DialogResult.Yes == resultado)
+                if (serieSelecionadaNoListBox != null)
                 {
-                    _serieService.ExcluirSerie(serieSelecionadaNoListBox);
-                    MessageBox.Show("Série excluída com sucesso");
+                    DialogResult resultado = MessageBox.Show("Deseja excluir a matéria?", Convert.ToString(serieSelecionadaNoListBox.Numero), MessageBoxButtons.YesNo);
+
+                    if (DialogResult.Yes == resultado)
+                    {
+                        _serieService.ExcluirSerie(serieSelecionadaNoListBox);
+                        MessageBox.Show("Série excluída com sucesso");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Nenhuma série selecionada");
                 }
 
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                MessageBox.Show(e.Message);
             }
-
-
-
-            definirEnableButtons(ObtemEnableButtons());
-            AtualizarListagem();
         }
 
         public override UserControl CarregarListControl()
         {
             if (_serieControl == null)
                 _serieControl = new SerieControl();
-
             AtualizarListagem();
             return _serieControl;
         }
 
         public override void AtualizarListagem()
         {
-            _serieControl.listarSeries(_serieService.SelecionarTodasSeries());
+            // _serieControl.listarSeries(_serieService.SelecionarTodasSeries());
         }
 
         public override string ObtemTipo()
@@ -105,46 +101,6 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
             {
                 return _serieService;
             }
-        }
-
-        public override ButtonsVisible ObtemVisibleButtons()
-        {
-            return new ButtonsVisible
-            {
-                btnAdicionar = true,
-                btnEditar = false,
-                btnExcluir = true
-            };
-        }
-
-        public override ButtonsEnable ObtemEnableButtons()
-        {
-            return new ButtonsEnable
-            {
-                btnAdicionar = true,
-                btnEditar = false,
-                btnExcluir = false
-            };
-        }
-
-        public void definirEnableButtons(ButtonsEnable buttonsEnable)
-        {
-
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = buttonsEnable.btnExcluir;
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
-        }
-
-        public override void Editar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override ToolStripVisible ObtemVisibleToolStrip()
-        {
-            return new ToolStripVisible
-            {
-                toolStripBotoes = true
-            };
         }
     }
 }

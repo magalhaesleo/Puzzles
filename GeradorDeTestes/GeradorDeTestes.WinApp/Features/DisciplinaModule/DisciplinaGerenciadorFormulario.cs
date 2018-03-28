@@ -1,14 +1,11 @@
 ﻿using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
-using GeradorDeTestes.Domain.helpers;
-using GeradorDeTestes.Domain.helpers.ButtonsEnable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GeradorDeTestes.Domain.helpers.ToolStripVisible;
 
 namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 {
@@ -20,16 +17,16 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public DisciplinaGerenciadorFormulario()
         {
-            _disciplinaService = new DisciplinaService();
+            _disciplinaService = new DisciplinaService();  
         }
 
         public override void Adicionar()
         {
-            CadastroDisciplina dialogDisciplina = new CadastroDisciplina(_disciplinaControl);
+            CadastroDisciplina dialogDisciplina = new CadastroDisciplina();
 
             DialogResult resultado = dialogDisciplina.ShowDialog();
 
-            if (DialogResult.OK == resultado)
+            if (resultado == DialogResult.OK)
             {
                 try
                 {
@@ -40,10 +37,8 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                 {
                     MessageBox.Show(e.Message);
                 }
-               
+                AtualizarListagem();
             }
-
-            AtualizarListagem();
         }
 
         public override UserControl CarregarListControl()
@@ -60,18 +55,19 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             try
             {
 
-                DialogResult resultado = MessageBox.Show("Deseja excluir a disciplina?", disciplinasSelecionadaNoListBox.Nome, MessageBoxButtons.YesNo);
-
-                if (DialogResult.Yes == resultado)
+                if (disciplinasSelecionadaNoListBox != null)
                 {
-                    _disciplinaService.ExcluirDisciplina(disciplinasSelecionadaNoListBox);
-                    MessageBox.Show("Disciplina excluída! :)");
+                    DialogResult resultado = MessageBox.Show("Deseja excluir a disciplina?", disciplinasSelecionadaNoListBox.Nome, MessageBoxButtons.YesNo);
+
+                    if (DialogResult.Yes == resultado)
+                    {
+                        _disciplinaService.ExcluirDisciplina(disciplinasSelecionadaNoListBox);
+                    }
                 }
-
-
-
-                definirEnableButtons(ObtemEnableButtons());
-                AtualizarListagem();
+                else
+                {
+                    throw new Exception("Nenhuma disciplina selecionada");
+                }
 
             }
             catch (Exception e)
@@ -79,7 +75,6 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                 MessageBox.Show(e.Message);
             }
 
-            definirEnableButtons(ObtemEnableButtons());
             AtualizarListagem();
         }
 
@@ -90,71 +85,12 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override void Editar()
         {
-            var disciplinasSelecionadaNoListBox = _disciplinaControl.retornaItemSelecionadoNoListBox();
-
-            CadastroDisciplina disciplinaPopUp = new CadastroDisciplina(_disciplinaControl);
-
-            DialogResult resultado = disciplinaPopUp.ShowDialog();
-
-
-            if (DialogResult.OK == resultado)
-            {
-                try
-                {
-                    _disciplinaService.AtualizarDisciplina(disciplinaPopUp.DisciplinaEditada);
-                    MessageBox.Show("Disciplina editada!");
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(e.Message);
-                }
-            }
-
-            definirEnableButtons(ObtemEnableButtons());
-            AtualizarListagem();
-
+            throw new NotImplementedException();
         }
 
         public override string ObtemTipo()
         {
             return "Disciplina";
-        }
-
-        public override ButtonsVisible ObtemVisibleButtons()
-        {
-            return new ButtonsVisible
-            {
-                btnAdicionar = true,
-                btnEditar = true,
-                btnExcluir = true
-            };
-        }
-
-        public override ButtonsEnable ObtemEnableButtons()
-        {
-            return new ButtonsEnable
-            {
-                btnAdicionar = true,
-                btnEditar = false,
-                btnExcluir = false
-            };
-        }
-
-        public void definirEnableButtons(ButtonsEnable buttonsEnable)
-        {
-
-            
-
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = buttonsEnable.btnExcluir;
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
-        }
-
-        public override ToolStripVisible ObtemVisibleToolStrip()
-        {
-            return new ToolStripVisible
-            {
-                toolStripBotoes = true
-            };
         }
     }
 }
