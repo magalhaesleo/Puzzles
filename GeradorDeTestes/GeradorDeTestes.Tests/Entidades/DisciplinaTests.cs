@@ -34,7 +34,8 @@ namespace GeradorDeTestes.Domain.Entidades.Tests
         {
             disciplina.Nome = "abc";
             disciplina.Validate();
-            Assert.Equals;
+            //TERMINAR
+            //Assert.Equals;
         }
 
         [TestMethod()]
