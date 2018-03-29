@@ -63,5 +63,14 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         {
            return listDisciplina.SelectedItem as Disciplina;
         }
+
+        private void listDisciplina_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listDisciplina.SelectedIndex >= 0)
+            {
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = true;
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = true;
+            }
+        }
     }
 }
