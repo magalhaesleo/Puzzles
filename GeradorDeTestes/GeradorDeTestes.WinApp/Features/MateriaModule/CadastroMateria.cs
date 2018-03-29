@@ -30,13 +30,13 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         }
 
         public MateriaService MateriaService { get; set; }
-        public CadastroMateria(List<Disciplina> listDisciplina, List<Serie> listSerie, MateriaControl materiaControl, Boolean OperacaoDeAdicao,MateriaService materiaService)
+        public CadastroMateria(List<Disciplina> listDisciplina, List<Serie> listSerie, MateriaControl materiaControl, Boolean OperacaoDeAdicao, MateriaService materiaService)
         {
             InitializeComponent();
             this.MateriaService = materiaService;
             popularComboBoxDisciplina(listDisciplina);
             popularComboBoxSerie(listSerie);
-          
+
             if (!OperacaoDeAdicao)
             {
                 if (materiaControl.RetornaMateriaSelecionadaNoListBox() != null)
@@ -44,26 +44,10 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                     _materiaParaEdicao = materiaControl.RetornaMateriaSelecionadaNoListBox();
                     txtMateria.Text = materiaControl.RetornaMateriaSelecionadaNoListBox().Nome;
 
-                    foreach (var item in listDisciplina)
-                    {
-                        if (item.Id == _materiaParaEdicao.Disciplina.Id)
-                        {
-                            cmbDisciplina.SelectedItem = item;
-                        }
-                    }
-
-                    foreach (var item in listSerie)
-                    {
-                        if (item.Id == _materiaParaEdicao.Serie.Id)
-                        {
-                            cmbSerie.SelectedItem = item;
-                        }
-                    }
+                    cmbDisciplina.SelectedIndex = cmbDisciplina.FindString(_materiaParaEdicao.Disciplina.ToString());
+                    cmbSerie.SelectedIndex = cmbSerie.FindString(_materiaParaEdicao.Serie.ToString());
                 }
-
             }
-
-
         }
 
         public Materia NovaMateria
@@ -119,17 +103,6 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                         throw new Exception("A materia já existe no banco de dados");
                 }
             }
-            
-            //if (_materiaParaEdicao.Nome.Length > 0)
-            //    return;
-
-            //foreach (var item in ListMaterias )
-            //{
-            //    if (materia.Nome == item.Nome)
-            //    {
-            //        throw new Exception("A materia já existe no banco de dados");
-            //    }
-            //}
         }
 
         private void btnSalvarMateria_Click(object sender, EventArgs e)
@@ -141,11 +114,11 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                 if (_materiaParaEdicao != null)
                 {
                     MateriaEditada.Validate();
-                    
 
-                    foreach (var item in MateriaService.SelecionarTodasMaterias() )
+
+                    foreach (var item in MateriaService.SelecionarTodasMaterias())
                     {
-                        if(MateriaEditada.Nome == item.Nome && MateriaEditada.Serie.Id == item.Serie.Id && MateriaEditada.Disciplina.Id == item.Disciplina.Id)
+                        if (MateriaEditada.Nome == item.Nome && MateriaEditada.Serie.Id == item.Serie.Id && MateriaEditada.Disciplina.Id == item.Disciplina.Id)
                         {
                             throw new Exception("Não houve alteração na matéria");
                         }

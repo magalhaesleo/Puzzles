@@ -55,7 +55,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
             try
             {
-                DialogResult resultado = MessageBox.Show("Deseja excluir a serie de número: "+ Convert.ToString(serieSelecionadaNoListBox.Numero) + "?", "Atenção", MessageBoxButtons.YesNo);
+                DialogResult resultado = MessageBox.Show("Deseja excluir a serie de número: " + Convert.ToString(serieSelecionadaNoListBox.Numero) + "?", "Atenção", MessageBoxButtons.YesNo);
 
                 if (DialogResult.Yes == resultado)
                 {

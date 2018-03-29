@@ -15,7 +15,7 @@ namespace GeradorDeTestes.Applications
         }
 
         public Materia AdicionarMateria(Materia materia)
-        {            
+        {
             try
             {
                 ValidarExistenciaMateria(materia);
@@ -48,15 +48,15 @@ namespace GeradorDeTestes.Applications
             {
                 _materiaDAO.Excluir(materia);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
 
             return materia;
         }
-                
-       public List<Materia> SelecionarTodasMaterias()
+
+        public List<Materia> SelecionarTodasMaterias()
         {
             try
             {
@@ -69,7 +69,7 @@ namespace GeradorDeTestes.Applications
         }
 
 
-       public void ValidarExistenciaMateria(Materia materia)
+        public void ValidarExistenciaMateria(Materia materia)
         {
             var listMaterias = SelecionarTodasMaterias();
 
@@ -80,6 +80,6 @@ namespace GeradorDeTestes.Applications
                     throw new Exception("A materia já esta cadastrada no banco de dados");
                 }
             }
-       }
+        }
     }
 }

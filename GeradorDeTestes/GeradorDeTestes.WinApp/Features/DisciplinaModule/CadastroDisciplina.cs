@@ -32,6 +32,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         {
             InitializeComponent();
             ListDisciplinas = listaDeDisciplinas;
+
             if (!OperacaoDeAdicao)
             {
                 if (disciplinaControl.retornaItemSelecionadoNoListBox() != null)
@@ -40,9 +41,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                     txtNome.Text = _disciplinaParaEdicao.Nome;
                 }
             }
-
         }
-
 
         public Disciplina NovaDisciplina
         {
@@ -57,7 +56,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         private void ValidarSeJaExisteDisciplina(Disciplina disciplina)
         {
-            
+
             foreach (var item in ListDisciplinas)
             {
                 if (item.Nome.ToLower() == disciplina.Nome.ToLower())
@@ -69,29 +68,24 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public void ValidarPreenchimentoDosCampos()
         {
+            if (txtNome.Text == null)
+            {
+                txtNome.BackColor = Color.Red;
+                throw new Exception("O campo nome não pode estar vazio");
+            }
 
-                if (txtNome.Text == null)
+            if (_disciplinaParaEdicao != null)
+            {
+                if (txtNome.Text == _disciplinaParaEdicao.Nome)
                 {
                     txtNome.BackColor = Color.Red;
-                    throw new Exception("O campo nome não pode estar vazio");
+                    throw new Exception("Digite um nome diferente do atual, caso contrário feche a janela");
                 }
-
-                if (_disciplinaParaEdicao != null)
-                {
-                    if (txtNome.Text == _disciplinaParaEdicao.Nome)
-                    {
-                        txtNome.BackColor = Color.Red;
-                        throw new Exception("Digite um nome diferente do atual, caso contrário feche a janela");
-                    }
-                }
-         
-
+            }
         }
 
         private void btnSalvarCadastroDisciplina_Click(object sender, EventArgs e)
         {
-
-
             try
             {
                 ValidarPreenchimentoDosCampos();
@@ -112,10 +106,6 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                 this.DialogResult = DialogResult.None;
                 MessageBox.Show(ex.Message);
             }
-
-
         }
-
-
     }
 }

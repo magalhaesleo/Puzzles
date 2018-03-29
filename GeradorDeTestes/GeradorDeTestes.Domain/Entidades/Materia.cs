@@ -17,7 +17,7 @@ namespace GeradorDeTestes.Domain.Entidades
         public int Id { get { return this._id; } set { this._id = value; } }
         public string Nome { get { return this._nome; } set { this._nome = value; } }
         public Disciplina Disciplina { get { return this._disciplina; } set { this._disciplina = value; } }
-        public Serie Serie { get { return _serie;  } set { _serie = value;  } }
+        public Serie Serie { get { return _serie; } set { _serie = value; } }
 
 
         public Materia()
@@ -41,7 +41,7 @@ namespace GeradorDeTestes.Domain.Entidades
             if (Nome.Length > 40)
                 throw new Exception("O nome deve ter no máximo 40 caracteres.");
 
-            if ((char.IsNumber(Nome[0])))  
+            if ((char.IsNumber(Nome[0])))
                 throw new Exception("O nome não deve iniciar com números ou conter apenas números!");
 
             if (Regex.IsMatch(Nome[0].ToString(), (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))

@@ -19,14 +19,14 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         SerieService _serieService;
         public MateriaGerenciadorFormulario()
         {
-           _serieService = new SerieService();
-           _disciplinaService = new DisciplinaService();
-           _materiaService = new MateriaService();
+            _serieService = new SerieService();
+            _disciplinaService = new DisciplinaService();
+            _materiaService = new MateriaService();
         }
 
         public override void Adicionar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(),_materiaControl, true,_materiaService);
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(), _materiaControl, true, _materiaService);
 
             DialogResult resultado = dialogMateria.ShowDialog();
 
@@ -41,15 +41,15 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                 {
                     MessageBox.Show(e.Message);
                 }
-               
+
             }
             AtualizarListagem();
         }
 
         public override void Editar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(),_materiaControl, false, _materiaService);
-            
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(), _materiaControl, false, _materiaService);
+
             DialogResult resultado = dialogMateria.ShowDialog();
 
             if (resultado == DialogResult.OK)
@@ -72,20 +72,20 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public override void Excluir()
         {
-            
+
             var materiaSelecionadaNoListBox = _materiaControl.RetornaMateriaSelecionadaNoListBox();
             try
             {
-                DialogResult resultado = MessageBox.Show("Deseja excluir a matéria? " + materiaSelecionadaNoListBox.Nome,"Informativo", MessageBoxButtons.YesNo);
+                DialogResult resultado = MessageBox.Show("Deseja excluir a matéria? " + materiaSelecionadaNoListBox.Nome, "Informativo", MessageBoxButtons.YesNo);
 
                 if (DialogResult.Yes == resultado)
                 {
-                        _materiaService.ExcluirMateria(materiaSelecionadaNoListBox);
+                    _materiaService.ExcluirMateria(materiaSelecionadaNoListBox);
                 }
-                
+
             }
 
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
