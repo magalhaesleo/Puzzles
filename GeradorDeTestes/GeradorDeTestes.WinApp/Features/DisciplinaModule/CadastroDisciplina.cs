@@ -98,7 +98,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
                 if (_disciplinaParaEdicao != null)
                 {
-                    ValidarSeJaExisteDisciplina(_disciplinaParaEdicao);
+                    ValidarSeJaExisteDisciplina(DisciplinaEditada);
                     DisciplinaEditada.Validate();
                 }
                 else
