@@ -32,5 +32,14 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
         {
             return listSerie.SelectedItem as Serie;
         }
+
+        private void listSerie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listSerie.SelectedIndex >= 0)
+            {
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = true;
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = true;
+            }
+        }
     }
 }

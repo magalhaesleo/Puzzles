@@ -37,24 +37,25 @@ namespace GeradorDeTestes.Domain.Entidades
                 throw new Exception("O nome deve ter pelo menos quatro caracteres.");
             }
 
+            if (Nome.Length > 25)
+            {
+                throw new Exception("O nome deve ter no máximo 25 caracteres.");
+            }
+
             if (String.IsNullOrEmpty(Nome) || Nome.Trim() == "")
             {
                 throw new Exception("O nome não pode ser em branco.");
             }
 
-            if (Nome.Length > 25){
-                throw new Exception("O nome não pode ultrapassar 25 caracteres.");
-            }
-
             if (Regex.IsMatch(Nome, (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))
             {
-                throw new Exception("O nome da disciplina Não pode conter caracteres especiais!");
+                throw new Exception("O nome da disciplina não pode conter caracteres especiais!");
             }
 
             if ((char.IsNumber(Nome[0])))
                 throw new Exception("O nome não deve iniciar com números ou conter apenas números!");
 
-            if (!Regex.IsMatch(Nome, @"^[ a-zA-Z á]*$"))
+            if (!Regex.IsMatch(Nome, @"^[ a-zA-Z áãõêí]*$"))
                     throw new Exception("O nome não deve conter números!");
         }
 

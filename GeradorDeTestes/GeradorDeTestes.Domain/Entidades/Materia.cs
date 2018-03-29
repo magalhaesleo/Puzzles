@@ -38,6 +38,9 @@ namespace GeradorDeTestes.Domain.Entidades
             if (Nome.Length < 4 || String.IsNullOrEmpty(Nome))
                 throw new Exception("O nome deve ter pelo menos quatro caracteres.");
 
+            if (Nome.Length > 40)
+                throw new Exception("O nome deve ter no máximo 40 caracteres.");
+
             if ((char.IsNumber(Nome[0])))  
                 throw new Exception("O nome não deve iniciar com números ou conter apenas números!");
 
