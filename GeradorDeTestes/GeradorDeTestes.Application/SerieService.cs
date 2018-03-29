@@ -17,7 +17,7 @@ namespace GeradorDeTestes.Applications
         }
 
         public Serie AdicionarSerie(Serie serie)
-        {            
+        {
             try
             {
                 validarExistenciaSerie(serie);
@@ -58,15 +58,15 @@ namespace GeradorDeTestes.Applications
                 }
                 _serieDAO.Excluir(serie);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
 
             return serie;
         }
-                
-       public List<Serie> SelecionarTodasSeries()
+
+        public List<Serie> SelecionarTodasSeries()
         {
             try
             {

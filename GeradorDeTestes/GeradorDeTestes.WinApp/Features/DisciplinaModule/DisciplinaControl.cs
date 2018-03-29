@@ -20,12 +20,6 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             InitializeComponent();
         }
 
-        private void btnCadastrarDisciplina_Click(object sender, EventArgs e)
-        {
-            _disciplinaService.AdicionarDisciplina(Adicionar());
-            //Adicionar
-        }
-
         public Disciplina Adicionar()
         {
             CadastroDisciplina dialog = new CadastroDisciplina(this,true, _disciplinaService.SelecionarTodasDisciplinas());
@@ -37,16 +31,6 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                 return dialog.NovaDisciplina;
             }
             else throw new Exception("Não foi possível criar uma disciplina.");
-
-        }
-
-        private void btnEditarDisciplina_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnExcluirDisciplina_Click(object sender, EventArgs e)
-        {
 
         }
 

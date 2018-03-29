@@ -23,10 +23,9 @@ namespace GeradorDeTestes.Applications
 
         public Disciplina AdicionarDisciplina(Disciplina disciplina)
         {
-            
             try
             {
-                 validarExistenciaDisciplina(disciplina);
+                validarExistenciaDisciplina(disciplina);
                 _disciplinaDAO.Add(disciplina);
             }
             catch (Exception e)
@@ -42,11 +41,10 @@ namespace GeradorDeTestes.Applications
             {
                 _disciplinaDAO.Editar(disciplina);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
-
             return disciplina;
         }
 
@@ -64,7 +62,7 @@ namespace GeradorDeTestes.Applications
                 }
                 _disciplinaDAO.Excluir(disciplina);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
@@ -84,8 +82,8 @@ namespace GeradorDeTestes.Applications
                 return _disciplinaDAO.GetAll();
             }
 
-         }
-        
+        }
+
         private void validarExistenciaDisciplina(Disciplina disciplina)
         {
             var listDisciplinas = SelecionarTodasDisciplinas();
@@ -98,7 +96,5 @@ namespace GeradorDeTestes.Applications
                 }
             }
         }
-
-
     }
 }
