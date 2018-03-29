@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
 
 namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
@@ -15,6 +16,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
     {
 
         private Disciplina _disciplinaParaEdicao;
+        private List<Disciplina> ListDisciplinas;
 
         public Disciplina DisciplinaEditada
         {
@@ -26,10 +28,10 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
             set { this._disciplinaParaEdicao = value; }
         }
-        public CadastroDisciplina(DisciplinaControl disciplinaControl, Boolean OperacaoDeAdicao)
+        public CadastroDisciplina(DisciplinaControl disciplinaControl, Boolean OperacaoDeAdicao, List<Disciplina> listaDeDisciplinas)
         {
             InitializeComponent();
-
+            ListDisciplinas = listaDeDisciplinas;
             if (!OperacaoDeAdicao)
             {
                 if (disciplinaControl.retornaItemSelecionadoNoListBox() != null)
@@ -53,7 +55,17 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             }
         }
 
-
+        private void ValidarSeJaExisteDisciplina(Disciplina disciplina)
+        {
+            
+            foreach (var item in ListDisciplinas)
+            {
+                if (item.Nome.ToLower() == disciplina.Nome.ToLower())
+                {
+                    throw new Exception("Disciplina já cadastrada!");
+                }
+            }
+        }
 
         public void ValidarPreenchimentoDosCampos()
         {
@@ -86,10 +98,12 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
                 if (_disciplinaParaEdicao != null)
                 {
+                    ValidarSeJaExisteDisciplina(_disciplinaParaEdicao);
                     DisciplinaEditada.Validate();
                 }
                 else
                 {
+                    ValidarSeJaExisteDisciplina(NovaDisciplina);
                     NovaDisciplina.Validate();
                 }
             }

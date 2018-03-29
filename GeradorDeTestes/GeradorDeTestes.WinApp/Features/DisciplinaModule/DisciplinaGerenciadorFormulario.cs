@@ -25,7 +25,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override void Adicionar()
         {
-            CadastroDisciplina dialogDisciplina = new CadastroDisciplina(_disciplinaControl, true);
+            CadastroDisciplina dialogDisciplina = new CadastroDisciplina(_disciplinaControl, true, _disciplinaService.SelecionarTodasDisciplinas());
 
             DialogResult resultado = dialogDisciplina.ShowDialog();
 
@@ -90,9 +90,8 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override void Editar()
         {
-            var disciplinasSelecionadaNoListBox = _disciplinaControl.retornaItemSelecionadoNoListBox();
 
-            CadastroDisciplina disciplinaPopUp = new CadastroDisciplina(_disciplinaControl, false);
+            CadastroDisciplina disciplinaPopUp = new CadastroDisciplina(_disciplinaControl, false, _disciplinaService.SelecionarTodasDisciplinas());
 
             DialogResult resultado = disciplinaPopUp.ShowDialog();
 

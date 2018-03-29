@@ -26,7 +26,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public override void Adicionar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(),_materiaControl, true,_materiaService.SelecionarTodasMaterias());
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(),_materiaControl, true,_materiaService);
 
             DialogResult resultado = dialogMateria.ShowDialog();
 
@@ -48,7 +48,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public override void Editar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(),_materiaControl, false, _materiaService.SelecionarTodasMaterias());
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(),_materiaControl, false, _materiaService);
             
             DialogResult resultado = dialogMateria.ShowDialog();
 

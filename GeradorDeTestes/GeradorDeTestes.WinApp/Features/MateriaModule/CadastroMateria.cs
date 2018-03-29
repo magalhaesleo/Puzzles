@@ -29,13 +29,14 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             set { this._materiaParaEdicao = value; }
         }
 
-        public List<Materia> ListMaterias { get; set; }
-        public CadastroMateria(List<Disciplina> listDisciplina, List<Serie> listSerie, MateriaControl materiaControl, Boolean OperacaoDeAdicao,List<Materia> listMaterias)
+        public MateriaService MateriaService { get; set; }
+        public CadastroMateria(List<Disciplina> listDisciplina, List<Serie> listSerie, MateriaControl materiaControl, Boolean OperacaoDeAdicao,MateriaService materiaService)
         {
             InitializeComponent();
+            this.MateriaService = materiaService;
             popularComboBoxDisciplina(listDisciplina);
             popularComboBoxSerie(listSerie);
-            ListMaterias = listMaterias;
+          
             if (!OperacaoDeAdicao)
             {
                 if (materiaControl.RetornaMateriaSelecionadaNoListBox() != null)
@@ -70,7 +71,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             get
             {
                 var materia = new Materia();
-
+                materia.Id = 0;
                 materia.Nome = txtMateria.Text;
                 materia.Disciplina = cmbDisciplina.SelectedItem as Disciplina;
                 materia.Serie = cmbSerie.SelectedItem as Serie;
@@ -99,7 +100,37 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             }
         }
 
+        private void ValidarSeExisteNoBanco(Materia materia)
+        {
+            List<Materia> listMaterias = MateriaService.SelecionarTodasMaterias();
+            if (materia.Id == 0)
+            {
+                foreach (var item in listMaterias)
+                {
+                    if (materia.Nome.ToLower() == item.Nome.ToLower())
+                        throw new Exception("A materia já existe no banco de dados");
+                }
+            }
+            else
+            {
+                foreach (var item in listMaterias)
+                {
+                    if (materia.Nome.ToLower() == item.Nome.ToLower() && materia.Id != item.Id)
+                        throw new Exception("A materia já existe no banco de dados");
+                }
+            }
+            
+            //if (_materiaParaEdicao.Nome.Length > 0)
+            //    return;
 
+            //foreach (var item in ListMaterias )
+            //{
+            //    if (materia.Nome == item.Nome)
+            //    {
+            //        throw new Exception("A materia já existe no banco de dados");
+            //    }
+            //}
+        }
 
         private void btnSalvarMateria_Click(object sender, EventArgs e)
         {
@@ -110,26 +141,24 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                 if (_materiaParaEdicao != null)
                 {
                     MateriaEditada.Validate();
+                    
 
-                    foreach (var item in ListMaterias )
+                    foreach (var item in MateriaService.SelecionarTodasMaterias() )
                     {
                         if(MateriaEditada.Nome == item.Nome && MateriaEditada.Serie.Id == item.Serie.Id && MateriaEditada.Disciplina.Id == item.Disciplina.Id)
                         {
                             throw new Exception("Não houve alteração na matéria");
                         }
                     }
+                    ValidarSeExisteNoBanco(MateriaEditada);
+
+
                 }
                 else
                 {
                     NovaMateria.Validate();
 
-                    foreach (var item in ListMaterias)
-                    {
-                        if(NovaMateria.Nome == item.Nome && NovaMateria.Serie.Id == item.Serie.Id && NovaMateria.Disciplina.Id == item.Disciplina.Id)
-                        {
-                            throw new Exception("A matéria ja esta cadastrada no banco de dados");
-                        }
-                    }
+                    ValidarSeExisteNoBanco(NovaMateria);
                 }
 
             }

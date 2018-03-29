@@ -18,7 +18,7 @@ namespace GeradorDeTestes.Applications
         {            
             try
             {
-                validarExistenciaMateria(materia);
+                ValidarExistenciaMateria(materia);
                 _materiaDAO.Add(materia);
             }
             catch (Exception e)
@@ -69,7 +69,7 @@ namespace GeradorDeTestes.Applications
         }
 
 
-       private void validarExistenciaMateria(Materia materia)
+       public void ValidarExistenciaMateria(Materia materia)
         {
             var listMaterias = SelecionarTodasMaterias();
 

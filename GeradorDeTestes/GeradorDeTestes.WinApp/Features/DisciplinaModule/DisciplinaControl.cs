@@ -28,7 +28,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public Disciplina Adicionar()
         {
-            CadastroDisciplina dialog = new CadastroDisciplina(this,true);
+            CadastroDisciplina dialog = new CadastroDisciplina(this,true, _disciplinaService.SelecionarTodasDisciplinas());
 
             DialogResult resultado = dialog.ShowDialog();
 
