@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Entidades\Alternativa.cs" />
     <Compile Include="Entidades\Disciplina.cs" />
+    <Compile Include="Entidades\Letra.cs" />
     <Compile Include="Entidades\Materia.cs" />
     <Compile Include="Entidades\Questao.cs" />
     <Compile Include="Entidades\Serie.cs" />
