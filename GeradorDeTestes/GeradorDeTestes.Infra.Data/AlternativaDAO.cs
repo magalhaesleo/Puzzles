@@ -18,29 +18,23 @@ namespace GeradorDeTestes.Infra.Data
         #region Scripts SQL
 
 
-        public const string _sqlInsert = @"INSERT INTO TBMATERIA
-                                                           (NOME,IDDISCIPLINA,IDSERIE)
+        public const string _sqlInsert = @"INSERT INTO TBALTERNATIVA
+                                                           (ENUNCIADO, CORRETA, IDQUESTAO)
                                                       VALUES
-                                                            ({0}NOME,
-                                                             {0}IDDISCIPLINA,
-                                                             {0}IDSERIE
+                                                            ({0}ENUNCIADO,
+                                                             {0}CORRETA,
+                                                             {0}IDQUESTAO
                                                             )";
 
-        public const string _sqlSelectAll = @"SELECT TBMATERIA.ID,TBMATERIA.NOME,
-                                            TBSERIE.ID[ID_SERIE],
-                                            TBSERIE.NUMERO[NUMERO_SERIE],
-                                            TBDISCIPLINA.ID[ID_DISCPLINA],
-                                            TBDISCIPLINA.NOME[NOME_DISCIPLINA]
-                                            FROM TBMATERIA  JOIN TBSERIE ON TBSERIE.ID = TBMATERIA.IDSERIE
-                                            JOIN TBDISCIPLINA ON TBDISCIPLINA.ID = TBMATERIA.IDDISCIPLINA";
+        public const string _sqlSelectAll = @"SELECT * FROM TBALTERNATIVA";
 
-        public const string _sqlUpdate = @"UPDATE TBMATERIA
-                                                        SET NOME = {0}NOME,
-                                                            IDSERIE = {0}IDSERIE,
-                                                            IDDISCIPLINA = {0}IDDISCIPLINA
+        public const string _sqlUpdate = @"UPDATE TBALTERNATIVA
+                                                        SET ENUNCIADO = {0}ENUNCIADO,
+                                                            CORRETA = {0}CORRETA,
+                                                            IDQUESTAO = {0}IDQUESTAO
                                              WHERE ID = {0}ID";
 
-        public static string _sqlDelete = @"DELETE FROM TBMATERIA
+        public static string _sqlDelete = @"DELETE FROM TBALTERNATIVA
                                              WHERE ID = {0}ID";
 
         public static string _sqlGetByQuestaoID = @"Select * from TBALTERNATIVA where IDQUESTAO = {0}IDQUESTAO";
@@ -49,7 +43,7 @@ namespace GeradorDeTestes.Infra.Data
 
         public List<Alternativa> PegarAlternativasDaQuestaoPorID(int ID)
         {
-           return _dbManager.GetAll(_sqlGetByQuestaoID, FormaObjetoAlternativa);
+            return _dbManager.GetByID(_sqlGetByQuestaoID, FormaObjetoAlternativa, new Dictionary<string, object> { { "IDQUESTAO", ID } });
         }
 
         public void Add(Alternativa alternativa)
