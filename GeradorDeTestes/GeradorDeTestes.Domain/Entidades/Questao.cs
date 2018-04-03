@@ -9,13 +9,13 @@ namespace GeradorDeTestes.Domain.Entidades
 {
     public class Questao
     {
-        
+        private int _id;
         private string _enunciado;
         private List<Alternativa> _alternativas;
         private int _bimestre;
         private Materia _materia;
 
-        public int Id { get; set; }
+        public int Id { get => this._id; set => this._id = value; }
         public string Enunciado { get => this._enunciado;  set => this._enunciado = value;  }
         public List<Alternativa> Alternativas { get => this._alternativas;  set => this._alternativas = value; } 
 
