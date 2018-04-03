@@ -23,13 +23,12 @@ namespace GeradorDeTestes.Infra.Data
 
 
         public const string _sqlInsert = @"INSERT INTO TBQUESTAO
-                                                           (IDMATERIA,IDALTERNATIVACORRETA,ENUNCIADO,BIMESTRE)
+                                                           (IDMATERIA,ENUNCIADO,BIMESTRE)
                                                       VALUES
                                                             ({0}IDMATERIA,
-                                                             {0}IDALTERNATIVACORRETA,
                                                              {0}ENUNCIADO,
                                                              {0}BIMESTRE
-                                                            )";
+                                                            );SELECT  SCOPE_IDENTITY()";
 
         public const string _sqlSelectAll = @"SELECT TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
                                             TBQ.BIMESTRE[BIMESTRE_QUESTAO],
@@ -41,7 +40,6 @@ namespace GeradorDeTestes.Infra.Data
                                                         SET ENUNCIADO = {0}ENUNCIADO,
                                                             BIMESTRE = {0}BIMESTRE,
                                                             IDMATERIA = {0}IDMATERIA,
-                                                            IDALTERNATIVACORRETA = {0}IDALTERNATIVACORRETA
                                                             WHERE ID = {0}ID";
 
         public static string _sqlDelete = @"DELETE FROM QUESTAO
@@ -50,11 +48,11 @@ namespace GeradorDeTestes.Infra.Data
         #endregion Scripts SQL
 
         #region Métodos
-        public void Add(Questao questao)
+        public int Add(Questao questao)
         {
             try
             {
-                _dbManager.Insert(_sqlInsert, RetornaDictionaryDeQuestao(questao));
+                return _dbManager.Insert(_sqlInsert, RetornaDictionaryDeQuestao(questao));
             }
             catch (Exception e)
             {
@@ -118,7 +116,7 @@ namespace GeradorDeTestes.Infra.Data
                 { "ID", questao.Id },
                 { "ENUNCIADO", questao.Enunciado },
                 { "IDMATERIA", questao.Materia.Id },
-                { "IDALTERNATIVACORRETA", alternativaCorreta.Id}
+              
             };
 
         }
