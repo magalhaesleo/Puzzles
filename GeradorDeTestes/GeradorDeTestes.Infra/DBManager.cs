@@ -16,9 +16,9 @@ namespace GeradorDeTestes.Infra
 
         private static DbProviderFactory _providerType = DbProviderFactories.GetFactory(_providerName);
 
-        public void Insert(string sql, Dictionary<string, object> dictionary)
+        public int Insert(string sql, Dictionary<string, object> dictionary)
         {
-            InitializeConnection(sql, dictionary);
+           return InitializeConnection(sql, dictionary);
         }
 
         public void Update(string sql, Dictionary<string, object> dictionary)
@@ -100,9 +100,10 @@ namespace GeradorDeTestes.Infra
 
        
         // Connection AND execute SQL
-        public static void InitializeConnection(string sql, Dictionary<string, object> parms = null)
+        public static int InitializeConnection(string sql, Dictionary<string, object> parms = null)
         {
             sql = string.Format(sql, ParameterPrefix);
+            int idAux;
             using (DbConnection connection = _providerType.CreateConnection())
             {
                 connection.ConnectionString = _connectionString;
@@ -114,9 +115,10 @@ namespace GeradorDeTestes.Infra
                     SetParameters(command, parms);
                     connection.Open();
 
-                    command.ExecuteScalar();
+                idAux = Convert.ToInt32(command.ExecuteScalar());
                 }
             }
+            return idAux;
         }
 
         public static string ParameterPrefix
