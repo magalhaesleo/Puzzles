@@ -45,6 +45,7 @@ namespace GeradorDeTestes.Infra
             }
         }
 
+       
         //ok
         public List<T> GetAll<T>(String sql, Func<IDataReader, T> convertRelactionalData)
         {
