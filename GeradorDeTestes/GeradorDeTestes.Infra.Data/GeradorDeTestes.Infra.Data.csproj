@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlternativaDAO.cs" />
     <Compile Include="DisciplinaDAO.cs" />
     <Compile Include="MateriaDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestaoDAO.cs" />
     <Compile Include="SerieDAO.cs" />
   </ItemGroup>
   <ItemGroup>
