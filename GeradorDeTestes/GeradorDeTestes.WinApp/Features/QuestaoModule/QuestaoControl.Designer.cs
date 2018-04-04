@@ -43,6 +43,7 @@
             this.listQuestao.Name = "listQuestao";
             this.listQuestao.Size = new System.Drawing.Size(630, 282);
             this.listQuestao.TabIndex = 0;
+            this.listQuestao.SelectedIndexChanged += new System.EventHandler(this.listQuestao_SelectedIndexChanged);
             // 
             // cmbDisciplina
             // 

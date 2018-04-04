@@ -93,5 +93,19 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
                     listQuestao.Items.Add(questao);
             }
         }
+
+        private void listQuestao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listQuestao.SelectedIndex >= 0)
+            {
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = true;
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = true;
+            }
+        }
+
+        public Questao RetornaQuestaoSelecionadaNoListBox()
+        {
+            return listQuestao.SelectedItem as Questao;
+        }
     }
 }

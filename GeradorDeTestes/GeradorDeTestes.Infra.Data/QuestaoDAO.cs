@@ -54,7 +54,7 @@ namespace GeradorDeTestes.Infra.Data
                                                             IDMATERIA = {0}IDMATERIA,
                                                             WHERE ID = {0}ID";
 
-        public static string _sqlDelete = @"DELETE FROM QUESTAO
+        public static string _sqlDelete = @"DELETE FROM TBQUESTAO
                                              WHERE ID = {0}ID";
 
         #endregion Scripts SQL
