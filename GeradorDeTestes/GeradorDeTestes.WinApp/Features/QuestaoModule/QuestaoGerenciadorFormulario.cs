@@ -47,8 +47,8 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override void AtualizarListagem()
         {
-            //_questaoControl.listarQuestoes(_questaoService.SelecionarTodasQuestaos());
-            //_questaoControl.listaComboBoxes(_materiaService.SelecionarTodasMaterias());
+            _questaoControl.listarQuestoes(_questaoService.SelecionarTodasQuestaos());
+            _questaoControl.listaComboBoxes(_materiaService.SelecionarTodasMaterias());
         }
 
         public override UserControl CarregarListControl()
