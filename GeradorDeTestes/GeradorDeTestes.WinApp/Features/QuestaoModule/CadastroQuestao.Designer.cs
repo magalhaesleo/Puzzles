@@ -101,6 +101,7 @@
             this.numBimestre.ReadOnly = true;
             this.numBimestre.Size = new System.Drawing.Size(28, 20);
             this.numBimestre.TabIndex = 9;
+            this.numBimestre.UseWaitCursor = true;
             this.numBimestre.Value = new decimal(new int[] {
             1,
             0,

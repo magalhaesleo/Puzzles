@@ -43,10 +43,8 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         private void cmbDisciplina_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (_materias[(cmbMateria.SelectedIndex + 1)] != null)
-            {
-                cmbMateria.Items.Clear();
-            }
+
+            cmbMateria.Items.Clear();
 
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
             foreach (Materia materia in _materias)

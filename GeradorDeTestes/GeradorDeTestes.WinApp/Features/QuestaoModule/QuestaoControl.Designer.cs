@@ -31,10 +31,8 @@
             this.listQuestao = new System.Windows.Forms.ListBox();
             this.cmbDisciplina = new System.Windows.Forms.ComboBox();
             this.cmbMateria = new System.Windows.Forms.ComboBox();
-            this.cmbBimestre = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listQuestao
@@ -48,33 +46,27 @@
             // 
             // cmbDisciplina
             // 
+            this.cmbDisciplina.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDisciplina.FormattingEnabled = true;
-            this.cmbDisciplina.Location = new System.Drawing.Point(39, 72);
+            this.cmbDisciplina.Location = new System.Drawing.Point(22, 36);
             this.cmbDisciplina.Name = "cmbDisciplina";
-            this.cmbDisciplina.Size = new System.Drawing.Size(121, 21);
+            this.cmbDisciplina.Size = new System.Drawing.Size(157, 21);
             this.cmbDisciplina.TabIndex = 1;
             this.cmbDisciplina.SelectedIndexChanged += new System.EventHandler(this.cmbDisciplina_SelectedIndexChanged_1);
             // 
             // cmbMateria
             // 
+            this.cmbMateria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMateria.FormattingEnabled = true;
-            this.cmbMateria.Location = new System.Drawing.Point(39, 128);
+            this.cmbMateria.Location = new System.Drawing.Point(22, 92);
             this.cmbMateria.Name = "cmbMateria";
-            this.cmbMateria.Size = new System.Drawing.Size(121, 21);
+            this.cmbMateria.Size = new System.Drawing.Size(157, 21);
             this.cmbMateria.TabIndex = 2;
-            // 
-            // cmbBimestre
-            // 
-            this.cmbBimestre.FormattingEnabled = true;
-            this.cmbBimestre.Location = new System.Drawing.Point(39, 188);
-            this.cmbBimestre.Name = "cmbBimestre";
-            this.cmbBimestre.Size = new System.Drawing.Size(121, 21);
-            this.cmbBimestre.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 56);
+            this.label1.Location = new System.Drawing.Point(72, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 4;
@@ -83,29 +75,18 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(77, 112);
+            this.label2.Location = new System.Drawing.Point(77, 76);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Matéria:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(74, 172);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Bimestre:";
-            // 
             // QuestaoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cmbBimestre);
             this.Controls.Add(this.cmbMateria);
             this.Controls.Add(this.cmbDisciplina);
             this.Controls.Add(this.listQuestao);
@@ -121,9 +102,7 @@
         private System.Windows.Forms.ListBox listQuestao;
         private System.Windows.Forms.ComboBox cmbDisciplina;
         private System.Windows.Forms.ComboBox cmbMateria;
-        private System.Windows.Forms.ComboBox cmbBimestre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
     }
 }

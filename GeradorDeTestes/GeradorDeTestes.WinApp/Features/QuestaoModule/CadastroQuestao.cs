@@ -32,15 +32,8 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             cmbMateria.Enabled = false;
         }
 
-        public CadastroQuestao(List<Materia> materias, Questao questaoParaEditar)
+        public CadastroQuestao(List<Materia> materias, Questao questaoParaEditar) : this(materias)
         {
-            InitializeComponent();
-            
-            _materias = materias;
-            popularComboBoxes();
-            cm = new ContextMenu();
-            cm.MenuItems.Add("Excluir alternativa");
-
             cmbDisciplina.SelectedIndex = cmbDisciplina.FindString(questaoParaEditar.Materia.Disciplina.ToString());
             cmbMateria.SelectedIndex = cmbMateria.FindString(questaoParaEditar.Materia.ToString());
             numBimestre.Value = questaoParaEditar.Bimestre;
