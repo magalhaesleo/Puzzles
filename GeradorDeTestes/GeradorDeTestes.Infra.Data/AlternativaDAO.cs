@@ -103,22 +103,27 @@ namespace GeradorDeTestes.Infra.Data
                 { "ID", alternativa.Id },
                 { "ENUNCIADO", alternativa.Enunciado},
                 { "CORRETA", alternativa.Correta },
-                { "IDQUESTAO", alternativa.IdQuestao }
+                { "IDQUESTAO", alternativa.IdQuestao },
+                { "LETRA", alternativa.Letra},
             };
         }
 
         private static Func<IDataReader, Alternativa> FormaObjetoAlternativa = reader =>
+            
+            new Alternativa
+            {
+                Id = Convert.ToInt32(reader["Id"]),
+                Enunciado = Convert.ToString(reader["ENUNCIADO"]),
+                Correta = Convert.ToBoolean(reader["CORRETA"]),
+                IdQuestao = Convert.ToInt32(reader["IDQUESTAO"]),
+                Letra = Convert.ToChar(reader["IDQUESTAO"])
+            };
 
-          new Alternativa
-          {
-              Id = Convert.ToInt32(reader["Id"]),
-              Enunciado = Convert.ToString(reader["ENUNCIADO"]),
-              Correta = Convert.ToBoolean(reader["CORRETA"]),
-              IdQuestao = Convert.ToInt32(reader["IDQUESTAO"])
-              
-          };
 
-
-    }
 
 }
+}
+
+
+
+

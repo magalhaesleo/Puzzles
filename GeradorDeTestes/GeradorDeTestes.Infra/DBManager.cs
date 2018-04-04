@@ -33,6 +33,7 @@ namespace GeradorDeTestes.Infra
 
         public List<T> GetByID<T>(String sql, Func<IDataReader, T> convertRelactionalData, Dictionary<string, object> dictionary)
         {
+            sql = string.Format(sql, ParameterPrefix);
             using (DbConnection connection = _providerType.CreateConnection())
             {
                 connection.ConnectionString = _connectionString;

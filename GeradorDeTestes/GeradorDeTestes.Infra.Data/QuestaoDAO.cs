@@ -28,13 +28,25 @@ namespace GeradorDeTestes.Infra.Data
                                                             ({0}IDMATERIA,
                                                              {0}ENUNCIADO,
                                                              {0}BIMESTRE
-                                                            );SELECT  SCOPE_IDENTITY()";
+                                                            );SELECT SCOPE_IDENTITY()";
 
-        public const string _sqlSelectAll = @"SELECT TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
+        public const string _sqlSelectAll = @"SELECT TBQ.ID[ID_QUESTAO],
+                                            TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
                                             TBQ.BIMESTRE[BIMESTRE_QUESTAO],
-                                            TBM.NOME [NOME_MATERIA] 
+                                            TBM.NOME [NOME_MATERIA] ,
+                                            TBM.ID [ID_MATERIA],
+                                            TBS.ID [ID_SERIE],
+                                            TBS.NUMERO[NUMERO_SERIE],
+                                            TBD.ID[ID_DISCIPLINA],
+                                            TBD.NOME[NOME_DISCIPLINA]
                                             FROM TBQUESTAO AS TBQ
-                                            JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id";
+                                            JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
+                                            JOIN TBSERIE AS TBS ON TBM.IDSERIE = TBS.ID
+                                            JOIN TBDISCIPLINA AS TBD ON TBM.IDDISCIPLINA = TBD.ID
+  ";
+
+        public const string _sqlSelectQuestaoPorMateria = @"SELECT * FROM TBQUESTAO 
+                                                            WHERE IDMATERIA = {0}IDMATERIA";
 
         public const string _sqlUpdate = @"UPDATE TBQUESTAO
                                                         SET ENUNCIADO = {0}ENUNCIADO,
@@ -96,26 +108,23 @@ namespace GeradorDeTestes.Infra.Data
             }
         }
 
+        public List<Questao> SelecionarQuestoesPorMateria(int idMateria)
+        {
+            return _dbManager.GetByID(_sqlSelectQuestaoPorMateria, FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria } });
+        }
+
         #endregion
 
         #region Montar e ler objeto Questão
         private Dictionary<string, object> RetornaDictionaryDeQuestao(Questao questao)
         {
-            var alternativaCorreta = new Alternativa();
-
-            foreach (var item in questao.Alternativas)
-            {
-                if (item.Correta == true)
-                {
-                    alternativaCorreta = item;
-                }
-            }
-
+            
             return new Dictionary<string, object>
             {
                 { "ID", questao.Id },
                 { "ENUNCIADO", questao.Enunciado },
                 { "IDMATERIA", questao.Materia.Id },
+                { "BIMESTRE", questao.Bimestre }
               
             };
 
@@ -134,7 +143,19 @@ namespace GeradorDeTestes.Infra.Data
             Materia = new Materia()
             {
                 Id = Convert.ToInt32(reader["ID_MATERIA"]),
-                Nome = Convert.ToString(reader["NOME_MATERIA"])
+                Nome = Convert.ToString(reader["NOME_MATERIA"]),
+                
+                Serie = new Serie()
+                {
+                    Id = Convert.ToInt32(reader["ID_SERIE"]),
+                    Numero = Convert.ToInt32(reader["NUMERO_SERIE"])
+                },
+
+                 Disciplina = new Disciplina()
+                 {
+                     Id = Convert.ToInt32(reader["ID_DISCIPLINA"]),
+                     Nome = Convert.ToString(reader["NOME_DISCIPLINA"]),
+                 }
             },
 
             

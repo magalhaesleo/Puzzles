@@ -11,13 +11,13 @@ namespace GeradorDeTestes.Domain.Entidades
         private int _id;
         private string _enunciado;
         private bool _correta;
-        private Letra letra;
+        private Char letra;
         private int _idQuestao;
         public int Id { get => _id; set => _id = value; }
 
         public int IdQuestao { get => _idQuestao; set => _idQuestao = value; }
         public bool Correta { get => _correta; set => _correta = value; }
-        public Letra Letra { get => letra; set => letra = value; }
+        public Char Letra { get => letra; set => letra = value; }
         public string Enunciado { get => _enunciado; set => _enunciado = value; }
 
         public Alternativa()

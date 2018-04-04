@@ -27,8 +27,7 @@ namespace GeradorDeTestes.Infra.Data
                                                      VALUES
                                                            ({0}NOME,
                                                             {0}DATAGERACAO,
-                                                             {0}IDMATERIA
-                                                           )";
+                                                             {0}IDMATERIA); SELECT SCOPE_IDENTITY()";
 
         public const string _sqlInsertTBTesteQuestao = @"INSERT INTO TBTESTEQUESTOES
                                (IDQUESTAO, IDTESTE, POSICAONOTESTE)
@@ -53,11 +52,11 @@ namespace GeradorDeTestes.Infra.Data
 
         #endregion Scripts SQL
 
-        public void Add(Teste teste)
+        public int Add(Teste teste)
         {
             try
             {
-                _dbManager.Insert(_sqlInsert, RetornaDictionaryDeTeste(teste));
+                return _dbManager.Insert(_sqlInsert, RetornaDictionaryDeTeste(teste));
             }
             catch (Exception e)
             {
