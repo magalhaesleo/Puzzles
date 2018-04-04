@@ -23,6 +23,15 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             popularComboBoxes();
         }
 
+        public void listarQuestoes(List<Questao> listQuestoes)
+        {
+            listQuestao.Items.Clear();
+            foreach (Questao questao in listQuestoes)
+            {
+                listQuestao.Items.Add(questao);
+            }
+        }
+
         private void popularComboBoxes()
         {
             cmbDisciplina.Items.Clear();
@@ -56,6 +65,12 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             }
 
             cmbMateria.Enabled = true;
+        }
+
+        public void listaComboBoxes(List<Materia> listaMaterias)
+        {
+            _materias = listaMaterias;
+            popularComboBoxes();
         }
     }
 }

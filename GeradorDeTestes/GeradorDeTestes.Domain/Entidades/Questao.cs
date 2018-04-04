@@ -11,7 +11,7 @@ namespace GeradorDeTestes.Domain.Entidades
     {
         private int _id;
         private string _enunciado;
-        private List<Alternativa> _alternativas;
+        private List<Alternativa> _alternativas = new List<Alternativa>();
         private int _bimestre;
         private Materia _materia;
 
@@ -24,7 +24,6 @@ namespace GeradorDeTestes.Domain.Entidades
 
         public Questao()
         {
-
         }
         
         public void Validar()
@@ -56,10 +55,10 @@ namespace GeradorDeTestes.Domain.Entidades
             {
                 throw new Exception("A descrição do enúnciado não deve iniciar com caracteres especiais");
             }
-            if(!Regex.IsMatch(this._enunciado, (@"\w)(\w{ 1,}\W *\w{ 1,})| (\w)")))
-            {
-                throw new Exception("O enunciado não pode conter apenas caracateres especiais");
-            }
+            //if(!Regex.IsMatch(this._enunciado, (@"\w)(\w{ 1,}\W *\w{ 1,})| (\w)")))
+            //{
+            //    throw new Exception("O enunciado não pode conter apenas caracateres especiais");
+            //}
         }
     }
 }
