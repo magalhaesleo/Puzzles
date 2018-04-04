@@ -3,6 +3,7 @@ using GeradorDeTestes.Domain.helpers.ButtonsEnable;
 using GeradorDeTestes.Domain.helpers.ToolStripVisible;
 using GeradorDeTestes.WinApp.Features.DisciplinaModule;
 using GeradorDeTestes.WinApp.Features.MateriaModule;
+using GeradorDeTestes.WinApp.Features.QuestaoModule;
 using GeradorDeTestes.WinApp.Features.SerieModule;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace GeradorDeTestes.WinApp
         private DisciplinaGerenciadorFormulario _gerenciadorDisciplina;
         private MateriaGerenciadorFormulario _gerenciadorMateria;
         private SerieGerenciadorFormulario _gerenciadorSerie;
-        //private QuestaoGerenciadorFormulario _gerenciadorQuestao;
+        private QuestaoGerenciadorFormulario _gerenciadorQuestao;
 
         public Principal()
         {
@@ -70,7 +71,7 @@ namespace GeradorDeTestes.WinApp
 
         private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // CarregarGerenciador(_gerenciadorQuestao);
+            CarregarGerenciador(obterGerenciadorQuestao());
         }
 
         private void sérieToolStripMenuItem_Click(object sender, EventArgs e)
@@ -149,6 +150,17 @@ namespace GeradorDeTestes.WinApp
             }
         }
 
+        private QuestaoGerenciadorFormulario obterGerenciadorQuestao()
+        {
+            if (_gerenciadorQuestao == null)
+            {
+                return _gerenciadorQuestao = new QuestaoGerenciadorFormulario();
+            }
+            else
+            {
+                return _gerenciadorQuestao;
+            }
+        }
         private void definirPropriedadeVisibleDosBotoes(ButtonsVisible buttonsVisible)
         {
             btnAdicionar.Visible = buttonsVisible.btnAdicionar;
