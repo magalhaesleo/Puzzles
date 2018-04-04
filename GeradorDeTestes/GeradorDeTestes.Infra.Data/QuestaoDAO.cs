@@ -30,9 +30,10 @@ namespace GeradorDeTestes.Infra.Data
                                                              {0}BIMESTRE
                                                             );SELECT  SCOPE_IDENTITY()";
 
-        public const string _sqlSelectAll = @"SELECT TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
+        public const string _sqlSelectAll = @"SELECT TBQ.ID[ID_QUESTAO],TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
                                             TBQ.BIMESTRE[BIMESTRE_QUESTAO],
-                                            TBM.NOME [NOME_MATERIA] 
+                                            TBM.NOME [NOME_MATERIA] ,
+                                            TBM.ID [ID_MATERIA]
                                             FROM TBQUESTAO AS TBQ
                                             JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id";
 
