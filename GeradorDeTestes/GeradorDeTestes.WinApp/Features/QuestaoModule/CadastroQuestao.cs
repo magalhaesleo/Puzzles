@@ -56,7 +56,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
                 for (int i = 0; i < chkListBoxAlternativas.Items.Count; i++)
                 {
-                    questao.Alternativas.Add(chkListBoxAlternativas.Items[i] as Alternativa);
+                    questao.Alternativas.Add((Alternativa)chkListBoxAlternativas.Items[i]);
                 }
 
                 return questao;
@@ -95,6 +95,8 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         {
             Alternativa alt = new Alternativa();
             AtribuirLetra(alt);
+            alt.IdQuestao = 0;
+            alt.Id = 0;
             alt.Enunciado = txtAlternativa.Text;
             chkListBoxAlternativas.Items.Add(alt);
             txtAlternativa.Text = "";
@@ -191,9 +193,15 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         private void chkListBoxAlternativas_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             CheckedListBox items = (CheckedListBox)sender;
+            Alternativa alt = (Alternativa)chkListBoxAlternativas.SelectedItem;
             if (items.CheckedItems.Count > 0)
             {
                 e.NewValue = CheckState.Unchecked;
+                alt.Correta = false;
+            }
+            else
+            {       
+                alt.Correta = true;
             }
         }
 
@@ -206,14 +214,9 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             }
             catch (Exception ex)
             {
+                this.DialogResult = DialogResult.None;
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void cmbMateria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Materia materia = (Materia)cmbMateria.SelectedItem;
-            cmbDisciplina.SelectedIndex = cmbDisciplina.FindString(materia.Disciplina.ToString());
         }
 
         private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
