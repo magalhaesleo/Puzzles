@@ -14,6 +14,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
     public partial class QuestaoControl : UserControl
     {
         private List<Materia> _materias;
+        private List<Questao> _listaQuestoes;
 
         public QuestaoControl(List<Materia> materias)
         {
@@ -25,6 +26,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public void listarQuestoes(List<Questao> listQuestoes)
         {
+            _listaQuestoes = listQuestoes;
             listQuestao.Items.Clear();
             foreach (Questao questao in listQuestoes)
             {
@@ -50,12 +52,20 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         }
 
-        private void cmbDisciplina_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             cmbMateria.Items.Clear();
+            listQuestao.Items.Clear();
 
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
+            
+            foreach (Questao questao in _listaQuestoes)
+            {
+                if (disciplina.Id == questao.Materia.Disciplina.Id)
+                    listQuestao.Items.Add(questao);
+            }
+
             foreach (Materia materia in _materias)
             {
                 if (materia.Disciplina.Id == disciplina.Id)
@@ -71,6 +81,17 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         {
             _materias = listaMaterias;
             popularComboBoxes();
+        }
+
+        private void cmbMateria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listQuestao.Items.Clear();
+            foreach (Questao questao in _listaQuestoes)
+            {
+                Materia materia = (Materia)cmbMateria.SelectedItem;
+                if (materia.Id == questao.Materia.Id)
+                    listQuestao.Items.Add(questao);
+            }
         }
     }
 }
