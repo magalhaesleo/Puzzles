@@ -18,11 +18,11 @@ namespace GeradorDeTestes.WinApp
         [STAThread]
         static void Main()
         {
-            Application.SetCompatibleTextRenderingDefault(false);
-            Principal formularioPrincipal = new Principal();
-            Application.EnableVisualStyles();
-            ControleDeReferencia.ReferenciaFormularioPrincipal = formularioPrincipal;
-            Application.Run(formularioPrincipal);
+           System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+           Principal formularioPrincipal = new Principal();
+           System.Windows.Forms.Application.EnableVisualStyles();
+           ControleDeReferencia.ReferenciaFormularioPrincipal = formularioPrincipal;
+           System.Windows.Forms.Application.Run(formularioPrincipal);
 
             
             

@@ -113,19 +113,19 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             switch (chkListBoxAlternativas.Items.Count)
             {
                 case 0:
-                    alternativa.Letra = Letra.a;
+                    alternativa.Letra = 'A';
                     break;
                 case 1:
-                    alternativa.Letra = Letra.b;
+                    alternativa.Letra = 'B';
                     break;
                 case 2:
-                    alternativa.Letra = Letra.c;
+                    alternativa.Letra = 'C';
                     break;
                 case 3:
-                    alternativa.Letra = Letra.d;
+                    alternativa.Letra = 'D';
                     break;
                 case 4:
-                    alternativa.Letra = Letra.e;
+                    alternativa.Letra = 'E';
                     break;
                 default:
                     break;

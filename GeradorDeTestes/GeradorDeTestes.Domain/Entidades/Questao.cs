@@ -60,5 +60,10 @@ namespace GeradorDeTestes.Domain.Entidades
             //    throw new Exception("O enunciado não pode conter apenas caracateres especiais");
             //}
         }
+
+        public override string ToString()
+        {
+            return String.Format("Enunciado: {0} - Materia: {1} - Disciplina: {2}", Enunciado,Materia.Nome,Materia.Disciplina.Nome);
+        }
     }
 }
