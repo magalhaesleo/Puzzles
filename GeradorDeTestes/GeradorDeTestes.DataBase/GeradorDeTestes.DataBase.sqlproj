@@ -66,8 +66,8 @@
     <Build Include="dbo\Tables\TBMATERIA.sql" />
     <Build Include="dbo\Tables\TBQUESTAO.sql" />
     <Build Include="dbo\Tables\TBALTERNATIVA.sql" />
-    <Build Include="TBTESTE.sql" />
-    <Build Include="TBTESTEQUESTOES.sql" />
+    <Build Include="dbo\Tables\TBTESTE.sql" />
+    <Build Include="dbo\Tables\TBTESTEQUESTOES.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="GeradorDeTestes.DataBase.refactorlog" />
