@@ -88,6 +88,19 @@
       <DependentUpon>MateriaControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\MateriaModule\MateriaGerenciadorFormulario.cs" />
+    <Compile Include="Features\QuestaoModule\CadastroQuestao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\QuestaoModule\CadastroQuestao.Designer.cs">
+      <DependentUpon>CadastroQuestao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\QuestaoModule\QuestaoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\QuestaoModule\QuestaoControl.Designer.cs">
+      <DependentUpon>QuestaoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\QuestaoModule\QuestaoGerenciadorFormulario.cs" />
     <Compile Include="Features\SerieModule\CadastroSerie.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +134,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\MateriaModule\MateriaControl.resx">
       <DependentUpon>MateriaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\QuestaoModule\CadastroQuestao.resx">
+      <DependentUpon>CadastroQuestao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\QuestaoModule\QuestaoControl.resx">
+      <DependentUpon>QuestaoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\SerieModule\CadastroSerie.resx">
       <DependentUpon>CadastroSerie.cs</DependentUpon>
