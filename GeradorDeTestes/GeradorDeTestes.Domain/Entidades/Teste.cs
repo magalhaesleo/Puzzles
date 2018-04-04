@@ -13,12 +13,15 @@ namespace GeradorDeTestes.Domain.Entidades
         private List<Questao> _listQuestoes;
         private DateTime _dataGeracao;
         private Materia _materia;
+        private int _numeroQuestoes;
 
         public int Id { get => this._id; set => this._id = value; }
         public string Nome { get => this._nome; set => this._nome = value; }
         public List<Questao> Questoes { get => this._listQuestoes; set => this._listQuestoes = value; }
         public DateTime DataGeracao { get => this._dataGeracao; set => this._dataGeracao = value; }
         public Materia Materia { get => this._materia; set => this._materia = value; }
+
+        public int NumeroDeQuestoes { get => this._numeroQuestoes; set => this._numeroQuestoes=value; }
 
         public Teste()
         {
