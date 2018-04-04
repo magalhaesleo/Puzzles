@@ -30,6 +30,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             cm = new ContextMenu();
             cm.MenuItems.Add("Excluir alternativa");
             cmbMateria.Enabled = false;
+            btnAdicionar.Enabled = false;
         }
 
         public CadastroQuestao(List<Materia> materias, Questao questaoParaEditar) : this(materias)
@@ -75,7 +76,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
                     cmbDisciplina.Items.Add(materia.Disciplina);
                 }
                 cmbMateria.Items.Add(materia);
-            }   
+            }
 
         }
 
@@ -142,7 +143,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             ttIndex = chkListBoxAlternativas.IndexFromPoint(chkListBoxAlternativas.PointToClient(MousePosition));
             if (ttIndex > -1)
             {
-                toolTip1.ToolTipTitle = "Tooltip Title";
+                toolTip1.ToolTipTitle = "Alternativa:";
                 toolTip1.SetToolTip(chkListBoxAlternativas, chkListBoxAlternativas.Items[ttIndex].ToString());
 
             }
@@ -200,7 +201,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
                 alt.Correta = false;
             }
             else
-            {       
+            {
                 alt.Correta = true;
             }
         }
@@ -208,7 +209,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             try
-            {               
+            {
                 ValidarPreenchimentoDosCampos();
                 NovaQuestao.Validar();
             }
@@ -221,11 +222,11 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(_materias[(cmbMateria.SelectedIndex + 1)] != null)
+            if (_materias[(cmbMateria.SelectedIndex + 1)] != null)
             {
                 cmbMateria.Items.Clear();
             }
-            
+
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
             foreach (Materia materia in _materias)
             {
@@ -236,6 +237,47 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             }
 
             cmbMateria.Enabled = true;
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            Alternativa excluida = new Alternativa();
+            Alternativa alt = (Alternativa)chkListBoxAlternativas.SelectedItem;
+
+            foreach (Alternativa alternativa in chkListBoxAlternativas.Items)
+            {
+                if (alternativa == alt)
+                {
+                    excluida = alt;
+                }
+            }
+
+            chkListBoxAlternativas.Items.Remove(excluida);
+
+        }
+
+        private void chkListBoxAlternativas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (chkListBoxAlternativas.SelectedIndex != -1)
+            {
+                btnExcluir.Enabled = true;
+            }
+            else
+            {
+                btnExcluir.Enabled = false;
+            }
+        }
+
+        private void txtAlternativa_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAlternativa.Text.Length < 1)
+            {
+                btnAdicionar.Enabled = false;
+            }
+            else
+            {
+                btnAdicionar.Enabled = true;
+            }
         }
     }
 }
