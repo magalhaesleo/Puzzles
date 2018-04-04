@@ -19,11 +19,12 @@ namespace GeradorDeTestes.Infra.Data
 
 
         public const string _sqlInsert = @"INSERT INTO TBALTERNATIVA
-                                                           (ENUNCIADO, CORRETA, IDQUESTAO)
+                                                           (ENUNCIADO, CORRETA, IDQUESTAO,LETRA)
                                                       VALUES
                                                             ({0}ENUNCIADO,
                                                              {0}CORRETA,
-                                                             {0}IDQUESTAO
+                                                             {0}IDQUESTAO,
+                                                             {0}LETRA
                                                             )";
 
         public const string _sqlSelectAll = @"SELECT * FROM TBALTERNATIVA";
@@ -31,7 +32,8 @@ namespace GeradorDeTestes.Infra.Data
         public const string _sqlUpdate = @"UPDATE TBALTERNATIVA
                                                         SET ENUNCIADO = {0}ENUNCIADO,
                                                             CORRETA = {0}CORRETA,
-                                                            IDQUESTAO = {0}IDQUESTAO
+                                                            IDQUESTAO = {0}IDQUESTAO,
+                                                            LETRA = {0}LETRA
                                              WHERE ID = {0}ID";
 
         public static string _sqlDelete = @"DELETE FROM TBALTERNATIVA
