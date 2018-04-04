@@ -40,6 +40,12 @@ namespace GeradorDeTestes.Applications
             return questao;
         }
 
+        internal List<Questao> selecionarQuestoesPorMateria(int idMateria)
+        {
+          return  _questaoDAO.SelecionarQuestoesPorMateria(idMateria);
+         }
+        
+
         public Questao AtualizarQuestao(Questao questao)
         {
             try
@@ -68,7 +74,7 @@ namespace GeradorDeTestes.Applications
             return questao;
         }
 
-        public List<Questao> SelecionarTodasQuestaos()
+        public List<Questao> SelecionarTodasQuestoes()
         {
             try
             {

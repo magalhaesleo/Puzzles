@@ -36,6 +36,9 @@ namespace GeradorDeTestes.Infra.Data
                                             FROM TBQUESTAO AS TBQ
                                             JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id";
 
+        public const string _sqlSelectQuestaoPorMateria = @"SELECT * FROM TBQUESTAO 
+                                                            WHERE IDMATERIA = {0}IDMATERIA";
+
         public const string _sqlUpdate = @"UPDATE TBQUESTAO
                                                         SET ENUNCIADO = {0}ENUNCIADO,
                                                             BIMESTRE = {0}BIMESTRE,
@@ -96,26 +99,23 @@ namespace GeradorDeTestes.Infra.Data
             }
         }
 
+        public List<Questao> SelecionarQuestoesPorMateria(int idMateria)
+        {
+            return _dbManager.GetByID(_sqlSelectQuestaoPorMateria, FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria } });
+        }
+
         #endregion
 
         #region Montar e ler objeto Questão
         private Dictionary<string, object> RetornaDictionaryDeQuestao(Questao questao)
         {
-            var alternativaCorreta = new Alternativa();
-
-            foreach (var item in questao.Alternativas)
-            {
-                if (item.Correta == true)
-                {
-                    alternativaCorreta = item;
-                }
-            }
-
+            
             return new Dictionary<string, object>
             {
                 { "ID", questao.Id },
                 { "ENUNCIADO", questao.Enunciado },
                 { "IDMATERIA", questao.Materia.Id },
+                { "BIMESTRE", questao.Bimestre }
               
             };
 
