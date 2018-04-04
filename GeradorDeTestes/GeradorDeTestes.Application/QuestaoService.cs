@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Applications
 {
-    class QuestaoService
+    public class QuestaoService
     {
         private QuestaoDAO _questaoDAO;
         private AlternativaService _alternativaService;

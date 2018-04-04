@@ -14,10 +14,15 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
     public class QuestaoGerenciadorFormulario : GerenciadorFormulario
     {
         private MateriaService _materiaService;
+        private QuestaoService _questaoService;
         public QuestaoGerenciadorFormulario()
         {
             _materiaService = new MateriaService();
+            _questaoService = new QuestaoService();
         }
+
+        public QuestaoControl _questaoControl { get; private set; }
+
         public override void Adicionar()
         {
             CadastroQuestao dialogQuestao = new CadastroQuestao(_materiaService.SelecionarTodasMaterias());
@@ -28,7 +33,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             {
                 try
                 {
-                    //_materiaService.AdicionarMateria(dialogMateria.NovaMateria);
+                    _questaoService.AdicionarQuestao(dialogQuestao.NovaQuestao);
                     MessageBox.Show("Questão adicionada com sucesso");
                 }
                 catch (Exception e)
@@ -37,17 +42,21 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
                 }
 
             }
-            //AtualizarListagem();
+            AtualizarListagem();
         }
 
         public override void AtualizarListagem()
         {
-            throw new NotImplementedException();
+            _questaoControl.listarQuestoes(_questaoService.SelecionarTodasQuestaos());
+            _questaoControl.listaComboBoxes(_materiaService.SelecionarTodasMaterias());
         }
 
         public override UserControl CarregarListControl()
         {
-            return new QuestaoControl(_materiaService.SelecionarTodasMaterias());
+            if (_questaoControl == null)
+                _questaoControl = new QuestaoControl(_materiaService.SelecionarTodasMaterias());
+            AtualizarListagem();
+            return _questaoControl;
         }
 
         public override void Editar()

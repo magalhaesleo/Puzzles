@@ -73,7 +73,6 @@
             this.cmbMateria.Name = "cmbMateria";
             this.cmbMateria.Size = new System.Drawing.Size(400, 21);
             this.cmbMateria.TabIndex = 8;
-            this.cmbMateria.SelectedIndexChanged += new System.EventHandler(this.cmbMateria_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -187,6 +186,7 @@
             // 
             // btnSalvar
             // 
+            this.btnSalvar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSalvar.Location = new System.Drawing.Point(393, 440);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
