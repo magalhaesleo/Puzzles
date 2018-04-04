@@ -116,7 +116,7 @@ namespace GeradorDeTestes.Infra.Data
                 Enunciado = Convert.ToString(reader["ENUNCIADO"]),
                 Correta = Convert.ToBoolean(reader["CORRETA"]),
                 IdQuestao = Convert.ToInt32(reader["IDQUESTAO"]),
-                Letra = Convert.ToChar(reader["IDQUESTAO"])
+                Letra = Convert.ToChar(reader["LETRA"])
             };
 
 

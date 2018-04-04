@@ -61,12 +61,49 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override void Editar()
         {
-            throw new NotImplementedException();
+            CadastroQuestao dialogQuestao = new CadastroQuestao(_materiaService.SelecionarTodasMaterias(), _questaoControl.RetornaQuestaoSelecionadaNoListBox());
+
+            DialogResult resultado = dialogQuestao.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                try
+                {
+                    _questaoService.AtualizarQuestao(dialogQuestao.NovaQuestao);
+                    MessageBox.Show("Questão atualizada com sucesso");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+
+            }
+
+            definirEnableButtons(ObtemEnableButtons());
+            AtualizarListagem();
         }
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            var questaoSelecionadaNoListBox = _questaoControl.RetornaQuestaoSelecionadaNoListBox();
+            try
+            {
+                DialogResult resultado = MessageBox.Show("Tem certeze que deseja excluir essa questão?", "Informativo", MessageBoxButtons.YesNo);
+
+                if (DialogResult.Yes == resultado)
+                {
+                    _questaoService.ExcluirQuestao(questaoSelecionadaNoListBox);
+                }
+
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            definirEnableButtons(ObtemEnableButtons());
+            AtualizarListagem();
         }
 
         public override ButtonsEnable ObtemEnableButtons()
@@ -100,6 +137,12 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             {
                 toolStripBotoes = true
             };
+        }
+
+        public void definirEnableButtons(ButtonsEnable buttonsEnable)
+        {
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = buttonsEnable.btnExcluir;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
         }
     }
 }

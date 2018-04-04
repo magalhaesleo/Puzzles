@@ -134,7 +134,6 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public void definirEnableButtons(ButtonsEnable buttonsEnable)
         {
-
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = buttonsEnable.btnExcluir;
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
         }
