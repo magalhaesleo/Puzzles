@@ -16,9 +16,9 @@ namespace GeradorDeTestes.Infra
 
         private static DbProviderFactory _providerType = DbProviderFactories.GetFactory(_providerName);
 
-        public void Insert(string sql, Dictionary<string, object> dictionary)
+        public int Insert(string sql, Dictionary<string, object> dictionary)
         {
-            InitializeConnection(sql, dictionary);
+           return InitializeConnection(sql, dictionary);
         }
 
         public void Update(string sql, Dictionary<string, object> dictionary)
@@ -31,22 +31,7 @@ namespace GeradorDeTestes.Infra
             InitializeConnection(sql, dictionary);
         }
 
-        public static void SetParameters(DbCommand command, Dictionary<string, object> dictionary)
-        {
-            if (dictionary != null)
-            {
-                foreach (var item in dictionary)
-                {
-                    var dbParameter = command.CreateParameter();
-                    dbParameter.ParameterName = item.Key;
-                    dbParameter.Value = item.Value;
-                    command.Parameters.Add(dbParameter);
-                }
-            }
-        }
-
-        //ok
-        public List<T> GetAll<T>(String sql, Func<IDataReader, T> convertRelactionalData)
+        public List<T> GetByID<T>(String sql, Func<IDataReader, T> convertRelactionalData, Dictionary<string, object> dictionary)
         {
             using (DbConnection connection = _providerType.CreateConnection())
             {
@@ -55,7 +40,8 @@ namespace GeradorDeTestes.Infra
                 using (DbCommand command = _providerType.CreateCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = sql;   
+                    command.CommandText = sql;
+                    SetParameters(command, dictionary);
                     connection.Open();
 
                     var reader = command.ExecuteReader();
@@ -72,10 +58,52 @@ namespace GeradorDeTestes.Infra
             }
         }
 
-        // Connection SQL
-        public static void InitializeConnection(string sql, Dictionary<string, object> parms = null)
+        //ok
+        public List<T> GetAll<T>(String sql, Func<IDataReader, T> convertRelactionalData)
+        {
+            using (DbConnection connection = _providerType.CreateConnection())
+            {
+                connection.ConnectionString = _connectionString;
+
+                using (DbCommand command = _providerType.CreateCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = sql;
+                    connection.Open();
+
+                    var reader = command.ExecuteReader();
+
+                    var list = new List<T>();
+
+                    while (reader.Read())
+                    {
+                        var obj = convertRelactionalData(reader);
+                        list.Add(obj);
+                    }
+                    return list;
+                }
+            }
+        }
+        public static void SetParameters(DbCommand command, Dictionary<string, object> dictionary)
+        {
+            if (dictionary != null)
+            {
+                foreach (var item in dictionary)
+                {
+                    var dbParameter = command.CreateParameter();
+                    dbParameter.ParameterName = item.Key;
+                    dbParameter.Value = item.Value;
+                    command.Parameters.Add(dbParameter);
+                }
+            }
+        }
+
+       
+        // Connection AND execute SQL
+        public static int InitializeConnection(string sql, Dictionary<string, object> parms = null)
         {
             sql = string.Format(sql, ParameterPrefix);
+            int idAux;
             using (DbConnection connection = _providerType.CreateConnection())
             {
                 connection.ConnectionString = _connectionString;
@@ -87,9 +115,10 @@ namespace GeradorDeTestes.Infra
                     SetParameters(command, parms);
                     connection.Open();
 
-                    command.ExecuteScalar();
+                idAux = Convert.ToInt32(command.ExecuteScalar());
                 }
             }
+            return idAux;
         }
 
         public static string ParameterPrefix

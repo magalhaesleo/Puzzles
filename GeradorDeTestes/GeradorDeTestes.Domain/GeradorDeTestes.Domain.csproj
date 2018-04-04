@@ -46,6 +46,7 @@
     <Compile Include="Entidades\Materia.cs" />
     <Compile Include="Entidades\Questao.cs" />
     <Compile Include="Entidades\Serie.cs" />
+    <Compile Include="Entidades\Teste.cs" />
     <Compile Include="helpers\ButtonsEnable\ButtonsEnable.cs" />
     <Compile Include="helpers\ButtonsVisible\ButtonsVisible.cs" />
     <Compile Include="helpers\ToolStripVisible\ToolStripVisible.cs" />

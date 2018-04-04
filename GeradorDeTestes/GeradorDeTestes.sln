@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{FCCC0811-EFD4-4B57-978D-D57F01551929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeradorDeTestes.Application", "GeradorDeTestes.Application\GeradorDeTestes.Application.csproj", "{BD69F748-2F36-4936-A764-0E7D3C4DFD27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeradorDeTestes.Applications", "GeradorDeTestes.Application\GeradorDeTestes.Applications.csproj", "{BD69F748-2F36-4936-A764-0E7D3C4DFD27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeradorDeTestes.Infra", "GeradorDeTestes.Infra\GeradorDeTestes.Infra.csproj", "{BEE7FCD4-6A19-4D3D-A50B-2BE9C8948B89}"
 EndProject

@@ -173,9 +173,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GeradorDeTestes.Application\GeradorDeTestes.Application.csproj">
+    <ProjectReference Include="..\GeradorDeTestes.Application\GeradorDeTestes.Applications.csproj">
       <Project>{BD69F748-2F36-4936-A764-0E7D3C4DFD27}</Project>
-      <Name>GeradorDeTestes.Application</Name>
+      <Name>GeradorDeTestes.Applications</Name>
     </ProjectReference>
     <ProjectReference Include="..\GeradorDeTestes.Domain\GeradorDeTestes.Domain.csproj">
       <Project>{B74EACE8-06D1-4A2A-98D5-D30FE1DFDF05}</Project>
