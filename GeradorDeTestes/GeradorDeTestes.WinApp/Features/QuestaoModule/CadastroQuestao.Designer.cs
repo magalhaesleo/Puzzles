@@ -143,6 +143,7 @@
             this.chkListBoxAlternativas.TabIndex = 13;
             this.chkListBoxAlternativas.Tag = "";
             this.chkListBoxAlternativas.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkListBoxAlternativas_ItemCheck);
+            this.chkListBoxAlternativas.SelectedIndexChanged += new System.EventHandler(this.chkListBoxAlternativas_SelectedIndexChanged);
             this.chkListBoxAlternativas.MouseHover += new System.EventHandler(this.chkListBoxAlternativas_MouseHover);
             this.chkListBoxAlternativas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chkListBoxAlternativas_MouseMove);
             this.chkListBoxAlternativas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.chkListBoxAlternativas_MouseUp);
@@ -154,6 +155,7 @@
             this.txtAlternativa.Name = "txtAlternativa";
             this.txtAlternativa.Size = new System.Drawing.Size(450, 57);
             this.txtAlternativa.TabIndex = 14;
+            this.txtAlternativa.TextChanged += new System.EventHandler(this.txtAlternativa_TextChanged);
             // 
             // label5
             // 
@@ -183,6 +185,7 @@
             this.btnExcluir.TabIndex = 17;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnSalvar
             // 
