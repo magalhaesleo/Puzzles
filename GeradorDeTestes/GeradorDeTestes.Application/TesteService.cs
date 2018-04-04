@@ -22,20 +22,33 @@ namespace GeradorDeTestes.Application
 
         public Teste AdicionarTeste(Teste teste)
         {
-           
+            
+            var random = new Random();
             try
             {
              var idTeste = _testeDAO.Add(teste);
-                var listQuestoes = _questaoService.selecionarQuestoesPorMateria(teste.Materia.Id);
+             var listQuestoes = _questaoService.selecionarQuestoesPorMateria(teste.Materia.Id);
+
+                for (int i = 0; i < teste.NumeroDeQuestoes; i++)
+                {
+                    var posicao = random.Next(1,listQuestoes.Count);
+                    _testeDAO.AddTesteQuestao(listQuestoes[posicao].Id, idTeste, i);
+                }
             }
 
+            
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
+
+
+           
+           
             
 
-            
+
+
             return teste;
         }
 
