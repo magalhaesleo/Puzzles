@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Entidades
 {
-   public class Teste
+    public class Teste
     {
         private int _id;
         private string _nome;
@@ -31,10 +31,15 @@ namespace GeradorDeTestes.Domain.Entidades
             {
                 throw new InvalidTimeZoneException("A data de geração não deve ser menor que a data atual");
             }
-            if(Materia==null)
+            if (Materia == null)
             {
                 throw new ArgumentNullException("A matéria deve ser selecionada");
             }
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Nome: {0} - Materia {1} - Data de Geração {2} ", Nome, Materia.Nome, DataGeracao);
         }
     }
 }

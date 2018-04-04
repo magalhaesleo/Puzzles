@@ -15,7 +15,7 @@ namespace GeradorDeTestes.Domain.Entidades
         public int Id { get { return this._id; } set { this._id = value; } }
         public string Nome { get { return this._nome; } set { this._nome = value; } }
 
-       
+
 
         public Disciplina()
         {
@@ -56,7 +56,7 @@ namespace GeradorDeTestes.Domain.Entidades
                 throw new Exception("O nome não deve iniciar com números ou conter apenas números!");
 
             if (!Regex.IsMatch(Nome, @"^[ a-zA-Z áãõêí]*$"))
-                    throw new Exception("O nome não deve conter números!");
+                throw new Exception("O nome não deve conter números!");
         }
 
         public override string ToString()
