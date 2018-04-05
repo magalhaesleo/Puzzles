@@ -19,6 +19,10 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         int ttIndex;
         ToolTip toolTip1 = new ToolTip();
         List<Materia> _materias;
+        private int _idQuestaoEdicao;
+        private AlternativaService _alternativaService;
+
+        private Questao _questaoParaEdicao;
 
 
         public CadastroQuestao(List<Materia> materias)
@@ -35,14 +39,28 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public CadastroQuestao(List<Materia> materias, Questao questaoParaEditar) : this(materias)
         {
+            _questaoParaEdicao = questaoParaEditar;
             cmbDisciplina.SelectedIndex = cmbDisciplina.FindString(questaoParaEditar.Materia.Disciplina.ToString());
             cmbMateria.SelectedIndex = cmbMateria.FindString(questaoParaEditar.Materia.ToString());
             numBimestre.Value = questaoParaEditar.Bimestre;
             txtEnunciadoQuestao.Text = questaoParaEditar.Enunciado;
+            _idQuestaoEdicao = questaoParaEditar.Id;
+            _alternativaService = new AlternativaService();
+
             foreach (Alternativa alternativa in questaoParaEditar.Alternativas)
             {
                 chkListBoxAlternativas.Items.Add(alternativa);
+               
             }
+            int indiceItem = 0;
+            foreach (Alternativa alternativa in chkListBoxAlternativas.Items)
+            {
+                if(alternativa.Correta) {
+                     indiceItem = chkListBoxAlternativas.Items.IndexOf(alternativa);
+                    
+                }
+            }
+            chkListBoxAlternativas.SetItemChecked(indiceItem, true);
         }
 
         public Questao NovaQuestao
@@ -57,11 +75,44 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
                 for (int i = 0; i < chkListBoxAlternativas.Items.Count; i++)
                 {
-                    questao.Alternativas.Add((Alternativa)chkListBoxAlternativas.Items[i]);
+                    var alternativaParaAdicionar = (Alternativa)chkListBoxAlternativas.Items[i];
+                    alternativaParaAdicionar.IdQuestao = questao.Id;
+                    questao.Alternativas.Add(alternativaParaAdicionar);
                 }
 
                 return questao;
             }
+        }
+
+        public Questao QuestaoEditada
+        {
+            get
+            {
+                foreach (var item in _questaoParaEdicao.Alternativas)
+                    {
+                      _alternativaService.ExcluirAlternativa(item);
+                    
+                    }
+                _questaoParaEdicao.Alternativas = new List<Alternativa>();
+                _questaoParaEdicao.Materia = (Materia)cmbMateria.SelectedItem;
+                _questaoParaEdicao.Bimestre = (int)numBimestre.Value;
+                _questaoParaEdicao.Enunciado = txtEnunciadoQuestao.Text;
+                
+                foreach (Alternativa alt in chkListBoxAlternativas.Items)
+                {
+                    var alternativaParaEditar = alt;
+                    alternativaParaEditar.IdQuestao = _questaoParaEdicao.Id;
+                    _questaoParaEdicao.Alternativas.Add(alternativaParaEditar);
+
+                    
+                }
+
+                
+
+                return this._questaoParaEdicao;
+            }
+
+            set { this._questaoParaEdicao = value; }
         }
 
         private void popularComboBoxes()
@@ -95,23 +146,45 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             Alternativa alt = new Alternativa();
-            AtribuirLetra(alt);
+            AtribuirLetraAoAdicionar(alt);
             alt.IdQuestao = 0;
             alt.Id = 0;
             alt.Enunciado = txtAlternativa.Text;
             chkListBoxAlternativas.Items.Add(alt);
             txtAlternativa.Text = "";
 
-            if (chkListBoxAlternativas.Items.Count == 5)
+            if (chkListBoxAlternativas.Items.Count == 4)
                 btnAdicionar.Enabled = false;
 
             if (chkListBoxAlternativas.Items.Count >= 2)
                 chkListBoxAlternativas.BackColor = Color.FromArgb(255, 255, 255, 255);
 
         }
-        private void AtribuirLetra(Alternativa alternativa)
+        private void AtribuirLetraAoAdicionar(Alternativa alternativa)
         {
-            switch (chkListBoxAlternativas.Items.Count)
+            int tamanhoDaLista = chkListBoxAlternativas.Items.Count;
+
+            SwitchAtribuirLetra(alternativa, tamanhoDaLista);
+
+        }
+
+        private void AtribuirLetraAoExcluir(Alternativa alternativa)
+        {
+            int indice = 0;
+
+            foreach (var item in chkListBoxAlternativas.Items)
+            {
+                if (alternativa == item)
+                    indice = chkListBoxAlternativas.Items.IndexOf(item);
+            }
+
+            SwitchAtribuirLetra(alternativa, indice);
+
+        }
+
+        private void SwitchAtribuirLetra(Alternativa alternativa, int parametroSwitch)
+        {
+            switch (parametroSwitch)
             {
                 case 0:
                     alternativa.Letra = 'A';
@@ -131,6 +204,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
                 default:
                     break;
             }
+
         }
 
         private void chkListBoxAlternativas_MouseMove(object sender, MouseEventArgs e)
@@ -172,7 +246,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
             if (txtEnunciadoQuestao.Text == null || txtEnunciadoQuestao.Text.Length < 1)
             {
-                cmbDisciplina.BackColor = Color.Red;
+                txtEnunciadoQuestao.BackColor = Color.Red;
                 throw new Exception("O campo enunciado da questão deve ser preenchido");
             }
 
@@ -194,15 +268,19 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         private void chkListBoxAlternativas_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             CheckedListBox items = (CheckedListBox)sender;
+            
             Alternativa alt = (Alternativa)chkListBoxAlternativas.SelectedItem;
-            if (items.CheckedItems.Count > 0)
+            if (alt != null)
             {
-                e.NewValue = CheckState.Unchecked;
-                alt.Correta = false;
-            }
-            else
-            {
-                alt.Correta = true;
+                if (items.CheckedItems.Count > 0)
+                {
+                    e.NewValue = CheckState.Unchecked;
+                    alt.Correta = false;
+                }
+                else
+                {
+                    alt.Correta = true;
+                }
             }
         }
 
@@ -211,7 +289,16 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             try
             {
                 ValidarPreenchimentoDosCampos();
-                NovaQuestao.Validar();
+
+                if (_questaoParaEdicao != null)
+                {
+                    QuestaoEditada.Validar();
+                }
+
+                else
+                {
+                   NovaQuestao.Validar();
+                }
             }
             catch (Exception ex)
             {
@@ -246,13 +333,25 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
             foreach (Alternativa alternativa in chkListBoxAlternativas.Items)
             {
+                
                 if (alternativa == alt)
                 {
                     excluida = alt;
+                    if(alternativa.Id > 0)
+                    {
+                        _alternativaService.ExcluirAlternativa(alternativa);
+                    }
                 }
             }
 
             chkListBoxAlternativas.Items.Remove(excluida);
+
+
+            for (int i = 0; i < chkListBoxAlternativas.Items.Count; i++)
+            {
+                Alternativa alternativaAtual = (Alternativa)chkListBoxAlternativas.Items[i];
+                AtribuirLetraAoExcluir(alternativaAtual);
+            }
 
         }
 
@@ -270,7 +369,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         private void txtAlternativa_TextChanged(object sender, EventArgs e)
         {
-            if (txtAlternativa.Text.Length < 1)
+            if (txtAlternativa.Text.Length < 1 || chkListBoxAlternativas.Items.Count == 5)
             {
                 btnAdicionar.Enabled = false;
             }

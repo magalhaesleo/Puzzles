@@ -51,7 +51,7 @@ namespace GeradorDeTestes.Infra.Data
         public const string _sqlUpdate = @"UPDATE TBQUESTAO
                                                         SET ENUNCIADO = {0}ENUNCIADO,
                                                             BIMESTRE = {0}BIMESTRE,
-                                                            IDMATERIA = {0}IDMATERIA,
+                                                            IDMATERIA = {0}IDMATERIA
                                                             WHERE ID = {0}ID";
 
         public static string _sqlDelete = @"DELETE FROM TBQUESTAO

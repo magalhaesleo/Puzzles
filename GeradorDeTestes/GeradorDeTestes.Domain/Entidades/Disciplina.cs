@@ -61,7 +61,7 @@ namespace GeradorDeTestes.Domain.Entidades
 
         public override string ToString()
         {
-            return String.Format("Nome: {0} ", Nome);
+            return Nome;
         }
 
     }
