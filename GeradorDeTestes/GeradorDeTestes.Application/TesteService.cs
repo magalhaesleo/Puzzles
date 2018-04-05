@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeradorDeTestes.Application
+namespace GeradorDeTestes.Applications
 {
    public class TesteService
     {

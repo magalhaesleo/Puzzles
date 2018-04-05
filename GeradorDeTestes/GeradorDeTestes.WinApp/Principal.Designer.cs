@@ -35,6 +35,7 @@
             this.materiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.questaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sérieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelControl = new System.Windows.Forms.Panel();
             this.toolStripBotoes = new System.Windows.Forms.ToolStrip();
             this.btnAdicionar = new System.Windows.Forms.ToolStripButton();
@@ -62,7 +63,8 @@
             this.deDisciplinaToolStripMenuItem,
             this.materiaToolStripMenuItem,
             this.questaoToolStripMenuItem,
-            this.sérieToolStripMenuItem});
+            this.sérieToolStripMenuItem,
+            this.testeToolStripMenuItem});
             this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
             this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.ajudaToolStripMenuItem.Text = "Gerenciador";
@@ -70,30 +72,37 @@
             // deDisciplinaToolStripMenuItem
             // 
             this.deDisciplinaToolStripMenuItem.Name = "deDisciplinaToolStripMenuItem";
-            this.deDisciplinaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.deDisciplinaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deDisciplinaToolStripMenuItem.Text = "Disciplina";
             this.deDisciplinaToolStripMenuItem.Click += new System.EventHandler(this.deDisciplinaToolStripMenuItem_Click);
             // 
             // materiaToolStripMenuItem
             // 
             this.materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-            this.materiaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.materiaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.materiaToolStripMenuItem.Text = "Matéria";
             this.materiaToolStripMenuItem.Click += new System.EventHandler(this.materiaToolStripMenuItem_Click);
             // 
             // questaoToolStripMenuItem
             // 
             this.questaoToolStripMenuItem.Name = "questaoToolStripMenuItem";
-            this.questaoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.questaoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.questaoToolStripMenuItem.Text = "Questão";
             this.questaoToolStripMenuItem.Click += new System.EventHandler(this.questaoToolStripMenuItem_Click);
             // 
             // sérieToolStripMenuItem
             // 
             this.sérieToolStripMenuItem.Name = "sérieToolStripMenuItem";
-            this.sérieToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.sérieToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sérieToolStripMenuItem.Text = "Série";
             this.sérieToolStripMenuItem.Click += new System.EventHandler(this.sérieToolStripMenuItem_Click);
+            // 
+            // testeToolStripMenuItem
+            // 
+            this.testeToolStripMenuItem.Name = "testeToolStripMenuItem";
+            this.testeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testeToolStripMenuItem.Text = "Teste";
+            this.testeToolStripMenuItem.Click += new System.EventHandler(this.testeToolStripMenuItem_Click);
             // 
             // panelControl
             // 
@@ -198,6 +207,7 @@
         public System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
+        private System.Windows.Forms.ToolStripMenuItem testeToolStripMenuItem;
     }
 }
 

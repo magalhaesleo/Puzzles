@@ -114,6 +114,19 @@
       <DependentUpon>SerieControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\SerieModule\SerieGerenciadorFormulario.cs" />
+    <Compile Include="Features\TesteModule\CadastroTeste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\TesteModule\CadastroTeste.Designer.cs">
+      <DependentUpon>CadastroTeste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\TesteModule\TesteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\TesteModule\TesteControl.Designer.cs">
+      <DependentUpon>TesteControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\TesteModule\TesteGerenciadorFormulario.cs" />
     <Compile Include="GerenciadorFormulario.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -146,6 +159,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\SerieModule\SerieControl.resx">
       <DependentUpon>SerieControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\TesteModule\CadastroTeste.resx">
+      <DependentUpon>CadastroTeste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\TesteModule\TesteControl.resx">
+      <DependentUpon>TesteControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
