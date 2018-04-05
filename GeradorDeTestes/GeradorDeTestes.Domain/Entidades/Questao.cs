@@ -33,6 +33,11 @@ namespace GeradorDeTestes.Domain.Entidades
                 throw new Exception("A descrição do enúnciado não pode estar vazia");
             }
 
+            if (this._enunciado.Length > 100)
+            {
+                throw new Exception("O enunciado não pode ultrapassar 100 caracateres");
+            }
+
             if (Regex.IsMatch(char.ToString(this._enunciado[0]), (@"[!""#$%&'()*+,-./:;?@[\\\]_`{|}~]")))
             {
                 throw new Exception("A descrição do enúnciado não deve iniciar com caracteres especiais");

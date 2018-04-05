@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace GeradorDeTestes.Applications
 {
-    internal class AlternativaService
+    public class AlternativaService
     {
         private AlternativaDAO _alternativaDao;
 
@@ -58,6 +58,9 @@ namespace GeradorDeTestes.Applications
             }
         }
 
-
+        public List<Alternativa> SelecionarAlternativasPorQuestao(int idQuestao)
+        {
+           return _alternativaDao.PegarAlternativasDaQuestaoPorID(idQuestao);
+        }
     }
 }

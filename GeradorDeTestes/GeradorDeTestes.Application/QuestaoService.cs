@@ -21,7 +21,7 @@ namespace GeradorDeTestes.Applications
 
         public Questao AdicionarQuestao(Questao questao)
         {
-            
+
 
             try
             {
@@ -31,7 +31,7 @@ namespace GeradorDeTestes.Applications
                     alternativa.IdQuestao = idQuestao;
                     _alternativaService.AdicionarAlternativa(alternativa);
                 }
-                
+
             }
             catch (Exception e)
             {
@@ -42,9 +42,9 @@ namespace GeradorDeTestes.Applications
 
         internal List<Questao> selecionarQuestoesPorMateria(int idMateria)
         {
-          return  _questaoDAO.SelecionarQuestoesPorMateria(idMateria);
-         }
-        
+            return _questaoDAO.SelecionarQuestoesPorMateria(idMateria);
+        }
+
 
         public Questao AtualizarQuestao(Questao questao)
         {
@@ -58,6 +58,21 @@ namespace GeradorDeTestes.Applications
             }
 
             return questao;
+        }
+
+        public void EditarQuestao(Questao questao)
+        {
+            _questaoDAO.Editar(questao);
+
+            if (questao.Alternativas.Count > 0)
+            {
+
+                foreach (var alternativa in questao.Alternativas)
+                {
+                   _alternativaService.AdicionarAlternativa(alternativa);
+                }
+            }
+
         }
 
         public Questao ExcluirQuestao(Questao questao)
@@ -87,6 +102,6 @@ namespace GeradorDeTestes.Applications
         }
 
 
-      
+
     }
 }
