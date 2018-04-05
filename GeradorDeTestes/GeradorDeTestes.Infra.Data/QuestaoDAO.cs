@@ -130,7 +130,7 @@ namespace GeradorDeTestes.Infra.Data
 
         }
 
-        private static Func<IDataReader, Questao> FormaObjetoQuestao = reader =>
+        public static Func<IDataReader, Questao> FormaObjetoQuestao = reader =>
 
         new Questao
         {

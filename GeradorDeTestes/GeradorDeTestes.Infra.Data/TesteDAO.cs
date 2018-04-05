@@ -14,8 +14,12 @@ namespace GeradorDeTestes.Infra.Data
 
         private DBManager _dbManager;
 
+        private QuestaoDAO _questaoDAO;
+
+
         public TesteDAO()
         {
+            _questaoDAO = new QuestaoDAO();
             this._dbManager = new DBManager();
         }
 
@@ -37,9 +41,11 @@ namespace GeradorDeTestes.Infra.Data
 															 {0}POSICAONOTESTE
                                                             )";
 
-        public const string _sqlSelectAll = @"SELECT TBT.NOME,
-                                                TBT.DATAGERACAO,
-                                                IDMATERIA,TBM.NOME[NOME_MATERIA] 
+        public const string _sqlSelectAll = @"SELECT TBT.ID[IDTESTE],
+                                                TBT.NOME[NOMETESTE],
+                                                TBT.DATAGERACAO[DATAGERACAO],
+                                                TBT.IDMATERIA[IDMATERIA],
+                                                TBM.NOME[NOME_MATERIA] 
                                                 FROM TBTESTE TBT 
                                                 JOIN TBMATERIA AS TBM 
                                                 ON TBT.IDMATERIA = TBM.Id ";
@@ -47,6 +53,8 @@ namespace GeradorDeTestes.Infra.Data
 
         public static string _sqlDelete = @"DELETE FROM TBTESTE
                                              WHERE ID = {0}ID";
+
+
 
 
 
@@ -106,6 +114,32 @@ namespace GeradorDeTestes.Infra.Data
             }
         }
 
+        public List<Questao> GetRandomQuestions(int limit, int idMateria)
+        {
+            string _sqlSelecionaQuestoesAleatorias = @"SELECT TOP " + limit + @"TBQ.ID[ID_QUESTAO],TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
+                                            TBQ.BIMESTRE[BIMESTRE_QUESTAO], TBM.NOME[NOME_MATERIA],
+											TBM.ID [ID_MATERIA],
+                                            TBS.ID [ID_SERIE],
+                                            TBS.NUMERO[NUMERO_SERIE],
+                                            TBD.ID[ID_DISCIPLINA],
+                                            TBD.NOME[NOME_DISCIPLINA]
+										    FROM TBQUESTAO AS TBQ 
+											JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
+                                            JOIN TBSERIE AS TBS ON TBM.IDSERIE = TBS.ID
+                                            JOIN TBDISCIPLINA AS TBD ON TBM.IDDISCIPLINA = TBD.ID
+											WHERE TBM.Id = 2002 AND 
+                                            TBQ.BIMESTRE in (1, 2, 3, 4)
+                                            ORDER BY NEWID()";
+            try
+            {
+                return _dbManager.GetByID(_sqlSelecionaQuestoesAleatorias, QuestaoDAO.FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria } });
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         private Dictionary<string, object> RetornaDictionaryDeTeste(Teste teste)
         {
             return new Dictionary<string, object>
@@ -117,12 +151,13 @@ namespace GeradorDeTestes.Infra.Data
             };
         }
 
+
         private static Func<IDataReader, Teste> FormaObjetoTeste = reader =>
 
           new Teste
           {
-              Id = Convert.ToInt32(reader["Id"]),
-              Nome = Convert.ToString(reader["NOME"]),
+              Id = Convert.ToInt32(reader["IDTESTE"]),
+              Nome = Convert.ToString(reader["NOMETESTE"]),
               DataGeracao = Convert.ToDateTime(reader["DATAGERACAO"]),
               Materia = new Materia
               {
