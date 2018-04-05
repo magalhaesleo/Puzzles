@@ -62,14 +62,14 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         public override void Editar()
         {
             CadastroQuestao dialogQuestao = new CadastroQuestao(_materiaService.SelecionarTodasMaterias(), _questaoControl.RetornaQuestaoSelecionadaNoListBox());
-
-            DialogResult resultado = dialogQuestao.ShowDialog();
+       
+             DialogResult resultado = dialogQuestao.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
                 try
                 {
-                    _questaoService.AtualizarQuestao(dialogQuestao.NovaQuestao);
+                    _questaoService.EditarQuestao(dialogQuestao.QuestaoEditada);
                     MessageBox.Show("Questão atualizada com sucesso");
                 }
                 catch (Exception e)
