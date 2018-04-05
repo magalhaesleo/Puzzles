@@ -14,42 +14,27 @@ namespace GeradorDeTestes.Applications
         private TesteDAO _testeDAO;
         private QuestaoService _questaoService;
 
+
         public TesteService()
         {
             _testeDAO = new TesteDAO();
             _questaoService = new QuestaoService();
         }
 
-        public Teste AdicionarTeste(Teste teste)
+        public int AdicionarTeste(Teste teste)
         {
-            
-            var random = new Random();
-            try
+            int idTeste = 0;
+           try
             {
-             var idTeste = _testeDAO.Add(teste);
-             var listQuestoes = _questaoService.selecionarQuestoesPorMateria(teste.Materia.Id);
-
-                for (int i = 0; i < teste.NumeroDeQuestoes; i++)
-                {
-                    var posicao = random.Next(1,listQuestoes.Count);
-                    _testeDAO.AddTesteQuestao(listQuestoes[posicao].Id, idTeste, i);
-                }
+            return idTeste =_testeDAO.Add(teste);
             }
-
-            
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
 
+            return idTeste;
 
-           
-           
-            
-
-
-
-            return teste;
         }
 
         public Teste ExcluirTeste(Teste teste)
@@ -78,8 +63,35 @@ namespace GeradorDeTestes.Applications
             }
         }
 
+        public List<Questao> SelecionaQuestoesAleatorias(int limit, int idMateria)
+        {
+            try
+            {
+                return _testeDAO.GetRandomQuestions(limit, idMateria);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
-       
+        public void GerarTeste(Teste teste)
+        {
+
+            var testeId = AdicionarTeste(teste);
+
+            var x = 1;
+
+            foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
+            {
+                
+                
+                _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, testeId, x);
+                x++;
+            }
+        }
+
+
     }
 }
 

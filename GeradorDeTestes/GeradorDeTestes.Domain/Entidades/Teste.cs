@@ -30,10 +30,7 @@ namespace GeradorDeTestes.Domain.Entidades
 
         public void Validar()
         {
-            if (DataGeracao < DateTime.Now)
-            {
-                throw new InvalidTimeZoneException("A data de geração não deve ser menor que a data atual");
-            }
+           
             if (Materia == null)
             {
                 throw new ArgumentNullException("A matéria deve ser selecionada");

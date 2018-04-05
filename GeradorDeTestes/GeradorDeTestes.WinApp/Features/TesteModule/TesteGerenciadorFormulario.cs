@@ -8,6 +8,7 @@ using GeradorDeTestes.Domain.helpers;
 using GeradorDeTestes.Domain.helpers.ButtonsEnable;
 using GeradorDeTestes.Domain.helpers.ToolStripVisible;
 using GeradorDeTestes.Applications;
+using GeradorDeTestes.Domain.Entidades;
 
 namespace GeradorDeTestes.WinApp.Features.TesteModule
 {
@@ -27,7 +28,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public override void Adicionar()
         {
-            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.SelecionarTodasMaterias(), _disciplinaService.SelecionarTodasDisciplinas());
+            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.SelecionarTodasMaterias(), _disciplinaService.SelecionarTodasDisciplinas(), _testeService);
 
             DialogResult resultado = dialogTeste.ShowDialog();
 
@@ -35,20 +36,20 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             {
                 try
                 {
-                    //_testeService.AdicionarTeste(dialogTeste.NovaSerie);
-                    //MessageBox.Show("Teste gerado");
+                    _testeService.GerarTeste(dialogTeste.Teste);
+                    MessageBox.Show("Teste gerado");
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
                 }
             }
-            //AtualizarListagem();
+            AtualizarListagem();
         }
 
         public override void AtualizarListagem()
         {
-            throw new NotImplementedException();
+            _testeControl.listarTestes(_testeService.SelecionarTodasTestes());
         }
 
         public override UserControl CarregarListControl()
@@ -56,7 +57,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             if (_testeControl == null)
                 _testeControl = new TesteControl();
 
-            // AtualizarListagem();
+            AtualizarListagem();
             return _testeControl;
         }
 
@@ -67,7 +68,29 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
+
+            try
+            {
+                DialogResult resultado = MessageBox.Show("Deseja excluir o teste: " + Convert.ToString(testeSelecionadaNoListBox.Nome) + "?", "Atenção", MessageBoxButtons.YesNo);
+
+                if (DialogResult.Yes == resultado)
+                {
+                    _testeService.ExcluirTeste(testeSelecionadaNoListBox);
+                    MessageBox.Show("Teste excluído com sucesso");
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+
+
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = ObtemEnableButtons().btnExcluir;
+
+            AtualizarListagem();
         }
 
         public override string ObtemTipo()

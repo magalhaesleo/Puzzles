@@ -39,6 +39,7 @@
             this.listTeste.Name = "listTeste";
             this.listTeste.Size = new System.Drawing.Size(825, 282);
             this.listTeste.TabIndex = 0;
+            this.listTeste.SelectedIndexChanged += new System.EventHandler(this.listTeste_SelectedIndexChanged);
             // 
             // TesteControl
             // 
