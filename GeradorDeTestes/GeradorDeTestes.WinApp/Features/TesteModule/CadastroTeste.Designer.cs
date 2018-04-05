@@ -70,6 +70,7 @@
             this.cmbMateria.Name = "cmbMateria";
             this.cmbMateria.Size = new System.Drawing.Size(350, 21);
             this.cmbMateria.TabIndex = 2;
+            this.cmbMateria.SelectedIndexChanged += new System.EventHandler(this.cmbMateria_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -82,6 +83,7 @@
             // 
             // numQuestoes
             // 
+            this.numQuestoes.Enabled = false;
             this.numQuestoes.Location = new System.Drawing.Point(133, 99);
             this.numQuestoes.Maximum = new decimal(new int[] {
             30,
