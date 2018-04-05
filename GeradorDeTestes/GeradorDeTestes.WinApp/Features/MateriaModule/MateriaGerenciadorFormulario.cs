@@ -76,7 +76,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             var materiaSelecionadaNoListBox = _materiaControl.RetornaMateriaSelecionadaNoListBox();
             try
             {
-                DialogResult resultado = MessageBox.Show("Deseja excluir a matéria? " + materiaSelecionadaNoListBox.Nome, "Informativo", MessageBoxButtons.YesNo);
+                DialogResult resultado = MessageBox.Show("Realmente deseja excluir a matéria?", "Informativo", MessageBoxButtons.YesNo);
 
                 if (DialogResult.Yes == resultado)
                 {

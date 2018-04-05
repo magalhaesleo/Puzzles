@@ -150,14 +150,29 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             alt.IdQuestao = 0;
             alt.Id = 0;
             alt.Enunciado = txtAlternativa.Text;
-            chkListBoxAlternativas.Items.Add(alt);
-            txtAlternativa.Text = "";
 
-            if (chkListBoxAlternativas.Items.Count == 4)
-                btnAdicionar.Enabled = false;
+            try
+            {
+                txtAlternativa.Text = null;
+                alt.Validate();
 
-            if (chkListBoxAlternativas.Items.Count >= 2)
-                chkListBoxAlternativas.BackColor = Color.FromArgb(255, 255, 255, 255);
+                chkListBoxAlternativas.Items.Add(alt);
+                txtAlternativa.Text = "";
+
+                if (chkListBoxAlternativas.Items.Count == 4)
+                    btnAdicionar.Enabled = false;
+
+                if (chkListBoxAlternativas.Items.Count >= 2)
+                    chkListBoxAlternativas.BackColor = Color.FromArgb(255, 255, 255, 255);
+
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            
 
         }
         private void AtribuirLetraAoAdicionar(Alternativa alternativa)

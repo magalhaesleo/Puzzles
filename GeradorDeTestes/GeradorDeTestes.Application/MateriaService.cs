@@ -8,10 +8,12 @@ namespace GeradorDeTestes.Applications
     public class MateriaService
     {
         private MateriaDAO _materiaDAO;
+        private QuestaoService _questaoService;
 
         public MateriaService()
         {
             _materiaDAO = new MateriaDAO();
+            _questaoService = new QuestaoService();
         }
 
         public Materia AdicionarMateria(Materia materia)
@@ -46,6 +48,14 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
+                List<Questao> listQuestoes = _questaoService.SelecionarTodasQuestoes();
+                foreach (Questao q in listQuestoes)
+                {
+                    if (q.Materia.Id == materia.Id)
+                    {
+                        throw new Exception("Não foi possivel excluir, a matéria esta sendo utilizada em uma questão!");
+                    }
+                }
                 _materiaDAO.Excluir(materia);
             }
             catch (Exception e)
