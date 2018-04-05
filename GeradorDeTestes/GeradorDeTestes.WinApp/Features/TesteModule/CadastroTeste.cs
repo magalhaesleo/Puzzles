@@ -106,5 +106,13 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void cmbMateria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            numQuestoes.Enabled = true;
+            Materia materia = (Materia)cmbMateria.SelectedItem;
+            List<Questao> listaQuestoes = _serviceTeste.SelecionaQuestoesAleatorias(30, materia.Id);
+            numQuestoes.Maximum = listaQuestoes.Count;
+        }
     }
 }
