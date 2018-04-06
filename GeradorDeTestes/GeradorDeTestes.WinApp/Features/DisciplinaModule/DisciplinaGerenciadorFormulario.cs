@@ -69,8 +69,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                 }
 
 
-
-                definirEnableButtons(ObtemEnableButtons());
+                definirVisibleButtons(ObtemVisibleButtons());
                 AtualizarListagem();
 
             }
@@ -125,7 +124,9 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             {
                 btnAdicionar = true,
                 btnEditar = true,
-                btnExcluir = true
+                btnExcluir = true,
+                btnVisualizarTeste = false,
+                btnGerarGabarito = false
             };
         }
 
@@ -141,11 +142,14 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public void definirEnableButtons(ButtonsEnable buttonsEnable)
         {
-
-            
-
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = buttonsEnable.btnExcluir;
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
+        }
+
+        public void definirVisibleButtons(ButtonsVisible buttonsVisible)
+        {
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnVisualizarTeste.Visible = buttonsVisible.btnVisualizarTeste;
         }
 
         public override ToolStripVisible ObtemVisibleToolStrip()

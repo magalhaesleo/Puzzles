@@ -133,6 +133,12 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
         }
 
+        public void definirVisibleButtons(ButtonsVisible buttonsVisible)
+        {
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnVisualizarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+        }
+
         public override void Editar()
         {
             throw new NotImplementedException();

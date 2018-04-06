@@ -11,5 +11,8 @@ namespace GeradorDeTestes.Domain.helpers
         public bool btnAdicionar { get; set; }
         public bool btnEditar { get; set; }
         public bool btnExcluir { get; set; }
+        public bool btnVisualizarTeste { get; set; }
+        public bool btnGerarGabarito { get; set; }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using GeradorDeTestes.Domain.helpers;
 using GeradorDeTestes.Domain.helpers.ButtonsEnable;
 using GeradorDeTestes.Domain.helpers.ToolStripVisible;
+using GeradorDeTestes.Infra;
 using GeradorDeTestes.WinApp.Features.DisciplinaModule;
 using GeradorDeTestes.WinApp.Features.MateriaModule;
 using GeradorDeTestes.WinApp.Features.QuestaoModule;
@@ -26,7 +27,7 @@ namespace GeradorDeTestes.WinApp
         private MateriaGerenciadorFormulario _gerenciadorMateria;
         private SerieGerenciadorFormulario _gerenciadorSerie;
         private QuestaoGerenciadorFormulario _gerenciadorQuestao;
-        private TesteGerenciadorFormulario _testeGerenciadorFormulario;
+        private TesteGerenciadorFormulario _gerenciadorTeste;
 
         public Principal()
         {
@@ -52,6 +53,10 @@ namespace GeradorDeTestes.WinApp
 
             labelTipoCadastro.Text = "Gerenciador de " + _gerenciador.ObtemTipo();
             btnAdicionar.Text = "Adicionar " + _gerenciador.ObtemTipo();
+            if (_gerenciador.ObtemTipo().Equals("Teste"))
+            {
+                btnAdicionar.Text = "Gerar " + _gerenciador.ObtemTipo();
+            }
             btnEditar.Text = "Editar " + _gerenciador.ObtemTipo();
             btnExcluir.Text = "Excluir " + _gerenciador.ObtemTipo();
             //tela.Dock = DockStyle.Fill;
@@ -118,6 +123,18 @@ namespace GeradorDeTestes.WinApp
             }
         }
 
+
+        private void btnVisualizarTeste_Click(object sender, EventArgs e)
+        {
+            _gerenciadorTeste.GerarGabarito();
+
+        }
+
+        private void btnGerarGabarito_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private DisciplinaGerenciadorFormulario obterGerenciadorDisciplina()
         {
             if (_gerenciadorDisciplina == null)
@@ -165,13 +182,13 @@ namespace GeradorDeTestes.WinApp
         }
         private TesteGerenciadorFormulario obterGerenciadorTeste()
         {
-            if (_testeGerenciadorFormulario == null)
+            if (_gerenciadorTeste == null)
             {
-                return _testeGerenciadorFormulario = new TesteGerenciadorFormulario();
+                return _gerenciadorTeste = new TesteGerenciadorFormulario();
             }
             else
             {
-                return _testeGerenciadorFormulario;
+                return _gerenciadorTeste;
             }
         }
         private void definirPropriedadeVisibleDosBotoes(ButtonsVisible buttonsVisible)
@@ -179,6 +196,8 @@ namespace GeradorDeTestes.WinApp
             btnAdicionar.Visible = buttonsVisible.btnAdicionar;
             btnEditar.Visible = buttonsVisible.btnEditar;
             btnExcluir.Visible = buttonsVisible.btnExcluir;
+            btnVisualizarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+            btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
         }
 
         private void definirPropriedadeEnableDosBotoes(ButtonsEnable buttonsEnable)

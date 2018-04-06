@@ -200,6 +200,10 @@
       <Project>{B74EACE8-06D1-4A2A-98D5-D30FE1DFDF05}</Project>
       <Name>GeradorDeTestes.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GeradorDeTestes.Infra\GeradorDeTestes.Infra.csproj">
+      <Project>{BEE7FCD4-6A19-4D3D-A50B-2BE9C8948B89}</Project>
+      <Name>GeradorDeTestes.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
