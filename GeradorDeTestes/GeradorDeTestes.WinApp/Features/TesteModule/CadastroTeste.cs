@@ -17,6 +17,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
         private List<Materia> _listMaterias;
         private List<Disciplina> _listDisciplinas;
         private TesteService _serviceTeste;
+        private QuestaoService _questaoService;
 
         public Teste Teste
         {
@@ -34,11 +35,12 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             }
         }
 
-        public CadastroTeste(List<Materia> listMaterias, List<Disciplina> listDisciplinas, TesteService serviceTeste)
+        public CadastroTeste(List<Materia> listMaterias, List<Disciplina> listDisciplinas, TesteService serviceTeste,QuestaoService questaoService)
         {
             InitializeComponent();
 
             _serviceTeste = serviceTeste;
+            _questaoService = questaoService;
             txtData.Text = string.Format("{0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
             this._listMaterias = listMaterias;
             _listDisciplinas = listDisciplinas;
@@ -111,8 +113,19 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
         {
             numQuestoes.Enabled = true;
             Materia materia = (Materia)cmbMateria.SelectedItem;
-            List<Questao> listaQuestoes = _serviceTeste.SelecionaQuestoesAleatorias(30, materia.Id);
-            numQuestoes.Maximum = listaQuestoes.Count;
+            List<int> quantidadeDeQuestoes = _questaoService.VerificarQuantidadeDeQuestoesPorMateria(materia.Id);
+            numQuestoes.Maximum = (int)quantidadeDeQuestoes[0];
+            if((int)quantidadeDeQuestoes[0] < 1)
+            {
+                numQuestoes.Enabled = false;
+            }else
+            {
+                if((int)quantidadeDeQuestoes[0] > 30)
+                {
+                    numQuestoes.Maximum = 30;
+                }
+                numQuestoes.Enabled = true;
+            }
         }
     }
 }

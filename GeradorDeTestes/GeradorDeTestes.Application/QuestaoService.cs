@@ -40,7 +40,7 @@ namespace GeradorDeTestes.Applications
             return questao;
         }
 
-        internal List<Questao> selecionarQuestoesPorMateria(int idMateria)
+        public List<Questao> selecionarQuestoesPorMateria(int idMateria)
         {
             return _questaoDAO.SelecionarQuestoesPorMateria(idMateria);
         }
@@ -100,6 +100,14 @@ namespace GeradorDeTestes.Applications
                 throw new Exception(e.Message);
             }
         }
+
+
+        public List<int> VerificarQuantidadeDeQuestoesPorMateria(int idMateria)
+        {
+           return _questaoDAO.VerificarQuantidadeDeQuestoesPorMateria(idMateria);
+        }
+
+
 
 
 

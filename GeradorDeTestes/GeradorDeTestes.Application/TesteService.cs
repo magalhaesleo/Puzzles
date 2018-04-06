@@ -1,5 +1,6 @@
 ﻿using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Infra;
 using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
@@ -9,32 +10,31 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Applications
 {
-   public class TesteService
+    public class TesteService
     {
         private TesteDAO _testeDAO;
         private QuestaoService _questaoService;
+        private AlternativaService _alternativaService;
 
 
         public TesteService()
         {
             _testeDAO = new TesteDAO();
             _questaoService = new QuestaoService();
+            _alternativaService = new AlternativaService();
         }
 
         public int AdicionarTeste(Teste teste)
         {
             int idTeste = 0;
-           try
+            try
             {
-            return idTeste =_testeDAO.Add(teste);
+                return idTeste = _testeDAO.Add(teste);
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
-
-            return idTeste;
-
         }
 
         public Teste ExcluirTeste(Teste teste)
@@ -75,47 +75,50 @@ namespace GeradorDeTestes.Applications
             }
         }
 
-        public void GerarTeste(Teste teste)
+        public void GerarTeste(Teste teste, string path)
         {
-            if (teste.Id==0) {
-            var testeAdicionadoId = AdicionarTeste(teste);
-
-            var x = 1;
-
-            foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
+            if (teste.Id == 0)
             {
-                _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, testeId, x);
-                x++;
+                var testeAdicionadoId = AdicionarTeste(teste);
+
+                var x = 1;
+
+                foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
+                {
+                    _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, testeAdicionadoId, x);
+                    x++;
+                }
+
+                List<Resposta> gabarito = GerarGabarito(testeAdicionadoId);
+
+                GeraPDF geraPdf = new GeraPDF();
+                geraPdf.TesteToPDF(teste, gabarito, path);
+
             }
-            
-             List<Resposta> gabarito = gerarGabarito(testeAdicionadoId);
+            else
+            {
+                var listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
 
-             GeraPDF geraPdf = new GeraPDF();
+                foreach (var questao in listQuestoesDoTeste)
+                {
+                    questao.Alternativas = _alternativaService.SelecionarAlternativasPorQuestao(questao.Id);
+                }
 
-            geraPdf.Gerar(listQuestoesDoTeste, gabarito);
-             
-            } else {
-               var listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
-               
-               foreach(var questao in listQuestoesDoTeste) {
-                   questao.Alternativas = _alternativaService.PegarAlternativasDaQuestaoPorID(questao.Id);
-               }
-            
-               List<Resposta> gabarito = gerarGabarito(teste.Id);
+                List<Resposta> gabarito = GerarGabarito(teste.Id);
 
-               GeraPDF geraPdf = new GeraPDF();
+                GeraPDF geraPdf = new GeraPDF();
+                geraPdf.TesteToPDF(teste, gabarito, path);
 
-               geraPdf.Gerar(listQuestoesDoTeste, gabarito);
-              
             }
         }
 
 
-        public List<Resposta> GerarGabarito(int idTeste) {
-           return _testeDAO.gerarGabarito(idTeste);
+        public List<Resposta> GerarGabarito(int idTeste)
+        {
+            return _testeDAO.PegarRespostasPorTeste(idTeste);
         }
 
-        
+     
 
 
     }

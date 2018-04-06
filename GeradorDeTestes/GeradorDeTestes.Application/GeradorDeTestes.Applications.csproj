@@ -58,6 +58,10 @@
       <Project>{c57587a4-e14a-4434-9e3e-5085d9216fea}</Project>
       <Name>GeradorDeTestes.Infra.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GeradorDeTestes.Infra\GeradorDeTestes.Infra.csproj">
+      <Project>{BEE7FCD4-6A19-4D3D-A50B-2BE9C8948B89}</Project>
+      <Name>GeradorDeTestes.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
