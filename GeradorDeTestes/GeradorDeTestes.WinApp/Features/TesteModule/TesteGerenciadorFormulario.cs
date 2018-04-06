@@ -107,6 +107,49 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             AtualizarListagem();
         }
 
+        public void VisualizarTeste()
+        {
+            Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
+
+
+            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.SelecionarTodasMaterias(), _disciplinaService.SelecionarTodasDisciplinas(), _testeService, _questaoService);
+
+            DialogResult resultado = dialogTeste.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                try
+                {
+
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                    saveFileDialog1.Filter = "PDF File |*.pdf";
+                    saveFileDialog1.FilterIndex = 2;
+                    saveFileDialog1.RestoreDirectory = true;
+
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        string path = saveFileDialog1.FileName;
+                        _testeService.GerarTeste(testeSelecionadaNoListBox, path);
+
+                        MessageBox.Show("Teste gerado novamente com sucesso");
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            AtualizarListagem();
+        }
+
+        public void GerarGabarito()
+        {
+            Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
+            _testeService.GerarPDFGabarito(testeSelecionadaNoListBox);
+
+        }
+
         public override string ObtemTipo()
         {
             return "Teste";
@@ -118,7 +161,9 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             {
                 btnAdicionar = true,
                 btnEditar = false,
-                btnExcluir = true
+                btnExcluir = true,
+                btnVisualizarTeste = true,
+                btnGerarGabarito = true
             };
         }
 
@@ -130,6 +175,12 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 btnEditar = false,
                 btnExcluir = false
             };
+        }
+
+        public void definirVisibleButtons(ButtonsVisible buttonsVisible)
+        {
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnVisualizarTeste.Visible = buttonsVisible.btnVisualizarTeste;
         }
 
         public override ToolStripVisible ObtemVisibleToolStrip()

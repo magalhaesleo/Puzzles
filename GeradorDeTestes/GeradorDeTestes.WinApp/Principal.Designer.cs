@@ -43,6 +43,8 @@
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
+            this.btnGerarGabarito = new System.Windows.Forms.ToolStripButton();
+            this.btnVisualizarTeste = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStripBotoes.SuspendLayout();
             this.SuspendLayout();
@@ -72,35 +74,35 @@
             // deDisciplinaToolStripMenuItem
             // 
             this.deDisciplinaToolStripMenuItem.Name = "deDisciplinaToolStripMenuItem";
-            this.deDisciplinaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deDisciplinaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.deDisciplinaToolStripMenuItem.Text = "Disciplina";
             this.deDisciplinaToolStripMenuItem.Click += new System.EventHandler(this.deDisciplinaToolStripMenuItem_Click);
             // 
             // materiaToolStripMenuItem
             // 
             this.materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-            this.materiaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.materiaToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.materiaToolStripMenuItem.Text = "Matéria";
             this.materiaToolStripMenuItem.Click += new System.EventHandler(this.materiaToolStripMenuItem_Click);
             // 
             // questaoToolStripMenuItem
             // 
             this.questaoToolStripMenuItem.Name = "questaoToolStripMenuItem";
-            this.questaoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.questaoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.questaoToolStripMenuItem.Text = "Questão";
             this.questaoToolStripMenuItem.Click += new System.EventHandler(this.questaoToolStripMenuItem_Click);
             // 
             // sérieToolStripMenuItem
             // 
             this.sérieToolStripMenuItem.Name = "sérieToolStripMenuItem";
-            this.sérieToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sérieToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.sérieToolStripMenuItem.Text = "Série";
             this.sérieToolStripMenuItem.Click += new System.EventHandler(this.sérieToolStripMenuItem_Click);
             // 
             // testeToolStripMenuItem
             // 
             this.testeToolStripMenuItem.Name = "testeToolStripMenuItem";
-            this.testeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testeToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.testeToolStripMenuItem.Text = "Teste";
             this.testeToolStripMenuItem.Click += new System.EventHandler(this.testeToolStripMenuItem_Click);
             // 
@@ -118,6 +120,8 @@
             this.btnAdicionar,
             this.btnEditar,
             this.btnExcluir,
+            this.btnVisualizarTeste,
+            this.btnGerarGabarito,
             this.toolStripSeparator1,
             this.labelTipoCadastro});
             this.toolStripBotoes.Location = new System.Drawing.Point(0, 24);
@@ -169,6 +173,28 @@
             this.labelTipoCadastro.Name = "labelTipoCadastro";
             this.labelTipoCadastro.Size = new System.Drawing.Size(0, 36);
             // 
+            // btnGerarGabarito
+            // 
+            this.btnGerarGabarito.Image = ((System.Drawing.Image)(resources.GetObject("btnGerarGabarito.Image")));
+            this.btnGerarGabarito.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnGerarGabarito.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGerarGabarito.Name = "btnGerarGabarito";
+            this.btnGerarGabarito.Padding = new System.Windows.Forms.Padding(8);
+            this.btnGerarGabarito.Size = new System.Drawing.Size(119, 36);
+            this.btnGerarGabarito.Text = "Gerar Gabarito";
+            this.btnGerarGabarito.Click += new System.EventHandler(this.btnGerarGabarito_Click);
+            // 
+            // btnVisualizarTeste
+            // 
+            this.btnVisualizarTeste.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarTeste.Image")));
+            this.btnVisualizarTeste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnVisualizarTeste.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVisualizarTeste.Name = "btnVisualizarTeste";
+            this.btnVisualizarTeste.Padding = new System.Windows.Forms.Padding(8);
+            this.btnVisualizarTeste.Size = new System.Drawing.Size(122, 36);
+            this.btnVisualizarTeste.Text = "Visualizar Teste";
+            this.btnVisualizarTeste.Click += new System.EventHandler(this.btnVisualizarTeste_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,6 +234,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
         private System.Windows.Forms.ToolStripMenuItem testeToolStripMenuItem;
+        public System.Windows.Forms.ToolStripButton btnVisualizarTeste;
+        public System.Windows.Forms.ToolStripButton btnGerarGabarito;
     }
 }
 
