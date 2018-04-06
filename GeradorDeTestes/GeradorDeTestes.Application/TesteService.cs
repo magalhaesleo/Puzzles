@@ -88,7 +88,7 @@ namespace GeradorDeTestes.Applications
                 x++;
             }
             } else {
-               var listQuestoesDoTeste = _testeDAO.PegarQuestoesDoTeste(teste.Id);
+               var listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
                
                foreach(var questao in listQuestoesDoTeste) {
                    questao.Alternativas = _alternativaService.PegarAlternativasDaQuestaoPorID(questao.Id);
