@@ -97,8 +97,8 @@ namespace GeradorDeTestes.Applications
         }
 
 
-        public void _gerarGabarito(int idTeste) {
-            _testeDAO._gerarGabarito(idTeste);
+        public void GerarGabarito(int idTeste) {
+            _testeDAO.gerarGabarito(idTeste);
         }
 
         
