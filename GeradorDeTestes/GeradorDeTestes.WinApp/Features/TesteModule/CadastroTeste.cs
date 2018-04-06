@@ -69,6 +69,18 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public void ValidarPreenchimentoDosCampos()
         {
+            if (txtNome.Text.Length < 5)
+            {
+                txtNome.BackColor = Color.Red;
+                throw new Exception("O nome do teste deve possuir mais que 5 caracteres.");
+            }
+
+            if (txtNome.Text.Length > 50)
+            {
+                txtNome.BackColor = Color.Red;
+                throw new Exception("O nome do teste deve possuir menos de 50 caracteres.");
+            }
+
             if (cmbDisciplina.SelectedItem == null)
             {
                 cmbDisciplina.BackColor = Color.Red;
@@ -79,18 +91,6 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             {
                 cmbMateria.BackColor = Color.Red;
                 throw new Exception("A matéria deve ser selecionada");
-            }
-
-            if ( txtNome.Text.Length < 5)
-            {
-                txtNome.BackColor = Color.Red;
-                throw new Exception("O nome do teste deve possuir mais que 5 caracteres.");
-            }
-
-            if (txtNome.Text.Length > 50)
-            {
-                txtNome.BackColor = Color.Red;
-                throw new Exception("O nome do teste deve possuir menos de 50 caracteres.");
             }
         }
 

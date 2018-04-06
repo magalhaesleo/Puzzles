@@ -59,6 +59,7 @@
     <Folder Include="Properties" />
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
+    <Folder Include="Util" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\TBDISCIPLINA.sql" />
@@ -68,8 +69,9 @@
     <Build Include="dbo\Tables\TBALTERNATIVA.sql" />
     <Build Include="dbo\Tables\TBTESTE.sql" />
     <Build Include="dbo\Tables\TBTESTEQUESTOES.sql" />
+    <None Include="Util\GeradorDeDados.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="GeradorDeTestes.DataBase.refactorlog" />
+    <RefactorLog Include="Util\GeradorDeTestes.DataBase.refactorlog" />
   </ItemGroup>
 </Project>
