@@ -67,7 +67,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return _testeDAO.GetRandomQuestions(limit, idMateria);
+                return _testeDAO.PegarQuestoesAleatoriasPorMateria(limit, idMateria);
             }
             catch (Exception e)
             {
@@ -77,19 +77,26 @@ namespace GeradorDeTestes.Applications
 
         public void GerarTeste(Teste teste)
         {
-
+            if (teste.Id==0) {
             var testeId = AdicionarTeste(teste);
 
             var x = 1;
 
             foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
             {
-                
-                
                 _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, testeId, x);
                 x++;
             }
+            } else {
+               var listQuestoesDoTeste = _testeDAO.PegarQuestoesDoTeste(teste.Id);
+               
+               foreach(var questao in listQuestoesDoTeste) {
+                   questao.Alternativas = _alternativaService.PegarAlternativasPorIdQuestao(questao.Id);
+               }
+            }
         }
+
+        
 
 
     }
