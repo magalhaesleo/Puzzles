@@ -146,7 +146,35 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
         public void GerarGabarito()
         {
             Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
-            _testeService.GerarPDFGabarito(testeSelecionadaNoListBox);
+
+            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.SelecionarTodasMaterias(), _disciplinaService.SelecionarTodasDisciplinas(), _testeService, _questaoService);
+
+            DialogResult resultado = dialogTeste.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                try
+                {
+
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                    saveFileDialog1.Filter = "PDF File |*.pdf";
+                    saveFileDialog1.FilterIndex = 2;
+                    saveFileDialog1.RestoreDirectory = true;
+
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        string path = saveFileDialog1.FileName;
+                        _testeService.GerarPDFGabarito(testeSelecionadaNoListBox, path);
+                        MessageBox.Show("Teste gerado novamente com sucesso");
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            AtualizarListagem();
 
         }
 
@@ -173,7 +201,9 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             {
                 btnAdicionar = true,
                 btnEditar = false,
-                btnExcluir = false
+                btnExcluir = false,
+                btnVisualizarTeste = false,
+                btnGerarGabarito = false
             };
         }
 

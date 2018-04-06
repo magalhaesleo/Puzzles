@@ -205,6 +205,8 @@ namespace GeradorDeTestes.WinApp
             btnAdicionar.Enabled = buttonsEnable.btnAdicionar;
             btnEditar.Enabled = buttonsEnable.btnEditar;
             btnExcluir.Enabled = buttonsEnable.btnExcluir;
+            btnGerarGabarito.Enabled = buttonsEnable.btnGerarGabarito;
+            btnVisualizarTeste.Enabled = buttonsEnable.btnVisualizarTeste;
         }
         private void definirPropriedadeVisibleToolStrip(ToolStripVisible toolStripVisible)
         {

@@ -37,6 +37,8 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             if (listTeste.SelectedIndex >= 0)
             {
                 ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = true;
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Enabled = true;
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnVisualizarTeste.Enabled = true;
             }
         }
     }
