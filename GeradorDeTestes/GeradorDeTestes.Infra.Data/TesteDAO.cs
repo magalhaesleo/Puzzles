@@ -65,20 +65,7 @@ namespace GeradorDeTestes.Infra.Data
                                                         JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
                                                         WHERE TBTQ.IDTESTE = {0}IDTESTE ORDER BY TBTQ.POSICAONOTESTE";
 
-       public static string _sqlSelecionaQuestoesAleatorias = @"SELECT TOP " + _limit + @"TBQ.ID[ID_QUESTAO],TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
-                                                            TBQ.BIMESTRE[BIMESTRE_QUESTAO], TBM.NOME[NOME_MATERIA],
-                                                            TBM.ID [ID_MATERIA],
-                                                            TBS.ID [ID_SERIE],
-                                                            TBS.NUMERO[NUMERO_SERIE],
-                                                            TBD.ID[ID_DISCIPLINA],
-                                                            TBD.NOME[NOME_DISCIPLINA]
-                                                            FROM TBQUESTAO AS TBQ 
-                                                            JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
-                                                            JOIN TBSERIE AS TBS ON TBM.IDSERIE = TBS.ID
-                                                            JOIN TBDISCIPLINA AS TBD ON TBM.IDDISCIPLINA = TBD.ID
-                                                            WHERE TBM.Id = 2002 AND 
-                                                            TBQ.BIMESTRE in (1, 2, 3, 4)
-                                                            ORDER BY NEWID()";
+      
 
         public static string _sqlSelectRespostasPorTeste = @"SELECT TBTQ.POSICAONOTESTE[QUESTAO_TESTE],
                                                     TBA.LETRA[RESPOSTA] 
@@ -147,8 +134,20 @@ namespace GeradorDeTestes.Infra.Data
 
         public List<Questao> PegarQuestoesAleatoriasPorMateria(int limit, int idMateria)
         {
-            _limit = limit;
-
+              string _sqlSelecionaQuestoesAleatorias = @"SELECT TOP " + limit + @" TBQ.ID[ID_QUESTAO],TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
+                                                            TBQ.BIMESTRE[BIMESTRE_QUESTAO], TBM.NOME[NOME_MATERIA],
+                                                            TBM.ID [ID_MATERIA],
+                                                            TBS.ID [ID_SERIE],
+                                                            TBS.NUMERO[NUMERO_SERIE],
+                                                            TBD.ID[ID_DISCIPLINA],
+                                                            TBD.NOME[NOME_DISCIPLINA]
+                                                            FROM TBQUESTAO AS TBQ 
+                                                            JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
+                                                            JOIN TBSERIE AS TBS ON TBM.IDSERIE = TBS.ID
+                                                            JOIN TBDISCIPLINA AS TBD ON TBM.IDDISCIPLINA = TBD.ID
+                                                            WHERE TBM.Id = {0}IDMATERIA AND 
+                                                            TBQ.BIMESTRE in (1, 2, 3, 4)
+                                                            ORDER BY NEWID()";
             try
             {
                 return _dbManager.GetByID(_sqlSelecionaQuestoesAleatorias, QuestaoDAO.FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria } });

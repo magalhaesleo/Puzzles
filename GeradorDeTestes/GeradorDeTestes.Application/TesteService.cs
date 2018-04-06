@@ -79,47 +79,46 @@ namespace GeradorDeTestes.Applications
         {
             if (teste.Id == 0)
             {
-                var testeAdicionadoId = AdicionarTeste(teste);
+                teste.Id = AdicionarTeste(teste);
 
                 var x = 1;
 
                 foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
                 {
-                    _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, testeAdicionadoId, x);
+                    _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, teste.Id, x);
                     x++;
                 }
-
-                List<Resposta> gabarito = GerarGabarito(testeAdicionadoId);
-
-                GeraPDF geraPdf = new GeraPDF();
-                geraPdf.TesteToPDF(teste, gabarito, path);
 
             }
             else
             {
-                var listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
+                List<Questao> listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
 
                 foreach (var questao in listQuestoesDoTeste)
                 {
                     questao.Alternativas = _alternativaService.SelecionarAlternativasPorQuestao(questao.Id);
                 }
-
-                List<Resposta> gabarito = GerarGabarito(teste.Id);
-
-                GeraPDF geraPdf = new GeraPDF();
-                geraPdf.TesteToPDF(teste, gabarito, path);
-
+                teste.Questoes = listQuestoesDoTeste;
             }
+
+            List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
+
+            GeraPDF geraPdf = new GeraPDF(teste, gabarito);
+            geraPdf.TesteToPDF(path);
         }
 
 
-        public List<Resposta> GerarGabarito(int idTeste)
+        public List<Resposta> GerarListaDeRespostas(int idTeste)
         {
             return _testeDAO.PegarRespostasPorTeste(idTeste);
         }
 
-     
-
+        public void GerarPDFGabarito(Teste teste, string path)
+        {
+            List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
+            GeraPDF geraPdf = new GeraPDF(teste, gabarito);
+            geraPdf.GeraGabarito(path);
+        }
 
     }
 }
