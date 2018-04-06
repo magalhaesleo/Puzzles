@@ -54,6 +54,17 @@ namespace GeradorDeTestes.Infra.Data
         public static string _sqlDelete = @"DELETE FROM TBTESTE
                                              WHERE ID = {0}ID";
 
+       
+        public static string _sqlSelectQuestaoPorTeste = @"SELECT 
+                                                        TBQ.ID[ID_QUESTAO],
+                                                        TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
+                                                        TBQ.BIMESTRE[BIMESTRE_QUESTAO],
+                                                        TBM.NOME[NOME_MATERIA],
+                                                        TBTQ.POSICAONOTESTE[POSICAO_TESTE] 
+                                                        FROM TBTESTEQUESTOES AS TBTQ
+                                                        JOIN TBQUESTAO AS TBQ ON TBTQ.IDQUESTAO = TBQ.Id
+                                                        JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
+                                                        WHERE TBTQ.IDTESTE = {0}IDTESTE ORDER BY TBTQ.POSICAONOTESTE";
 
 
 
@@ -114,7 +125,7 @@ namespace GeradorDeTestes.Infra.Data
             }
         }
 
-        public List<Questao> GetRandomQuestions(int limit, int idMateria)
+        public List<Questao> PegarQuestoesAleatoriasPorMateria(int limit, int idMateria)
         {
             string _sqlSelecionaQuestoesAleatorias = @"SELECT TOP " + limit + @"TBQ.ID[ID_QUESTAO],TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
                                             TBQ.BIMESTRE[BIMESTRE_QUESTAO], TBM.NOME[NOME_MATERIA],
