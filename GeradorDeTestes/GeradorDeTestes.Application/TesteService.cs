@@ -67,7 +67,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return _testeDAO.GetRandomQuestions(limit, idMateria);
+                return _testeDAO.PegarQuestoesAleatoriasPorMateria(limit, idMateria);
             }
             catch (Exception e)
             {
@@ -77,19 +77,45 @@ namespace GeradorDeTestes.Applications
 
         public void GerarTeste(Teste teste)
         {
-
-            var testeId = AdicionarTeste(teste);
+            if (teste.Id==0) {
+            var testeAdicionadoId = AdicionarTeste(teste);
 
             var x = 1;
 
             foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
             {
-                
-                
                 _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, testeId, x);
                 x++;
             }
+            
+             List<Resposta> gabarito = gerarGabarito(testeAdicionadoId);
+
+             GeraPDF geraPdf = new GeraPDF();
+
+            geraPdf.Gerar(listQuestoesDoTeste, gabarito);
+             
+            } else {
+               var listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
+               
+               foreach(var questao in listQuestoesDoTeste) {
+                   questao.Alternativas = _alternativaService.PegarAlternativasDaQuestaoPorID(questao.Id);
+               }
+            
+               List<Resposta> gabarito = gerarGabarito(teste.Id);
+
+               GeraPDF geraPdf = new GeraPDF();
+
+               geraPdf.Gerar(listQuestoesDoTeste, gabarito);
+              
+            }
         }
+
+
+        public List<Resposta> GerarGabarito(int idTeste) {
+           return _testeDAO.gerarGabarito(idTeste);
+        }
+
+        
 
 
     }

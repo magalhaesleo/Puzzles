@@ -13,9 +13,8 @@ namespace GeradorDeTestes.Infra.Data
     {
 
         private DBManager _dbManager;
-
         private QuestaoDAO _questaoDAO;
-
+        private static int _limit;
 
         public TesteDAO()
         {
@@ -54,9 +53,41 @@ namespace GeradorDeTestes.Infra.Data
         public static string _sqlDelete = @"DELETE FROM TBTESTE
                                              WHERE ID = {0}ID";
 
+       
+        public static string _sqlSelectQuestaoPorTeste = @"SELECT 
+                                                        TBQ.ID[ID_QUESTAO],
+                                                        TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
+                                                        TBQ.BIMESTRE[BIMESTRE_QUESTAO],
+                                                        TBM.NOME[NOME_MATERIA],
+                                                        TBTQ.POSICAONOTESTE[POSICAO_TESTE] 
+                                                        FROM TBTESTEQUESTOES AS TBTQ
+                                                        JOIN TBQUESTAO AS TBQ ON TBTQ.IDQUESTAO = TBQ.Id
+                                                        JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
+                                                        WHERE TBTQ.IDTESTE = {0}IDTESTE ORDER BY TBTQ.POSICAONOTESTE";
 
+       public static string _sqlSelecionaQuestoesAleatorias = @"SELECT TOP " + _limit + @"TBQ.ID[ID_QUESTAO],TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
+                                                            TBQ.BIMESTRE[BIMESTRE_QUESTAO], TBM.NOME[NOME_MATERIA],
+                                                            TBM.ID [ID_MATERIA],
+                                                            TBS.ID [ID_SERIE],
+                                                            TBS.NUMERO[NUMERO_SERIE],
+                                                            TBD.ID[ID_DISCIPLINA],
+                                                            TBD.NOME[NOME_DISCIPLINA]
+                                                            FROM TBQUESTAO AS TBQ 
+                                                            JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
+                                                            JOIN TBSERIE AS TBS ON TBM.IDSERIE = TBS.ID
+                                                            JOIN TBDISCIPLINA AS TBD ON TBM.IDDISCIPLINA = TBD.ID
+                                                            WHERE TBM.Id = 2002 AND 
+                                                            TBQ.BIMESTRE in (1, 2, 3, 4)
+                                                            ORDER BY NEWID()";
 
-
+     public static string _sqlSelectRespostasPorTeste = @"SELECT TBTQ.POSICAONOTESTE[QUESTAO_TESTE],
+                                                    TBA.LETRA[RESPOSTA] 
+                                                    FROM TBTESTEQUESTOES AS TBTQ
+                                                    JOIN TBQUESTAO AS TBQ ON TBTQ.IDQUESTAO = TBQ.Id
+                                                    JOIN TBTESTE AS TBT ON TBTQ.IDTESTE = TBT.Id
+                                                    JOIN TBALTERNATIVA AS TBA ON TBA.IDQUESTAO = TBQ.Id
+                                                    WHERE TBA.CORRETA = 1 AND TBTQ.IDTESTE = {0}IDTESTE
+                                                    ORDER BY TBTQ.POSICAONOTESTE ASC"
 
         #endregion Scripts SQL
 
@@ -114,22 +145,10 @@ namespace GeradorDeTestes.Infra.Data
             }
         }
 
-        public List<Questao> GetRandomQuestions(int limit, int idMateria)
+        public List<Questao> PegarQuestoesAleatoriasPorMateria(int limit, int idMateria)
         {
-            string _sqlSelecionaQuestoesAleatorias = @"SELECT TOP " + limit + @"TBQ.ID[ID_QUESTAO],TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
-                                            TBQ.BIMESTRE[BIMESTRE_QUESTAO], TBM.NOME[NOME_MATERIA],
-											TBM.ID [ID_MATERIA],
-                                            TBS.ID [ID_SERIE],
-                                            TBS.NUMERO[NUMERO_SERIE],
-                                            TBD.ID[ID_DISCIPLINA],
-                                            TBD.NOME[NOME_DISCIPLINA]
-										    FROM TBQUESTAO AS TBQ 
-											JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
-                                            JOIN TBSERIE AS TBS ON TBM.IDSERIE = TBS.ID
-                                            JOIN TBDISCIPLINA AS TBD ON TBM.IDDISCIPLINA = TBD.ID
-											WHERE TBM.Id = 2002 AND 
-                                            TBQ.BIMESTRE in (1, 2, 3, 4)
-                                            ORDER BY NEWID()";
+            this._limit = limit;
+
             try
             {
                 return _dbManager.GetByID(_sqlSelecionaQuestoesAleatorias, QuestaoDAO.FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria } });
@@ -152,7 +171,31 @@ namespace GeradorDeTestes.Infra.Data
         }
 
 
-        private static Func<IDataReader, Teste> FormaObjetoTeste = reader =>
+        public List<Questao> PegarQuestoesPorTeste(int idTeste)
+        {
+            try
+            {
+                return _dbManager.GetByID(_sqlSelectQuestaoPorTeste, QuestaoDAO.FormaObjetoQuestao, new Dictionary<string, object> { { "IDTESTE", idTeste } });
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<Resposta> PegarRespostasPorTeste(int idTeste)
+        {
+            try
+            {
+                return _dbManager.GetByID(_sqlSelectRespostasPorTeste, FormaObjetoResposta, new Dictionary<string, object> { { "IDTESTE", idTeste } });
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+          private static Func<IDataReader, Teste> FormaObjetoTeste = reader =>
 
           new Teste
           {
@@ -168,6 +211,13 @@ namespace GeradorDeTestes.Infra.Data
           };
 
 
+          private static Func<IDataReader, Teste> FormaObjetoResposta = reader =>
+
+          new Resposta
+          {
+             Numero = Convert.ToInt32(reader["QUESTAO_TESTE"])
+             Letra = Convert.ToChar(reader["RESPOSTA"])
+          };
 
 
     }
