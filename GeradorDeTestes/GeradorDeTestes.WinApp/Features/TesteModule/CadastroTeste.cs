@@ -115,7 +115,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             Materia materia = (Materia)cmbMateria.SelectedItem;
             List<int> quantidadeDeQuestoes = _questaoService.VerificarQuantidadeDeQuestoesPorMateria(materia.Id);
             numQuestoes.Maximum = (int)quantidadeDeQuestoes[0];
-            if((int)quantidadeDeQuestoes[0] < 1)
+            if(quantidadeDeQuestoes[0] < 1)
             {
                 numQuestoes.Enabled = false;
             }else
@@ -124,7 +124,20 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 {
                     numQuestoes.Maximum = 30;
                 }
+                numQuestoes.Value = 1;
                 numQuestoes.Enabled = true;
+            }
+        }
+
+        private void numQuestoes_ValueChanged(object sender, EventArgs e)
+        {
+            if(numQuestoes.Value == 0)
+            {
+                btnGerarTeste.Enabled = false;
+            }
+            else
+            {
+                btnGerarTeste.Enabled = true;
             }
         }
     }

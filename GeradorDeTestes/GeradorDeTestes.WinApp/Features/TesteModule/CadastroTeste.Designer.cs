@@ -104,6 +104,7 @@
             0,
             0,
             0});
+            this.numQuestoes.ValueChanged += new System.EventHandler(this.numQuestoes_ValueChanged);
             // 
             // label3
             // 

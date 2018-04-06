@@ -13,17 +13,60 @@ namespace GeradorDeTestes.Infra
 {
     public class GeraPDF
     {
-        public void TesteToPDF(Teste teste, List<Resposta> gabarito, string path)
+        private Teste _teste;
+        private List<Resposta> gabarito;
+        public Teste Teste { get { return this._teste; } set {this._teste = value; } }
+
+        public List<Resposta> Gabarito { get => gabarito; set => gabarito = value; }
+
+        public GeraPDF(Teste teste, List<Resposta> gabarito)
+        {
+            Teste = teste;
+            Gabarito = gabarito;
+        }
+        public void TesteToPDF (string path)
         {
             //PdfPTable[] tables = new PdfPTable[2];
             //tables[0] = booksToTable();
             //tables[1] = rentsToTable();
-            createDocument(teste, path);
+            createDocument(path);
         }
 
-        public void GabaritoToPDF(string path, List<Resposta> gabarito)
+        public void GeraGabarito(string path)
         {
+            Document doc = new Document(PageSize.A4);//criando e estipulando o tipo da folha usada
+            doc.SetMargins(40, 40, 40, 80);//estibulando o espaçamento das margens que queremos
+            doc.AddCreationDate();//adicionando as configuracoes
 
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
+            doc.Open();
+
+            foreach (var paragrafoAtual in GabaritoToPDF())
+            {
+                doc.Add(paragrafoAtual);
+            }
+
+            doc.Close();
+        }
+
+        private List<Paragraph> GabaritoToPDF()
+        {
+            List<Paragraph> ListParagrafosGabarito = new List<Paragraph>();
+            var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
+            var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
+            Paragraph paragraphGabarito = new Paragraph(string.Format("Gabarito do Teste - {0}", Teste.Nome), subTitleFont);
+            paragraphGabarito.Alignment = Element.ALIGN_CENTER;
+            ListParagrafosGabarito.Add(paragraphGabarito);
+
+            foreach (var item in gabarito)
+            {
+                paragraphGabarito = new Paragraph("", bodyFont);
+                paragraphGabarito.Alignment = Element.ALIGN_JUSTIFIED;
+                paragraphGabarito.Add(String.Format("\n{0} - {1}", item.Numero, item.Letra));
+                ListParagrafosGabarito.Add(paragraphGabarito);
+            }
+
+            return ListParagrafosGabarito;
         }
 
         //public void booksToPDF(string path)
@@ -34,11 +77,19 @@ namespace GeradorDeTestes.Infra
         //}
 
 
-        private void createDocument(Teste teste, string path)
+        private void createDocument(string path)
         {
+           
             Document doc = new Document(PageSize.A4);//criando e estipulando o tipo da folha usada
             doc.SetMargins(40, 40, 40, 80);//estibulando o espaçamento das margens que queremos
             doc.AddCreationDate();//adicionando as configuracoes
+
+            //Cofiguração das fontes
+            var titleFont = FontFactory.GetFont("Arial", 18, Font.BOLD);
+            var subTitleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
+            //var boldTableFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
+            //var endingMessageFont = FontFactory.GetFont("Arial", 10, Font.ITALIC);
+            var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
 
             //criando o arquivo pdf embranco, passando como parametro a variavel doc criada acima e a variavel path 
             //tambem criada acima.
@@ -65,66 +116,63 @@ namespace GeradorDeTestes.Infra
             p.Add("Nota: ____");
 
 
-            texto = "\n1ª Série (substituir com variável)";
-            texto += "\nDisciplina: (substituir com variável)";
-            texto += "\nMatéria: (substituir com variável)";
+            texto = "\n{0}ª Série";
+            texto += "\nDisciplina: {1}";
+            texto += "\nMatéria: {2}";
+
+            texto = String.Format(texto, Teste.Questoes[0].Materia.Serie.Numero, Teste.Questoes[0].Materia.Disciplina.Nome, Teste.Materia.Nome);
 
             p.Add(texto);
             doc.Add(p);
 
+            Paragraph titulo = new Paragraph(Teste.Nome, titleFont);
+            titulo.Alignment = Element.ALIGN_CENTER;
+            doc.Add(titulo);
+
+            //Espaço em Branco
+            doc.Add(new Paragraph("\n", bodyFont));
+
+            //Questões
+            for (int x = 0; x < Teste.Questoes.Count; x++)
+            {
+                var questao = Teste.Questoes[x];
+                doc.Add(new Paragraph(string.Format("Questão {0}:  ", x + 1), subTitleFont));
+
+                //Enunciado
+                p = new Paragraph(questao.Enunciado, bodyFont);
+
+                p.Alignment = Element.ALIGN_JUSTIFIED;
+                doc.Add(p);
+
+                //Espaço em Branco
+                doc.Add(new Paragraph("\n", bodyFont));
+
+                //Reposta
+                foreach (Alternativa alternativa in questao.Alternativas)
+                {
+                    doc.Add(new Paragraph(string.Format("({0})  {1}", alternativa.Letra, alternativa.Enunciado), bodyFont));
+                }
+                //Espaço em Branco
+                doc.Add(new Paragraph("\n", bodyFont));
+            }
 
 
-            //texto += booksToString();
-            //texto += rentsToString();
+            doc.NewPage();
 
-            //fechando documento para que seja salva as alteraçoes.
+            var listParagrafosGabaritos = GabaritoToPDF();
 
-            //adicionando outro paragrafo com o texto, para que seja feita a quebra de pagina.
-            paragrafo = new Paragraph("", new Font(Font.NORMAL, 14));
-            paragrafo.Alignment = Element.ALIGN_JUSTIFIED; //Alinhamento Justificado
-            paragrafo.Font = new Font(Font.NORMAL, 14, (int)System.Drawing.FontStyle.Regular);
-            paragrafo.Add(texto);
-            //doc.Add(paragrafo);
-
-            Paragraph paragrafoDireita = new Paragraph("", new Font(Font.NORMAL, 14));
-            paragrafoDireita.Alignment = Element.ALIGN_RIGHT;
-
-            string textoDireita = "Nota:";
-            //paragrafoDireita.Add(textoDireita);
-            //doc.Add(paragrafoDireita);
-
-
-            /*
-            Chunk glue = new Chunk(new VerticalPositionMark());
-            Paragraph p = new Paragraph("Nome:");
-            p.Add(new Chunk(glue));
-            p.Add("Nota:");
-            doc.Add(p);
-
-            glue = new Chunk(new VerticalPositionMark());
-            p = new Paragraph("Matéria:");
-            p.Add(new Chunk(glue));
-            //p.Add("");
-            doc.Add(p);
-
-            glue = new Chunk(new VerticalPositionMark());
-            p = new Paragraph("Disciplina:");
-            p.Add(new Chunk(glue));
-            p.Add("Série:");
-            doc.Add(p);
-            */
-
-
-            //for (int i = 0; i < tables.Length; i++)
-            //{
-            //    doc.Add(tables[i]);
-            //}
+            foreach (var paragrafoAtual in listParagrafosGabaritos)
+            {
+                doc.Add(paragrafoAtual);
+            }
 
             doc.Close();
             //Abrindo o arquivo após cria-lo.
             System.Diagnostics.Process.Start(path);
 
         }
+
+
 
         //public string booksToString()
         //{
