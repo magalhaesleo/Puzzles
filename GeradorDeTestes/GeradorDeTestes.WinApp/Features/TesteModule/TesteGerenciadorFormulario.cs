@@ -18,17 +18,19 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
         DisciplinaService _disciplinaService;
         MateriaService _materiaService;
         TesteControl _testeControl;
+        QuestaoService _questaoService;
 
         public TesteGerenciadorFormulario()
         {
             _testeService = new TesteService();
             _materiaService = new MateriaService();
             _disciplinaService = new DisciplinaService();
+            _questaoService = new QuestaoService();
         }
 
         public override void Adicionar()
         {
-            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.SelecionarTodasMaterias(), _disciplinaService.SelecionarTodasDisciplinas(), _testeService);
+            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.SelecionarTodasMaterias(), _disciplinaService.SelecionarTodasDisciplinas(), _testeService, _questaoService);
 
             DialogResult resultado = dialogTeste.ShowDialog();
 
@@ -36,8 +38,20 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             {
                 try
                 {
-                    _testeService.GerarTeste(dialogTeste.Teste);
-                    MessageBox.Show("Teste gerado");
+
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                    saveFileDialog1.Filter = "PDF File |*.pdf";
+                    saveFileDialog1.FilterIndex = 2;
+                    saveFileDialog1.RestoreDirectory = true;
+
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        string path = saveFileDialog1.FileName;
+                        _testeService.GerarTeste(dialogTeste.Teste, path);
+
+                        MessageBox.Show("Teste gerado com sucesso");
+                    }
                 }
                 catch (Exception e)
                 {

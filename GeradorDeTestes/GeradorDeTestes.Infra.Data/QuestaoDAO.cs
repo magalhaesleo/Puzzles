@@ -12,6 +12,7 @@ namespace GeradorDeTestes.Infra.Data
     {
         private DBManager _dbManager;
         private static AlternativaDAO _alternativaDao;
+        private static int _quantidade;
 
         public QuestaoDAO()
         {
@@ -45,7 +46,8 @@ namespace GeradorDeTestes.Infra.Data
                                             JOIN TBDISCIPLINA AS TBD ON TBM.IDDISCIPLINA = TBD.ID
   ";
 
-        public const string _sqlSelectQuestaoPorMateria = @"SELECT * FROM TBQUESTAO 
+        public const string _sqlSelectQuestaoPorMateria = @"SELECT *
+                                                            FROM TBQUESTAO 
                                                             WHERE IDMATERIA = {0}IDMATERIA";
 
         public const string _sqlUpdate = @"UPDATE TBQUESTAO
@@ -54,9 +56,13 @@ namespace GeradorDeTestes.Infra.Data
                                                             IDMATERIA = {0}IDMATERIA
                                                             WHERE ID = {0}ID";
 
+   
         public static string _sqlDelete = @"DELETE FROM TBQUESTAO
                                              WHERE ID = {0}ID";
 
+        public static string _sqlSelectQuantidadeDeQuestoesPorMateria = @"SELECT count(1)[QUANTIDADE] 
+                                                            FROM TBQUESTAO 
+                                                            WHERE IDMATERIA = {0}IDMATERIA";
         #endregion Scripts SQL
 
         #region Métodos
@@ -113,6 +119,13 @@ namespace GeradorDeTestes.Infra.Data
             return _dbManager.GetByID(_sqlSelectQuestaoPorMateria, FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria } });
         }
 
+        public List<int> VerificarQuantidadeDeQuestoesPorMateria(int idMateria)
+        {
+            return _dbManager.GetByID(_sqlSelectQuantidadeDeQuestoesPorMateria, FormaQuantidade, new Dictionary<string, object> { { "IDMATERIA", idMateria }});
+        }
+
+
+
         #endregion
 
         #region Montar e ler objeto Questão
@@ -161,8 +174,14 @@ namespace GeradorDeTestes.Infra.Data
             
 
         };
-#endregion
+
+        public static Func<IDataReader, int> FormaQuantidade = reader =>
+
+          _quantidade = Convert.ToInt32(reader["QUANTIDADE"]);
+        };
+
+        #endregion
 
     }
-}
+
 

@@ -80,14 +80,14 @@ namespace GeradorDeTestes.Infra.Data
                                                             TBQ.BIMESTRE in (1, 2, 3, 4)
                                                             ORDER BY NEWID()";
 
-     public static string _sqlSelectRespostasPorTeste = @"SELECT TBTQ.POSICAONOTESTE[QUESTAO_TESTE],
+        public static string _sqlSelectRespostasPorTeste = @"SELECT TBTQ.POSICAONOTESTE[QUESTAO_TESTE],
                                                     TBA.LETRA[RESPOSTA] 
                                                     FROM TBTESTEQUESTOES AS TBTQ
                                                     JOIN TBQUESTAO AS TBQ ON TBTQ.IDQUESTAO = TBQ.Id
                                                     JOIN TBTESTE AS TBT ON TBTQ.IDTESTE = TBT.Id
                                                     JOIN TBALTERNATIVA AS TBA ON TBA.IDQUESTAO = TBQ.Id
                                                     WHERE TBA.CORRETA = 1 AND TBTQ.IDTESTE = {0}IDTESTE
-                                                    ORDER BY TBTQ.POSICAONOTESTE ASC"
+                                                    ORDER BY TBTQ.POSICAONOTESTE ASC";
 
         #endregion Scripts SQL
 
@@ -147,7 +147,7 @@ namespace GeradorDeTestes.Infra.Data
 
         public List<Questao> PegarQuestoesAleatoriasPorMateria(int limit, int idMateria)
         {
-            this._limit = limit;
+            _limit = limit;
 
             try
             {
@@ -211,11 +211,11 @@ namespace GeradorDeTestes.Infra.Data
           };
 
 
-          private static Func<IDataReader, Teste> FormaObjetoResposta = reader =>
+          private static Func<IDataReader, Resposta> FormaObjetoResposta = reader =>
 
           new Resposta
           {
-             Numero = Convert.ToInt32(reader["QUESTAO_TESTE"])
+             Numero = Convert.ToInt32(reader["QUESTAO_TESTE"]),
              Letra = Convert.ToChar(reader["RESPOSTA"])
           };
 

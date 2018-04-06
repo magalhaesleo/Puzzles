@@ -44,6 +44,7 @@
     <Compile Include="Entidades\Disciplina.cs" />
     <Compile Include="Entidades\Materia.cs" />
     <Compile Include="Entidades\Questao.cs" />
+    <Compile Include="Entidades\Resposta.cs" />
     <Compile Include="Entidades\Serie.cs" />
     <Compile Include="Entidades\Teste.cs" />
     <Compile Include="helpers\ButtonsEnable\ButtonsEnable.cs" />
