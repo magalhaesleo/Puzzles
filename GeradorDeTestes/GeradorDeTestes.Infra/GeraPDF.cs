@@ -160,9 +160,6 @@ namespace GeradorDeTestes.Infra
 
             doc.Close();
 
-            //Abrindo o arquivo após cria-lo.
-            System.Diagnostics.Process.Start(path);
-
         }
 
 
