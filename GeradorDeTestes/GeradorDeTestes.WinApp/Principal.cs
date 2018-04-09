@@ -126,13 +126,13 @@ namespace GeradorDeTestes.WinApp
 
         private void btnVisualizarTeste_Click(object sender, EventArgs e)
         {
-            _gerenciadorTeste.GerarGabarito();
+            _gerenciadorTeste.VisualizarTeste();
 
         }
 
         private void btnGerarGabarito_Click(object sender, EventArgs e)
         {
-
+            _gerenciadorTeste.GerarGabarito();
         }
 
         private DisciplinaGerenciadorFormulario obterGerenciadorDisciplina()

@@ -59,10 +59,17 @@ namespace GeradorDeTestes.Infra.Data
                                                         TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
                                                         TBQ.BIMESTRE[BIMESTRE_QUESTAO],
                                                         TBM.NOME[NOME_MATERIA],
+                                                        TBM.ID[ID_MATERIA],
+                                                        TBD.ID[ID_DISCIPLINA],
+                                                        TBD.NOME[NOME_DISCIPLINA],
+                                                        TBS.ID[ID_SERIE],
+                                                        TBS.NUMERO[NUMERO_SERIE],
                                                         TBTQ.POSICAONOTESTE[POSICAO_TESTE] 
                                                         FROM TBTESTEQUESTOES AS TBTQ
                                                         JOIN TBQUESTAO AS TBQ ON TBTQ.IDQUESTAO = TBQ.Id
                                                         JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
+                                                        JOIN TBDISCIPLINA AS TBD ON TBM.IDDISCIPLINA = TBD.ID
+                                                        JOIN TBSERIE AS TBS ON TBM.IDSERIE = TBS.ID
                                                         WHERE TBTQ.IDTESTE = {0}IDTESTE ORDER BY TBTQ.POSICAONOTESTE";
 
       

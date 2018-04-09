@@ -14,10 +14,10 @@ namespace GeradorDeTestes.Infra
     public class GeraPDF
     {
         private Teste _teste;
-        private List<Resposta> gabarito;
+        private List<Resposta> _gabarito;
         public Teste Teste { get { return this._teste; } set {this._teste = value; } }
 
-        public List<Resposta> Gabarito { get => gabarito; set => gabarito = value; }
+        public List<Resposta> Gabarito { get => _gabarito; set => _gabarito = value; }
 
         public GeraPDF(Teste teste, List<Resposta> gabarito)
         {
@@ -26,10 +26,7 @@ namespace GeradorDeTestes.Infra
         }
         public void TesteToPDF (string path)
         {
-            //PdfPTable[] tables = new PdfPTable[2];
-            //tables[0] = booksToTable();
-            //tables[1] = rentsToTable();
-            createDocument(path);
+             createDocument(path);
         }
 
         public void GeraGabarito(string path)
@@ -56,9 +53,10 @@ namespace GeradorDeTestes.Infra
             var bodyFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
             Paragraph paragraphGabarito = new Paragraph(string.Format("Gabarito do Teste - {0}", Teste.Nome), subTitleFont);
             paragraphGabarito.Alignment = Element.ALIGN_CENTER;
+
             ListParagrafosGabarito.Add(paragraphGabarito);
 
-            foreach (var item in gabarito)
+            foreach (var item in Gabarito)
             {
                 paragraphGabarito = new Paragraph("", bodyFont);
                 paragraphGabarito.Alignment = Element.ALIGN_JUSTIFIED;
@@ -69,13 +67,7 @@ namespace GeradorDeTestes.Infra
             return ListParagrafosGabarito;
         }
 
-        //public void booksToPDF(string path)
-        //{
-        //    PdfPTable[] tables = new PdfPTable[1];
-        //    tables[0] = booksToTable();
-        //    createDocument(tables, path);
-        //}
-
+    
 
         private void createDocument(string path)
         {
@@ -167,6 +159,7 @@ namespace GeradorDeTestes.Infra
             }
 
             doc.Close();
+
             //Abrindo o arquivo após cria-lo.
             System.Diagnostics.Process.Start(path);
 
@@ -174,65 +167,6 @@ namespace GeradorDeTestes.Infra
 
 
 
-        //public string booksToString()
-        //{
-        //    //return _bookDAO.GetAll().ToString();
-
-        //    string books = "Book List:\n";
-
-        //    foreach (var item in _bookDAO.GetAll())
-        //    {
-        //        books += "\n\nId: " + item.Id
-        //            + " - Title: " + item.Title
-        //            + " - Theme: " + item.Theme
-        //            + " - Author: " + item.Author
-        //            + " - Volume: " + item.Volume
-        //            + " - Publish Date: " + item.PublishDate
-        //            + " - Is Available: " + item.IsAvailable;
-        //    }
-
-        //    return books;
-
-        //}
-
-        //public PdfPTable booksToTable()
-        //{
-        //    float[] widths = new float[] { 40f, 180f, 70f, 110f, 55f, 90f, 70f };
-
-        //    PdfPTable table = new PdfPTable(7);
-        //    PdfPCell cell = new PdfPCell(new Phrase("Book List"));
-        //    cell.Colspan = 7;
-        //    cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right   
-        //    table.AddCell(cell);
-        //    table.SetWidths(widths);
-        //    table.TotalWidth = 550f;
-        //    table.LockedWidth = true;
-
-        //    table.SpacingBefore = 20f;
-        //    table.SpacingAfter = 20f;
-
-        //    table.AddCell("ID");
-        //    table.AddCell("Title");
-        //    table.AddCell("Theme");
-        //    table.AddCell("Author");
-        //    table.AddCell("Volume");
-        //    table.AddCell("Publish Date");
-        //    table.AddCell("Available");
-
-        //    foreach (var item in _bookDAO.GetAll())
-        //    {
-        //        table.AddCell(item.Id.ToString());
-        //        table.AddCell(item.Title);
-        //        table.AddCell(item.Theme);
-        //        table.AddCell(item.Author);
-        //        table.AddCell(item.Volume.ToString());
-        //        table.AddCell(item.PublishDate.ToString());
-        //        table.AddCell(item.IsAvailable.ToString());
-        //    }
-
-        //    return table;
-
-        //}
 
     }
 }
