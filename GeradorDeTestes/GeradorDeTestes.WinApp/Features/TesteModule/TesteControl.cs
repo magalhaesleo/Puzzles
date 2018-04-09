@@ -20,6 +20,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         internal void listarTestes(List<Teste> listTestes)
         {
+ 
             listTeste.Items.Clear();
             foreach (Teste teste in listTestes)
             {

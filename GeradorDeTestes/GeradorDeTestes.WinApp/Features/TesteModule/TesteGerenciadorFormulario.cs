@@ -58,6 +58,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                     MessageBox.Show(e.Message);
                 }
             }
+
             AtualizarListagem();
         }
 
@@ -109,16 +110,11 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public void VisualizarTeste()
         {
+          
+
             Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
 
-
-            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.SelecionarTodasMaterias(), _disciplinaService.SelecionarTodasDisciplinas(), _testeService, _questaoService);
-
-            DialogResult resultado = dialogTeste.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
-                try
+               try
                 {
 
                     SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -138,21 +134,16 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
+                    
                 }
-            }
+            
+            definirEnableButtons(ObtemEnableButtons());
             AtualizarListagem();
         }
 
         public void GerarGabarito()
         {
             Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
-
-            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.SelecionarTodasMaterias(), _disciplinaService.SelecionarTodasDisciplinas(), _testeService, _questaoService);
-
-            DialogResult resultado = dialogTeste.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
                 try
                 {
 
@@ -166,14 +157,15 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                     {
                         string path = saveFileDialog1.FileName;
                         _testeService.GerarPDFGabarito(testeSelecionadaNoListBox, path);
-                        MessageBox.Show("Teste gerado novamente com sucesso");
+                        MessageBox.Show("Gabarito do teste: " + testeSelecionadaNoListBox.Nome + " gerado!");
                     }
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
                 }
-            }
+
+            definirEnableButtons(ObtemEnableButtons());
             AtualizarListagem();
 
         }
@@ -207,10 +199,14 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             };
         }
 
-        public void definirVisibleButtons(ButtonsVisible buttonsVisible)
+        public void definirEnableButtons(ButtonsEnable buttonsEnable)
         {
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnVisualizarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Enabled = buttonsEnable.btnGerarGabarito;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnVisualizarTeste.Enabled = buttonsEnable.btnVisualizarTeste;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnAdicionar.Enabled = buttonsEnable.btnAdicionar;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = buttonsEnable.btnExcluir;
+            
         }
 
         public override ToolStripVisible ObtemVisibleToolStrip()
