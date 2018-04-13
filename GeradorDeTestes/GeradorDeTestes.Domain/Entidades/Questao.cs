@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeradorDeTestes.Domain.Abstract_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Entidades
 {
-    public class Questao
+    public class Questao :Entidade
     {
-        private int _id;
         private string _enunciado;
         private List<Alternativa> _alternativas = new List<Alternativa>();
         private int _bimestre;
         private Materia _materia;
 
-        public int Id { get => this._id; set => this._id = value; }
         public string Enunciado { get => this._enunciado;  set => this._enunciado = value;  }
         public List<Alternativa> Alternativas { get => this._alternativas;  set => this._alternativas = value; } 
 
