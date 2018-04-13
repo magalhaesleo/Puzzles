@@ -1,11 +1,12 @@
 ﻿using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Domain.Interfaces;
 using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
 
 namespace GeradorDeTestes.Applications
 {
-    public class MateriaService
+    public class MateriaService : IService<Materia>
     {
         private MateriaDAO _materiaDAO;
         private QuestaoService _questaoService;
@@ -16,21 +17,20 @@ namespace GeradorDeTestes.Applications
             _questaoService = new QuestaoService();
         }
 
-        public Materia AdicionarMateria(Materia materia)
+        public int Adicionar(Materia materia)
         {
             try
             {
                 ValidarExistenciaMateria(materia);
-                _materiaDAO.Add(materia);
+             return _materiaDAO.Add(materia);
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
-            return materia;
         }
 
-        public Materia AtualizarMateria(Materia materia)
+        public void Editar(Materia materia)
         {
             try
             {
@@ -40,15 +40,13 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-
-            return materia;
         }
 
-        public Materia ExcluirMateria(Materia materia)
+        public void Excluir(Materia materia)
         {
             try
             {
-                List<Questao> listQuestoes = _questaoService.SelecionarTodasQuestoes();
+                List<Questao> listQuestoes = _questaoService.GetAll();
                 foreach (Questao q in listQuestoes)
                 {
                     if (q.Materia.Id == materia.Id)
@@ -62,11 +60,9 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-
-            return materia;
         }
 
-        public List<Materia> SelecionarTodasMaterias()
+        public List<Materia> GetAll()
         {
             try
             {
@@ -78,10 +74,9 @@ namespace GeradorDeTestes.Applications
             }
         }
 
-
         public void ValidarExistenciaMateria(Materia materia)
         {
-            var listMaterias = SelecionarTodasMaterias();
+            var listMaterias = GetAll();
 
             foreach (var materiaAtual in listMaterias)
             {

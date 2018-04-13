@@ -9,9 +9,9 @@ namespace GeradorDeTestes.Domain.Interfaces
 {
      public interface IService<T> where T : Entidade
     {
-        void Adicionar(T entidade);
+        int Adicionar(T entidade);
         void Editar(T entidade);
         void Excluir(T entidade);
-        void SelecionarTodos(T entidade);
+        List<T> GetAll();
     }
 }

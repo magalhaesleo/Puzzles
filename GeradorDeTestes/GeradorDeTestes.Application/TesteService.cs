@@ -1,5 +1,6 @@
 ﻿using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Domain.Interfaces;
 using GeradorDeTestes.Infra;
 using GeradorDeTestes.Infra.Data;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Applications
 {
-    public class TesteService
+    public class TesteService : IService<Teste>
     {
         private TesteDAO _testeDAO;
         private QuestaoService _questaoService;
@@ -23,45 +24,6 @@ namespace GeradorDeTestes.Applications
             _testeDAO = new TesteDAO();
             _questaoService = new QuestaoService();
             _alternativaService = new AlternativaService();
-        }
-
-        public int AdicionarTeste(Teste teste)
-        {
-            int idTeste = 0;
-            try
-            {
-                return idTeste = _testeDAO.Add(teste);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
-        public Teste ExcluirTeste(Teste teste)
-        {
-            try
-            {
-                _testeDAO.Excluir(teste);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-
-            return teste;
-        }
-
-        public List<Teste> SelecionarTodasTestes()
-        {
-            try
-            {
-                return _testeDAO.GetAll();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
         }
 
         public List<Questao> SelecionaQuestoesAleatorias(int limit, int idMateria)
@@ -80,7 +42,7 @@ namespace GeradorDeTestes.Applications
         {
             if (teste.Id == 0)
             {
-                teste.Id = AdicionarTeste(teste);
+                teste.Id = Adicionar(teste);
 
                 var x = 1;
 
@@ -131,7 +93,47 @@ namespace GeradorDeTestes.Applications
             //chamar respoitry
         }
 
+        public  int Adicionar(Teste teste)
+        {
+            int idTeste = 0;
+            try
+            {
+                return idTeste = _testeDAO.Add(teste);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
 
+        public void Editar(Teste entidade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Excluir(Teste teste)
+        {
+            try
+            {
+                _testeDAO.Excluir(teste);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<Teste> GetAll()
+        {
+            try
+            {
+                return _testeDAO.GetAll();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }
 

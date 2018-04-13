@@ -21,7 +21,7 @@ namespace GeradorDeTestes.Infra.Data
         public const string _sqlInsert = @"INSERT INTO TBSERIE
                                                            (NUMERO)
                                                       VALUES
-                                                            ({0}NUMERO)";
+                                                            ({0}NUMERO); SELECT SCOPE_IDENTITY()";
 
         public const string _sqlSelectAll = @"SELECT ID
                                                     ,NUMERO
@@ -37,11 +37,11 @@ namespace GeradorDeTestes.Infra.Data
         #endregion Scripts SQL
 
 
-        public void Add(Serie serie)
+        public int Add(Serie serie)
         {
             try
             {
-                _dbManager.Insert(_sqlInsert, RetornaDictionaryDeSerie(serie));
+               return _dbManager.Insert(_sqlInsert, RetornaDictionaryDeSerie(serie));
             }
             catch (Exception e)
             {
