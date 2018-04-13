@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Infra.SQL;
 using System;
 using System.Collections.Generic;
 using System.Data;
