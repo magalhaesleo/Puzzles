@@ -90,7 +90,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             {
                 foreach (var item in _questaoParaEdicao.Alternativas)
                     {
-                      _alternativaService.ExcluirAlternativa(item);
+                      _alternativaService.Excluir(item);
                     
                     }
                 _questaoParaEdicao.Alternativas = new List<Alternativa>();
@@ -354,7 +354,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
                     excluida = alt;
                     if(alternativa.Id > 0)
                     {
-                        _alternativaService.ExcluirAlternativa(alternativa);
+                        _alternativaService.Excluir(alternativa);
                     }
                 }
             }

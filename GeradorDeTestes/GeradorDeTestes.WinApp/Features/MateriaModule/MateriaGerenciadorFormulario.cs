@@ -26,7 +26,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public override void Adicionar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(), _materiaControl, true, _materiaService);
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.GetAll(), _serieService.GetAll(), _materiaControl, true, _materiaService);
 
             DialogResult resultado = dialogMateria.ShowDialog();
 
@@ -34,7 +34,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             {
                 try
                 {
-                    _materiaService.AdicionarMateria(dialogMateria.NovaMateria);
+                    _materiaService.Adicionar(dialogMateria.NovaMateria);
                     MessageBox.Show("Matéria adicionada com sucesso");
                 }
                 catch (Exception e)
@@ -48,7 +48,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public override void Editar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.SelecionarTodasDisciplinas(), _serieService.SelecionarTodasSeries(), _materiaControl, false, _materiaService);
+            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.GetAll(), _serieService.GetAll(), _materiaControl, false, _materiaService);
 
             DialogResult resultado = dialogMateria.ShowDialog();
 
@@ -56,7 +56,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             {
                 try
                 {
-                    _materiaService.AtualizarMateria(dialogMateria.MateriaEditada);
+                    _materiaService.Editar(dialogMateria.MateriaEditada);
                     MessageBox.Show("Matéria atualizada com sucesso");
                 }
                 catch (Exception e)
@@ -80,7 +80,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _materiaService.ExcluirMateria(materiaSelecionadaNoListBox);
+                    _materiaService.Excluir(materiaSelecionadaNoListBox);
                 }
 
             }
@@ -104,7 +104,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public override void AtualizarListagem()
         {
-            _materiaControl.listarMaterias(_materiaService.SelecionarTodasMaterias());
+            _materiaControl.listarMaterias(_materiaService.GetAll());
         }
 
         public override string ObtemTipo()

@@ -86,7 +86,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         private void ValidarSeExisteNoBanco(Materia materia)
         {
-            List<Materia> listMaterias = MateriaService.SelecionarTodasMaterias();
+            List<Materia> listMaterias = MateriaService.GetAll();
             if (materia.Id == 0)
             {
                 foreach (var item in listMaterias)
@@ -116,7 +116,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                     MateriaEditada.Validate();
 
 
-                    foreach (var item in MateriaService.SelecionarTodasMaterias())
+                    foreach (var item in MateriaService.GetAll())
                     {
                         if (MateriaEditada.Nome == item.Nome && MateriaEditada.Serie.Id == item.Serie.Id && MateriaEditada.Disciplina.Id == item.Disciplina.Id)
                         {
