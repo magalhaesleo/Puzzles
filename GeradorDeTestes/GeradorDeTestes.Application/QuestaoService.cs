@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Domain.Interfaces;
 using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Applications
 {
-    public class QuestaoService
+    public class QuestaoService : IService<Questao>
     {
         private QuestaoDAO _questaoDAO;
         private AlternativaService _alternativaService;
@@ -19,17 +20,26 @@ namespace GeradorDeTestes.Applications
             _alternativaService = new AlternativaService();
         }
 
-        public Questao AdicionarQuestao(Questao questao)
+        public List<Questao> selecionarQuestoesPorMateria(int idMateria)
         {
+            return _questaoDAO.SelecionarQuestoesPorMateria(idMateria);
+        }
 
+        public List<int> VerificarQuantidadeDeQuestoesPorMateria(int idMateria)
+        {
+           return _questaoDAO.VerificarQuantidadeDeQuestoesPorMateria(idMateria);
+        }
 
+        public int Adicionar(Questao questao)
+        {
             try
             {
                 var idQuestao = _questaoDAO.Add(questao);
+                return idQuestao;
                 foreach (var alternativa in questao.Alternativas)
                 {
                     alternativa.IdQuestao = idQuestao;
-                    _alternativaService.AdicionarAlternativa(alternativa);
+                    _alternativaService.Adicionar(alternativa);
                 }
 
             }
@@ -37,30 +47,9 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-            return questao;
         }
 
-        public List<Questao> selecionarQuestoesPorMateria(int idMateria)
-        {
-            return _questaoDAO.SelecionarQuestoesPorMateria(idMateria);
-        }
-
-
-        public Questao AtualizarQuestao(Questao questao)
-        {
-            try
-            {
-                _questaoDAO.Editar(questao);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-
-            return questao;
-        }
-
-        public void EditarQuestao(Questao questao)
+        public void Editar(Questao questao)
         {
             _questaoDAO.Editar(questao);
 
@@ -69,13 +58,12 @@ namespace GeradorDeTestes.Applications
 
                 foreach (var alternativa in questao.Alternativas)
                 {
-                   _alternativaService.AdicionarAlternativa(alternativa);
+                    _alternativaService.Adicionar(alternativa);
                 }
             }
-
         }
 
-        public Questao ExcluirQuestao(Questao questao)
+        public void Excluir(Questao questao)
         {
             try
             {
@@ -85,11 +73,9 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-
-            return questao;
         }
 
-        public List<Questao> SelecionarTodasQuestoes()
+        public List<Questao> GetAll()
         {
             try
             {
@@ -100,16 +86,5 @@ namespace GeradorDeTestes.Applications
                 throw new Exception(e.Message);
             }
         }
-
-
-        public List<int> VerificarQuantidadeDeQuestoesPorMateria(int idMateria)
-        {
-           return _questaoDAO.VerificarQuantidadeDeQuestoesPorMateria(idMateria);
-        }
-
-
-
-
-
     }
 }

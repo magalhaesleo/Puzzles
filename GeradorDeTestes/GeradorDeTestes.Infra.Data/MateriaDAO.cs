@@ -27,7 +27,7 @@ namespace GeradorDeTestes.Infra.Data
                                                             ({0}NOME,
                                                              {0}IDDISCIPLINA,
                                                              {0}IDSERIE
-                                                            )";
+                                                            ); SELECT SCOPE_IDENTITY()";
 
         public const string _sqlSelectAll = @"SELECT TBMATERIA.ID,TBMATERIA.NOME,
                                             TBSERIE.ID[ID_SERIE],
@@ -49,11 +49,11 @@ namespace GeradorDeTestes.Infra.Data
         #endregion Scripts SQL
 
 
-        public void Add(Materia materia)
+        public int Add(Materia materia)
         {
             try
             {
-                _dbManager.Insert(_sqlInsert, RetornaDictionaryDeMateria(materia));
+                return _dbManager.Insert(_sqlInsert, RetornaDictionaryDeMateria(materia));
             }
             catch (Exception e)
             {

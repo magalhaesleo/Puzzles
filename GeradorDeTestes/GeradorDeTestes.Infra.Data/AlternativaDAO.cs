@@ -26,7 +26,7 @@ namespace GeradorDeTestes.Infra.Data
                                                              {0}CORRETA,
                                                              {0}IDQUESTAO,
                                                              {0}LETRA
-                                                            )";
+                                                            ); SELECT SCOPE_IDENTITY()";
 
         public const string _sqlSelectAll = @"SELECT * FROM TBALTERNATIVA";
 
@@ -49,11 +49,11 @@ namespace GeradorDeTestes.Infra.Data
             return _dbManager.GetByID(_sqlGetByQuestaoID, FormaObjetoAlternativa, new Dictionary<string, object> { { "IDQUESTAO", ID } });
         }
 
-        public void Add(Alternativa alternativa)
+        public int Add(Alternativa alternativa)
         {
             try
             {
-                _dbManager.Insert(_sqlInsert, RetornaDictionaryDeAlternativa(alternativa));
+              return  _dbManager.Insert(_sqlInsert, RetornaDictionaryDeAlternativa(alternativa));
             }
             catch (Exception e)
             {

@@ -1,11 +1,12 @@
 ﻿using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Domain.Interfaces;
 using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
 
 namespace GeradorDeTestes.Applications
 {
-    public class SerieService
+    public class SerieService : IService<Serie>
     {
         private SerieDAO _serieDAO;
         private MateriaDAO _materiaDAO;
@@ -16,21 +17,20 @@ namespace GeradorDeTestes.Applications
             _materiaDAO = new MateriaDAO();
         }
 
-        public Serie AdicionarSerie(Serie serie)
+        public int Adicionar(Serie serie)
         {
             try
             {
                 validarExistenciaSerie(serie);
-                _serieDAO.Add(serie);
+                return _serieDAO.Add(serie);
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
-            return serie;
         }
 
-        public Serie AtualizarSerie(Serie serie)
+        public void Editar(Serie serie)
         {
             try
             {
@@ -40,11 +40,9 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-
-            return serie;
         }
 
-        public Serie ExcluirSerie(Serie serie)
+        public void Excluir(Serie serie)
         {
             try
             {
@@ -62,11 +60,9 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-
-            return serie;
         }
 
-        public List<Serie> SelecionarTodasSeries()
+        public List<Serie> GetAll()
         {
             try
             {
@@ -80,7 +76,7 @@ namespace GeradorDeTestes.Applications
 
         private void validarExistenciaSerie(Serie serie)
         {
-            var listSeries = SelecionarTodasSeries();
+            var listSeries = GetAll();
 
             foreach (var serieListada in listSeries)
             {

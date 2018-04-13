@@ -25,7 +25,7 @@ namespace GeradorDeTestes.Infra.Data
         public const string _sqlInsert = @"INSERT INTO TBDISCIPLINA
                                                            (NOME)
                                                       VALUES
-                                                            ({0}NOME)";
+                                                            ({0}NOME); SELECT SCOPE_IDENTITY()";
 
         public const string _sqlSelectAll = @"SELECT ID
                                                     ,NOME
@@ -46,11 +46,11 @@ namespace GeradorDeTestes.Infra.Data
         #endregion Scripts SQL
 
 
-        public void Add(Disciplina disciplina)
+        public int Add(Disciplina disciplina)
         {
             try
             {
-                _dbManager.Insert(_sqlInsert, RetornaDictionaryDeDisciplina(disciplina));
+               return _dbManager.Insert(_sqlInsert, RetornaDictionaryDeDisciplina(disciplina));
             }
             catch (Exception e)
             {

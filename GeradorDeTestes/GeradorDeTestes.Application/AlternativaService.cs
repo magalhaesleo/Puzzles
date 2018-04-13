@@ -2,10 +2,11 @@
 using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Infra.Data;
 using System.Collections.Generic;
+using GeradorDeTestes.Domain.Interfaces;
 
 namespace GeradorDeTestes.Applications
 {
-    public class AlternativaService
+    public class AlternativaService : IService<Alternativa>
     {
         private AlternativaDAO _alternativaDao;
 
@@ -13,12 +14,18 @@ namespace GeradorDeTestes.Applications
         {
             _alternativaDao = new AlternativaDAO();
         }
-        internal void AdicionarAlternativa(Alternativa alternativa)
+
+        public List<Alternativa> SelecionarAlternativasPorQuestao(int idQuestao)
         {
-            _alternativaDao.Add(alternativa);
+           return _alternativaDao.PegarAlternativasDaQuestaoPorID(idQuestao);
         }
 
-        public Alternativa AtualizarAlternativa(Alternativa alternativa)
+        public int Adicionar(Alternativa alternativa)
+        {
+           return _alternativaDao.Add(alternativa);
+        }
+
+        public void Editar(Alternativa alternativa)
         {
             try
             {
@@ -28,11 +35,9 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-
-            return alternativa;
         }
 
-        public Alternativa ExcluirAlternativa(Alternativa alternativa)
+        public void Excluir(Alternativa alternativa)
         {
             try
             {
@@ -42,11 +47,9 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-
-            return alternativa;
         }
 
-        public List<Alternativa> SelecionarTodasAlternativas()
+        public List<Alternativa> GetAll()
         {
             try
             {
@@ -56,11 +59,6 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-        }
-
-        public List<Alternativa> SelecionarAlternativasPorQuestao(int idQuestao)
-        {
-           return _alternativaDao.PegarAlternativasDaQuestaoPorID(idQuestao);
         }
     }
 }

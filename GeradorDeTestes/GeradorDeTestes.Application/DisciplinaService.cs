@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Domain.Interfaces;
 using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace GeradorDeTestes.Applications
 {
-    public class DisciplinaService
+    public class DisciplinaService : IService<Disciplina>
     {
 
         private DisciplinaDAO _disciplinaDAO;
@@ -21,21 +22,20 @@ namespace GeradorDeTestes.Applications
 
         }
 
-        public Disciplina AdicionarDisciplina(Disciplina disciplina)
+        public int Adicionar(Disciplina disciplina)
         {
             try
             {
                 validarExistenciaDisciplina(disciplina);
-                _disciplinaDAO.Add(disciplina);
+              return  _disciplinaDAO.Add(disciplina);
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
-            return disciplina;
         }
 
-        public Disciplina AtualizarDisciplina(Disciplina disciplina)
+        public void Editar(Disciplina disciplina)
         {
             try
             {
@@ -45,10 +45,9 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-            return disciplina;
         }
 
-        public Disciplina ExcluirDisciplina(Disciplina disciplina)
+        public void Excluir(Disciplina disciplina)
         {
             try
             {
@@ -66,11 +65,9 @@ namespace GeradorDeTestes.Applications
             {
                 throw new Exception(e.Message);
             }
-
-            return disciplina;
         }
 
-        public List<Disciplina> SelecionarTodasDisciplinas()
+        public List<Disciplina> GetAll()
         {
             try
             {
@@ -81,12 +78,11 @@ namespace GeradorDeTestes.Applications
                 MessageBox.Show(e.Message);
                 return _disciplinaDAO.GetAll();
             }
-
         }
 
         private void validarExistenciaDisciplina(Disciplina disciplina)
         {
-            var listDisciplinas = SelecionarTodasDisciplinas();
+            var listDisciplinas = GetAll();
 
             foreach (var disciplinaListada in listDisciplinas)
             {
