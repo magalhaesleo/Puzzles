@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeradorDeTestes.Domain.Abstract_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Entidades
 {
-    public class Disciplina
+    public class Disciplina : Entidade
     {
-        private int _id;
+        
         private string _nome;
 
-        public int Id { get { return this._id; } set { this._id = value; } }
         public string Nome { get { return this._nome; } set { this._nome = value; } }
 
 

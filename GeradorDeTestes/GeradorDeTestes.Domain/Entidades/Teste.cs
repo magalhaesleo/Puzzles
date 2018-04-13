@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeradorDeTestes.Domain.Abstract_Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Entidades
 {
-    public class Teste
+    public class Teste : Entidade
     {
-        private int _id;
+       
         private string _nome;
         private List<Questao> _listQuestoes;
         private DateTime _dataGeracao;
         private Materia _materia;
         private int _numeroQuestoes;
 
-        public int Id { get => this._id; set => this._id = value; }
         public string Nome { get => this._nome; set => this._nome = value; }
         public List<Questao> Questoes { get => this._listQuestoes; set => this._listQuestoes = value; }
         public DateTime DataGeracao { get => this._dataGeracao; set => this._dataGeracao = value; }
