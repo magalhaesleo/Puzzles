@@ -15,14 +15,14 @@ namespace GeradorDeTestes.Infra.CSV
         /// </summary>
         /// <param name="objs"></param>
         /// <returns>String in CSV format</returns>
-        public static string Serialize<T>(this IList<T> objs)
+        public static string Serialize<T>(this T objeto)
         {
-            using (StreamWriter writer = new StreamWriter(@"Produto.csv"))
+            using (StreamWriter writer = new StreamWriter(@"Teste.csv"))
             {
                 CsvWriter csvWriter = new CsvWriter(writer);
-                csvWriter.WriteRecords(objs);
+                csvWriter.WriteRecord(objeto);
             }
-            return objs.ToString();
+            return objeto.ToString();
         }
         /// <summary>
         /// Converte um arquivo csv para uma lista de objetos
@@ -32,7 +32,7 @@ namespace GeradorDeTestes.Infra.CSV
         /// <returns></returns>
         public static IList<T> Deserialize<T>(this IList<T> objs)
         {
-            using (var reader = new StreamReader(@"Produto.csv"))
+            using (var reader = new StreamReader(@"Teste.csv"))
             {
                 var csvReader = new CsvReader(reader);
                 return csvReader.GetRecords<T>().ToList();
