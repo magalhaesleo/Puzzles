@@ -19,6 +19,7 @@ namespace GeradorDeTestes.Applications
 
         public TesteService()
         {
+            //FAZER IOC (receber os 3 por parametro)
             _testeDAO = new TesteDAO();
             _questaoService = new QuestaoService();
             _alternativaService = new AlternativaService();
@@ -119,6 +120,17 @@ namespace GeradorDeTestes.Applications
             GeraPDF geraPdf = new GeraPDF(teste, gabarito);
             geraPdf.GeraGabarito(path);
         }
+
+        public void ExportarXMLTeste(Teste teste)
+        {
+            //chamar respoitry
+        }
+
+        public void ExportarCSVTeste(Teste teste)
+        {
+            //chamar respoitry
+        }
+
 
     }
 }

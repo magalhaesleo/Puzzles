@@ -108,36 +108,70 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             AtualizarListagem();
         }
 
-        public void VisualizarTeste()
+        public void ExportarTeste()
         {
+            ExportarTesteDialog dialogExportarTeste = new ExportarTesteDialog();
 
+            DialogResult resultado = dialogExportarTeste.ShowDialog();
 
-            Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
-
-            try
+            if (resultado == DialogResult.OK)
             {
 
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-                saveFileDialog1.Filter = "PDF File |*.pdf";
-                saveFileDialog1.FilterIndex = 2;
-                saveFileDialog1.RestoreDirectory = true;
-
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                int rbSelecionado = dialogExportarTeste.ObterFormatoSelecionado();
+                switch (rbSelecionado)
                 {
-                    string path = saveFileDialog1.FileName;
-                    _testeService.GerarTeste(testeSelecionadaNoListBox, path);
-                    MessageBox.Show("Teste gerado novamente com sucesso");
-                    System.Diagnostics.Process.Start(path);
+                    case 1:
+                        saveFileDialog.Filter = "PDF File |*.pdf";
+                        break;
+                    case 2:
+                        saveFileDialog.Filter = "XML File |*.xml";
+                        break;
+                    case 3:
+                        saveFileDialog.Filter = "CSV File |*.csv";
+                        break;
+                    default:
+                        throw new Exception("Formato selecionado não foi encontrado.");
+                }
+
+                try
+                {
+                    Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
+                    saveFileDialog.FilterIndex = 2;
+                    saveFileDialog.RestoreDirectory = true;
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string path = saveFileDialog.FileName;
+
+                        switch (rbSelecionado)
+                        {
+                            case 1:
+                                _testeService.GerarTeste(testeSelecionadaNoListBox, path);
+                                //mudar?
+                                break;
+                            case 2:
+                                _testeService.ExportarXMLTeste(testeSelecionadaNoListBox);
+                                break;
+                            case 3:
+                                _testeService.ExportarCSVTeste(testeSelecionadaNoListBox);
+                                break;
+                            default:
+                                throw new Exception("Formato selecionado não foi encontrado.");
+                        }
+
+                        MessageBox.Show("Teste exportado com sucesso");
+                        System.Diagnostics.Process.Start(path);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
                 }
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
 
-            }
-
-            definirEnableButtons(ObtemEnableButtons());
+            DefinirEnableButtons(ObtemEnableButtons());
             AtualizarListagem();
         }
 
@@ -166,7 +200,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 MessageBox.Show(e.Message);
             }
 
-            definirEnableButtons(ObtemEnableButtons());
+            DefinirEnableButtons(ObtemEnableButtons());
             AtualizarListagem();
 
         }
@@ -200,10 +234,10 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             };
         }
 
-        public void definirEnableButtons(ButtonsEnable buttonsEnable)
+        public void DefinirEnableButtons(ButtonsEnable buttonsEnable)
         {
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Enabled = buttonsEnable.btnGerarGabarito;
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnVisualizarTeste.Enabled = buttonsEnable.btnVisualizarTeste;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Enabled = buttonsEnable.btnVisualizarTeste;
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnAdicionar.Enabled = buttonsEnable.btnAdicionar;
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = buttonsEnable.btnExcluir;

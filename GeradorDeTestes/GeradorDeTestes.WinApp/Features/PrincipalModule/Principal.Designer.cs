@@ -41,10 +41,10 @@
             this.btnAdicionar = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.btnExportarTeste = new System.Windows.Forms.ToolStripButton();
+            this.btnGerarGabarito = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
-            this.btnGerarGabarito = new System.Windows.Forms.ToolStripButton();
-            this.btnVisualizarTeste = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStripBotoes.SuspendLayout();
             this.SuspendLayout();
@@ -120,7 +120,7 @@
             this.btnAdicionar,
             this.btnEditar,
             this.btnExcluir,
-            this.btnVisualizarTeste,
+            this.btnExportarTeste,
             this.btnGerarGabarito,
             this.toolStripSeparator1,
             this.labelTipoCadastro});
@@ -163,15 +163,16 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
-            // toolStripSeparator1
+            // btnExportarTeste
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
-            // labelTipoCadastro
-            // 
-            this.labelTipoCadastro.Name = "labelTipoCadastro";
-            this.labelTipoCadastro.Size = new System.Drawing.Size(0, 36);
+            this.btnExportarTeste.Image = ((System.Drawing.Image)(resources.GetObject("btnExportarTeste.Image")));
+            this.btnExportarTeste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnExportarTeste.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportarTeste.Name = "btnExportarTeste";
+            this.btnExportarTeste.Padding = new System.Windows.Forms.Padding(8);
+            this.btnExportarTeste.Size = new System.Drawing.Size(116, 36);
+            this.btnExportarTeste.Text = "Exportar Teste";
+            this.btnExportarTeste.Click += new System.EventHandler(this.btnVisualizarTeste_Click);
             // 
             // btnGerarGabarito
             // 
@@ -184,16 +185,15 @@
             this.btnGerarGabarito.Text = "Gerar Gabarito";
             this.btnGerarGabarito.Click += new System.EventHandler(this.btnGerarGabarito_Click);
             // 
-            // btnVisualizarTeste
+            // toolStripSeparator1
             // 
-            this.btnVisualizarTeste.Image = ((System.Drawing.Image)(resources.GetObject("btnVisualizarTeste.Image")));
-            this.btnVisualizarTeste.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnVisualizarTeste.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnVisualizarTeste.Name = "btnVisualizarTeste";
-            this.btnVisualizarTeste.Padding = new System.Windows.Forms.Padding(8);
-            this.btnVisualizarTeste.Size = new System.Drawing.Size(122, 36);
-            this.btnVisualizarTeste.Text = "Visualizar Teste";
-            this.btnVisualizarTeste.Click += new System.EventHandler(this.btnVisualizarTeste_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // labelTipoCadastro
+            // 
+            this.labelTipoCadastro.Name = "labelTipoCadastro";
+            this.labelTipoCadastro.Size = new System.Drawing.Size(0, 36);
             // 
             // Principal
             // 
@@ -234,7 +234,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel labelTipoCadastro;
         private System.Windows.Forms.ToolStripMenuItem testeToolStripMenuItem;
-        public System.Windows.Forms.ToolStripButton btnVisualizarTeste;
+        public System.Windows.Forms.ToolStripButton btnExportarTeste;
         public System.Windows.Forms.ToolStripButton btnGerarGabarito;
     }
 }

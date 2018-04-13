@@ -126,8 +126,7 @@ namespace GeradorDeTestes.WinApp
 
         private void btnVisualizarTeste_Click(object sender, EventArgs e)
         {
-            _gerenciadorTeste.VisualizarTeste();
-
+            _gerenciadorTeste.ExportarTeste();
         }
 
         private void btnGerarGabarito_Click(object sender, EventArgs e)
@@ -196,7 +195,7 @@ namespace GeradorDeTestes.WinApp
             btnAdicionar.Visible = buttonsVisible.btnAdicionar;
             btnEditar.Visible = buttonsVisible.btnEditar;
             btnExcluir.Visible = buttonsVisible.btnExcluir;
-            btnVisualizarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+            btnExportarTeste.Visible = buttonsVisible.btnVisualizarTeste;
             btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
         }
 
@@ -206,7 +205,7 @@ namespace GeradorDeTestes.WinApp
             btnEditar.Enabled = buttonsEnable.btnEditar;
             btnExcluir.Enabled = buttonsEnable.btnExcluir;
             btnGerarGabarito.Enabled = buttonsEnable.btnGerarGabarito;
-            btnVisualizarTeste.Enabled = buttonsEnable.btnVisualizarTeste;
+            btnExportarTeste.Enabled = buttonsEnable.btnVisualizarTeste;
         }
         private void definirPropriedadeVisibleToolStrip(ToolStripVisible toolStripVisible)
         {
