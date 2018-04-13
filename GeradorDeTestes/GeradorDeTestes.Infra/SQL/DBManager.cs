@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.Common;
 using System.Linq;
 
-namespace GeradorDeTestes.Infra
+namespace GeradorDeTestes.Infra.SQL
 {
 
     public class DBManager

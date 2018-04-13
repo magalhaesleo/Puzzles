@@ -2,6 +2,7 @@
 using GeradorDeTestes.Domain.Entidades;
 using System.Collections.Generic;
 using System.Data;
+using GeradorDeTestes.Infra.SQL;
 
 namespace GeradorDeTestes.Infra.Data
 {

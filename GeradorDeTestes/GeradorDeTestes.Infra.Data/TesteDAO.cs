@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Infra.SQL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,6 @@ namespace GeradorDeTestes.Infra.Data
 
     public class TesteDAO
     {
-
         private DBManager _dbManager;
         private QuestaoDAO _questaoDAO;
         private static int _limit;

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Infra;
+using GeradorDeTestes.Infra.SQL;
 
 namespace GeradorDeTestes.Infra.Data
 {
