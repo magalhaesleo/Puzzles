@@ -51,17 +51,16 @@
     <Compile Include="helpers\ButtonsEnable\ButtonsEnable.cs" />
     <Compile Include="helpers\ButtonsVisible\ButtonsVisible.cs" />
     <Compile Include="helpers\ToolStripVisible\ToolStripVisible.cs" />
+    <Compile Include="Interfaces\Alternativas\IAlternativaRepository.cs" />
+    <Compile Include="Interfaces\Disciplinas\IDisciplinaRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Interfaces\Materias\IMateriaRepository.cs" />
+    <Compile Include="Interfaces\Questoes\IQuestaoRepository.cs" />
+    <Compile Include="Interfaces\Series\ISerieRepository.cs" />
+    <Compile Include="Interfaces\Testes\ITesteRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\Alternativas\" />
-    <Folder Include="Interfaces\Disciplinas\" />
-    <Folder Include="Interfaces\Materias\" />
-    <Folder Include="Interfaces\Questoes\" />
-    <Folder Include="Interfaces\Series\" />
-    <Folder Include="Interfaces\Testes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
