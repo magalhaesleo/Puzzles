@@ -52,6 +52,13 @@
     <Compile Include="helpers\ToolStripVisible\ToolStripVisible.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interfaces\Alternativas\" />
+    <Folder Include="Interfaces\Disciplinas\" />
+    <Folder Include="Interfaces\Materias\" />
+    <Folder Include="Interfaces\Questoes\" />
+    <Folder Include="Interfaces\Series\" />
+    <Folder Include="Interfaces\Testes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
