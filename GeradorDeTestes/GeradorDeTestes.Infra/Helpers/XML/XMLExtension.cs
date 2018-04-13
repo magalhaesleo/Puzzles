@@ -16,7 +16,22 @@ namespace GeradorDeTestes.Infra.XML
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>String in XML format</returns>
-        public static string Serialize<T>(this IList<T> obj)
+        public static string Serialize<T>(this T objeto)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (XmlWriter writer = XmlWriter.Create(sb))
+            {
+                XmlSerializer serializer = new XmlSerializer(objeto.GetType());
+                serializer.Serialize(writer, objeto);
+            }
+            return sb.ToString();
+        }
+        /// <summary>
+        /// Gera uma string serializada em xml de qualquer objeto não estático.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>String in XML format</returns>
+        public static string SerializeList<T>(this IList<T> obj)
         {
             StringBuilder sb = new StringBuilder();
             using (XmlWriter writer = XmlWriter.Create(sb))
