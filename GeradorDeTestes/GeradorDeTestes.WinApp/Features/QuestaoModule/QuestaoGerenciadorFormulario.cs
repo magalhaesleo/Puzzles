@@ -25,7 +25,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override void Adicionar()
         {
-            CadastroQuestao dialogQuestao = new CadastroQuestao(_materiaService.SelecionarTodasMaterias());
+            CadastroQuestao dialogQuestao = new CadastroQuestao(_materiaService.GetAll());
 
             DialogResult resultado = dialogQuestao.ShowDialog();
 
@@ -33,7 +33,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             {
                 try
                 {
-                    _questaoService.AdicionarQuestao(dialogQuestao.NovaQuestao);
+                    _questaoService.Adicionar(dialogQuestao.NovaQuestao);
                     MessageBox.Show("Questão adicionada com sucesso");
                 }
                 catch (Exception e)
@@ -47,21 +47,21 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override void AtualizarListagem()
         {
-            _questaoControl.listarQuestoes(_questaoService.SelecionarTodasQuestoes());
-            _questaoControl.listaComboBoxes(_materiaService.SelecionarTodasMaterias());
+            _questaoControl.listarQuestoes(_questaoService.GetAll());
+            _questaoControl.listaComboBoxes(_materiaService.GetAll());
         }
 
         public override UserControl CarregarListControl()
         {
             if (_questaoControl == null)
-                _questaoControl = new QuestaoControl(_materiaService.SelecionarTodasMaterias());
+                _questaoControl = new QuestaoControl(_materiaService.GetAll());
             AtualizarListagem();
             return _questaoControl;
         }
 
         public override void Editar()
         {
-            CadastroQuestao dialogQuestao = new CadastroQuestao(_materiaService.SelecionarTodasMaterias(), _questaoControl.RetornaQuestaoSelecionadaNoListBox());
+            CadastroQuestao dialogQuestao = new CadastroQuestao(_materiaService.GetAll(), _questaoControl.RetornaQuestaoSelecionadaNoListBox());
        
              DialogResult resultado = dialogQuestao.ShowDialog();
 
@@ -69,7 +69,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             {
                 try
                 {
-                    _questaoService.EditarQuestao(dialogQuestao.QuestaoEditada);
+                    _questaoService.Editar(dialogQuestao.QuestaoEditada);
                     MessageBox.Show("Questão atualizada com sucesso");
                 }
                 catch (Exception e)
@@ -92,7 +92,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _questaoService.ExcluirQuestao(questaoSelecionadaNoListBox);
+                    _questaoService.Excluir(questaoSelecionadaNoListBox);
                 }
 
             }

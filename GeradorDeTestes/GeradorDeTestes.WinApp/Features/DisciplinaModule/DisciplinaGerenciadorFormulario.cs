@@ -25,7 +25,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override void Adicionar()
         {
-            CadastroDisciplina dialogDisciplina = new CadastroDisciplina(_disciplinaControl, true, _disciplinaService.SelecionarTodasDisciplinas());
+            CadastroDisciplina dialogDisciplina = new CadastroDisciplina(_disciplinaControl, true, _disciplinaService.GetAll());
 
             DialogResult resultado = dialogDisciplina.ShowDialog();
 
@@ -33,7 +33,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             {
                 try
                 {
-                    _disciplinaService.AdicionarDisciplina(dialogDisciplina.NovaDisciplina);
+                    _disciplinaService.Adicionar(dialogDisciplina.NovaDisciplina);
                     MessageBox.Show("Disciplina adicionada");
                 }
                 catch (Exception e)
@@ -64,7 +64,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _disciplinaService.ExcluirDisciplina(disciplinasSelecionadaNoListBox);
+                    _disciplinaService.Excluir(disciplinasSelecionadaNoListBox);
                     MessageBox.Show("Disciplina excluída! :)");
                 }
 
@@ -84,13 +84,13 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override void AtualizarListagem()
         {
-            _disciplinaControl.listarDisciplinas(_disciplinaService.SelecionarTodasDisciplinas());
+            _disciplinaControl.listarDisciplinas(_disciplinaService.GetAll());
         }
 
         public override void Editar()
         {
 
-            CadastroDisciplina disciplinaPopUp = new CadastroDisciplina(_disciplinaControl, false, _disciplinaService.SelecionarTodasDisciplinas());
+            CadastroDisciplina disciplinaPopUp = new CadastroDisciplina(_disciplinaControl, false, _disciplinaService.GetAll());
 
             DialogResult resultado = disciplinaPopUp.ShowDialog();
 
@@ -99,7 +99,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             {
                 try
                 {
-                    _disciplinaService.AtualizarDisciplina(disciplinaPopUp.DisciplinaEditada);
+                    _disciplinaService.Editar(disciplinaPopUp.DisciplinaEditada);
                     MessageBox.Show("Disciplina editada!");
                 }
                 catch (Exception e)

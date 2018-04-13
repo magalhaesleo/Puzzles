@@ -30,7 +30,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public override void Adicionar()
         {
-            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.SelecionarTodasMaterias(), _disciplinaService.SelecionarTodasDisciplinas(), _testeService, _questaoService);
+            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.GetAll(), _disciplinaService.GetAll(), _testeService, _questaoService);
 
             DialogResult resultado = dialogTeste.ShowDialog();
 
@@ -64,7 +64,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public override void AtualizarListagem()
         {
-            _testeControl.listarTestes(_testeService.SelecionarTodasTestes());
+            _testeControl.listarTestes(_testeService.GetAll());
         }
 
         public override UserControl CarregarListControl()
@@ -91,7 +91,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _testeService.ExcluirTeste(testeSelecionadaNoListBox);
+                    _testeService.Excluir(testeSelecionadaNoListBox);
                     MessageBox.Show("Teste excluído com sucesso");
                 }
 

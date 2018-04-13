@@ -24,7 +24,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
         public override void Adicionar()
         {
-            CadastroSerie dialogSerie = new CadastroSerie(_serieService.SelecionarTodasSeries());
+            CadastroSerie dialogSerie = new CadastroSerie(_serieService.GetAll());
 
             DialogResult resultado = dialogSerie.ShowDialog();
 
@@ -32,7 +32,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
             {
                 try
                 {
-                    _serieService.AdicionarSerie(dialogSerie.NovaSerie);
+                    _serieService.Adicionar(dialogSerie.NovaSerie);
                     MessageBox.Show("Série adicionada");
                 }
                 catch (Exception e)
@@ -59,7 +59,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _serieService.ExcluirSerie(serieSelecionadaNoListBox);
+                    _serieService.Excluir(serieSelecionadaNoListBox);
                     MessageBox.Show("Série excluída com sucesso");
                 }
 
@@ -86,7 +86,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
         public override void AtualizarListagem()
         {
-            _serieControl.listarSeries(_serieService.SelecionarTodasSeries());
+            _serieControl.listarSeries(_serieService.GetAll());
         }
 
         public override string ObtemTipo()
