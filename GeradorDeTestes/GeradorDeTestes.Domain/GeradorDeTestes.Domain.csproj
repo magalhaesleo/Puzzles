@@ -50,6 +50,8 @@
     <Compile Include="helpers\ButtonsEnable\ButtonsEnable.cs" />
     <Compile Include="helpers\ButtonsVisible\ButtonsVisible.cs" />
     <Compile Include="helpers\ToolStripVisible\ToolStripVisible.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
