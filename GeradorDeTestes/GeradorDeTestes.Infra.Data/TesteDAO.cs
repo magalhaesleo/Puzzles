@@ -139,9 +139,9 @@ namespace GeradorDeTestes.Infra.Data
             }
         }
 
-        public List<Questao> PegarQuestoesAleatoriasPorMateria(int limit, int idMateria)
+        public List<Questao> PegarQuestoesAleatoriasPorMateria(int quantidade, int idMateria)
         {
-              string _sqlSelecionaQuestoesAleatorias = @"SELECT TOP " + limit + @" TBQ.ID[ID_QUESTAO],TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
+              string _sqlSelecionaQuestoesAleatorias = @"SELECT TOP " + quantidade + @" TBQ.ID[ID_QUESTAO],TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
                                                             TBQ.BIMESTRE[BIMESTRE_QUESTAO], TBM.NOME[NOME_MATERIA],
                                                             TBM.ID [ID_MATERIA],
                                                             TBS.ID [ID_SERIE],
