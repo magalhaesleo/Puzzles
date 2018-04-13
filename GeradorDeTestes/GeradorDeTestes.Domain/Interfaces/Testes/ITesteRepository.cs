@@ -10,7 +10,7 @@ namespace GeradorDeTestes.Domain.Interfaces.Testes
 {
     interface ITesteRepository : IRepository<Teste>
     {
-     void AddTesteQuestao(int IdQuestao, int IdTeste, int PosicaoNoTeste);
+        void AddTesteQuestao(int IdQuestao, int IdTeste, int PosicaoNoTeste);
 
         List<Questao> PegarQuestoesAleatoriasPorMateria(int quantidade, int idMateria);
 
