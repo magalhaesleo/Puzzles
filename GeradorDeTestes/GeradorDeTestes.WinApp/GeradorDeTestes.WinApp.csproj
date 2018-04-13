@@ -120,6 +120,12 @@
     <Compile Include="Features\TesteModule\CadastroTeste.Designer.cs">
       <DependentUpon>CadastroTeste.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\TesteModule\ExportarTesteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\TesteModule\ExportarTesteDialog.Designer.cs">
+      <DependentUpon>ExportarTesteDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\TesteModule\TesteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,11 +133,11 @@
       <DependentUpon>TesteControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\TesteModule\TesteGerenciadorFormulario.cs" />
-    <Compile Include="GerenciadorFormulario.cs" />
-    <Compile Include="Principal.cs">
+    <Compile Include="Features\PrincipalModule\GerenciadorFormulario.cs" />
+    <Compile Include="Features\PrincipalModule\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Principal.Designer.cs">
+    <Compile Include="Features\PrincipalModule\Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -163,10 +169,13 @@
     <EmbeddedResource Include="Features\TesteModule\CadastroTeste.resx">
       <DependentUpon>CadastroTeste.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\TesteModule\ExportarTesteDialog.resx">
+      <DependentUpon>ExportarTesteDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\TesteModule\TesteControl.resx">
       <DependentUpon>TesteControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Principal.resx">
+    <EmbeddedResource Include="Features\PrincipalModule\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

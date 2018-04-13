@@ -39,7 +39,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             {
                 ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = true;
                 ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Enabled = true;
-                ControleDeReferencia.ReferenciaFormularioPrincipal.btnVisualizarTeste.Enabled = true;
+                ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Enabled = true;
             }
         }
     }

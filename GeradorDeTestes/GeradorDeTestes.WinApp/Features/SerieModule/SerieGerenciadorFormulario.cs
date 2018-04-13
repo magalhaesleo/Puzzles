@@ -136,7 +136,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
         public void definirVisibleButtons(ButtonsVisible buttonsVisible)
         {
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnVisualizarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Visible = buttonsVisible.btnVisualizarTeste;
         }
 
         public override void Editar()
