@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Interfaces.Alternativas
 {
-    interface IAlternativaRepository : IRepository<Alternativa>
+    public interface IAlternativaRepository : IRepository<Alternativa>
     {
         List<Alternativa> PegarAlternativasDaQuestaoPorID(int ID);
         Dictionary<string, object> RetornaDictionaryDeAlternativa(Alternativa alternativa);

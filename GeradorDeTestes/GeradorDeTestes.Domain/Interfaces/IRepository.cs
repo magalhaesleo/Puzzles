@@ -9,7 +9,7 @@ namespace GeradorDeTestes.Domain.Interfaces
 {
     public interface IRepository<T> where T : Entidade
     {
-        void Add(T entidade);
+        int Add(T entidade);
         void Excluir(T entidade);
         void Editar(T entidade);
         List<T> GetAll();

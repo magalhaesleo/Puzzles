@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Domain.Interfaces.Disciplinas;
 using GeradorDeTestes.Infra;
 using GeradorDeTestes.Infra.SQL;
 
 namespace GeradorDeTestes.Infra.Data
 {
-    public class DisciplinaDAO
+    public class DisciplinaDAO : IDisciplinaRepository
     {
         private DBManager _dbManager;
 
@@ -45,7 +46,7 @@ namespace GeradorDeTestes.Infra.Data
 
         #endregion Scripts SQL
 
-
+        #region métodos
         public int Add(Disciplina disciplina)
         {
             try
@@ -73,13 +74,27 @@ namespace GeradorDeTestes.Infra.Data
             return _dbManager.GetAll(_sqlSelectAll, FormaObjetoDisciplina);
         }
 
-        private Dictionary<string, object> RetornaDictionaryDeDisciplina(Disciplina disciplina)
+        #endregion
+
+        #region montar e ler objetos
+        Dictionary<string, object> RetornaDictionaryDeDisciplina(Disciplina disciplina)
         {
             return new Dictionary<string, object>
             {
                 { "ID", disciplina.Id },
                 { "NOME", disciplina.Nome }
             };
+        }
+
+      
+        Func<IDataReader, Disciplina> IDisciplinaRepository.FormaObjetoDisciplina(IDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        Dictionary<string, object> IDisciplinaRepository.RetornaDictionaryDeDisciplina(Disciplina disciplina)
+        {
+            throw new NotImplementedException();
         }
 
         private static Func<IDataReader, Disciplina> FormaObjetoDisciplina = reader =>
@@ -89,5 +104,6 @@ namespace GeradorDeTestes.Infra.Data
               Id = Convert.ToInt32(reader["ID"]),
               Nome = Convert.ToString(reader["NOME"])
           };
+        #endregion
     }
 }

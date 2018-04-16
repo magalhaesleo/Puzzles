@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Interfaces.Series
 {
-    interface ISerieRepository : IRepository<Serie>
+    public interface ISerieRepository : IRepository<Serie>
     {
         Dictionary<string, object> RetornaDictionaryDeSerie(Serie serie);
 
