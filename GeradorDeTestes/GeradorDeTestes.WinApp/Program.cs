@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeradorDeTestes.Domain.Interfaces.Alternativas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,7 +19,18 @@ namespace GeradorDeTestes.WinApp
         [STAThread]
         static void Main()
         {
-           System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+
+            Type tipoRepositorio = typeof(IAlternativaRepository);
+            Console.WriteLine(tipoRepositorio.Name);
+            switch (tipoRepositorio.Name)
+            {
+                case "IAlternativaRepository":
+                    Console.WriteLine("DEU BOA");
+                    break;
+            }
+
+
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
            Principal formularioPrincipal = new Principal();
            System.Windows.Forms.Application.EnableVisualStyles();
            ControleDeReferencia.ReferenciaFormularioPrincipal = formularioPrincipal;

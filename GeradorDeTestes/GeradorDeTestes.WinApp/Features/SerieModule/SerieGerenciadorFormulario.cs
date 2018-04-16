@@ -11,7 +11,7 @@ using GeradorDeTestes.Domain.helpers.ToolStripVisible;
 
 namespace GeradorDeTestes.WinApp.Features.SerieModule
 {
-    class SerieGerenciadorFormulario : GerenciadorFormulario
+    public class SerieGerenciadorFormulario : GerenciadorFormulario
     {
 
         SerieService _serieService;

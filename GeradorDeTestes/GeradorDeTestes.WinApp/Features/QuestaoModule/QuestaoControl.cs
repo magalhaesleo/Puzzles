@@ -16,7 +16,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         private List<Materia> _materias;
         private List<Questao> _listaQuestoes;
 
-        public QuestaoControl(List<Materia> materias)
+        public QuestaoControl(List<Materia> materias = null)
         {
             InitializeComponent();
             _materias = materias;

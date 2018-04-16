@@ -19,7 +19,7 @@ namespace GeradorDeTestes.Infra
 
         public List<Resposta> Gabarito { get => _gabarito; set => _gabarito = value; }
 
-        public GeraPDF(Teste teste, List<Resposta> gabarito)
+        public GeraPDF(Teste teste = null, List<Resposta> gabarito = null)
         {
             Teste = teste;
             Gabarito = gabarito;
