@@ -1,6 +1,6 @@
-﻿using GeradorDeTestes.Domain.Entidades;
+﻿using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Domain.Interfaces;
-using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
 
@@ -8,21 +8,14 @@ namespace GeradorDeTestes.Applications
 {
     public class MateriaService : IService<Materia>
     {
-        private MateriaDAO _materiaDAO;
-        private QuestaoService _questaoService;
-
-        public MateriaService()
-        {
-            _materiaDAO = new MateriaDAO();
-            _questaoService = new QuestaoService();
-        }
-
+       
+       
         public int Adicionar(Materia materia)
         {
             try
             {
                 ValidarExistenciaMateria(materia);
-             return _materiaDAO.Add(materia);
+                return IOCdao.MateriaDAO.Add(materia);
             }
             catch (Exception e)
             {
@@ -34,7 +27,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                _materiaDAO.Editar(materia);
+                IOCdao.MateriaDAO.Editar(materia);
             }
             catch (Exception e)
             {
@@ -46,7 +39,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                List<Questao> listQuestoes = _questaoService.GetAll();
+                List<Questao> listQuestoes = IOCService.QuestaoService.GetAll();
                 foreach (Questao q in listQuestoes)
                 {
                     if (q.Materia.Id == materia.Id)
@@ -54,7 +47,7 @@ namespace GeradorDeTestes.Applications
                         throw new Exception("Não foi possivel excluir, a matéria esta sendo utilizada em uma questão!");
                     }
                 }
-                _materiaDAO.Excluir(materia);
+                IOCdao.MateriaDAO.Excluir(materia);
             }
             catch (Exception e)
             {
@@ -66,7 +59,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return _materiaDAO.GetAll();
+                return IOCService.MateriaService.GetAll();
             }
             catch (Exception e)
             {

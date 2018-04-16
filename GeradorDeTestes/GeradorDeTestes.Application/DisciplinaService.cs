@@ -1,6 +1,6 @@
-﻿using GeradorDeTestes.Domain.Entidades;
+﻿using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Domain.Interfaces;
-using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,21 +13,12 @@ namespace GeradorDeTestes.Applications
     public class DisciplinaService : IService<Disciplina>
     {
 
-        private DisciplinaDAO _disciplinaDAO;
-        private MateriaDAO _materiaDAO;
-        public DisciplinaService()
-        {
-            _disciplinaDAO = new DisciplinaDAO();
-            _materiaDAO = new MateriaDAO();
-
-        }
-
         public int Adicionar(Disciplina disciplina)
         {
             try
             {
                 validarExistenciaDisciplina(disciplina);
-              return  _disciplinaDAO.Add(disciplina);
+                return IOCdao.DisciplinaDAO.Add(disciplina);
             }
             catch (Exception e)
             {
@@ -39,7 +30,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                _disciplinaDAO.Editar(disciplina);
+                IOCdao.DisciplinaDAO.Editar(disciplina);
             }
             catch (Exception e)
             {
@@ -51,7 +42,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                List<Materia> listmateria = _materiaDAO.GetAll();
+                List<Materia> listmateria = IOCdao.MateriaDAO.GetAll();
                 foreach (Materia materia in listmateria)
                 {
                     if (materia.Disciplina.Id == disciplina.Id)
@@ -59,7 +50,7 @@ namespace GeradorDeTestes.Applications
                         throw new Exception("Não foi possivel excluir, a disciplina esta sendo utilizada!");
                     }
                 }
-                _disciplinaDAO.Excluir(disciplina);
+                IOCdao.DisciplinaDAO.Excluir(disciplina);
             }
             catch (Exception e)
             {
@@ -71,12 +62,12 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return _disciplinaDAO.GetAll();
+                return IOCdao.DisciplinaDAO.GetAll();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                return _disciplinaDAO.GetAll();
+                return IOCdao.DisciplinaDAO.GetAll();
             }
         }
 
