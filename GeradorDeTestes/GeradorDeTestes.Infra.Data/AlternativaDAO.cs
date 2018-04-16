@@ -3,10 +3,12 @@ using GeradorDeTestes.Domain.Entidades;
 using System.Collections.Generic;
 using System.Data;
 using GeradorDeTestes.Infra.SQL;
+using GeradorDeTestes.Domain.Interfaces.Alternativas;
+using GeradorDeTestes.Domain.Interfaces;
 
 namespace GeradorDeTestes.Infra.Data
 {
-    public class AlternativaDAO
+    public class AlternativaDAO : IAlternativaRepository
     {
 
         private DBManager _dbManager;
@@ -44,6 +46,7 @@ namespace GeradorDeTestes.Infra.Data
 
         #endregion Scripts SQL
 
+        #region métodos
         public List<Alternativa> PegarAlternativasDaQuestaoPorID(int ID)
         {
             return _dbManager.GetByID(_sqlGetByQuestaoID, FormaObjetoAlternativa, new Dictionary<string, object> { { "IDQUESTAO", ID } });
@@ -97,6 +100,9 @@ namespace GeradorDeTestes.Infra.Data
             }
         }
 
+        #endregion
+
+        #region montar e ler objetos
         private Dictionary<string, object> RetornaDictionaryDeAlternativa(Alternativa alternativa)
         {
             return new Dictionary<string, object>
@@ -109,6 +115,16 @@ namespace GeradorDeTestes.Infra.Data
             };
         }
 
+        Dictionary<string, object> IAlternativaRepository.RetornaDictionaryDeAlternativa(Alternativa alternativa)
+        {
+            throw new NotImplementedException();
+        }
+
+        Func<IDataReader, Alternativa> IAlternativaRepository.FormaObjetoAlternativa(IDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
         private static Func<IDataReader, Alternativa> FormaObjetoAlternativa = reader =>
             
             new Alternativa
@@ -119,10 +135,10 @@ namespace GeradorDeTestes.Infra.Data
                 IdQuestao = Convert.ToInt32(reader["IDQUESTAO"]),
                 Letra = Convert.ToChar(reader["LETRA"])
             };
+        #endregion
 
 
-
-}
+    }
 }
 
 

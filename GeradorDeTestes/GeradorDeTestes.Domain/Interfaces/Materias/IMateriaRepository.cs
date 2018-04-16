@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Interfaces.Materias
 {
-    interface IMateriaRepository : IRepository<Materia>
+   public interface IMateriaRepository : IRepository<Materia>
     {
         Dictionary<string, object> RetornaDictionaryDeMateria(Disciplina disciplina);
         Func<IDataReader, Disciplina> FormaObjetoMateria(IDataReader reader);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Interfaces.Testes
 {
-    interface ITesteRepository : IRepository<Teste>
+   public interface ITesteRepository : IRepository<Teste>
     {
         void AddTesteQuestao(int IdQuestao, int IdTeste, int PosicaoNoTeste);
 

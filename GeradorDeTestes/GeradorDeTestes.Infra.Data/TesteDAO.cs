@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Domain.Interfaces.Testes;
 using GeradorDeTestes.Infra.SQL;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace GeradorDeTestes.Infra.Data
 {
 
-    public class TesteDAO
+    public class TesteDAO : ITesteRepository
     {
         private DBManager _dbManager;
         private QuestaoDAO _questaoDAO;
@@ -85,6 +86,7 @@ namespace GeradorDeTestes.Infra.Data
 
         #endregion Scripts SQL
 
+        #region métodos
         public int Add(Teste teste)
         {
             try
@@ -201,7 +203,30 @@ namespace GeradorDeTestes.Infra.Data
             }
         }
 
-          private static Func<IDataReader, Teste> FormaObjetoTeste = reader =>
+        #endregion
+
+        #region formar e ler objetos
+        Dictionary<string, object> ITesteRepository.RetornaDictionaryDeTeste(Teste teste)
+        {
+            throw new NotImplementedException();
+        }
+
+        Func<IDataReader, Teste> ITesteRepository.FormaObjetoTeste(IDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        Func<IDataReader, Resposta> ITesteRepository.FormaObjetoResposta(IDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Editar(Teste entidade)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static Func<IDataReader, Teste> FormaObjetoTeste = reader =>
 
           new Teste
           {
@@ -224,7 +249,7 @@ namespace GeradorDeTestes.Infra.Data
              Numero = Convert.ToInt32(reader["QUESTAO_TESTE"]),
              Letra = Convert.ToChar(reader["RESPOSTA"])
           };
-
+        #endregion
 
     }
 }

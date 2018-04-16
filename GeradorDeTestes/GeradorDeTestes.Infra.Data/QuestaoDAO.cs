@@ -1,4 +1,5 @@
 ﻿using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Domain.Interfaces.Questoes;
 using GeradorDeTestes.Infra.SQL;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Infra.Data
 {
-    public class QuestaoDAO
+    public class QuestaoDAO : IQuestaoRepository
     {
         private DBManager _dbManager;
         private static AlternativaDAO _alternativaDao;
@@ -66,6 +67,7 @@ namespace GeradorDeTestes.Infra.Data
                                                             WHERE IDMATERIA = {0}IDMATERIA";
         #endregion Scripts SQL
 
+        
         #region Métodos
         public int Add(Questao questao)
         {
@@ -142,6 +144,23 @@ namespace GeradorDeTestes.Infra.Data
               
             };
 
+        }
+
+   
+
+        Dictionary<string, object> IQuestaoRepository.RetornaDictionaryDeQuestao(Questao questao)
+        {
+            throw new NotImplementedException();
+        }
+
+        Func<IDataReader, Questao> IQuestaoRepository.FormaObjetoQuestao(IDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        Func<IDataReader, Questao> IQuestaoRepository.FormaQuantidade(IDataReader reader)
+        {
+            throw new NotImplementedException();
         }
 
         public static Func<IDataReader, Questao> FormaObjetoQuestao = reader =>
