@@ -1,6 +1,5 @@
 ﻿using GeradorDeTestes.Applications;
 using GeradorDeTestes.WinApp;
-using GeradorDeTestes.WinApp.Features;
 using GeradorDeTestes.WinApp.Features.DisciplinaModule;
 using GeradorDeTestes.WinApp.Features.MateriaModule;
 using GeradorDeTestes.WinApp.Features.QuestaoModule;
