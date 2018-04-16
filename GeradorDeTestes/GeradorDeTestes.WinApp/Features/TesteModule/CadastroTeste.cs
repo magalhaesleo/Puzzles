@@ -27,12 +27,12 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 teste.Id = 0;
                 teste.Nome = txtNome.Text; 
                 teste.Materia = (Materia)cmbMateria.SelectedItem;
-                teste.NumeroDeQuestoes = (int)numQuestoes.Value;
                 teste.DataGeracao = DateTime.Parse(txtData.Text);
                 teste.Questoes = _serviceTeste.SelecionaQuestoesAleatorias((int)numQuestoes.Value, teste.Materia.Id);
 
                 return teste;
             }
+
         }
 
         public CadastroTeste(List<Materia> listMaterias, List<Disciplina> listDisciplinas, TesteService serviceTeste,QuestaoService questaoService)

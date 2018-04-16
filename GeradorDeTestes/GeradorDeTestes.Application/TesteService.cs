@@ -3,6 +3,7 @@ using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Domain.Interfaces;
 using GeradorDeTestes.Infra;
 using GeradorDeTestes.Infra.Data;
+using GeradorDeTestes.Infra.Exportação;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace GeradorDeTestes.Applications
         private TesteDAO _testeDAO;
         private QuestaoService _questaoService;
         private AlternativaService _alternativaService;
+        private IRepository<Teste> _repositorio;
+        private ExportarTesteParaArquivo _export = new ExportarTesteParaArquivo();
 
 
         public TesteService()
@@ -37,37 +40,25 @@ namespace GeradorDeTestes.Applications
                 throw new Exception(e.Message);
             }
         }
-
-        public void GerarTeste(Teste teste, string path)
+        public Teste CarregarQuestoesTeste(Teste teste)
         {
-            if (teste.Id == 0)
+            List<Questao> listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
+
+            foreach (var questao in listQuestoesDoTeste)
             {
-                teste.Id = Adicionar(teste);
-
-                var x = 1;
-
-                foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
-                {
-                    _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, teste.Id, x);
-                    x++;
-                }
-
+                questao.Alternativas = _alternativaService.SelecionarAlternativasPorQuestao(questao.Id);
             }
-            else
-            {
-                List<Questao> listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
+            teste.Questoes = listQuestoesDoTeste;
 
-                foreach (var questao in listQuestoesDoTeste)
-                {
-                    questao.Alternativas = _alternativaService.SelecionarAlternativasPorQuestao(questao.Id);
-                }
-                teste.Questoes = listQuestoesDoTeste;
-            }
-
+            return teste;
+        }
+        public void ExportarPDF(Teste teste, string path)
+        {
             List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
 
             GeraPDF geraPdf = new GeraPDF(teste, gabarito);
             geraPdf.TesteToPDF(path);
+
         }
 
 
@@ -83,22 +74,30 @@ namespace GeradorDeTestes.Applications
             geraPdf.GeraGabarito(path);
         }
 
-        public void ExportarXMLTeste(Teste teste)
+        public void ExportarXMLTeste(Teste teste, string path)
         {
-            //chamar respoitry
+            _export.TesteParaXML(teste, path);
         }
 
-        public void ExportarCSVTeste(Teste teste)
+        public void ExportarCSVTeste(Teste teste, string path)
         {
-            //chamar respoitry
+            _export.ObjetoParaCSV(teste, path);
         }
 
-        public  int Adicionar(Teste teste)
+        public int Adicionar(Teste teste)
         {
-            int idTeste = 0;
             try
             {
-                return idTeste = _testeDAO.Add(teste);
+                teste.Id = _testeDAO.Add(teste);
+                int x = 1;
+
+                foreach (Questao questaoQueEstaSendoAdicionada in teste.Questoes)
+                {
+                    _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, teste.Id, x);
+                    x++;
+                }
+
+                return teste.Id;
             }
             catch (Exception e)
             {

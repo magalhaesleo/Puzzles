@@ -148,7 +148,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         public void definirVisibleButtons(ButtonsVisible buttonsVisible)
         {
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Visible = buttonsVisible.btnExportar;
         }
     }
 }

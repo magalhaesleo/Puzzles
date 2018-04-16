@@ -141,7 +141,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         public void definirVisibleButtons(ButtonsVisible buttonsVisible)
         {
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Visible = buttonsVisible.btnExportar;
         }
 
         public override ToolStripVisible ObtemVisibleToolStrip()

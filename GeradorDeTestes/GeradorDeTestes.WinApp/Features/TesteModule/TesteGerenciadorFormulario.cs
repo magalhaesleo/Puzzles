@@ -19,6 +19,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
         MateriaService _materiaService;
         TesteControl _testeControl;
         QuestaoService _questaoService;
+        ButtonsEnable _buttonsEnable;
 
         public TesteGerenciadorFormulario()
         {
@@ -26,6 +27,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             _materiaService = new MateriaService();
             _disciplinaService = new DisciplinaService();
             _questaoService = new QuestaoService();
+            _buttonsEnable = ObtemEnableButtons();
         }
 
         public override void Adicionar()
@@ -48,7 +50,10 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         string path = saveFileDialog1.FileName;
-                        _testeService.GerarTeste(dialogTeste.Teste, path);
+
+                        Teste testeAdicionado = dialogTeste.Teste;
+                        _testeService.Adicionar(testeAdicionado);
+                        _testeService.ExportarPDF(testeAdicionado, path);
                         MessageBox.Show("Teste gerado com sucesso");
                         System.Diagnostics.Process.Start(path);
                     }
@@ -100,10 +105,10 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             {
                 throw new Exception(e.Message);
             }
-
-
-
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = ObtemEnableButtons().btnExcluir;
+            
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = _buttonsEnable.btnExcluir;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Enabled = _buttonsEnable.btnExportar;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Enabled = _buttonsEnable.btnGerarGabarito;
 
             AtualizarListagem();
         }
@@ -144,18 +149,17 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string path = saveFileDialog.FileName;
-
+                        testeSelecionadaNoListBox = _testeService.CarregarQuestoesTeste(testeSelecionadaNoListBox);
                         switch (rbSelecionado)
                         {
                             case 1:
-                                _testeService.GerarTeste(testeSelecionadaNoListBox, path);
-                                //mudar?
+                                _testeService.ExportarPDF(testeSelecionadaNoListBox, path);
                                 break;
                             case 2:
-                                _testeService.ExportarXMLTeste(testeSelecionadaNoListBox);
+                                _testeService.ExportarXMLTeste(testeSelecionadaNoListBox, path);
                                 break;
                             case 3:
-                                _testeService.ExportarCSVTeste(testeSelecionadaNoListBox);
+                                _testeService.ExportarCSVTeste(testeSelecionadaNoListBox, path);
                                 break;
                             default:
                                 throw new Exception("Formato selecionado não foi encontrado.");
@@ -217,7 +221,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 btnAdicionar = true,
                 btnEditar = false,
                 btnExcluir = true,
-                btnVisualizarTeste = true,
+                btnExportar = true,
                 btnGerarGabarito = true
             };
         }
@@ -229,7 +233,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 btnAdicionar = true,
                 btnEditar = false,
                 btnExcluir = false,
-                btnVisualizarTeste = false,
+                btnExportar = false,
                 btnGerarGabarito = false
             };
         }
@@ -237,7 +241,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
         public void DefinirEnableButtons(ButtonsEnable buttonsEnable)
         {
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Enabled = buttonsEnable.btnGerarGabarito;
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Enabled = buttonsEnable.btnVisualizarTeste;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Enabled = buttonsEnable.btnExportar;
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnAdicionar.Enabled = buttonsEnable.btnAdicionar;
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnEditar.Enabled = buttonsEnable.btnEditar;
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnExcluir.Enabled = buttonsEnable.btnExcluir;

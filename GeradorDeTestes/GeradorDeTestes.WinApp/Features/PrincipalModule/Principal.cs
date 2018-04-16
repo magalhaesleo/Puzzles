@@ -195,7 +195,7 @@ namespace GeradorDeTestes.WinApp
             btnAdicionar.Visible = buttonsVisible.btnAdicionar;
             btnEditar.Visible = buttonsVisible.btnEditar;
             btnExcluir.Visible = buttonsVisible.btnExcluir;
-            btnExportarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+            btnExportarTeste.Visible = buttonsVisible.btnExportar;
             btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
         }
 
@@ -205,7 +205,7 @@ namespace GeradorDeTestes.WinApp
             btnEditar.Enabled = buttonsEnable.btnEditar;
             btnExcluir.Enabled = buttonsEnable.btnExcluir;
             btnGerarGabarito.Enabled = buttonsEnable.btnGerarGabarito;
-            btnExportarTeste.Enabled = buttonsEnable.btnVisualizarTeste;
+            btnExportarTeste.Enabled = buttonsEnable.btnExportar;
         }
         private void definirPropriedadeVisibleToolStrip(ToolStripVisible toolStripVisible)
         {
