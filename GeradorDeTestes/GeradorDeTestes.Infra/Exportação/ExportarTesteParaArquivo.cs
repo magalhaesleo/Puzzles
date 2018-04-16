@@ -19,7 +19,7 @@ namespace GeradorDeTestes.Infra.Exportação
 
         public override void ObjetoParaCSV(Teste teste, string path)
         {
-            using (StreamWriter writer = new StreamWriter(path))
+            using (StreamWriter writer = new StreamWriter(path, false, Encoding.UTF8))
             {
                 CsvWriter csvWriter = new CsvWriter(writer);
                 csvWriter.Configuration.Delimiter = ";";

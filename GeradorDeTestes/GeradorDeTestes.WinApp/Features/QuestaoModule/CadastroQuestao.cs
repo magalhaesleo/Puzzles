@@ -153,6 +153,15 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
             try
             {
+
+                foreach (Alternativa a in chkListBoxAlternativas.Items)
+                {
+                    if(alt.Enunciado == a.Enunciado)
+                    {
+                        throw new Exception("Alternativa já cadastrada!");
+                    }
+                }
+
                 txtAlternativa.Text = null;
                 alt.Validate();
 
