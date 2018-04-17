@@ -129,6 +129,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
         public override UserControl CarregarListControl()
         {
+            AtualizarListagem();
             return IOCuserControl.SerieControl;
         }
     }

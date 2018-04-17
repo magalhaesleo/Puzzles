@@ -148,6 +148,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override UserControl CarregarListControl()
         {
+            AtualizarListagem();
             return IOCuserControl.DisciplinaControl;
         }
     }

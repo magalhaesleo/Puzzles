@@ -244,6 +244,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public override UserControl CarregarListControl()
         {
+            AtualizarListagem();
             return IOCuserControl.TesteControl;
         }
     }

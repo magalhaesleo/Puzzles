@@ -15,8 +15,6 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 {
     public class QuestaoGerenciadorFormulario : GerenciadorFormulario
     {
-        public QuestaoControl _questaoControl { get; private set; }
-
         public override void Adicionar()
         {
             CadastroQuestao dialogQuestao = new CadastroQuestao(IOCService.MateriaService.GetAll());
@@ -41,13 +39,13 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override void AtualizarListagem()
         {
-            _questaoControl.listarQuestoes(IOCService.QuestaoService.GetAll());
-            _questaoControl.listaComboBoxes(IOCService.MateriaService.GetAll());
+            IoC.IOCuserControl.QuestaoControl.listarQuestoes(IOCService.QuestaoService.GetAll());
+            IoC.IOCuserControl.QuestaoControl.listaComboBoxes(IOCService.MateriaService.GetAll());
         }
 
         public override void Editar()
         {
-            CadastroQuestao dialogQuestao = new CadastroQuestao(IOCService.MateriaService.GetAll(), _questaoControl.RetornaQuestaoSelecionadaNoListBox());
+            CadastroQuestao dialogQuestao = new CadastroQuestao(IOCService.MateriaService.GetAll(), IoC.IOCuserControl.QuestaoControl.RetornaQuestaoSelecionadaNoListBox());
        
              DialogResult resultado = dialogQuestao.ShowDialog();
 
@@ -71,7 +69,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override void Excluir()
         {
-            var questaoSelecionadaNoListBox = _questaoControl.RetornaQuestaoSelecionadaNoListBox();
+            var questaoSelecionadaNoListBox = IoC.IOCuserControl.QuestaoControl.RetornaQuestaoSelecionadaNoListBox();
             try
             {
                 DialogResult resultado = MessageBox.Show("Tem certeze que deseja excluir essa questão?", "Informativo", MessageBoxButtons.YesNo);
@@ -139,6 +137,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override UserControl CarregarListControl()
         {
+            AtualizarListagem();
             return IOCuserControl.QuestaoControl;
         }
     }

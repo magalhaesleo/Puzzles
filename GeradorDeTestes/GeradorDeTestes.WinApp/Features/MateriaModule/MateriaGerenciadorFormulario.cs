@@ -137,6 +137,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public override UserControl CarregarListControl()
         {
+            AtualizarListagem();
             return IOCuserControl.MateriaControl;
         }
     }
