@@ -1,35 +1,29 @@
 ﻿using System;
 using GeradorDeTestes.Domain.Entidades;
-using GeradorDeTestes.Infra.Data;
 using System.Collections.Generic;
 using GeradorDeTestes.Domain.Interfaces;
+using GeradorDeTestes.Application.IoC;
 
 namespace GeradorDeTestes.Applications
 {
     public class AlternativaService : IService<Alternativa>
     {
-        private AlternativaDAO _alternativaDao;
-
-        public AlternativaService()
-        {
-            _alternativaDao = new AlternativaDAO();
-        }
 
         public List<Alternativa> SelecionarAlternativasPorQuestao(int idQuestao)
         {
-           return _alternativaDao.PegarAlternativasDaQuestaoPorID(idQuestao);
+            return IOCdao.AlternativaDAO.PegarAlternativasDaQuestaoPorID(idQuestao);
         }
 
         public int Adicionar(Alternativa alternativa)
         {
-           return _alternativaDao.Add(alternativa);
+            return IOCdao.AlternativaDAO.Add(alternativa);
         }
 
         public void Editar(Alternativa alternativa)
         {
             try
             {
-                _alternativaDao.Editar(alternativa);
+                IOCdao.AlternativaDAO.Editar(alternativa);
             }
             catch (Exception e)
             {
@@ -41,7 +35,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                _alternativaDao.Excluir(alternativa);
+                IOCdao.AlternativaDAO.Excluir(alternativa);
             }
             catch (Exception e)
             {
@@ -53,12 +47,13 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return _alternativaDao.GetAll();
+                return IOCdao.AlternativaDAO.GetAll();
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
         }
+
     }
 }

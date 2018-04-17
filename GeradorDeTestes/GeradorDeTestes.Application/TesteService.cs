@@ -1,8 +1,8 @@
-﻿using GeradorDeTestes.Applications;
+﻿using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Domain.Interfaces;
 using GeradorDeTestes.Infra;
-using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,24 +13,12 @@ namespace GeradorDeTestes.Applications
 {
     public class TesteService : IService<Teste>
     {
-        private TesteDAO _testeDAO;
-        private QuestaoService _questaoService;
-        private AlternativaService _alternativaService;
-
-
-        public TesteService()
-        {
-            //FAZER IOC (receber os 3 por parametro)
-            _testeDAO = new TesteDAO();
-            _questaoService = new QuestaoService();
-            _alternativaService = new AlternativaService();
-        }
 
         public List<Questao> SelecionaQuestoesAleatorias(int limit, int idMateria)
         {
             try
             {
-                return _testeDAO.PegarQuestoesAleatoriasPorMateria(limit, idMateria);
+                return IOCdao.TesteDAO.PegarQuestoesAleatoriasPorMateria(limit, idMateria);
             }
             catch (Exception e)
             {
@@ -48,39 +36,41 @@ namespace GeradorDeTestes.Applications
 
                 foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
                 {
-                    _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, teste.Id, x);
+                    IOCdao.TesteDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, teste.Id, x);
                     x++;
                 }
 
             }
             else
             {
-                List<Questao> listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
+                List<Questao> listQuestoesDoTeste = IOCdao.TesteDAO.PegarQuestoesPorTeste(teste.Id);
 
                 foreach (var questao in listQuestoesDoTeste)
                 {
-                    questao.Alternativas = _alternativaService.SelecionarAlternativasPorQuestao(questao.Id);
+                    questao.Alternativas = IOCService.AlternativaService.SelecionarAlternativasPorQuestao(questao.Id);
                 }
                 teste.Questoes = listQuestoesDoTeste;
             }
 
             List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
 
-            GeraPDF geraPdf = new GeraPDF(teste, gabarito);
-            geraPdf.TesteToPDF(path);
+            IOCGerarPDF.GeraPDF.Teste = teste;
+            IOCGerarPDF.GeraPDF.Gabarito = gabarito;
+            IOCGerarPDF.GeraPDF.TesteToPDF(path);
         }
 
 
         public List<Resposta> GerarListaDeRespostas(int idTeste)
         {
-            return _testeDAO.PegarRespostasPorTeste(idTeste);
+            return IOCdao.TesteDAO.PegarRespostasPorTeste(idTeste);
         }
 
         public void GerarPDFGabarito(Teste teste, string path)
         {
             List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
-            GeraPDF geraPdf = new GeraPDF(teste, gabarito);
-            geraPdf.GeraGabarito(path);
+            IOCGerarPDF.GeraPDF.Teste = teste;
+            IOCGerarPDF.GeraPDF.Gabarito = gabarito;
+            IOCGerarPDF.GeraPDF.GeraGabarito(path);
         }
 
         public void ExportarXMLTeste(Teste teste)
@@ -93,12 +83,12 @@ namespace GeradorDeTestes.Applications
             //chamar respoitry
         }
 
-        public  int Adicionar(Teste teste)
+        public int Adicionar(Teste teste)
         {
             int idTeste = 0;
             try
             {
-                return idTeste = _testeDAO.Add(teste);
+                return idTeste = IOCdao.TesteDAO.Add(teste);
             }
             catch (Exception e)
             {
@@ -115,7 +105,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                _testeDAO.Excluir(teste);
+                IOCdao.TesteDAO.Excluir(teste);
             }
             catch (Exception e)
             {
@@ -127,7 +117,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return _testeDAO.GetAll();
+                return IOCdao.TesteDAO.GetAll();
             }
             catch (Exception e)
             {

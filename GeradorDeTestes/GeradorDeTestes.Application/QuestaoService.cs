@@ -1,6 +1,6 @@
-﻿using GeradorDeTestes.Domain.Entidades;
+﻿using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Domain.Interfaces;
-using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,36 +11,29 @@ namespace GeradorDeTestes.Applications
 {
     public class QuestaoService : IService<Questao>
     {
-        private QuestaoDAO _questaoDAO;
-        private AlternativaService _alternativaService;
-
-        public QuestaoService()
-        {
-            _questaoDAO = new QuestaoDAO();
-            _alternativaService = new AlternativaService();
-        }
-
+   
         public List<Questao> selecionarQuestoesPorMateria(int idMateria)
         {
-            return _questaoDAO.SelecionarQuestoesPorMateria(idMateria);
+            return IOCdao.QuestaoDAO.SelecionarQuestoesPorMateria(idMateria);
         }
 
         public List<int> VerificarQuantidadeDeQuestoesPorMateria(int idMateria)
         {
-           return _questaoDAO.VerificarQuantidadeDeQuestoesPorMateria(idMateria);
+            return IOCdao.QuestaoDAO.VerificarQuantidadeDeQuestoesPorMateria(idMateria);
         }
 
         public int Adicionar(Questao questao)
         {
             try
             {
-                var idQuestao = _questaoDAO.Add(questao);
-                return idQuestao;
+                var idQuestao = IOCdao.QuestaoDAO.Add(questao);
+                
                 foreach (var alternativa in questao.Alternativas)
                 {
                     alternativa.IdQuestao = idQuestao;
-                    _alternativaService.Adicionar(alternativa);
+                    IOCService.AlternativaService.Adicionar(alternativa);
                 }
+                return idQuestao;
 
             }
             catch (Exception e)
@@ -51,14 +44,14 @@ namespace GeradorDeTestes.Applications
 
         public void Editar(Questao questao)
         {
-            _questaoDAO.Editar(questao);
+            IOCdao.QuestaoDAO.Editar(questao);
 
             if (questao.Alternativas.Count > 0)
             {
 
                 foreach (var alternativa in questao.Alternativas)
                 {
-                    _alternativaService.Adicionar(alternativa);
+                    IOCService.AlternativaService.Adicionar(alternativa);
                 }
             }
         }
@@ -67,7 +60,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                _questaoDAO.Excluir(questao);
+                IOCdao.QuestaoDAO.Excluir(questao);
             }
             catch (Exception e)
             {
@@ -79,7 +72,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return _questaoDAO.GetAll();
+                return IOCdao.QuestaoDAO.GetAll();
             }
             catch (Exception e)
             {
