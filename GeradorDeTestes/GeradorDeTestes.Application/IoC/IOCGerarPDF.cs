@@ -9,6 +9,7 @@ namespace GeradorDeTestes.Application.IoC
 {
     public static class IOCGerarPDF
     {
+        #region atributos e parâmetros para PDF
         private static GeraPDF _gerarPDF;
 
         public static GeraPDF GeraPDF
@@ -17,7 +18,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_gerarPDF == null)
                 {
-                    return new GeraPDF();
+                    return _gerarPDF = new GeraPDF();
                 }
                 else
                 {
@@ -25,5 +26,7 @@ namespace GeradorDeTestes.Application.IoC
                 }
             }
         }
+        #endregion
+
     }
 }

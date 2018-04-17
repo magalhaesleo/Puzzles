@@ -9,7 +9,7 @@ namespace GeradorDeTestes.Application.IoC
 {
    public static class IOCService
     {
-        #region
+        #region atributos e instâncias Serviços
         private static AlternativaService _alternativaService;
         private static DisciplinaService _disciplinaService;
         private static QuestaoService _questaoService;
@@ -23,7 +23,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_alternativaService == null)
                 {
-                    return new AlternativaService();
+                    return _alternativaService = new AlternativaService();
                 }
                 else
                 {
@@ -37,7 +37,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_disciplinaService == null)
                 {
-                    return new DisciplinaService();
+                    return _disciplinaService = new DisciplinaService();
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_questaoService == null)
                 {
-                    return new QuestaoService();
+                    return _questaoService = new QuestaoService();
                 }
                 else
                 {
@@ -65,7 +65,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_materiaService == null)
                 {
-                    return new MateriaService();
+                    return _materiaService =  new MateriaService();
                 }
                 else
                 {
@@ -79,7 +79,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_serieService == null)
                 {
-                    return new SerieService();
+                    return _serieService = new SerieService();
                 }
                 else
                 {
@@ -93,7 +93,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_testeService == null)
                 {
-                    return new TesteService();
+                    return _testeService = new TesteService();
                 }
                 else
                 {

@@ -16,10 +16,11 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         private List<Materia> _materias;
         private List<Questao> _listaQuestoes;
 
+        public List<Materia> ListMaterias { get { return _materias; } set { this._materias = value; } }
         public QuestaoControl(List<Materia> materias = null)
         {
             InitializeComponent();
-            _materias = materias;
+            ListMaterias = materias;
 
             popularComboBoxes();
         }

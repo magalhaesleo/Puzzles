@@ -25,7 +25,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_alternativaDao == null)
                 {
-                    return new AlternativaDAO();
+                    return _alternativaDao=  new AlternativaDAO();
                 }
                 else
                 {
@@ -39,7 +39,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_disciplinaDAO == null)
                 {
-                    return new DisciplinaDAO();
+                    return _disciplinaDAO = new DisciplinaDAO();
                 }
                 else
                 {
@@ -53,7 +53,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_materiaDAO == null)
                 {
-                    return new MateriaDAO();
+                    return _materiaDAO = new MateriaDAO();
                 }
                 else
                 {
@@ -67,7 +67,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_serieDAO == null)
                 {
-                    return new SerieDAO();
+                    return _serieDAO = new SerieDAO();
                 }
                 else
                 {
@@ -81,7 +81,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_testeDAO == null)
                 {
-                    return new TesteDAO();
+                    return _testeDAO = new TesteDAO();
                 }
                 else
                 {
@@ -95,7 +95,7 @@ namespace GeradorDeTestes.Application.IoC
             {
                 if (_questaoDAO == null)
                 {
-                    return new QuestaoDAO();
+                    return _questaoDAO = new QuestaoDAO();
                 }
                 else
                 {
