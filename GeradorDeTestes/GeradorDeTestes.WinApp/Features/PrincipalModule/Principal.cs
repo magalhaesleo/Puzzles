@@ -21,14 +21,6 @@ namespace GeradorDeTestes.WinApp
 {
     public partial class Principal : Form
     {
-        private GerenciadorFormulario _gerenciador;
-
-        private DisciplinaGerenciadorFormulario _gerenciadorDisciplina;
-        private MateriaGerenciadorFormulario _gerenciadorMateria;
-        private SerieGerenciadorFormulario _gerenciadorSerie;
-        private QuestaoGerenciadorFormulario _gerenciadorQuestao;
-        private TesteGerenciadorFormulario _gerenciadorTeste;
-
         public Principal()
         {
             InitializeComponent();
@@ -42,7 +34,7 @@ namespace GeradorDeTestes.WinApp
 
         private void CarregarGerenciador(GerenciadorFormulario gerenciador)
         {
-            _gerenciador = gerenciador;
+            IoC  = gerenciador;
 
             definirPropriedadeEnableDosBotoes(_gerenciador.ObtemEnableButtons());
             definirPropriedadeVisibleDosBotoes(_gerenciador.ObtemVisibleButtons());

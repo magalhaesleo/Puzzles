@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Interfaces.Questoes
 {
-    interface IQuestaoRepository : IRepository<Questao>
+  public  interface IQuestaoRepository : IRepository<Questao>
     {
         List<Questao> SelecionarQuestoesPorMateria(int IdMateria);
-        List<Questao> VerificarQuantidadeDeQuestoesPorMateria(int IdMateria);
+        List<int> VerificarQuantidadeDeQuestoesPorMateria(int IdMateria);
         Dictionary<string, object> RetornaDictionaryDeQuestao(Questao questao);
         Func<IDataReader, Questao> FormaObjetoQuestao(IDataReader reader);
         Func<IDataReader, Questao> FormaQuantidade(IDataReader reader);

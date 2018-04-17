@@ -11,7 +11,7 @@ using GeradorDeTestes.Domain.helpers.ToolStripVisible;
 
 namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
-    class MateriaGerenciadorFormulario : GerenciadorFormulario
+    public class MateriaGerenciadorFormulario : GerenciadorFormulario
     {
         MateriaService _materiaService;
         MateriaControl _materiaControl;

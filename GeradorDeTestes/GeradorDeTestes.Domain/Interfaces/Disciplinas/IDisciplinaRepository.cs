@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Domain.Interfaces.Disciplinas
 {
-    interface IDisciplinaRepository : IRepository<Disciplina>
+    public interface IDisciplinaRepository : IRepository<Disciplina>
     {
         Dictionary<string, object> RetornaDictionaryDeDisciplina(Disciplina disciplina);
         Func<IDataReader, Disciplina> FormaObjetoDisciplina(IDataReader reader);

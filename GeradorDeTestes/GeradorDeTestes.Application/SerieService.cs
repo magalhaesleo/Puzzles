@@ -1,6 +1,6 @@
-﻿using GeradorDeTestes.Domain.Entidades;
+﻿using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Domain.Interfaces;
-using GeradorDeTestes.Infra.Data;
 using System;
 using System.Collections.Generic;
 
@@ -8,21 +8,13 @@ namespace GeradorDeTestes.Applications
 {
     public class SerieService : IService<Serie>
     {
-        private SerieDAO _serieDAO;
-        private MateriaDAO _materiaDAO;
-
-        public SerieService()
-        {
-            _serieDAO = new SerieDAO();
-            _materiaDAO = new MateriaDAO();
-        }
 
         public int Adicionar(Serie serie)
         {
             try
             {
                 validarExistenciaSerie(serie);
-                return _serieDAO.Add(serie);
+                return IOCdao.SerieDAO.Add(serie);
             }
             catch (Exception e)
             {
@@ -34,7 +26,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                _serieDAO.Editar(serie);
+                IOCdao.SerieDAO.Editar(serie);
             }
             catch (Exception e)
             {
@@ -46,7 +38,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                List<Materia> listaMateria = _materiaDAO.GetAll();
+                List<Materia> listaMateria = IOCdao.MateriaDAO.GetAll();
                 foreach (Materia materia in listaMateria)
                 {
                     if (serie.Id == materia.Serie.Id)
@@ -54,7 +46,7 @@ namespace GeradorDeTestes.Applications
                         throw new Exception("Não foi possivel excluir, a serie está sendo utilizada!");
                     }
                 }
-                _serieDAO.Excluir(serie);
+                IOCdao.SerieDAO.Excluir(serie);
             }
             catch (Exception e)
             {
@@ -66,7 +58,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return _serieDAO.GetAll();
+                return IOCdao.SerieDAO.GetAll();
             }
             catch (Exception e)
             {

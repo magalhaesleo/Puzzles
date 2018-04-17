@@ -12,7 +12,8 @@ using GeradorDeTestes.Domain.Entidades;
 
 namespace GeradorDeTestes.WinApp.Features.TesteModule
 {
-    class TesteGerenciadorFormulario : GerenciadorFormulario
+
+   public class TesteGerenciadorFormulario : GerenciadorFormulario
     {
         TesteService _testeService;
         DisciplinaService _disciplinaService;

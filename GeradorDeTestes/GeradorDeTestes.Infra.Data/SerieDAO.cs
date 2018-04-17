@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Domain.Interfaces.Series;
 using GeradorDeTestes.Infra.SQL;
 
 namespace GeradorDeTestes.Infra.Data
 {
-    public class SerieDAO
+    public class SerieDAO : ISerieRepository
     {
         private DBManager _dbManager;
 
@@ -36,7 +37,7 @@ namespace GeradorDeTestes.Infra.Data
 
         #endregion Scripts SQL
 
-
+        #region métodos
         public int Add(Serie serie)
         {
             try
@@ -85,6 +86,9 @@ namespace GeradorDeTestes.Infra.Data
             }
         }
 
+        #endregion
+
+        #region montar e ler objetos
         private Dictionary<string, object> RetornaDictionaryDeSerie(Serie serie)
         {
             return new Dictionary<string, object>
@@ -94,6 +98,16 @@ namespace GeradorDeTestes.Infra.Data
             };
         }
 
+        Dictionary<string, object> ISerieRepository.RetornaDictionaryDeSerie(Serie serie)
+        {
+            throw new NotImplementedException();
+        }
+
+        Func<IDataReader, Serie> ISerieRepository.FormaObjetoSerie(IDataReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
         private static Func<IDataReader, Serie> FormaObjetoSerie = reader =>
           
            new Serie
@@ -101,5 +115,6 @@ namespace GeradorDeTestes.Infra.Data
               Id = Convert.ToInt32(reader["ID"]),
               Numero = Convert.ToInt32(reader["NUMERO"])
           };
+        #endregion
     }
 }

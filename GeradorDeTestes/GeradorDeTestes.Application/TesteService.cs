@@ -1,9 +1,8 @@
-﻿using GeradorDeTestes.Applications;
+﻿using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Domain.Interfaces;
 using GeradorDeTestes.Infra;
-using GeradorDeTestes.Infra.Data;
-using GeradorDeTestes.Infra.Exportação;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,85 +13,82 @@ namespace GeradorDeTestes.Applications
 {
     public class TesteService : IService<Teste>
     {
-        private TesteDAO _testeDAO;
-        private QuestaoService _questaoService;
-        private AlternativaService _alternativaService;
-        private IRepository<Teste> _repositorio;
-        private ExportarTesteParaArquivo _exportarTeste = new ExportarTesteParaArquivo();
-
-
-        public TesteService()
-        {
-            //FAZER IOC (receber os 3 por parametro)
-            _testeDAO = new TesteDAO();
-            _questaoService = new QuestaoService();
-            _alternativaService = new AlternativaService();
-        }
 
         public List<Questao> SelecionaQuestoesAleatorias(int limit, int idMateria)
         {
             try
             {
-                return _testeDAO.PegarQuestoesAleatoriasPorMateria(limit, idMateria);
+                return IOCdao.TesteDAO.PegarQuestoesAleatoriasPorMateria(limit, idMateria);
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
         }
-        public Teste CarregarQuestoesTeste(Teste teste)
-        {
-            List<Questao> listQuestoesDoTeste = _testeDAO.PegarQuestoesPorTeste(teste.Id);
 
-            foreach (var questao in listQuestoesDoTeste)
+        public void GerarTeste(Teste teste, string path)
+        {
+            if (teste.Id == 0)
             {
-                questao.Alternativas = _alternativaService.SelecionarAlternativasPorQuestao(questao.Id);
+                teste.Id = Adicionar(teste);
+
+                var x = 1;
+
+                foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
+                {
+                    IOCdao.TesteDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, teste.Id, x);
+                    x++;
+                }
+
             }
-            teste.Questoes = listQuestoesDoTeste;
+            else
+            {
+                List<Questao> listQuestoesDoTeste = IOCdao.TesteDAO.PegarQuestoesPorTeste(teste.Id);
 
-            return teste;
-        }
-        public void ExportarPDF(Teste teste, string path)
-        {
-            _exportarTeste.GerarPDF(teste, GerarListaDeRespostas(teste.Id), path);
+                foreach (var questao in listQuestoesDoTeste)
+                {
+                    questao.Alternativas = IOCService.AlternativaService.SelecionarAlternativasPorQuestao(questao.Id);
+                }
+                teste.Questoes = listQuestoesDoTeste;
+            }
 
+            List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
+
+            IOCGerarPDF.GeraPDF.Teste = teste;
+            IOCGerarPDF.GeraPDF.Gabarito = gabarito;
+            IOCGerarPDF.GeraPDF.TesteToPDF(path);
         }
 
 
         public List<Resposta> GerarListaDeRespostas(int idTeste)
         {
-            return _testeDAO.PegarRespostasPorTeste(idTeste);
+            return IOCdao.TesteDAO.PegarRespostasPorTeste(idTeste);
         }
 
         public void GerarPDFGabarito(Teste teste, string path)
         {
-            _exportarTeste.GabaritoToPDF(teste, GerarListaDeRespostas(teste.Id), path);
+            List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
+            IOCGerarPDF.GeraPDF.Teste = teste;
+            IOCGerarPDF.GeraPDF.Gabarito = gabarito;
+            IOCGerarPDF.GeraPDF.GeraGabarito(path);
         }
 
-        public void ExportarXMLTeste(Teste teste, string path)
+        public void ExportarXMLTeste(Teste teste)
         {
-            _exportarTeste.GerarXML(teste, path);
+            //chamar respoitry
         }
 
-        public void ExportarCSVTeste(Teste teste, string path)
+        public void ExportarCSVTeste(Teste teste)
         {
-            _exportarTeste.GerarCSV(teste, path);
+            //chamar respoitry
         }
 
         public int Adicionar(Teste teste)
         {
+            int idTeste = 0;
             try
             {
-                teste.Id = _testeDAO.Add(teste);
-                int x = 1;
-
-                foreach (Questao questaoQueEstaSendoAdicionada in teste.Questoes)
-                {
-                    _testeDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, teste.Id, x);
-                    x++;
-                }
-
-                return teste.Id;
+                return idTeste = IOCdao.TesteDAO.Add(teste);
             }
             catch (Exception e)
             {
@@ -109,7 +105,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                _testeDAO.Excluir(teste);
+                IOCdao.TesteDAO.Excluir(teste);
             }
             catch (Exception e)
             {
@@ -121,7 +117,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return _testeDAO.GetAll();
+                return IOCdao.TesteDAO.GetAll();
             }
             catch (Exception e)
             {

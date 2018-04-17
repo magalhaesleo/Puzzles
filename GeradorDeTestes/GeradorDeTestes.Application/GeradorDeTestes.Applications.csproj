@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlternativaService.cs" />
+    <Compile Include="IoC\IOCdao.cs" />
+    <Compile Include="IoC\IOCGerarPDF.cs" />
+    <Compile Include="IoC\IOCService.cs" />
     <Compile Include="QuestaoService.cs" />
     <Compile Include="SerieService.cs" />
     <Compile Include="MateriaService.cs" />
@@ -59,7 +62,7 @@
       <Name>GeradorDeTestes.Infra.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\GeradorDeTestes.Infra\GeradorDeTestes.Infra.csproj">
-      <Project>{BEE7FCD4-6A19-4D3D-A50B-2BE9C8948B89}</Project>
+      <Project>{bee7fcd4-6a19-4d3d-a50b-2be9c8948b89}</Project>
       <Name>GeradorDeTestes.Infra</Name>
     </ProjectReference>
   </ItemGroup>

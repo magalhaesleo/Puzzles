@@ -53,10 +53,9 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override UserControl CarregarListControl()
         {
-            if (_questaoControl == null)
-                _questaoControl = new QuestaoControl(_materiaService.GetAll());
+            IoC.IOCuserControl.QuestaoControl.ListMaterias = _materiaService.GetAll();
             AtualizarListagem();
-            return _questaoControl;
+            return IoC.IOCuserControl.QuestaoControl;
         }
 
         public override void Editar()
