@@ -8,19 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Application.IoC;
 
 namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 {
     public partial class QuestaoControl : UserControl
     {
-        private List<Materia> _materias;
         private List<Questao> _listaQuestoes;
 
-        public List<Materia> ListMaterias { get { return _materias; } set { this._materias = value; } }
-        public QuestaoControl(List<Materia> materias = null)
+        public List<Materia> ListMaterias { get; set; }
+        public QuestaoControl()
         {
             InitializeComponent();
-            ListMaterias = materias;
+
+            ListMaterias = IOCService.MateriaService.GetAll();
 
             popularComboBoxes();
         }
@@ -40,7 +41,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             cmbDisciplina.Items.Clear();
             cmbMateria.Items.Clear();
 
-            foreach (Materia materia in _materias)
+            foreach (Materia materia in ListMaterias)
             {
                 if (cmbDisciplina.FindString(materia.Disciplina.ToString()) != 0)
                 {
@@ -67,7 +68,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
                     listQuestao.Items.Add(questao);
             }
 
-            foreach (Materia materia in _materias)
+            foreach (Materia materia in ListMaterias)
             {
                 if (materia.Disciplina.Id == disciplina.Id)
                 {
@@ -80,7 +81,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public void listaComboBoxes(List<Materia> listaMaterias)
         {
-            _materias = listaMaterias;
+            ListMaterias = listaMaterias;
             popularComboBoxes();
         }
 
