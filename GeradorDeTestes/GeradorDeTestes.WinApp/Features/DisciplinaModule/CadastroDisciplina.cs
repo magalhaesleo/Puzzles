@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.WinApp.IoC;
 
 namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 {
@@ -15,7 +17,6 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
     {
 
         private Disciplina _disciplinaParaEdicao;
-        private List<Disciplina> ListDisciplinas;
 
         public Disciplina DisciplinaEditada
         {
@@ -27,16 +28,15 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
             set { this._disciplinaParaEdicao = value; }
         }
-        public CadastroDisciplina(DisciplinaControl disciplinaControl, Boolean OperacaoDeAdicao, List<Disciplina> listaDeDisciplinas)
+        public CadastroDisciplina(bool OperacaoDeAdicao)
         {
             InitializeComponent();
-            ListDisciplinas = listaDeDisciplinas;
 
             if (!OperacaoDeAdicao)
             {
-                if (disciplinaControl.retornaItemSelecionadoNoListBox() != null)
+                if (IOCuserControl.DisciplinaControl.retornaItemSelecionadoNoListBox() != null)
                 {
-                    _disciplinaParaEdicao = disciplinaControl.retornaItemSelecionadoNoListBox();
+                    _disciplinaParaEdicao = IOCuserControl.DisciplinaControl.retornaItemSelecionadoNoListBox();
                     txtNome.Text = _disciplinaParaEdicao.Nome;
                 }
             }
@@ -56,7 +56,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         private void ValidarSeJaExisteDisciplina(Disciplina disciplina)
         {
 
-            foreach (var item in ListDisciplinas)
+            foreach (Disciplina item in IOCService.DisciplinaService.GetAll())
             {
                 if (item.Nome.ToLower() == disciplina.Nome.ToLower())
                 {

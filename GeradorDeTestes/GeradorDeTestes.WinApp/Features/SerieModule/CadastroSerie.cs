@@ -1,4 +1,5 @@
-﻿using GeradorDeTestes.Domain.Entidades;
+﻿using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.Domain.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,11 +14,9 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 {
     public partial class CadastroSerie : Form
     {
-        public List<Serie> ListadeSeries { get; private set; }
-        public CadastroSerie(List<Serie> listSeries)
+        public CadastroSerie()
         {
             InitializeComponent();
-            ListadeSeries = listSeries;
         }
 
         public Serie NovaSerie
@@ -39,7 +38,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
                 if (NovaSerie != null)
                 {
 
-                    foreach (var item in ListadeSeries)
+                    foreach (var item in IOCService.SerieService.GetAll())
                     {
                         if (item.Numero == NovaSerie.Numero)
                         {

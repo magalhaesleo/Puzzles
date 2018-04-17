@@ -22,7 +22,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public Disciplina Adicionar()
         {
-            CadastroDisciplina dialog = new CadastroDisciplina(this,true, _disciplinaService.GetAll());
+            CadastroDisciplina dialog = new CadastroDisciplina(true);
 
             DialogResult resultado = dialog.ShowDialog();
 

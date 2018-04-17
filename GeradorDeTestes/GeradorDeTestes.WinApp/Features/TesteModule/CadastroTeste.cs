@@ -9,15 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Applications;
+using GeradorDeTestes.Application.IoC;
 
 namespace GeradorDeTestes.WinApp.Features.TesteModule
 {
     public partial class CadastroTeste : Form
     {
-        private List<Materia> _listMaterias;
-        private List<Disciplina> _listDisciplinas;
-        private TesteService _serviceTeste;
-        private QuestaoService _questaoService;
 
         public Teste Teste
         {
@@ -28,26 +25,23 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 teste.Nome = txtNome.Text; 
                 teste.Materia = (Materia)cmbMateria.SelectedItem;
                 teste.DataGeracao = DateTime.Parse(txtData.Text);
-                teste.Questoes = _serviceTeste.SelecionaQuestoesAleatorias((int)numQuestoes.Value, teste.Materia.Id);
+                teste.Questoes = IOCService.TesteService.SelecionaQuestoesAleatorias((int)numQuestoes.Value, teste.Materia.Id);
 
                 return teste;
             }
 
         }
 
-        public CadastroTeste(List<Materia> listMaterias, List<Disciplina> listDisciplinas, TesteService serviceTeste,QuestaoService questaoService)
+        public CadastroTeste()
         {
             InitializeComponent();
 
-            _serviceTeste = serviceTeste;
-            _questaoService = questaoService;
             txtData.Text = string.Format("{0}/{1}/{2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year);
-            this._listMaterias = listMaterias;
-            _listDisciplinas = listDisciplinas;
+
             cmbDisciplina.Items.Clear();
             cmbMateria.Items.Clear();
 
-            foreach (Disciplina disciplina in _listDisciplinas)
+            foreach (Disciplina disciplina in IOCService.DisciplinaService.GetAll())
             {
                 cmbDisciplina.Items.Add(disciplina);
             }
@@ -59,7 +53,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             cmbMateria.Enabled = true;
             cmbMateria.Items.Clear();
             Disciplina disciplinaSelecionada = (Disciplina)cmbDisciplina.SelectedItem;
-            foreach (Materia materia in _listMaterias)
+            foreach (Materia materia in IOCService.MateriaService.GetAll())
             {
                 if (disciplinaSelecionada.Id == materia.Disciplina.Id)
                     cmbMateria.Items.Add(materia);
@@ -113,7 +107,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
         {
             numQuestoes.Enabled = true;
             Materia materia = (Materia)cmbMateria.SelectedItem;
-            List<int> quantidadeDeQuestoes = _questaoService.VerificarQuantidadeDeQuestoesPorMateria(materia.Id);
+            List<int> quantidadeDeQuestoes = IOCService.QuestaoService.VerificarQuantidadeDeQuestoesPorMateria(materia.Id);
             numQuestoes.Maximum = (int)quantidadeDeQuestoes[0];
             if(quantidadeDeQuestoes[0] < 1)
             {

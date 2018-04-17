@@ -26,7 +26,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public override void Adicionar()
         {
-            CadastroTeste dialogTeste = new CadastroTeste(IOCService.MateriaService.GetAll(), IOCService.DisciplinaService.GetAll(), IOCService.TesteService, IOCService.QuestaoService);
+            CadastroTeste dialogTeste = new CadastroTeste();
 
             DialogResult resultado = dialogTeste.ShowDialog();
 

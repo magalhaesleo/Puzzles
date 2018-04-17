@@ -1,4 +1,5 @@
-﻿using GeradorDeTestes.Applications;
+﻿using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
 using System;
 using System.Collections.Generic;
@@ -29,20 +30,18 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             set { this._materiaParaEdicao = value; }
         }
 
-        public MateriaService MateriaService { get; set; }
-        public CadastroMateria(List<Disciplina> listDisciplina, List<Serie> listSerie, MateriaControl materiaControl, Boolean OperacaoDeAdicao, MateriaService materiaService)
+        public CadastroMateria(bool OperacaoDeAdicao)
         {
             InitializeComponent();
-            this.MateriaService = materiaService;
-            popularComboBoxDisciplina(listDisciplina);
-            popularComboBoxSerie(listSerie);
+            popularComboBoxDisciplina();
+            popularComboBoxSerie();
 
             if (!OperacaoDeAdicao)
             {
-                if (materiaControl.RetornaMateriaSelecionadaNoListBox() != null)
+                if (IoC.IOCuserControl.MateriaControl.RetornaMateriaSelecionadaNoListBox() != null)
                 {
-                    _materiaParaEdicao = materiaControl.RetornaMateriaSelecionadaNoListBox();
-                    txtMateria.Text = materiaControl.RetornaMateriaSelecionadaNoListBox().Nome;
+                    _materiaParaEdicao = IoC.IOCuserControl.MateriaControl.RetornaMateriaSelecionadaNoListBox();
+                    txtMateria.Text = IoC.IOCuserControl.MateriaControl.RetornaMateriaSelecionadaNoListBox().Nome;
 
                     cmbDisciplina.SelectedIndex = cmbDisciplina.FindString(_materiaParaEdicao.Disciplina.ToString());
                     cmbSerie.SelectedIndex = cmbSerie.FindString(_materiaParaEdicao.Serie.ToString());
@@ -64,29 +63,29 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             }
         }
 
-        public void popularComboBoxDisciplina(List<Disciplina> listDisciplina)
+        public void popularComboBoxDisciplina()
         {
             cmbDisciplina.Items.Clear();
 
-            foreach (var item in listDisciplina)
+            foreach (Disciplina disciplina in IOCService.DisciplinaService.GetAll())
             {
-                cmbDisciplina.Items.Add(item);
+                cmbDisciplina.Items.Add(disciplina);
             }
 
         }
 
-        public void popularComboBoxSerie(List<Serie> listSerie)
+        public void popularComboBoxSerie()
         {
             cmbSerie.Items.Clear();
-            foreach (var item in listSerie)
+            foreach (Serie serie in IOCService.SerieService.GetAll())
             {
-                cmbSerie.Items.Add(item);
+                cmbSerie.Items.Add(serie);
             }
         }
 
         private void ValidarSeExisteNoBanco(Materia materia)
         {
-            List<Materia> listMaterias = MateriaService.GetAll();
+            List<Materia> listMaterias = IOCService.MateriaService.GetAll();
             if (materia.Id == 0)
             {
                 foreach (var item in listMaterias)
@@ -116,7 +115,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
                     MateriaEditada.Validate();
 
 
-                    foreach (var item in MateriaService.GetAll())
+                    foreach (var item in IOCService.MateriaService.GetAll())
                     {
                         if (MateriaEditada.Nome == item.Nome && MateriaEditada.Serie.Id == item.Serie.Id && MateriaEditada.Disciplina.Id == item.Disciplina.Id)
                         {

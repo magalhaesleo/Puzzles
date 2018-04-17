@@ -17,7 +17,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
     {
         public override void Adicionar()
         {
-            CadastroQuestao dialogQuestao = new CadastroQuestao(IOCService.MateriaService.GetAll());
+            CadastroQuestao dialogQuestao = new CadastroQuestao();
 
             DialogResult resultado = dialogQuestao.ShowDialog();
 
@@ -45,7 +45,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override void Editar()
         {
-            CadastroQuestao dialogQuestao = new CadastroQuestao(IOCService.MateriaService.GetAll(), IoC.IOCuserControl.QuestaoControl.RetornaQuestaoSelecionadaNoListBox());
+            CadastroQuestao dialogQuestao = new CadastroQuestao();
        
              DialogResult resultado = dialogQuestao.ShowDialog();
 
