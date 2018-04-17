@@ -10,11 +10,10 @@ namespace GeradorDeTestes.Infra.Exportação
 {
     public abstract class ExportarParaArquivo<T>
     {
-        public abstract void ObjetoParaCSV(T objeto, string path);
+        public abstract void GerarCSV(T objeto, string path);
 
-       // public abstract void ObjetoParaPDF(T objeto, string path);
 
-        protected virtual void ObjetoParaXML(T objeto, string path)
+        public virtual void GerarXML(T objeto, string path)
         {
             XMLExtension.Serialize(objeto, path);
         }

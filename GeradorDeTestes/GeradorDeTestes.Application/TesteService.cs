@@ -18,7 +18,7 @@ namespace GeradorDeTestes.Applications
         private QuestaoService _questaoService;
         private AlternativaService _alternativaService;
         private IRepository<Teste> _repositorio;
-        private ExportarTesteParaArquivo _export = new ExportarTesteParaArquivo();
+        private ExportarTesteParaArquivo _exportarTeste = new ExportarTesteParaArquivo();
 
 
         public TesteService()
@@ -54,10 +54,7 @@ namespace GeradorDeTestes.Applications
         }
         public void ExportarPDF(Teste teste, string path)
         {
-            List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
-
-            GeraPDF geraPdf = new GeraPDF(teste, gabarito);
-            geraPdf.TesteToPDF(path);
+            _exportarTeste.GerarPDF(teste, GerarListaDeRespostas(teste.Id), path);
 
         }
 
@@ -69,19 +66,17 @@ namespace GeradorDeTestes.Applications
 
         public void GerarPDFGabarito(Teste teste, string path)
         {
-            List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
-            GeraPDF geraPdf = new GeraPDF(teste, gabarito);
-            geraPdf.GeraGabarito(path);
+            _exportarTeste.GabaritoToPDF(teste, GerarListaDeRespostas(teste.Id), path);
         }
 
         public void ExportarXMLTeste(Teste teste, string path)
         {
-            _export.TesteParaXML(teste, path);
+            _exportarTeste.GerarXML(teste, path);
         }
 
         public void ExportarCSVTeste(Teste teste, string path)
         {
-            _export.ObjetoParaCSV(teste, path);
+            _exportarTeste.GerarCSV(teste, path);
         }
 
         public int Adicionar(Teste teste)
