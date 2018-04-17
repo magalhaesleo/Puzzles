@@ -10,11 +10,11 @@ using GeradorDeTestes.Infra.SQL;
 
 namespace GeradorDeTestes.Infra.Data
 {
-    public class MateriaDAO : IMateriaRepository
+    public class MateriaRepository : IMateriaRepository
     {
         private DBManager _dbManager;
 
-        public MateriaDAO()
+        public MateriaRepository()
         {
             this._dbManager = new DBManager();
         }

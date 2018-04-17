@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace GeradorDeTestes.Infra.Data
 {
-    public class QuestaoDAO : IQuestaoRepository
+    public class QuestaoRepository : IQuestaoRepository
     {
         private DBManager _dbManager;
-        private static AlternativaDAO _alternativaDao;
+        private static AlternativaRepository _alternativaRepository;
         private static int _quantidade;
 
-        public QuestaoDAO()
+        public QuestaoRepository()
         {
             this._dbManager = new DBManager();
-            _alternativaDao = new AlternativaDAO();
+            _alternativaRepository = new AlternativaRepository();
         }
 
         #region Scripts SQL
@@ -171,7 +171,7 @@ namespace GeradorDeTestes.Infra.Data
             Enunciado = Convert.ToString(reader["ENUNCIADO_QUESTAO"]),
             Bimestre = Convert.ToInt32(reader["BIMESTRE_QUESTAO"]),
 
-            Alternativas = _alternativaDao.PegarAlternativasDaQuestaoPorID(Convert.ToInt32(reader["ID_QUESTAO"])),
+            Alternativas = _alternativaRepository.PegarAlternativasDaQuestaoPorID(Convert.ToInt32(reader["ID_QUESTAO"])),
 
             Materia = new Materia()
             {

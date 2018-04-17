@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 namespace GeradorDeTestes.Infra.Data
 {
 
-    public class TesteDAO : ITesteRepository
+    public class TesteRepository : ITesteRepository
     {
         private DBManager _dbManager;
-        private QuestaoDAO _questaoDAO;
+        private QuestaoRepository _questaoRepository;
         private static int _limit;
 
-        public TesteDAO()
+        public TesteRepository()
         {
-            _questaoDAO = new QuestaoDAO();
+            _questaoRepository = new QuestaoRepository();
             this._dbManager = new DBManager();
         }
 
@@ -159,7 +159,7 @@ namespace GeradorDeTestes.Infra.Data
                                                             ORDER BY NEWID()";
             try
             {
-                return _dbManager.GetByID(_sqlSelecionaQuestoesAleatorias, QuestaoDAO.FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria } });
+                return _dbManager.GetByID(_sqlSelecionaQuestoesAleatorias, QuestaoRepository.FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria } });
             }
             catch (Exception e)
             {
@@ -183,7 +183,7 @@ namespace GeradorDeTestes.Infra.Data
         {
             try
             {
-                return _dbManager.GetByID(_sqlSelectQuestaoPorTeste, QuestaoDAO.FormaObjetoQuestao, new Dictionary<string, object> { { "IDTESTE", idTeste } });
+                return _dbManager.GetByID(_sqlSelectQuestaoPorTeste, QuestaoRepository.FormaObjetoQuestao, new Dictionary<string, object> { { "IDTESTE", idTeste } });
             }
             catch (Exception e)
             {

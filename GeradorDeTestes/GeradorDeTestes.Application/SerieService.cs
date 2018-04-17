@@ -14,7 +14,7 @@ namespace GeradorDeTestes.Applications
             try
             {
                 validarExistenciaSerie(serie);
-                return IOCdao.SerieDAO.Add(serie);
+                return IOCRepository.SerieRepository.Add(serie);
             }
             catch (Exception e)
             {
@@ -26,7 +26,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                IOCdao.SerieDAO.Editar(serie);
+                IOCRepository.SerieRepository.Editar(serie);
             }
             catch (Exception e)
             {
@@ -38,7 +38,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                List<Materia> listaMateria = IOCdao.MateriaDAO.GetAll();
+                List<Materia> listaMateria = IOCRepository.MateriaRepository.GetAll();
                 foreach (Materia materia in listaMateria)
                 {
                     if (serie.Id == materia.Serie.Id)
@@ -46,7 +46,7 @@ namespace GeradorDeTestes.Applications
                         throw new Exception("Não foi possivel excluir, a serie está sendo utilizada!");
                     }
                 }
-                IOCdao.SerieDAO.Excluir(serie);
+                IOCRepository.SerieRepository.Excluir(serie);
             }
             catch (Exception e)
             {
@@ -58,7 +58,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return IOCdao.SerieDAO.GetAll();
+                return IOCRepository.SerieRepository.GetAll();
             }
             catch (Exception e)
             {

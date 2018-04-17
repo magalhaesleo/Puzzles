@@ -18,7 +18,7 @@ namespace GeradorDeTestes.Applications
             try
             {
                 validarExistenciaDisciplina(disciplina);
-                return IOCdao.DisciplinaDAO.Add(disciplina);
+                return IOCRepository.DisciplinaRepository.Add(disciplina);
             }
             catch (Exception e)
             {
@@ -30,7 +30,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                IOCdao.DisciplinaDAO.Editar(disciplina);
+                IOCRepository.DisciplinaRepository.Editar(disciplina);
             }
             catch (Exception e)
             {
@@ -42,7 +42,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                List<Materia> listmateria = IOCdao.MateriaDAO.GetAll();
+                List<Materia> listmateria = IOCRepository.MateriaRepository.GetAll();
                 foreach (Materia materia in listmateria)
                 {
                     if (materia.Disciplina.Id == disciplina.Id)
@@ -50,7 +50,7 @@ namespace GeradorDeTestes.Applications
                         throw new Exception("Não foi possivel excluir, a disciplina esta sendo utilizada!");
                     }
                 }
-                IOCdao.DisciplinaDAO.Excluir(disciplina);
+                IOCRepository.DisciplinaRepository.Excluir(disciplina);
             }
             catch (Exception e)
             {
@@ -62,12 +62,12 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return IOCdao.DisciplinaDAO.GetAll();
+                return IOCRepository.DisciplinaRepository.GetAll();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                return IOCdao.DisciplinaDAO.GetAll();
+                return IOCRepository.DisciplinaRepository.GetAll();
             }
         }
 
