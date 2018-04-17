@@ -26,6 +26,10 @@ namespace GeradorDeTestes.WinApp.IoC
             {
                 return _gerenciadorFormulario;
             }
+            set
+            {
+                _gerenciadorFormulario = value;
+            }
         }
 
         public static DisciplinaGerenciadorFormulario DisciplinaGerenciadorFormulario

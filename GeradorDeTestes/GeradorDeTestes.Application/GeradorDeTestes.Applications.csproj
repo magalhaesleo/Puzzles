@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="AlternativaService.cs" />
     <Compile Include="IoC\IOCdao.cs" />
-    <Compile Include="IoC\IOCGerarPDF.cs" />
+    <Compile Include="IoC\IOCExportarTesteParaArquivo.cs" />
     <Compile Include="IoC\IOCService.cs" />
     <Compile Include="QuestaoService.cs" />
     <Compile Include="SerieService.cs" />

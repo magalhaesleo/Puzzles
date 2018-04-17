@@ -9,6 +9,7 @@ using GeradorDeTestes.Domain.helpers.ButtonsEnable;
 using GeradorDeTestes.Domain.helpers.ToolStripVisible;
 using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
+using GeradorDeTestes.Application.IoC;
 
 namespace GeradorDeTestes.WinApp.Features.TesteModule
 {
@@ -28,7 +29,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             _materiaService = new MateriaService();
             _disciplinaService = new DisciplinaService();
             _questaoService = new QuestaoService();
-            _buttonsEnable = ObtemEnableButtons();
+            _buttonsEnable = new ButtonsEnable();
         }
 
         public override void Adicionar()
@@ -150,17 +151,17 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string path = saveFileDialog.FileName;
-                        testeSelecionadaNoListBox = _testeService.CarregarQuestoesTeste(testeSelecionadaNoListBox);
+                        testeSelecionadaNoListBox = IOCService.TesteService.CarregarQuestoesTeste(testeSelecionadaNoListBox);
                         switch (rbSelecionado)
                         {
                             case 1:
-                                _testeService.ExportarPDF(testeSelecionadaNoListBox, path);
+                                IOCService.TesteService.ExportarPDF(testeSelecionadaNoListBox, path);
                                 break;
                             case 2:
-                                _testeService.ExportarXMLTeste(testeSelecionadaNoListBox, path);
+                                IOCService.TesteService.ExportarXMLTeste(testeSelecionadaNoListBox, path);
                                 break;
                             case 3:
-                                _testeService.ExportarCSVTeste(testeSelecionadaNoListBox, path);
+                                IOCService.TesteService.ExportarCSVTeste(testeSelecionadaNoListBox, path);
                                 break;
                             default:
                                 throw new Exception("Formato selecionado não foi encontrado.");
