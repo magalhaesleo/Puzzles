@@ -1,4 +1,5 @@
-﻿using GeradorDeTestes.Applications;
+﻿using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
 using System;
 using System.Collections.Generic;
@@ -18,18 +19,14 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         ContextMenu cm;
         int ttIndex;
         ToolTip toolTip1 = new ToolTip();
-        List<Materia> _materias;
         private int _idQuestaoEdicao;
-        private AlternativaService _alternativaService;
 
         private Questao _questaoParaEdicao;
 
 
-        public CadastroQuestao(List<Materia> materias)
+        public CadastroQuestao()
         {
             InitializeComponent();
-
-            _materias = materias;
             popularComboBoxes();
             cm = new ContextMenu();
             cm.MenuItems.Add("Excluir alternativa");
@@ -37,7 +34,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             btnAdicionar.Enabled = false;
         }
 
-        public CadastroQuestao(List<Materia> materias, Questao questaoParaEditar) : this(materias)
+        public CadastroQuestao(Questao questaoParaEditar) : this()
         {
             _questaoParaEdicao = questaoParaEditar;
             cmbDisciplina.SelectedIndex = cmbDisciplina.FindString(questaoParaEditar.Materia.Disciplina.ToString());
@@ -45,7 +42,6 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             numBimestre.Value = questaoParaEditar.Bimestre;
             txtEnunciadoQuestao.Text = questaoParaEditar.Enunciado;
             _idQuestaoEdicao = questaoParaEditar.Id;
-            _alternativaService = new AlternativaService();
 
             foreach (Alternativa alternativa in questaoParaEditar.Alternativas)
             {
@@ -90,7 +86,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             {
                 foreach (var item in _questaoParaEdicao.Alternativas)
                     {
-                      _alternativaService.Excluir(item);
+                    IOCService.AlternativaService.Excluir(item);
                     
                     }
                 _questaoParaEdicao.Alternativas = new List<Alternativa>();
@@ -120,7 +116,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             cmbDisciplina.Items.Clear();
             cmbMateria.Items.Clear();
 
-            foreach (Materia materia in _materias)
+            foreach (Materia materia in IOCService.MateriaService.GetAll())
             {
                 if (cmbDisciplina.FindString(materia.Disciplina.ToString()) != 0)
                 {
@@ -333,13 +329,13 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         private void cmbDisciplina_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_materias[(cmbMateria.SelectedIndex + 1)] != null)
+            if (IOCService.MateriaService.GetAll()[(cmbMateria.SelectedIndex + 1)] != null)
             {
                 cmbMateria.Items.Clear();
             }
 
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
-            foreach (Materia materia in _materias)
+            foreach (Materia materia in IOCService.MateriaService.GetAll())
             {
                 if (materia.Disciplina.Id == disciplina.Id)
                 {
@@ -363,7 +359,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
                     excluida = alt;
                     if(alternativa.Id > 0)
                     {
-                        _alternativaService.Excluir(alternativa);
+                        IOCService.AlternativaService.Excluir(alternativa);
                     }
                 }
             }

@@ -19,7 +19,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
         public override void Adicionar()
         {
-            CadastroSerie dialogSerie = new CadastroSerie(IOCService.SerieService.GetAll());
+            CadastroSerie dialogSerie = new CadastroSerie();
 
             DialogResult resultado = dialogSerie.ShowDialog();
 

@@ -19,7 +19,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override void Adicionar()
         {
-            CadastroDisciplina dialogDisciplina = new CadastroDisciplina(IoC.IOCuserControl.DisciplinaControl, true, IOCService.DisciplinaService.GetAll());
+            CadastroDisciplina dialogDisciplina = new CadastroDisciplina(true);
 
             DialogResult resultado = dialogDisciplina.ShowDialog();
 
@@ -76,7 +76,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         public override void Editar()
         {
 
-            CadastroDisciplina disciplinaPopUp = new CadastroDisciplina(IoC.IOCuserControl.DisciplinaControl, false, IOCService.DisciplinaService.GetAll());
+            CadastroDisciplina disciplinaPopUp = new CadastroDisciplina(false);
 
             DialogResult resultado = disciplinaPopUp.ShowDialog();
 
