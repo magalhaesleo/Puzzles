@@ -8,23 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeradorDeTestes.Domain.helpers.ToolStripVisible;
+using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.WinApp.IoC;
+using GeradorDeTestes.Domain.Entidades;
 
 namespace GeradorDeTestes.WinApp.Features.SerieModule
 {
     public class SerieGerenciadorFormulario : GerenciadorFormulario
     {
 
-        SerieService _serieService;
-        SerieControl _serieControl;
-
-        public SerieGerenciadorFormulario()
-        {
-            _serieService = new SerieService();
-        }
-
         public override void Adicionar()
         {
-            CadastroSerie dialogSerie = new CadastroSerie(_serieService.GetAll());
+            CadastroSerie dialogSerie = new CadastroSerie(IOCService.SerieService.GetAll());
 
             DialogResult resultado = dialogSerie.ShowDialog();
 
@@ -32,7 +27,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
             {
                 try
                 {
-                    _serieService.Adicionar(dialogSerie.NovaSerie);
+                    IOCService.SerieService.Adicionar(dialogSerie.NovaSerie);
                     MessageBox.Show("Série adicionada");
                 }
                 catch (Exception e)
@@ -51,7 +46,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
         public override void Excluir()
         {
-            var serieSelecionadaNoListBox = _serieControl.retornaSerieSelecionadaNoListBox();
+            Serie serieSelecionadaNoListBox = IOCuserControl.SerieControl.retornaSerieSelecionadaNoListBox();
 
             try
             {
@@ -59,7 +54,7 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _serieService.Excluir(serieSelecionadaNoListBox);
+                    IOCService.SerieService.Excluir(serieSelecionadaNoListBox);
                     MessageBox.Show("Série excluída com sucesso");
                 }
 
@@ -75,35 +70,15 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
             AtualizarListagem();
         }
 
-        public override UserControl CarregarListControl()
-        {
-            if (_serieControl == null)
-                _serieControl = new SerieControl();
-
-            AtualizarListagem();
-            return _serieControl;
-        }
 
         public override void AtualizarListagem()
         {
-            _serieControl.listarSeries(_serieService.GetAll());
+            IOCuserControl.SerieControl.listarSeries(IOCService.SerieService.GetAll());
         }
 
         public override string ObtemTipo()
         {
             return "Série";
-        }
-
-        private SerieService obterSerieService()
-        {
-            if (_serieService == null)
-            {
-                return new SerieService();
-            }
-            else
-            {
-                return _serieService;
-            }
         }
 
         public override ButtonsVisible ObtemVisibleButtons()
@@ -150,6 +125,12 @@ namespace GeradorDeTestes.WinApp.Features.SerieModule
             {
                 toolStripBotoes = true
             };
+        }
+
+        public override UserControl CarregarListControl()
+        {
+            AtualizarListagem();
+            return IOCuserControl.SerieControl;
         }
     }
 }

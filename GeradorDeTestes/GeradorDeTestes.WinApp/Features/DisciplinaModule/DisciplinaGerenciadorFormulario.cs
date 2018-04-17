@@ -9,23 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeradorDeTestes.Domain.helpers.ToolStripVisible;
+using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.WinApp.IoC;
 
 namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 {
     public class DisciplinaGerenciadorFormulario : GerenciadorFormulario
     {
-        DisciplinaService _disciplinaService;
-        DisciplinaControl _disciplinaControl;
-
-
-        public DisciplinaGerenciadorFormulario()
-        {
-            _disciplinaService = new DisciplinaService();
-        }
 
         public override void Adicionar()
         {
-            CadastroDisciplina dialogDisciplina = new CadastroDisciplina(_disciplinaControl, true, _disciplinaService.GetAll());
+            CadastroDisciplina dialogDisciplina = new CadastroDisciplina(IoC.IOCuserControl.DisciplinaControl, true, IOCService.DisciplinaService.GetAll());
 
             DialogResult resultado = dialogDisciplina.ShowDialog();
 
@@ -33,7 +27,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             {
                 try
                 {
-                    _disciplinaService.Adicionar(dialogDisciplina.NovaDisciplina);
+                    IOCService.DisciplinaService.Adicionar(dialogDisciplina.NovaDisciplina);
                     MessageBox.Show("Disciplina adicionada");
                 }
                 catch (Exception e)
@@ -46,17 +40,9 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             AtualizarListagem();
         }
 
-        public override UserControl CarregarListControl()
-        {
-            if (_disciplinaControl == null)
-                _disciplinaControl = new DisciplinaControl();
-            AtualizarListagem();
-            return _disciplinaControl;
-        }
-
         public override void Excluir()
         {
-            var disciplinasSelecionadaNoListBox = _disciplinaControl.retornaItemSelecionadoNoListBox();
+            var disciplinasSelecionadaNoListBox = IoC.IOCuserControl.DisciplinaControl.retornaItemSelecionadoNoListBox();
             try
             {
 
@@ -64,7 +50,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _disciplinaService.Excluir(disciplinasSelecionadaNoListBox);
+                    IOCService.DisciplinaService.Excluir(disciplinasSelecionadaNoListBox);
                     MessageBox.Show("Disciplina excluída! :)");
                 }
 
@@ -84,13 +70,13 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
 
         public override void AtualizarListagem()
         {
-            _disciplinaControl.listarDisciplinas(_disciplinaService.GetAll());
+            IoC.IOCuserControl.DisciplinaControl.listarDisciplinas(IOCService.DisciplinaService.GetAll());
         }
 
         public override void Editar()
         {
 
-            CadastroDisciplina disciplinaPopUp = new CadastroDisciplina(_disciplinaControl, false, _disciplinaService.GetAll());
+            CadastroDisciplina disciplinaPopUp = new CadastroDisciplina(IoC.IOCuserControl.DisciplinaControl, false, IOCService.DisciplinaService.GetAll());
 
             DialogResult resultado = disciplinaPopUp.ShowDialog();
 
@@ -99,7 +85,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             {
                 try
                 {
-                    _disciplinaService.Editar(disciplinaPopUp.DisciplinaEditada);
+                    IOCService.DisciplinaService.Editar(disciplinaPopUp.DisciplinaEditada);
                     MessageBox.Show("Disciplina editada!");
                 }
                 catch (Exception e)
@@ -158,6 +144,12 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
             {
                 toolStripBotoes = true
             };
+        }
+
+        public override UserControl CarregarListControl()
+        {
+            AtualizarListagem();
+            return IOCuserControl.DisciplinaControl;
         }
     }
 }

@@ -59,7 +59,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return IOCService.MateriaService.GetAll();
+                return IOCdao.MateriaDAO.GetAll();
             }
             catch (Exception e)
             {

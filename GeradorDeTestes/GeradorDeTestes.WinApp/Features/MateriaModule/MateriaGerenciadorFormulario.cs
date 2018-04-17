@@ -8,25 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeradorDeTestes.Domain.helpers.ToolStripVisible;
+using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.WinApp.IoC;
 
 namespace GeradorDeTestes.WinApp.Features.MateriaModule
 {
     public class MateriaGerenciadorFormulario : GerenciadorFormulario
     {
-        MateriaService _materiaService;
-        MateriaControl _materiaControl;
-        DisciplinaService _disciplinaService;
-        SerieService _serieService;
-        public MateriaGerenciadorFormulario()
-        {
-            _serieService = new SerieService();
-            _disciplinaService = new DisciplinaService();
-            _materiaService = new MateriaService();
-        }
-
         public override void Adicionar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.GetAll(), _serieService.GetAll(), _materiaControl, true, _materiaService);
+            CadastroMateria dialogMateria = new CadastroMateria(IOCService.DisciplinaService.GetAll(), IOCService.SerieService.GetAll(), IoC.IOCuserControl.MateriaControl, true, IOCService.MateriaService);
 
             DialogResult resultado = dialogMateria.ShowDialog();
 
@@ -34,7 +25,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             {
                 try
                 {
-                    _materiaService.Adicionar(dialogMateria.NovaMateria);
+                    IOCService.MateriaService.Adicionar(dialogMateria.NovaMateria);
                     MessageBox.Show("Matéria adicionada com sucesso");
                 }
                 catch (Exception e)
@@ -48,7 +39,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
 
         public override void Editar()
         {
-            CadastroMateria dialogMateria = new CadastroMateria(_disciplinaService.GetAll(), _serieService.GetAll(), _materiaControl, false, _materiaService);
+            CadastroMateria dialogMateria = new CadastroMateria(IOCService.DisciplinaService.GetAll(), IOCService.SerieService.GetAll(), IoC.IOCuserControl.MateriaControl, false, IOCService.MateriaService);
 
             DialogResult resultado = dialogMateria.ShowDialog();
 
@@ -56,7 +47,7 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             {
                 try
                 {
-                    _materiaService.Editar(dialogMateria.MateriaEditada);
+                    IOCService.MateriaService.Editar(dialogMateria.MateriaEditada);
                     MessageBox.Show("Matéria atualizada com sucesso");
                 }
                 catch (Exception e)
@@ -73,14 +64,14 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
         public override void Excluir()
         {
 
-            var materiaSelecionadaNoListBox = _materiaControl.RetornaMateriaSelecionadaNoListBox();
+            var materiaSelecionadaNoListBox = IoC.IOCuserControl.MateriaControl.RetornaMateriaSelecionadaNoListBox();
             try
             {
                 DialogResult resultado = MessageBox.Show("Realmente deseja excluir a matéria?", "Informativo", MessageBoxButtons.YesNo);
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _materiaService.Excluir(materiaSelecionadaNoListBox);
+                    IOCService.MateriaService.Excluir(materiaSelecionadaNoListBox);
                 }
 
             }
@@ -94,17 +85,9 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             AtualizarListagem();
         }
 
-        public override UserControl CarregarListControl()
-        {
-            if (_materiaControl == null)
-                _materiaControl = new MateriaControl();
-            AtualizarListagem();
-            return _materiaControl;
-        }
-
         public override void AtualizarListagem()
         {
-            _materiaControl.listarMaterias(_materiaService.GetAll());
+            IoC.IOCuserControl.MateriaControl.listarMaterias(IOCService.MateriaService.GetAll());
         }
 
         public override string ObtemTipo()
@@ -150,6 +133,12 @@ namespace GeradorDeTestes.WinApp.Features.MateriaModule
             {
                 toolStripBotoes = true
             };
+        }
+
+        public override UserControl CarregarListControl()
+        {
+            AtualizarListagem();
+            return IOCuserControl.MateriaControl;
         }
     }
 }

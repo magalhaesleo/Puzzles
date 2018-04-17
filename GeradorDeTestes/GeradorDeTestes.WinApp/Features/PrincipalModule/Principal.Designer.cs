@@ -128,6 +128,7 @@
             this.toolStripBotoes.Name = "toolStripBotoes";
             this.toolStripBotoes.Size = new System.Drawing.Size(849, 39);
             this.toolStripBotoes.TabIndex = 2;
+            this.toolStripBotoes.Visible = false;
             // 
             // btnAdicionar
             // 
