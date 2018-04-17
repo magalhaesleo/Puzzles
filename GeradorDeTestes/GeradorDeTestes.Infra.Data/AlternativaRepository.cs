@@ -8,12 +8,12 @@ using GeradorDeTestes.Domain.Interfaces;
 
 namespace GeradorDeTestes.Infra.Data
 {
-    public class AlternativaDAO : IAlternativaRepository
+    public class AlternativaRepository : IAlternativaRepository
     {
 
         private DBManager _dbManager;
 
-        public AlternativaDAO()
+        public AlternativaRepository()
         {
             this._dbManager = new DBManager();
         }

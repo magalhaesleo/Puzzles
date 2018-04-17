@@ -7,11 +7,11 @@ using GeradorDeTestes.Infra.SQL;
 
 namespace GeradorDeTestes.Infra.Data
 {
-    public class SerieDAO : ISerieRepository
+    public class SerieRepository : ISerieRepository
     {
         private DBManager _dbManager;
 
-        public SerieDAO()
+        public SerieRepository()
         {
             this._dbManager = new DBManager();
         }

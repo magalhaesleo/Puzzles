@@ -18,7 +18,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return IOCdao.TesteDAO.PegarQuestoesAleatoriasPorMateria(limit, idMateria);
+                return IOCRepository.TesteRepository.PegarQuestoesAleatoriasPorMateria(limit, idMateria);
             }
             catch (Exception e)
             {
@@ -27,7 +27,7 @@ namespace GeradorDeTestes.Applications
         }
         public Teste CarregarQuestoesTeste(Teste teste)
         {
-            List<Questao> listQuestoesDoTeste = IOCdao.TesteDAO.PegarQuestoesPorTeste(teste.Id);
+            List<Questao> listQuestoesDoTeste = IOCRepository.TesteRepository.PegarQuestoesPorTeste(teste.Id);
 
             foreach (var questao in listQuestoesDoTeste)
             {
@@ -39,7 +39,7 @@ namespace GeradorDeTestes.Applications
         }
         public List<Resposta> GerarListaDeRespostas(int idTeste)
         {
-            return IOCdao.TesteDAO.PegarRespostasPorTeste(idTeste);
+            return IOCRepository.TesteRepository.PegarRespostasPorTeste(idTeste);
         }
 
         public void GerarPDFGabarito(Teste teste, string path)
@@ -66,7 +66,7 @@ namespace GeradorDeTestes.Applications
             int idTeste = 0;
             try
             {
-                return idTeste = IOCdao.TesteDAO.Add(teste);
+                return idTeste = IOCRepository.TesteRepository.Add(teste);
             }
             catch (Exception e)
             {
@@ -83,7 +83,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                IOCdao.TesteDAO.Excluir(teste);
+                IOCRepository.TesteRepository.Excluir(teste);
             }
             catch (Exception e)
             {
@@ -95,7 +95,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return IOCdao.TesteDAO.GetAll();
+                return IOCRepository.TesteRepository.GetAll();
             }
             catch (Exception e)
             {

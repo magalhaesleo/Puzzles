@@ -11,19 +11,19 @@ namespace GeradorDeTestes.Applications
 
         public List<Alternativa> SelecionarAlternativasPorQuestao(int idQuestao)
         {
-            return IOCdao.AlternativaDAO.PegarAlternativasDaQuestaoPorID(idQuestao);
+            return IOCRepository.AlternativaRepository.PegarAlternativasDaQuestaoPorID(idQuestao);
         }
 
         public int Adicionar(Alternativa alternativa)
         {
-            return IOCdao.AlternativaDAO.Add(alternativa);
+            return IOCRepository.AlternativaRepository.Add(alternativa);
         }
 
         public void Editar(Alternativa alternativa)
         {
             try
             {
-                IOCdao.AlternativaDAO.Editar(alternativa);
+                IOCRepository.AlternativaRepository.Editar(alternativa);
             }
             catch (Exception e)
             {
@@ -35,7 +35,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                IOCdao.AlternativaDAO.Excluir(alternativa);
+                IOCRepository.AlternativaRepository.Excluir(alternativa);
             }
             catch (Exception e)
             {
@@ -47,7 +47,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return IOCdao.AlternativaDAO.GetAll();
+                return IOCRepository.AlternativaRepository.GetAll();
             }
             catch (Exception e)
             {
