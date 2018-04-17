@@ -11,11 +11,11 @@ using GeradorDeTestes.Infra.SQL;
 
 namespace GeradorDeTestes.Infra.Data
 {
-    public class DisciplinaDAO : IDisciplinaRepository
+    public class DisciplinaRepository : IDisciplinaRepository
     {
         private DBManager _dbManager;
 
-        public DisciplinaDAO()
+        public DisciplinaRepository()
         {
             this._dbManager = new DBManager();
         }

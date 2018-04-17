@@ -14,19 +14,19 @@ namespace GeradorDeTestes.Applications
    
         public List<Questao> selecionarQuestoesPorMateria(int idMateria)
         {
-            return IOCdao.QuestaoDAO.SelecionarQuestoesPorMateria(idMateria);
+            return IOCRepository.QuestaoRepository.SelecionarQuestoesPorMateria(idMateria);
         }
 
         public List<int> VerificarQuantidadeDeQuestoesPorMateria(int idMateria)
         {
-            return IOCdao.QuestaoDAO.VerificarQuantidadeDeQuestoesPorMateria(idMateria);
+            return IOCRepository.QuestaoRepository.VerificarQuantidadeDeQuestoesPorMateria(idMateria);
         }
 
         public int Adicionar(Questao questao)
         {
             try
             {
-                var idQuestao = IOCdao.QuestaoDAO.Add(questao);
+                var idQuestao = IOCRepository.QuestaoRepository.Add(questao);
                 
                 foreach (var alternativa in questao.Alternativas)
                 {
@@ -44,7 +44,7 @@ namespace GeradorDeTestes.Applications
 
         public void Editar(Questao questao)
         {
-            IOCdao.QuestaoDAO.Editar(questao);
+            IOCRepository.QuestaoRepository.Editar(questao);
 
             if (questao.Alternativas.Count > 0)
             {
@@ -60,7 +60,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                IOCdao.QuestaoDAO.Excluir(questao);
+                IOCRepository.QuestaoRepository.Excluir(questao);
             }
             catch (Exception e)
             {
@@ -72,7 +72,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return IOCdao.QuestaoDAO.GetAll();
+                return IOCRepository.QuestaoRepository.GetAll();
             }
             catch (Exception e)
             {

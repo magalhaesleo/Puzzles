@@ -15,7 +15,7 @@ namespace GeradorDeTestes.Applications
             try
             {
                 ValidarExistenciaMateria(materia);
-                return IOCdao.MateriaDAO.Add(materia);
+                return IOCRepository.MateriaRepository.Add(materia);
             }
             catch (Exception e)
             {
@@ -27,7 +27,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                IOCdao.MateriaDAO.Editar(materia);
+                IOCRepository.MateriaRepository.Editar(materia);
             }
             catch (Exception e)
             {
@@ -47,7 +47,7 @@ namespace GeradorDeTestes.Applications
                         throw new Exception("Não foi possivel excluir, a matéria esta sendo utilizada em uma questão!");
                     }
                 }
-                IOCdao.MateriaDAO.Excluir(materia);
+                IOCRepository.MateriaRepository.Excluir(materia);
             }
             catch (Exception e)
             {
@@ -59,7 +59,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return IOCdao.MateriaDAO.GetAll();
+                return IOCRepository.MateriaRepository.GetAll();
             }
             catch (Exception e)
             {
