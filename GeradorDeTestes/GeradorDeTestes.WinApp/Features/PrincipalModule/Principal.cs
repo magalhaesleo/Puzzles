@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GeradorDeTestes.WinApp.IoC;
 
 namespace GeradorDeTestes.WinApp
 {
@@ -27,30 +28,25 @@ namespace GeradorDeTestes.WinApp
             toolStripBotoes.Visible = false;
         }
 
-        private void gerenciadorDeDisciplinasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CarregarGerenciador(obterGerenciadorDisciplina());
-        }
-
         private void CarregarGerenciador(GerenciadorFormulario gerenciador)
         {
-            IoC  = gerenciador;
+            IOCgerenciadorFormulario.GerenciadorFormulario = gerenciador;
 
-            definirPropriedadeEnableDosBotoes(_gerenciador.ObtemEnableButtons());
-            definirPropriedadeVisibleDosBotoes(_gerenciador.ObtemVisibleButtons());
-            definirPropriedadeVisibleToolStrip(_gerenciador.ObtemVisibleToolStrip());
+            definirPropriedadeEnableDosBotoes(IOCgerenciadorFormulario.GerenciadorFormulario.ObtemEnableButtons());
+            definirPropriedadeVisibleDosBotoes(IOCgerenciadorFormulario.GerenciadorFormulario.ObtemVisibleButtons());
+            definirPropriedadeVisibleToolStrip(IOCgerenciadorFormulario.GerenciadorFormulario.ObtemVisibleToolStrip());
             
 
-            UserControl userControlType = _gerenciador.CarregarListControl();
+            UserControl userControlType = IOCgerenciadorFormulario.GerenciadorFormulario.CarregarListControl();
 
-            labelTipoCadastro.Text = "Gerenciador de " + _gerenciador.ObtemTipo();
-            btnAdicionar.Text = "Adicionar " + _gerenciador.ObtemTipo();
-            if (_gerenciador.ObtemTipo().Equals("Teste"))
+            labelTipoCadastro.Text = "Gerenciador de " + IOCgerenciadorFormulario.GerenciadorFormulario.ObtemTipo();
+            btnAdicionar.Text = "Adicionar " + IOCgerenciadorFormulario.GerenciadorFormulario.ObtemTipo();
+            if (IOCgerenciadorFormulario.GerenciadorFormulario.ObtemTipo().Equals("Teste"))
             {
-                btnAdicionar.Text = "Gerar " + _gerenciador.ObtemTipo();
+                btnAdicionar.Text = "Gerar " + IOCgerenciadorFormulario.GerenciadorFormulario.ObtemTipo();
             }
-            btnEditar.Text = "Editar " + _gerenciador.ObtemTipo();
-            btnExcluir.Text = "Excluir " + _gerenciador.ObtemTipo();
+            btnEditar.Text = "Editar " + IOCgerenciadorFormulario.GerenciadorFormulario.ObtemTipo();
+            btnExcluir.Text = "Excluir " + IOCgerenciadorFormulario.GerenciadorFormulario.ObtemTipo();
             //tela.Dock = DockStyle.Fill;
 
             panelControl.Controls.Clear();
@@ -60,29 +56,29 @@ namespace GeradorDeTestes.WinApp
 
         private void deDisciplinaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CarregarGerenciador(obterGerenciadorDisciplina());
+            CarregarGerenciador(IOCgerenciadorFormulario.DisciplinaGerenciadorFormulario);
         }
 
         private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CarregarGerenciador(obterGerenciadorMateria());
+            CarregarGerenciador(IOCgerenciadorFormulario.MateriaGerenciadorFormulario);
         }
 
         private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CarregarGerenciador(obterGerenciadorQuestao());
+            CarregarGerenciador(IOCgerenciadorFormulario.QuestaoGerenciadorFormulario);
         }
 
         private void sérieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CarregarGerenciador(obterGerenciadorSerie());
+            CarregarGerenciador(IOCgerenciadorFormulario.SerieGerenciadorFormulario);
          }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             try
             {
-                _gerenciador.Adicionar();
+                IOCgerenciadorFormulario.GerenciadorFormulario.Adicionar();
             }
             catch (Exception ex)
             {
@@ -94,7 +90,7 @@ namespace GeradorDeTestes.WinApp
         {
             try
             {
-                _gerenciador.Editar();
+                IOCgerenciadorFormulario.GerenciadorFormulario.Editar();
             }
             catch (Exception ex)
             {
@@ -107,7 +103,7 @@ namespace GeradorDeTestes.WinApp
         {            
             try
             {
-                _gerenciador.Excluir();
+                IOCgerenciadorFormulario.GerenciadorFormulario.Excluir();
             }
             catch (Exception ex)
             {
@@ -118,76 +114,20 @@ namespace GeradorDeTestes.WinApp
 
         private void btnVisualizarTeste_Click(object sender, EventArgs e)
         {
-            _gerenciadorTeste.ExportarTeste();
+            IOCgerenciadorFormulario.TesteGerenciadorFormulario.ExportarTeste();
         }
 
         private void btnGerarGabarito_Click(object sender, EventArgs e)
         {
-            _gerenciadorTeste.GerarGabarito();
+            IOCgerenciadorFormulario.TesteGerenciadorFormulario.GerarGabarito();
         }
 
-        private DisciplinaGerenciadorFormulario obterGerenciadorDisciplina()
-        {
-            if (_gerenciadorDisciplina == null)
-            {
-                return _gerenciadorDisciplina = new DisciplinaGerenciadorFormulario();
-            }
-            else
-            {
-                return _gerenciadorDisciplina;
-            }
-        }
-        private SerieGerenciadorFormulario obterGerenciadorSerie()
-        {
-            if (_gerenciadorSerie == null)
-            {
-                return _gerenciadorSerie = new SerieGerenciadorFormulario();
-            }
-            else
-            {
-                return _gerenciadorSerie;
-            }
-        }
-        private MateriaGerenciadorFormulario obterGerenciadorMateria()
-        {
-            if (_gerenciadorMateria == null)
-            {
-                return _gerenciadorMateria = new MateriaGerenciadorFormulario();
-            }
-            else
-            {
-                return _gerenciadorMateria;
-            }
-        }
-
-        private QuestaoGerenciadorFormulario obterGerenciadorQuestao()
-        {
-            if (_gerenciadorQuestao == null)
-            {
-                return _gerenciadorQuestao = new QuestaoGerenciadorFormulario();
-            }
-            else
-            {
-                return _gerenciadorQuestao;
-            }
-        }
-        private TesteGerenciadorFormulario obterGerenciadorTeste()
-        {
-            if (_gerenciadorTeste == null)
-            {
-                return _gerenciadorTeste = new TesteGerenciadorFormulario();
-            }
-            else
-            {
-                return _gerenciadorTeste;
-            }
-        }
         private void definirPropriedadeVisibleDosBotoes(ButtonsVisible buttonsVisible)
         {
             btnAdicionar.Visible = buttonsVisible.btnAdicionar;
             btnEditar.Visible = buttonsVisible.btnEditar;
             btnExcluir.Visible = buttonsVisible.btnExcluir;
-            btnExportarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+            btnExportarTeste.Visible = buttonsVisible.btnExportar;
             btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
         }
 
@@ -197,7 +137,7 @@ namespace GeradorDeTestes.WinApp
             btnEditar.Enabled = buttonsEnable.btnEditar;
             btnExcluir.Enabled = buttonsEnable.btnExcluir;
             btnGerarGabarito.Enabled = buttonsEnable.btnGerarGabarito;
-            btnExportarTeste.Enabled = buttonsEnable.btnVisualizarTeste;
+            btnExportarTeste.Enabled = buttonsEnable.btnExportar;
         }
         private void definirPropriedadeVisibleToolStrip(ToolStripVisible toolStripVisible)
         {
@@ -206,7 +146,7 @@ namespace GeradorDeTestes.WinApp
 
         private void testeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CarregarGerenciador(obterGerenciadorTeste());
+            CarregarGerenciador(IOCgerenciadorFormulario.TesteGerenciadorFormulario);
         }
     }
 }

@@ -16,10 +16,10 @@ namespace GeradorDeTestes.Infra.XML
         /// </summary>
         /// <param name="obj"></param>
         /// <returns>String in XML format</returns>
-        public static string Serialize<T>(this T objeto)
+        public static string Serialize<T>(this T objeto, string path)
         {
             StringBuilder sb = new StringBuilder();
-            using (XmlWriter writer = XmlWriter.Create(sb))
+            using (XmlWriter writer = XmlWriter.Create(new StreamWriter(path)))
             {
                 XmlSerializer serializer = new XmlSerializer(objeto.GetType());
                 serializer.Serialize(writer, objeto);

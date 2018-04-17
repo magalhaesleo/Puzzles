@@ -125,7 +125,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
                 btnAdicionar = true,
                 btnEditar = true,
                 btnExcluir = true,
-                btnVisualizarTeste = false,
+                btnExportar = false,
                 btnGerarGabarito = false
             };
         }
@@ -149,7 +149,7 @@ namespace GeradorDeTestes.WinApp.Features.DisciplinaModule
         public void definirVisibleButtons(ButtonsVisible buttonsVisible)
         {
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
-            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Visible = buttonsVisible.btnVisualizarTeste;
+            ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Visible = buttonsVisible.btnExportar;
         }
 
         public override ToolStripVisible ObtemVisibleToolStrip()

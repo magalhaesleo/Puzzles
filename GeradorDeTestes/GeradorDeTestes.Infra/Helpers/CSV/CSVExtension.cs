@@ -17,10 +17,22 @@ namespace GeradorDeTestes.Infra.CSV
         /// <returns>String in CSV format</returns>
         public static string Serialize<T>(this T objeto)
         {
+            using (TextWriter writer = new StreamWriter(@"C:\\Users\\ndduser\\Desktop\\Products.csv"))
+            {
+                CsvWriter csvWriter = new CsvWriter(writer);
+                csvWriter.Configuration.Delimiter = ";";
+                csvWriter.WriteRecord(objeto);
+            }
+            return objeto.ToString();
+        }
+
+        public static string SerializeList<T>(this List<T> objeto)
+        {
             using (StreamWriter writer = new StreamWriter(@"Teste.csv"))
             {
                 CsvWriter csvWriter = new CsvWriter(writer);
-                csvWriter.WriteRecord(objeto);
+                csvWriter.Configuration.Delimiter = ";";
+                csvWriter.WriteRecords(objeto);
             }
             return objeto.ToString();
         }

@@ -25,41 +25,18 @@ namespace GeradorDeTestes.Applications
                 throw new Exception(e.Message);
             }
         }
-
-        public void GerarTeste(Teste teste, string path)
+        public Teste CarregarQuestoesTeste(Teste teste)
         {
-            if (teste.Id == 0)
+            List<Questao> listQuestoesDoTeste = IOCdao.TesteDAO.PegarQuestoesPorTeste(teste.Id);
+
+            foreach (var questao in listQuestoesDoTeste)
             {
-                teste.Id = Adicionar(teste);
-
-                var x = 1;
-
-                foreach (var questaoQueEstaSendoAdicionada in teste.Questoes)
-                {
-                    IOCdao.TesteDAO.AddTesteQuestao(questaoQueEstaSendoAdicionada.Id, teste.Id, x);
-                    x++;
-                }
-
+                questao.Alternativas = IOCService.AlternativaService.SelecionarAlternativasPorQuestao(questao.Id);
             }
-            else
-            {
-                List<Questao> listQuestoesDoTeste = IOCdao.TesteDAO.PegarQuestoesPorTeste(teste.Id);
+            teste.Questoes = listQuestoesDoTeste;
 
-                foreach (var questao in listQuestoesDoTeste)
-                {
-                    questao.Alternativas = IOCService.AlternativaService.SelecionarAlternativasPorQuestao(questao.Id);
-                }
-                teste.Questoes = listQuestoesDoTeste;
-            }
-
-            List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
-
-            IOCGerarPDF.GeraPDF.Teste = teste;
-            IOCGerarPDF.GeraPDF.Gabarito = gabarito;
-            IOCGerarPDF.GeraPDF.TesteToPDF(path);
+            return teste;
         }
-
-
         public List<Resposta> GerarListaDeRespostas(int idTeste)
         {
             return IOCdao.TesteDAO.PegarRespostasPorTeste(idTeste);
@@ -67,20 +44,21 @@ namespace GeradorDeTestes.Applications
 
         public void GerarPDFGabarito(Teste teste, string path)
         {
-            List<Resposta> gabarito = GerarListaDeRespostas(teste.Id);
-            IOCGerarPDF.GeraPDF.Teste = teste;
-            IOCGerarPDF.GeraPDF.Gabarito = gabarito;
-            IOCGerarPDF.GeraPDF.GeraGabarito(path);
+            IOCExportarTesteParaArquivo.ExportarTeste.GabaritoToPDF(teste, GerarListaDeRespostas(teste.Id), path);
         }
 
-        public void ExportarXMLTeste(Teste teste)
+        public void ExportarXMLTeste(Teste teste, string path)
         {
-            //chamar respoitry
+            IOCExportarTesteParaArquivo.ExportarTeste.GerarXML(teste, path);
         }
 
-        public void ExportarCSVTeste(Teste teste)
+        public void ExportarCSVTeste(Teste teste, string path)
         {
-            //chamar respoitry
+            IOCExportarTesteParaArquivo.ExportarTeste.GerarCSV(teste, path);
+        }
+        public void ExportarPDF(Teste teste, string path)
+        {
+            IOCExportarTesteParaArquivo.ExportarTeste.GerarPDF(teste, GerarListaDeRespostas(teste.Id), path);
         }
 
         public int Adicionar(Teste teste)
