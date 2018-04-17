@@ -45,7 +45,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override void Editar()
         {
-            CadastroQuestao dialogQuestao = new CadastroQuestao();
+            CadastroQuestao dialogQuestao = new CadastroQuestao(IOCuserControl.QuestaoControl.RetornaQuestaoSelecionadaNoListBox());
        
              DialogResult resultado = dialogQuestao.ShowDialog();
 
