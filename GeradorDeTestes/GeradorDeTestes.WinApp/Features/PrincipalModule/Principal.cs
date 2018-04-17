@@ -25,7 +25,6 @@ namespace GeradorDeTestes.WinApp
         public Principal()
         {
             InitializeComponent();
-            toolStripBotoes.Visible = false;
         }
 
         private void CarregarGerenciador(GerenciadorFormulario gerenciador)
@@ -35,7 +34,6 @@ namespace GeradorDeTestes.WinApp
             definirPropriedadeEnableDosBotoes(IOCgerenciadorFormulario.GerenciadorFormulario.ObtemEnableButtons());
             definirPropriedadeVisibleDosBotoes(IOCgerenciadorFormulario.GerenciadorFormulario.ObtemVisibleButtons());
             definirPropriedadeVisibleToolStrip(IOCgerenciadorFormulario.GerenciadorFormulario.ObtemVisibleToolStrip());
-            
 
             UserControl userControlType = IOCgerenciadorFormulario.GerenciadorFormulario.CarregarListControl();
 

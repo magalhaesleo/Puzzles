@@ -4,28 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GeradorDeTestes.Application.IoC;
 using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.helpers;
 using GeradorDeTestes.Domain.helpers.ButtonsEnable;
 using GeradorDeTestes.Domain.helpers.ToolStripVisible;
+using GeradorDeTestes.WinApp.IoC;
 
 namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 {
     public class QuestaoGerenciadorFormulario : GerenciadorFormulario
     {
-        private MateriaService _materiaService;
-        private QuestaoService _questaoService;
-        public QuestaoGerenciadorFormulario()
-        {
-            _materiaService = new MateriaService();
-            _questaoService = new QuestaoService();
-        }
-
         public QuestaoControl _questaoControl { get; private set; }
 
         public override void Adicionar()
         {
-            CadastroQuestao dialogQuestao = new CadastroQuestao(_materiaService.GetAll());
+            CadastroQuestao dialogQuestao = new CadastroQuestao(IOCService.MateriaService.GetAll());
 
             DialogResult resultado = dialogQuestao.ShowDialog();
 
@@ -33,7 +27,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             {
                 try
                 {
-                    _questaoService.Adicionar(dialogQuestao.NovaQuestao);
+                    IOCService.QuestaoService.Adicionar(dialogQuestao.NovaQuestao);
                     MessageBox.Show("Questão adicionada com sucesso");
                 }
                 catch (Exception e)
@@ -47,20 +41,13 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         public override void AtualizarListagem()
         {
-            _questaoControl.listarQuestoes(_questaoService.GetAll());
-            _questaoControl.listaComboBoxes(_materiaService.GetAll());
-        }
-
-        public override UserControl CarregarListControl()
-        {
-            IoC.IOCuserControl.QuestaoControl.ListMaterias = _materiaService.GetAll();
-            AtualizarListagem();
-            return IoC.IOCuserControl.QuestaoControl;
+            _questaoControl.listarQuestoes(IOCService.QuestaoService.GetAll());
+            _questaoControl.listaComboBoxes(IOCService.MateriaService.GetAll());
         }
 
         public override void Editar()
         {
-            CadastroQuestao dialogQuestao = new CadastroQuestao(_materiaService.GetAll(), _questaoControl.RetornaQuestaoSelecionadaNoListBox());
+            CadastroQuestao dialogQuestao = new CadastroQuestao(IOCService.MateriaService.GetAll(), _questaoControl.RetornaQuestaoSelecionadaNoListBox());
        
              DialogResult resultado = dialogQuestao.ShowDialog();
 
@@ -68,7 +55,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             {
                 try
                 {
-                    _questaoService.Editar(dialogQuestao.QuestaoEditada);
+                    IOCService.QuestaoService.Editar(dialogQuestao.QuestaoEditada);
                     MessageBox.Show("Questão atualizada com sucesso");
                 }
                 catch (Exception e)
@@ -91,7 +78,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _questaoService.Excluir(questaoSelecionadaNoListBox);
+                    IOCService.QuestaoService.Excluir(questaoSelecionadaNoListBox);
                 }
 
             }
@@ -148,6 +135,11 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         {
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnGerarGabarito.Visible = buttonsVisible.btnGerarGabarito;
             ControleDeReferencia.ReferenciaFormularioPrincipal.btnExportarTeste.Visible = buttonsVisible.btnExportar;
+        }
+
+        public override UserControl CarregarListControl()
+        {
+            return IOCuserControl.QuestaoControl;
         }
     }
 }

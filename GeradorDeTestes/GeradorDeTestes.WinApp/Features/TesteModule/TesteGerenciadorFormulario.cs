@@ -10,31 +10,23 @@ using GeradorDeTestes.Domain.helpers.ToolStripVisible;
 using GeradorDeTestes.Applications;
 using GeradorDeTestes.Domain.Entidades;
 using GeradorDeTestes.Application.IoC;
+using GeradorDeTestes.WinApp.IoC;
 
 namespace GeradorDeTestes.WinApp.Features.TesteModule
 {
 
    public class TesteGerenciadorFormulario : GerenciadorFormulario
     {
-        TesteService _testeService;
-        DisciplinaService _disciplinaService;
-        MateriaService _materiaService;
-        TesteControl _testeControl;
-        QuestaoService _questaoService;
         ButtonsEnable _buttonsEnable;
 
         public TesteGerenciadorFormulario()
         {
-            _testeService = new TesteService();
-            _materiaService = new MateriaService();
-            _disciplinaService = new DisciplinaService();
-            _questaoService = new QuestaoService();
             _buttonsEnable = new ButtonsEnable();
         }
 
         public override void Adicionar()
         {
-            CadastroTeste dialogTeste = new CadastroTeste(_materiaService.GetAll(), _disciplinaService.GetAll(), _testeService, _questaoService);
+            CadastroTeste dialogTeste = new CadastroTeste(IOCService.MateriaService.GetAll(), IOCService.DisciplinaService.GetAll(), IOCService.TesteService, IOCService.QuestaoService);
 
             DialogResult resultado = dialogTeste.ShowDialog();
 
@@ -54,8 +46,8 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                         string path = saveFileDialog1.FileName;
 
                         Teste testeAdicionado = dialogTeste.Teste;
-                        _testeService.Adicionar(testeAdicionado);
-                        _testeService.ExportarPDF(testeAdicionado, path);
+                        IOCService.TesteService.Adicionar(testeAdicionado);
+                        IOCService.TesteService.ExportarPDF(testeAdicionado, path);
                         MessageBox.Show("Teste gerado com sucesso");
                         System.Diagnostics.Process.Start(path);
                     }
@@ -71,17 +63,9 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public override void AtualizarListagem()
         {
-            _testeControl.listarTestes(_testeService.GetAll());
+            IOCuserControl.TesteControl.listarTestes(IOCService.TesteService.GetAll());
         }
 
-        public override UserControl CarregarListControl()
-        {
-            if (_testeControl == null)
-                _testeControl = new TesteControl();
-
-            AtualizarListagem();
-            return _testeControl;
-        }
 
         public override void Editar()
         {
@@ -90,7 +74,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public override void Excluir()
         {
-            Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
+            Teste testeSelecionadaNoListBox = IOCuserControl.TesteControl.retornaTesteSelecionadaNoListBox();
 
             try
             {
@@ -98,7 +82,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
                 if (DialogResult.Yes == resultado)
                 {
-                    _testeService.Excluir(testeSelecionadaNoListBox);
+                    IOCService.TesteService.Excluir(testeSelecionadaNoListBox);
                     MessageBox.Show("Teste excluído com sucesso");
                 }
 
@@ -144,7 +128,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
                 try
                 {
-                    Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
+                    Teste testeSelecionadaNoListBox = IOCuserControl.TesteControl.retornaTesteSelecionadaNoListBox();
                     saveFileDialog.FilterIndex = 2;
                     saveFileDialog.RestoreDirectory = true;
 
@@ -183,7 +167,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
 
         public void GerarGabarito()
         {
-            Teste testeSelecionadaNoListBox = _testeControl.retornaTesteSelecionadaNoListBox();
+            Teste testeSelecionadaNoListBox = IOCuserControl.TesteControl.retornaTesteSelecionadaNoListBox();
             try
             {
 
@@ -196,7 +180,7 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     string path = saveFileDialog1.FileName;
-                    _testeService.GerarPDFGabarito(testeSelecionadaNoListBox, path);
+                    IOCService.TesteService.GerarPDFGabarito(testeSelecionadaNoListBox, path);
                     MessageBox.Show("Gabarito do teste: " + testeSelecionadaNoListBox.Nome + " gerado!");
                     System.Diagnostics.Process.Start(path);
                 }
@@ -256,6 +240,11 @@ namespace GeradorDeTestes.WinApp.Features.TesteModule
             {
                 toolStripBotoes = true
             };
+        }
+
+        public override UserControl CarregarListControl()
+        {
+            return IOCuserControl.TesteControl;
         }
     }
 }
