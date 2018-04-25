@@ -61,7 +61,7 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             listQuestao.Items.Clear();
 
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
-            
+
             foreach (Questao questao in _listaQuestoes)
             {
                 if (disciplina.Id == questao.Materia.Disciplina.Id)
@@ -77,6 +77,8 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
             }
 
             cmbMateria.Enabled = true;
+            txtQuestaoFiltro.Enabled = false;
+            btnBuscar.Enabled = false;
         }
 
         public void listaComboBoxes(List<Materia> listaMaterias)
@@ -94,6 +96,10 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
                 if (materia.Id == questao.Materia.Id)
                     listQuestao.Items.Add(questao);
             }
+
+            txtQuestaoFiltro.Enabled = true;
+            btnBuscar.Enabled = true;
+
         }
 
         private void listQuestao_SelectedIndexChanged(object sender, EventArgs e)
@@ -108,6 +114,16 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
         public Questao RetornaQuestaoSelecionadaNoListBox()
         {
             return listQuestao.SelectedItem as Questao;
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            listQuestao.Items.Clear();
+            Materia materia = (Materia)cmbMateria.SelectedItem;
+            foreach (Questao questao in IOCService.QuestaoService.SelecionarQuestoesPorFiltro(materia.Id, txtQuestaoFiltro.Text))
+            {
+                listQuestao.Items.Add(questao);
+            }
         }
     }
 }
