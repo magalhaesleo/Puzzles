@@ -65,6 +65,11 @@ namespace GeradorDeTestes.Infra.Data
         public static string _sqlSelectQuantidadeDeQuestoesPorMateria = @"SELECT count(1)[QUANTIDADE] 
                                                             FROM TBQUESTAO 
                                                             WHERE IDMATERIA = {0}IDMATERIA";
+
+        public const string _sqlSelectQuestaoByFilter = @"SELECT FROM TBQUESTAO
+                                                          WHERE IDMATERIA = {0}IDMATERIA
+                                                          AND ENUNCIADO LIKE '%{0}CONDICAOLIKE%'
+                                                          ";
         #endregion Scripts SQL
 
         
@@ -127,6 +132,10 @@ namespace GeradorDeTestes.Infra.Data
             return _dbManager.GetByID(_sqlSelectQuantidadeDeQuestoesPorMateria, FormaQuantidade, new Dictionary<string, object> { { "IDMATERIA", idMateria }});
         }
 
+        public List<Questao> SelecionarQuestoesByFilter(int idMateria, string parametro)
+        {
+            return _dbManager.GetByID(_sqlSelectQuestaoByFilter, FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria }, {"CONDICAOLIKE", parametro} });
+        }
 
 
         #endregion
@@ -163,6 +172,7 @@ namespace GeradorDeTestes.Infra.Data
             throw new NotImplementedException();
         }
 
+        
         public static Func<IDataReader, Questao> FormaObjetoQuestao = reader =>
 
         new Questao
