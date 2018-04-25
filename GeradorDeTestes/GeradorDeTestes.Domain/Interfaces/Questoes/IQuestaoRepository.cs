@@ -16,6 +16,9 @@ namespace GeradorDeTestes.Domain.Interfaces.Questoes
         Func<IDataReader, Questao> FormaObjetoQuestao(IDataReader reader);
         Func<IDataReader, Questao> FormaQuantidade(IDataReader reader);
 
+        List<Questao> SelecionarQuestoesByFilter(int idMateria, String parametro);
+
+
 
     }
 }
