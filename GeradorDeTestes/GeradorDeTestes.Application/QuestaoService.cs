@@ -84,7 +84,7 @@ namespace GeradorDeTestes.Applications
         {
             try
             {
-                return new List<Questao>();
+                return IOCRepository.QuestaoRepository.SelecionarQuestoesByFilter(idMateria, EnunciadoParaFiltrar);
             }
             catch (Exception ex)
             {
