@@ -79,5 +79,17 @@ namespace GeradorDeTestes.Applications
                 throw new Exception(e.Message);
             }
         }
+
+        public List<Questao> SelecionarQuestoesPorFiltro(int idMateria, string EnunciadoParaFiltrar)
+        {
+            try
+            {
+                return IOCRepository.QuestaoRepository.SelecionarQuestoesByFilter(idMateria, EnunciadoParaFiltrar);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

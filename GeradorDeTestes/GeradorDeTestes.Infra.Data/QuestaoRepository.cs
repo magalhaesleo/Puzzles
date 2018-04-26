@@ -66,10 +66,21 @@ namespace GeradorDeTestes.Infra.Data
                                                             FROM TBQUESTAO 
                                                             WHERE IDMATERIA = {0}IDMATERIA";
 
-        public const string _sqlSelectQuestaoByFilter = @"SELECT FROM TBQUESTAO
-                                                          WHERE IDMATERIA = {0}IDMATERIA
-                                                          AND ENUNCIADO LIKE '%{0}CONDICAOLIKE%'
-                                                          ";
+        public const string _sqlSelectQuestaoByFilter = @"SELECT TBQ.ID[ID_QUESTAO],
+                                                            TBQ.ENUNCIADO[ENUNCIADO_QUESTAO],
+                                                            TBQ.BIMESTRE[BIMESTRE_QUESTAO],
+                                                            TBM.NOME [NOME_MATERIA] ,
+                                                            TBM.ID [ID_MATERIA],
+                                                            TBS.ID [ID_SERIE],
+                                                            TBS.NUMERO[NUMERO_SERIE],
+                                                            TBD.ID[ID_DISCIPLINA],
+                                                            TBD.NOME[NOME_DISCIPLINA]
+                                                        FROM TBQUESTAO AS TBQ
+                                                        JOIN TBMATERIA AS TBM ON TBQ.IDMATERIA = TBM.Id
+                                                        JOIN TBSERIE AS TBS ON TBM.IDSERIE = TBS.ID
+                                                        JOIN TBDISCIPLINA AS TBD ON TBM.IDDISCIPLINA = TBD.ID
+                                                        WHERE IDMATERIA = {0}IDMATERIA
+                                                        AND ENUNCIADO LIKE {0}CONDICAOLIKE";
         #endregion Scripts SQL
 
         
@@ -134,7 +145,7 @@ namespace GeradorDeTestes.Infra.Data
 
         public List<Questao> SelecionarQuestoesByFilter(int idMateria, string parametro)
         {
-            return _dbManager.GetByID(_sqlSelectQuestaoByFilter, FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria }, {"CONDICAOLIKE", parametro} });
+            return _dbManager.GetByID(_sqlSelectQuestaoByFilter, FormaObjetoQuestao, new Dictionary<string, object> { { "IDMATERIA", idMateria }, { "CONDICAOLIKE", "%" + parametro + "%" } });
         }
 
 
