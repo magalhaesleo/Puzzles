@@ -95,6 +95,8 @@
             this.txtQuestaoFiltro.Name = "txtQuestaoFiltro";
             this.txtQuestaoFiltro.Size = new System.Drawing.Size(157, 20);
             this.txtQuestaoFiltro.TabIndex = 6;
+            this.txtQuestaoFiltro.TextChanged += new System.EventHandler(this.txtQuestaoFiltro_TextChanged);
+            this.txtQuestaoFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuestaoFiltro_KeyDown);
             // 
             // label3
             // 

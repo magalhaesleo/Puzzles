@@ -118,12 +118,30 @@ namespace GeradorDeTestes.WinApp.Features.QuestaoModule
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            BuscarPorFiltro();
+        }
+
+        private void txtQuestaoFiltro_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BuscarPorFiltro();
+            }
+        }
+
+        private void BuscarPorFiltro()
+        {
             listQuestao.Items.Clear();
             Materia materia = (Materia)cmbMateria.SelectedItem;
             foreach (Questao questao in IOCService.QuestaoService.SelecionarQuestoesPorFiltro(materia.Id, txtQuestaoFiltro.Text))
             {
                 listQuestao.Items.Add(questao);
             }
+        }
+
+        private void txtQuestaoFiltro_TextChanged(object sender, EventArgs e)
+        {
+            BuscarPorFiltro();
         }
     }
 }
