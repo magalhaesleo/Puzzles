@@ -34,5 +34,35 @@ namespace Projeto_NFe.Domain.Tests.Enderecos
 
             resultadoDaValidacao.Should().Throw<ExcecaoEnderecoSemBairro>();
         }
+
+        [Test]
+        public void Endereco_Validar_ExcecaoEnderecoSemMunicipio_Falha()
+        {
+            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemMunicipio();
+
+            Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
+
+            resultadoDaValidacao.Should().Throw<ExcecaoEnderecoSemMunicipio>();
+        }
+
+        [Test]
+        public void Endereco_Validar_ExcecaoEnderecoSemPais_Falha()
+        {
+            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemPais();
+
+            Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
+
+            resultadoDaValidacao.Should().Throw<ExcecaoEnderecoSemPais>();
+        }
+
+        [Test]
+        public void Endereco_Validar_ExcecaoEnderecoSemEstado_Falha()
+        {
+            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemEstado();
+
+            Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
+
+            resultadoDaValidacao.Should().Throw<ExcecaoEnderecoSemEstado>();
+        }
     }
 }

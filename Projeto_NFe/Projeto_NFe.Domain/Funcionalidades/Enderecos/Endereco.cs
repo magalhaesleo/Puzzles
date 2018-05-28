@@ -19,6 +19,15 @@ namespace Projeto_NFe.Domain.Funcionalidades.Enderecos
         {
             if (String.IsNullOrEmpty(Bairro))
                 throw new ExcecaoEnderecoSemBairro();
+
+            if (String.IsNullOrEmpty(Municipio))
+                throw new ExcecaoEnderecoSemMunicipio();
+
+            if (String.IsNullOrEmpty(Pais))
+                throw new ExcecaoEnderecoSemPais();
+
+            if (String.IsNullOrEmpty(Estado))
+                throw new ExcecaoEnderecoSemEstado();
         }
     }
 }
