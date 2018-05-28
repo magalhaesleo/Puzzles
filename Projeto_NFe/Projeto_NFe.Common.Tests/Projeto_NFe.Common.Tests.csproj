@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71B57985-2C26-4A87-BD86-D2EE37C0A31D}</ProjectGuid>
+    <ProjectGuid>{C1F4B013-8642-42A6-A3C8-920A1A1B279C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Projeto_NFe.Domain</RootNamespace>
-    <AssemblyName>Projeto_NFe.Domain</AssemblyName>
+    <RootNamespace>Projeto_NFe.Common.Tests</RootNamespace>
+    <AssemblyName>Projeto_NFe.Common.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,14 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
-    <Compile Include="Funcionalidades\Entidade.cs" />
+    <Compile Include="Funcionalidades\Enderecos\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Excecoes\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Objetos de valor\" />
+    <ProjectReference Include="..\Projeto_NFe.Domain\Projeto_NFe.Domain.csproj">
+      <Project>{71b57985-2c26-4a87-bd86-d2ee37c0a31d}</Project>
+      <Name>Projeto_NFe.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
