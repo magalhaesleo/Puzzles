@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Domain.Entidades.Enderecos
+namespace Projeto_NFe.Domain.Funcionalidades.Enderecos
 {
     public class Endereco : Entidade
     {
@@ -16,7 +16,7 @@ namespace Projeto_NFe.Domain.Entidades.Enderecos
         public string Pais { get; set; }
         public void Validar()
         {
-
+            
         }
     }
 }
