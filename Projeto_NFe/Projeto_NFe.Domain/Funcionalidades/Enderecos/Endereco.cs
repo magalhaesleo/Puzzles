@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto_NFe.Domain.Funcionalidades.Enderecos.Excecoes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,8 @@ namespace Projeto_NFe.Domain.Funcionalidades.Enderecos
         public string Pais { get; set; }
         public void Validar()
         {
-            
+            if (String.IsNullOrEmpty(Bairro))
+                throw new ExcecaoEnderecoSemBairro();
         }
     }
 }
