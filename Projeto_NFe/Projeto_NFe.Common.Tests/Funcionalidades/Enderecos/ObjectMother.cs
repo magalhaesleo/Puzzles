@@ -73,5 +73,30 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
                 Pais = "Brasil"
             };
         }
+
+        public static Endereco PegarEnderecoSemLogradouro()
+        {
+            return new Endereco()
+            {
+                Bairro = "Santa Catarina",
+                Estado = "Santa catarina",
+                Logradouro = "",
+                Municipio = "Lages",
+                Numero = 803,
+                Pais = "Brasil"
+            };
+        }
+
+        public static Endereco PegarEnderecoSemNumero()
+        {
+            return new Endereco()
+            {
+                Bairro = "Santa Catarina",
+                Estado = "Santa catarina",
+                Logradouro = "logradouro",
+                Municipio = "Lages",
+                Pais = "Brasil"
+            };
+        }
     }
 }

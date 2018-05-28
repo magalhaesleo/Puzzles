@@ -28,6 +28,12 @@ namespace Projeto_NFe.Domain.Funcionalidades.Enderecos
 
             if (String.IsNullOrEmpty(Estado))
                 throw new ExcecaoEnderecoSemEstado();
+
+            if (String.IsNullOrEmpty(Logradouro))
+                throw new ExcecaoEnderecoSemLogradouro();
+
+            if (Numero == 0)
+                throw new ExcecaoEnderecoSemNumero();
         }
     }
 }
