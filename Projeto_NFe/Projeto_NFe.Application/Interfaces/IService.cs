@@ -1,4 +1,4 @@
-﻿using Projeto_NFe.Domain.Funcionalidades;
+﻿using Projeto_NFe.Domain.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
