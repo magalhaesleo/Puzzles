@@ -43,7 +43,6 @@
     <Compile Include="Base\Entidade.cs" />
     <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
     <Compile Include="Excecoes\ExcecaoIdentificadorIndefinido.cs" />
-    <Compile Include="Funcionalidades\CNPJs\CNPJ.cs" />
     <Compile Include="Funcionalidades\Emitentes\Emitente.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoMunicipalEmitenteComLetras.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoEstadualEmitenteComLetras.cs" />
@@ -68,8 +67,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Funcionalidades\CPFs\" />
     <Folder Include="Objetos de valor\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Projeto_NFe.Infrastructure\Projeto_NFe.Infrastructure.csproj">
+      <Project>{46825EC0-CC2C-4752-A78E-D6F816F32CCD}</Project>
+      <Name>Projeto_NFe.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
