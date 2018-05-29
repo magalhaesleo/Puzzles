@@ -1,4 +1,5 @@
-﻿using Projeto_NFe.Domain.Funcionalidades.Enderecos.Excecoes;
+﻿using Projeto_NFe.Domain.Base;
+using Projeto_NFe.Domain.Funcionalidades.Enderecos.Excecoes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
