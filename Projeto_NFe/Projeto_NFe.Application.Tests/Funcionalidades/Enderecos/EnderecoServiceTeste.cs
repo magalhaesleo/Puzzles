@@ -55,7 +55,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         [Test]
         public void EnderecoService_Atualizar_IdMenorQueUm_Falha()
         {
-            Endereco endereco = new Endereco() {Id = 0};
+            Endereco endereco = new Endereco() { Id = 0 };
 
             Action resultado = () => _enderecoService.Atualizar(endereco);
 
@@ -71,7 +71,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
 
             _enderecoService.Excluir(endereco);
 
-            _enderecoRepositorioMock.Verify()
+            _enderecoRepositorioMock.Verify();
 
             _enderecoRepositorioMock.VerifyNoOtherCalls();
         }
