@@ -4,6 +4,7 @@ using Projeto_NFe.Domain.Interfaces;
 using Projeto_NFe.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,27 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades
 {
     public class EnderecoRepositorioSql : IEnderecoRepositorio
     {
+
+        #region Scripts SQL
+
+        public const string _sqlAdicionar = @"INSERT INTO TBENDERECO 
+                                            (LOGRADOURO, NUMERO, BAIRRO, MUNICIPIO, ESTADO, PAIS) 
+                                            VALUES 
+                                            ({0}LOGRADOURO,
+                                             {0}NUMERO,
+                                             {0}BAIRRO,
+                                             {0}MUNICIPIO,
+                                             {0}ESTADO,
+                                             {0}PAIS
+                                            ); SELECT SCOPE_IDENTITY();";
+
+        #endregion Scripts SQL
+
         public Endereco Adicionar(Endereco endereco)
         {
             if (endereco.Id == 0)
             {
-                endereco.Id = Db.Adicionar(endereco);
+                endereco.Id = Db.Adicionar(_sqlAdicionar, ObterDicionarioEndereco(endereco));
                 return endereco;
             }
             else
@@ -44,39 +61,33 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades
             throw new NotImplementedException();
         }
 
-        #region montar e ler objetos
-        //private Dictionary<string, object> RetornaDictionaryDeAlternativa(Alternativa alternativa)
-        //{
-        //    return new Dictionary<string, object>
-        //    {
-        //        {"ID", alternativa.Id },
-        //        { "ENUNCIADO", alternativa.Enunciado},
-        //        { "CORRETA", alternativa.Correta },
-        //        { "IDQUESTAO", alternativa.IdQuestao },
-        //        { "LETRA", alternativa.Letra},
-        //    };
-        //}
+        #region Montar e Ler Objetos
+        private Dictionary<string, object> ObterDicionarioEndereco(Endereco endereco)
+        {
+            return new Dictionary<string, object>
+            {
+                { "ID", endereco.Id },
+                { "LOGRADOURO", endereco.Logradouro},
+                { "NUMERO", endereco.Numero },
+                { "BAIRRO", endereco.Bairro },
+                { "MUNICIPIO", endereco.Municipio},
+                { "ESTADO", endereco.Estado },
+                { "PAIS", endereco.Pais},
+            };
+        }
 
-        //Dictionary<string, object> IAlternativaRepository.RetornaDictionaryDeAlternativa(Alternativa alternativa)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private static Func<IDataReader, Endereco> FormaObjetoEndereco = reader =>
 
-        //Func<IDataReader, Alternativa> IAlternativaRepository.FormaObjetoAlternativa(IDataReader reader)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private static Func<IDataReader, Alternativa> FormaObjetoAlternativa = reader =>
-
-        //    new Alternativa
-        //    {
-        //        Id = Convert.ToInt32(reader["Id"]),
-        //        Enunciado = Convert.ToString(reader["ENUNCIADO"]),
-        //        Correta = Convert.ToBoolean(reader["CORRETA"]),
-        //        IdQuestao = Convert.ToInt32(reader["IDQUESTAO"]),
-        //        Letra = Convert.ToChar(reader["LETRA"])
-        //    };
+            new Endereco
+            {
+                Id = Convert.ToInt32(reader["Id"]),
+                Logradouro = Convert.ToString(reader["LOGRADOURO"]),
+                Numero = Convert.ToInt32(reader["NUMERO"]),
+                Bairro = Convert.ToString(reader["BAIRRO"]),
+                Municipio = Convert.ToString(reader["MUNICIPIO"]),
+                Estado = Convert.ToString(reader["ESTADO"]),
+                Pais = Convert.ToString(reader["PAIS"])
+            };
 
         #endregion
 
