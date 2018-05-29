@@ -22,7 +22,7 @@ namespace Projeto_NFe.Infrastructure.Database
             return ExecutarCommandoSql(sql, dictionary);
         }
 
-        public static long Atualizar(string sql, Dictionary<string, object> dictionary)
+        public static long Atualizar(string sql, Dictionary<string, object> dictionary = null)
         {
             return ExecutarCommandoSql(sql, dictionary);
         }

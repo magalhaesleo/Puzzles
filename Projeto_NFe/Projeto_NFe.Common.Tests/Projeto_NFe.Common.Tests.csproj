@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseSqlTeste.cs" />
     <Compile Include="Funcionalidades\Enderecos\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -47,6 +48,10 @@
     <ProjectReference Include="..\Projeto_NFe.Domain\Projeto_NFe.Domain.csproj">
       <Project>{71b57985-2c26-4a87-bd86-d2ee37c0a31d}</Project>
       <Name>Projeto_NFe.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projeto_NFe.Infrastructure\Projeto_NFe.Infrastructure.csproj">
+      <Project>{46825EC0-CC2C-4752-A78E-D6F816F32CCD}</Project>
+      <Name>Projeto_NFe.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
