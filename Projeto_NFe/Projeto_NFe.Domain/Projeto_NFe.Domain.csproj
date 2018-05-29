@@ -49,10 +49,10 @@
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemNumero.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemPais.cs" />
     <Compile Include="Funcionalidades\Entidade.cs" />
+    <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="Objetos de valor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
