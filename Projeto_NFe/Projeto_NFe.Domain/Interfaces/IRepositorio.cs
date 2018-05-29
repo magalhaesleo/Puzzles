@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Application.Interfaces
+namespace Projeto_NFe.Domain.Interfaces
 {
-    public interface IService<T> where T : Entidade
+    public interface IRepositorio<T> where T : Entidade
     {
         T Adicionar(T entidade);
         T Atualizar(T entidade);
         void Excluir(T entidade);
         IEnumerable<T> BuscarTodos();
-        T BuscarPorId(long id);
+        T BuscarPorId(long Id);
+
     }
 }

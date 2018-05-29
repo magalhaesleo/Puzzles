@@ -40,13 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Excecoes\ExcecaoIdentificadorIndefinido.cs" />
     <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
+    <Compile Include="Funcionalidades\Enderecos\IEnderecoRepositorio.cs" />
     <Compile Include="Funcionalidades\Entidade.cs" />
+    <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Excecoes\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Objetos de valor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

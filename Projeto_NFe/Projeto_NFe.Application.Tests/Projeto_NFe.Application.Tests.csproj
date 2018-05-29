@@ -82,6 +82,14 @@
       <Project>{73F8246F-A07A-4EA7-8A4C-6BC8003A9CEE}</Project>
       <Name>Projeto_NFe.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Projeto_NFe.Common.Tests\Projeto_NFe.Common.Tests.csproj">
+      <Project>{C1F4B013-8642-42A6-A3C8-920A1A1B279C}</Project>
+      <Name>Projeto_NFe.Common.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projeto_NFe.Domain\Projeto_NFe.Domain.csproj">
+      <Project>{71B57985-2C26-4A87-BD86-D2EE37C0A31D}</Project>
+      <Name>Projeto_NFe.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,20 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Projeto_NFe.Domain.Entidades.Enderecos;
+using Projeto_NFe.Application.Interfaces;
+using Projeto_NFe.Domain.Excecoes;
+using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 
 namespace Projeto_NFe.Application.Funcionalidades.Enderecos
 {
     public class EnderecoService : IEnderecoService
     {
-        public Endereco Adicionar(Endereco entidade)
+        private IEnderecoRepositorio _enderecoRepositorio;
+
+        public EnderecoService(IEnderecoRepositorio enderecoRepositorio)
         {
-            throw new NotImplementedException();
+            _enderecoRepositorio = enderecoRepositorio;
         }
 
-        public Endereco Atualizar(Endereco entidade)
+        public Endereco Adicionar(Endereco endereco)
         {
-            throw new NotImplementedException();
+            endereco.Validar();
+
+            return _enderecoRepositorio.Adicionar(endereco);
+        }
+
+        public Endereco Atualizar(Endereco endereco)
+        {
+            if(endereco.Id < 1)     
+                throw new ExcecaoIdentificadorIndefinido();
+            
+            endereco.Validar();
+            return _enderecoRepositorio.Atualizar(endereco);
         }
 
         public Endereco BuscarPorId(long id)
@@ -24,12 +39,12 @@ namespace Projeto_NFe.Application.Funcionalidades.Enderecos
             throw new NotImplementedException();
         }
 
-        public Endereco BuscarTodos()
+        public IEnumerable<Endereco> BuscarTodos()
         {
             throw new NotImplementedException();
         }
 
-        public Endereco Excluir(Endereco entidade)
+        public void Excluir(Endereco endereco)
         {
             throw new NotImplementedException();
         }
