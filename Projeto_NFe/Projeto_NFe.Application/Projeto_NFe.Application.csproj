@@ -40,7 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Enderecos\EnderecoService.cs" />
+    <Compile Include="Funcionalidades\Enderecos\IEnderecoService.cs" />
+    <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Projeto_NFe.Domain\Projeto_NFe.Domain.csproj">
+      <Project>{71B57985-2C26-4A87-BD86-D2EE37C0A31D}</Project>
+      <Name>Projeto_NFe.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
