@@ -43,6 +43,7 @@
     <Compile Include="Base\Entidade.cs" />
     <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
     <Compile Include="Excecoes\ExcecaoIdentificadorIndefinido.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Emitente.cs" />
     <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemBairro.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemEstado.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Funcionalidades\Emitentes\Excecoes\" />
     <Folder Include="Objetos de valor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
