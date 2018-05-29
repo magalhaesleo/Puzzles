@@ -81,7 +81,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoService_Deletar_Falha()
+        public void EnderecoService_Deletar_IdMenorQueUm_Falha()
         {
             Endereco endereco = new Endereco() { Id = 0 };
 
@@ -90,6 +90,47 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
             Action resultado = () => _enderecoService.Excluir(endereco);
 
             resultado.Should().Throw<ExcecaoIdentificadorIndefinido>();
+        }
+
+        [Test]
+        public void EnderecoService_BuscarTodos_Sucesso()
+        {
+            Mock<List<Endereco>> listEnderecosMock = new Mock<List<Endereco>>();
+
+            _enderecoRepositorioMock.Setup(er => er.BuscarTodos()).Returns(listEnderecosMock.Object);
+
+            IEnumerable<Endereco> listaEnderecos = _enderecoService.BuscarTodos();
+
+            listaEnderecos.Should().NotBeNull();
+
+            _enderecoRepositorioMock.Verify(er => er.BuscarTodos());
+        }
+
+        [Test]
+        public void EnderecoService_BuscarPorId_Sucesso()
+        {
+            long id = 1;
+
+            _enderecoRepositorioMock.Setup(er => er.BuscarPorId(id));
+
+            _enderecoService.BuscarPorId(id);
+
+            _enderecoRepositorioMock.Verify(er => er.BuscarPorId(id));
+        }
+
+
+        [Test]
+        public void EnderecoService_BuscarPorId_IdMenorQueUm_Falha()
+        {
+            long id = -10;
+
+            _enderecoRepositorioMock.Setup(er => er.BuscarPorId(id));
+
+            Action resultado = () =>_enderecoService.BuscarPorId(id);
+
+            resultado.Should().Throw<ExcecaoIdentificadorIndefinido>();
+
+            _enderecoRepositorioMock.VerifyNoOtherCalls();
         }
 
     }
