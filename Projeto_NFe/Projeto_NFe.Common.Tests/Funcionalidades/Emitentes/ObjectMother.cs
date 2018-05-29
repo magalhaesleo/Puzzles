@@ -108,5 +108,76 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Emitentes
                 Endereco = null
             };
         }
+
+        public static Emitente PegarEmitenteComNomeDe3Letras(Endereco endereco, CNPJ cnpj)
+        {
+            return new Emitente
+            {
+                Id = 10,
+                NomeFantasia = "nom",
+                RazaoSocial = "razão social",
+                CNPJ = cnpj,
+                InscricaoEstadual = "478648383",
+                InscricaoMunicipal = "478548383",
+                Endereco = endereco
+            };
+        }
+
+        public static Emitente PegarEmitenteComRazaoSocialDe3Letras(Endereco endereco, CNPJ cnpj)
+        {
+            return new Emitente
+            {
+                Id = 10,
+                NomeFantasia = "nome fantasia",
+                RazaoSocial = "raz",
+                CNPJ = cnpj,
+                InscricaoEstadual = "478648383",
+                InscricaoMunicipal = "478548383",
+                Endereco = endereco
+            };
+        }
+
+        public static Emitente PegarEmitenteComInscricaoEstadualInvalida(Endereco endereco, CNPJ cnpj)
+        {
+            return new Emitente
+            {
+                Id = 10,
+                NomeFantasia = "nome fantasia",
+                RazaoSocial = "razao social",
+                CNPJ = cnpj,
+                InscricaoEstadual = "213",
+                InscricaoMunicipal = "478548383",
+                Endereco = endereco
+            };
+        }
+
+        public static Emitente PegarEmitenteComInscricaoEstadualComLetras(Endereco endereco, CNPJ cnpj)
+        {
+            return new Emitente
+            {
+                Id = 10,
+                NomeFantasia = "nome fantasia",
+                RazaoSocial = "razao social",
+                CNPJ = cnpj,
+                InscricaoEstadual = "dsasdadsa",
+                InscricaoMunicipal = "478478548383",
+                Endereco = endereco
+            };
+        }
+
+        public static Emitente PegarEmitenteComInscricaoMunicipalComLetras(Endereco endereco, CNPJ cnpj)
+        {
+            return new Emitente
+            {
+                Id = 10,
+                NomeFantasia = "nome fantasia",
+                RazaoSocial = "razao social",
+                CNPJ = cnpj,
+                InscricaoEstadual = "478478548",
+                InscricaoMunicipal = "assffaf",
+                Endereco = endereco
+            };
+        }
+
     }
 }

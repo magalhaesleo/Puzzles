@@ -97,5 +97,55 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
 
             resultado.Should().Throw<ExcecaoEmitenteSemEndereco>();
         }
+
+        [Test]
+        public void Emitente_Validar_Nome3Letras_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteComNomeDe3Letras(_enderecoMock.Object, _cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoNomeEmitentePequeno>();
+        }
+
+        [Test]
+        public void Emitente_Validar_RazaoSocial3Letras_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteComRazaoSocialDe3Letras(_enderecoMock.Object, _cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoRazaoSocialEmitentePequeno>();
+        }
+
+        [Test]
+        public void Emitente_Validar_InscricaoEstadualInvalida_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteComInscricaoEstadualInvalida(_enderecoMock.Object, _cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoEmitenteComInscricaoEstadualInvalida>();
+        }
+
+        [Test]
+        public void Emitente_Validar_InscricaoEstadualComLetras_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteComInscricaoEstadualComLetras(_enderecoMock.Object, _cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoInscricacaoEstadualEmitenteComLetras>();
+        }
+
+        [Test]
+        public void Emitente_Validar_InscricaoMunicipalComLetras_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteComInscricaoMunicipalComLetras(_enderecoMock.Object, _cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoInscricacaoMunicipalEmitenteComLetras>();
+        }
     }
 }

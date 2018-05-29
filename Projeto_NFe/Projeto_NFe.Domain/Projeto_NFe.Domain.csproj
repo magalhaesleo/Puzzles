@@ -45,12 +45,17 @@
     <Compile Include="Excecoes\ExcecaoIdentificadorIndefinido.cs" />
     <Compile Include="Funcionalidades\CNPJs\CNPJ.cs" />
     <Compile Include="Funcionalidades\Emitentes\Emitente.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoMunicipalEmitenteComLetras.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoEstadualEmitenteComLetras.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemEndereco.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteComInscricaoEstadualInvalida.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemInscricaoMunicipal.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemInscricaoEstadual.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemCNPJ.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemNome.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemRazaoSocial.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoRazaoSocialEmitentePequeno.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoNomeEmitentePequeno.cs" />
     <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemBairro.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemEstado.cs" />

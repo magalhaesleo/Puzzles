@@ -23,8 +23,14 @@ namespace Projeto_NFe.Domain.Funcionalidades.Emitentes
             if (string.IsNullOrEmpty(NomeFantasia))
                 throw new ExcecaoEmitenteSemNome();
 
+            if (NomeFantasia.Length < 5)
+                throw new ExcecaoNomeEmitentePequeno();
+
             if (string.IsNullOrEmpty(RazaoSocial))
                 throw new ExcecaoEmitenteSemRazaoSocial();
+
+            if (RazaoSocial.Length < 5)
+                throw new ExcecaoRazaoSocialEmitentePequeno();
 
             if (CNPJ == null)
                 throw new ExcecaoEmitenteSemCNPJ();
@@ -32,8 +38,17 @@ namespace Projeto_NFe.Domain.Funcionalidades.Emitentes
             if (string.IsNullOrEmpty(InscricaoEstadual))
                 throw new ExcecaoEmitenteSemInscricaoEstadual();
 
+            if (!InscricaoEstadual.All(char.IsDigit))
+                throw new ExcecaoInscricacaoEstadualEmitenteComLetras();
+
+            if (InscricaoEstadual.Length != 9)
+                throw new ExcecaoEmitenteComInscricaoEstadualInvalida();
+
             if (string.IsNullOrEmpty(InscricaoMunicipal))
                 throw new ExcecaoEmitenteSemInscricaoMunicipal();
+
+            if (!InscricaoMunicipal.All(char.IsDigit))
+                throw new ExcecaoInscricacaoMunicipalEmitenteComLetras();
 
             if (Endereco == null)
                 throw new ExcecaoEmitenteSemEndereco();
