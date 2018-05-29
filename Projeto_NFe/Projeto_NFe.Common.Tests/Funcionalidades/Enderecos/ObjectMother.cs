@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
 {
-    public static class ObjectMother
+    public static partial class ObjectMother
     {
         public static Endereco PegarEnderecoValido()
         {
@@ -18,6 +18,83 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
                 Logradouro = "02",
                 Municipio = "Lages",
                 Numero = 803,
+                Pais = "Brasil"
+            };
+        }
+
+        public static Endereco PegarEnderecoSemBairro()
+        {
+            return new Endereco()
+            {
+                Bairro = "",
+                Estado = "Santa Catarina",
+                Logradouro = "02",
+                Municipio = "Lages",
+                Numero = 803,
+                Pais = "Brasil"
+            };
+        }
+
+        public static Endereco PegarEnderecoSemMunicipio()
+        {
+            return new Endereco()
+            {
+                Bairro = "Santa Catarina",
+                Estado = "Santa Catarina",
+                Logradouro = "02",
+                Municipio = "",
+                Numero = 803,
+                Pais = "Brasil"
+            };
+        }
+
+        public static Endereco PegarEnderecoSemPais()
+        {
+            return new Endereco()
+            {
+                Bairro = "Santa Catarina",
+                Estado = "Santa Catarina",
+                Logradouro = "02",
+                Municipio = "Lages",
+                Numero = 803,
+                Pais = ""
+            };
+        }
+
+        public static Endereco PegarEnderecoSemEstado()
+        {
+            return new Endereco()
+            {
+                Bairro = "Santa Catarina",
+                Estado = "",
+                Logradouro = "02",
+                Municipio = "Lages",
+                Numero = 803,
+                Pais = "Brasil"
+            };
+        }
+
+        public static Endereco PegarEnderecoSemLogradouro()
+        {
+            return new Endereco()
+            {
+                Bairro = "Santa Catarina",
+                Estado = "Santa catarina",
+                Logradouro = "",
+                Municipio = "Lages",
+                Numero = 803,
+                Pais = "Brasil"
+            };
+        }
+
+        public static Endereco PegarEnderecoSemNumero()
+        {
+            return new Endereco()
+            {
+                Bairro = "Santa Catarina",
+                Estado = "Santa catarina",
+                Logradouro = "logradouro",
+                Municipio = "Lages",
                 Pais = "Brasil"
             };
         }
