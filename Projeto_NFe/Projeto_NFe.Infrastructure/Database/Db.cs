@@ -11,7 +11,7 @@ namespace Projeto_NFe.Infrastructure.Database
 {
     public static class Db
     {
-        private static string _connectionString = ConfigurationManager.ConnectionStrings["DBTESTCONTEXT"].ConnectionString;
+        private static string _connectionString = ConfigurationManager.ConnectionStrings["NFe_DBTESTCONTEXT"].ConnectionString;
 
         private static string _providerName = ConfigurationManager.AppSettings.Get("DataProvider");
 
@@ -27,7 +27,7 @@ namespace Projeto_NFe.Infrastructure.Database
             return ExecutarCommandoSql(sql, dictionary);
         }
 
-        public static void Remover(string sql, Dictionary<string, object> dictionary)
+        public static void Excluir(string sql, Dictionary<string, object> dictionary)
         {
             ExecutarCommandoSql(sql, dictionary);
         }
@@ -74,11 +74,13 @@ namespace Projeto_NFe.Infrastructure.Database
                     DefinirParametrosParaOComandoSql(command, dictionary);
                     connection.Open();
 
+
+                    T t = default(T);
                     var reader = command.ExecuteReader();
-
-                    var obj = convertRelactionalData(reader);
-
-                    return obj;
+                    if (reader.Read())
+                        t = convertRelactionalData(reader);
+                    
+                    return t;
                 }
             }
         }

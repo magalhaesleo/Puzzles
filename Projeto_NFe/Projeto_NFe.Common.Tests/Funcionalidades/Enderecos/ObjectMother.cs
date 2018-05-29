@@ -13,7 +13,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
         {
             return new Endereco()
             {
-                Bairro = "Santa Catarina",
+                Bairro = "Amaciota",
                 Estado = "Santa Catarina",
                 Logradouro = "02",
                 Municipio = "Lages",
