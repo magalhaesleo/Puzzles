@@ -43,7 +43,14 @@
     <Compile Include="Base\Entidade.cs" />
     <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
     <Compile Include="Excecoes\ExcecaoIdentificadorIndefinido.cs" />
+    <Compile Include="Funcionalidades\CNPJs\CNPJ.cs" />
     <Compile Include="Funcionalidades\Emitentes\Emitente.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemEndereco.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemInscricaoMunicipal.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemInscricaoEstadual.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemCNPJ.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemNome.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemRazaoSocial.cs" />
     <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemBairro.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemEstado.cs" />
@@ -56,7 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Funcionalidades\Emitentes\Excecoes\" />
+    <Folder Include="Funcionalidades\CPFs\" />
     <Folder Include="Objetos de valor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

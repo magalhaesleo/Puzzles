@@ -1,4 +1,6 @@
 ﻿using Projeto_NFe.Domain.Base;
+using Projeto_NFe.Domain.Funcionalidades.CNPJs;
+using Projeto_NFe.Domain.Funcionalidades.Emitentes.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using System;
 using System.Collections.Generic;
@@ -12,12 +14,29 @@ namespace Projeto_NFe.Domain.Funcionalidades.Emitentes
     {
         public string NomeFantasia { get; set; }
         public string RazaoSocial { get; set; }
-        public string CNPJ { get; set; }
+        public CNPJ CNPJ { get; set; }
         public string InscricaoEstadual { get; set; }
         public string InscricaoMunicipal { get; set; }
         public Endereco Endereco { get; set; }
         public virtual void Validar()
         {
+            if (string.IsNullOrEmpty(NomeFantasia))
+                throw new ExcecaoEmitenteSemNome();
+
+            if (string.IsNullOrEmpty(RazaoSocial))
+                throw new ExcecaoEmitenteSemRazaoSocial();
+
+            if (CNPJ == null)
+                throw new ExcecaoEmitenteSemCNPJ();
+
+            if (string.IsNullOrEmpty(InscricaoEstadual))
+                throw new ExcecaoEmitenteSemInscricaoEstadual();
+
+            if (string.IsNullOrEmpty(InscricaoMunicipal))
+                throw new ExcecaoEmitenteSemInscricaoMunicipal();
+
+            if (Endereco == null)
+                throw new ExcecaoEmitenteSemEndereco();
 
         }
     }

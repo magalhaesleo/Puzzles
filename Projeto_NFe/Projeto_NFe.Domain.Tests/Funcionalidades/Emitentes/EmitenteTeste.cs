@@ -3,7 +3,9 @@ using Moq;
 using NUnit.Framework;
 using Projeto_NFe.Common.Tests.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Excecoes;
+using Projeto_NFe.Domain.Funcionalidades.CNPJs;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
+using Projeto_NFe.Domain.Funcionalidades.Emitentes.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using System;
 using System.Collections.Generic;
@@ -17,21 +19,83 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
     public class EmitenteTeste
     {
         private Mock<Endereco> _enderecoMock;
+        private Mock<CNPJ> _cnpjMock;
 
         [SetUp]
         public void Inicializa()
         {
             _enderecoMock = new Mock<Endereco>();
+            _cnpjMock = new Mock<CNPJ>();
         }
 
         [Test]
         public void Emitente_Validar_Sucesso()
         {
-            Emitente emitente = ObjectMother.PegarEmitenteValido(_enderecoMock.Object);
+            Emitente emitente = ObjectMother.PegarEmitenteValido(_enderecoMock.Object, _cnpjMock.Object);
 
             Action resultado = () => emitente.Validar();
 
             resultado.Should().NotThrow<ExcecaoDeNegocio>();
+        }
+
+        [Test]
+        public void Emitente_Validar_SemNome_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteSemNome(_enderecoMock.Object, _cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoEmitenteSemNome>();
+        }
+
+        [Test]
+        public void Emitente_Validar_SemRazaoSocial_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteSemRazaoSocial(_enderecoMock.Object, _cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoEmitenteSemRazaoSocial>();
+        }
+
+        [Test]
+        public void Emitente_Validar_SemCNPJ_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteSemCNPJ(_enderecoMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoEmitenteSemCNPJ>();
+        }
+
+        [Test]
+        public void Emitente_Validar_SemInscricaoEstadual_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteSemInscricaoEstadual(_enderecoMock.Object, _cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoEmitenteSemInscricaoEstadual>();
+        }
+
+        [Test]
+        public void Emitente_Validar_SemInscricaoMunicipal_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteSemInscricaoMunicipal(_enderecoMock.Object, _cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoEmitenteSemInscricaoMunicipal>();
+        }
+
+        [Test]
+        public void Emitente_Validar_SemEndereco_Falha()
+        {
+            Emitente emitente = ObjectMother.PegarEmitenteSemEndereco(_cnpjMock.Object);
+
+            Action resultado = () => emitente.Validar();
+
+            resultado.Should().Throw<ExcecaoEmitenteSemEndereco>();
         }
     }
 }
