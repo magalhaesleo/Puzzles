@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Domain.Excecoes
 {
-    public class ExcecaoIdentificadorIndefinido : Exception
+    public class ExcecaoIdentificadorIndefinido : ExcecaoDeNegocio
     {
         public ExcecaoIdentificadorIndefinido() : base("O Id não pode ser vazio.")
         {
