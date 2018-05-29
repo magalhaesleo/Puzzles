@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseSqlTeste.cs" />
+    <Compile Include="Funcionalidades\Emitentes\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Enderecos\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,6 +54,9 @@
       <Project>{46825EC0-CC2C-4752-A78E-D6F816F32CCD}</Project>
       <Name>Projeto_NFe.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Funcionalidades\CPNJ\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
