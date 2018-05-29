@@ -15,7 +15,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Enderecos
         public string Municipio { get; set; }
         public string Estado { get; set; }
         public string Pais { get; set; }
-        public void Validar()
+        public virtual void Validar()
         {
             if (String.IsNullOrEmpty(Bairro))
                 throw new ExcecaoEnderecoSemBairro();

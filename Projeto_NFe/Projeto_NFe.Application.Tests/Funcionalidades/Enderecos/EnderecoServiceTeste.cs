@@ -43,6 +43,8 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         [Test]
         public void EnderecoService_Atualizar_Sucesso()
         {
+            _enderecoMock.Object.Id = 1;
+
             _enderecoRepositorioMock.Setup(er => er.Atualizar(_enderecoMock.Object)).Returns(_enderecoMock.Object);
 
             Endereco enderecoAtualizado = _enderecoService.Atualizar(_enderecoMock.Object);
@@ -69,11 +71,25 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         {
             Endereco endereco = new Endereco() { Id = 10 };
 
+            _enderecoRepositorioMock.Setup(er => er.Excluir(endereco));
+
             _enderecoService.Excluir(endereco);
 
-            _enderecoRepositorioMock.Verify();
+            _enderecoRepositorioMock.Verify(er => er.Excluir(endereco));
 
             _enderecoRepositorioMock.VerifyNoOtherCalls();
+        }
+
+        [Test]
+        public void EnderecoService_Deletar_Falha()
+        {
+            Endereco endereco = new Endereco() { Id = 0 };
+
+            _enderecoRepositorioMock.Setup(er => er.Excluir(endereco));
+
+            Action resultado = () => _enderecoService.Excluir(endereco);
+
+            resultado.Should().Throw<ExcecaoIdentificadorIndefinido>();
         }
 
     }

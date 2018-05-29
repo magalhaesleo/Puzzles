@@ -46,7 +46,10 @@ namespace Projeto_NFe.Application.Funcionalidades.Enderecos
 
         public void Excluir(Endereco endereco)
         {
-            throw new NotImplementedException();
+            if (endereco.Id < 1)
+                throw new ExcecaoIdentificadorIndefinido();
+
+            _enderecoRepositorio.Excluir(endereco);
         }
     }
 }
