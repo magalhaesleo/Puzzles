@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
+    <Compile Include="Excecoes\ExcecaoIdentificadorIndefinido.cs" />
     <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemBairro.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemEstado.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemMunicipio.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemNumero.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemPais.cs" />
+    <Compile Include="Funcionalidades\Enderecos\IEnderecoRepositorio.cs" />
     <Compile Include="Funcionalidades\Entidade.cs" />
     <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
