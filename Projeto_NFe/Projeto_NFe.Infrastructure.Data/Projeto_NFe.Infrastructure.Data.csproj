@@ -40,7 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\EnderecoRepositorioSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Projeto_NFe.Domain\Projeto_NFe.Domain.csproj">
+      <Project>{71B57985-2C26-4A87-BD86-D2EE37C0A31D}</Project>
+      <Name>Projeto_NFe.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Projeto_NFe.Infrastructure\Projeto_NFe.Infrastructure.csproj">
+      <Project>{46825EC0-CC2C-4752-A78E-D6F816F32CCD}</Project>
+      <Name>Projeto_NFe.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
