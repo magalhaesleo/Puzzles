@@ -36,17 +36,23 @@ namespace Projeto_NFe.Application.Funcionalidades.Enderecos
 
         public Endereco BuscarPorId(long id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+                throw new ExcecaoIdentificadorIndefinido();
+
+            return _enderecoRepositorio.BuscarPorId(id);
         }
 
         public IEnumerable<Endereco> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return _enderecoRepositorio.BuscarTodos();
         }
 
         public void Excluir(Endereco endereco)
         {
-            throw new NotImplementedException();
+            if (endereco.Id < 1)
+                throw new ExcecaoIdentificadorIndefinido();
+
+            _enderecoRepositorio.Excluir(endereco);
         }
     }
 }
