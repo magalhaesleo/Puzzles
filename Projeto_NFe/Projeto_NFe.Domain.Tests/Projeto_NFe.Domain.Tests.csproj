@@ -61,7 +61,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enderecos\EnderecoTeste.cs" />
+    <Compile Include="Funcionalidades\Enderecos\EnderecoTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

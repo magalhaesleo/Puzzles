@@ -11,7 +11,7 @@ namespace Projeto_NFe.Infrastructure.Database
 {
     public static class Db
     {
-        private static string _connectionString = ConfigurationManager.ConnectionStrings["NFe_DBTESTCONTEXT"].ConnectionString;
+        private static string _connectionString = ConfigurationManager.ConnectionStrings["DBTESTCONTEXT"].ConnectionString;
 
         private static string _providerName = ConfigurationManager.AppSettings.Get("DataProvider");
 
@@ -22,7 +22,7 @@ namespace Projeto_NFe.Infrastructure.Database
             return ExecutarCommandoSql(sql, dictionary);
         }
 
-        public static long Editar(string sql, Dictionary<string, object> dictionary)
+        public static long Atualizar(string sql, Dictionary<string, object> dictionary = null)
         {
             return ExecutarCommandoSql(sql, dictionary);
         }
@@ -32,7 +32,7 @@ namespace Projeto_NFe.Infrastructure.Database
             ExecutarCommandoSql(sql, dictionary);
         }
 
-        public static IEnumerable<T> ObterListaPorId<T>(String sql, Func<IDataReader, T> convertRelactionalData, Dictionary<string, object> dictionary)
+        public static IEnumerable<T> BuscarListaPorId<T>(String sql, Func<IDataReader, T> convertRelactionalData, Dictionary<string, object> dictionary)
         {
             sql = string.Format(sql, AlterarPrefixoPorTipoDeProvedor);
             using (DbConnection connection = _providerType.CreateConnection())
@@ -60,7 +60,7 @@ namespace Projeto_NFe.Infrastructure.Database
             }
         }
 
-        public static T ObterPorId<T>(String sql, Func<IDataReader, T> convertRelactionalData, Dictionary<string, object> dictionary)
+        public static T BuscarPorId<T>(String sql, Func<IDataReader, T> convertRelactionalData, Dictionary<string, object> dictionary)
         {
             sql = string.Format(sql, AlterarPrefixoPorTipoDeProvedor);
             using (DbConnection connection = _providerType.CreateConnection())
@@ -84,7 +84,7 @@ namespace Projeto_NFe.Infrastructure.Database
         }
 
         //ok
-        public static IEnumerable<T> ObterTodos<T>(String sql, Func<IDataReader, T> convertRelactionalData)
+        public static IEnumerable<T> BuscarTodos<T>(String sql, Func<IDataReader, T> convertRelactionalData)
         {
             using (DbConnection connection = _providerType.CreateConnection())
             {

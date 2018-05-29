@@ -10,5 +10,9 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
     [TestFixture]
     public class EnderecoRepositorioSqlTeste
     {
+
+        //[SetUp]
+        
+
     }
 }
