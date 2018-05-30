@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using Projeto_NFe.Infrastructure.Objetos_de_Valor;
+using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +16,45 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         public void CNPJ_Validar_Sucesso()
         {
             CNPJ cnpj = new CNPJ();
-            cnpj.Numero = "56956041000100";
+            cnpj.NumeroComPontuacao = "99.327.235/0001-50";
 
             Action resultado = () => cnpj.Validar();
 
             resultado.Should().NotThrow<Exception>();
+            cnpj.Numero.Should().Be("99327235000150");
+
+        }
+
+        [Test]
+        public void CNPJ_Validar_NumeroZerado_Falha()
+        {
+            CNPJ cnpj = new CNPJ();
+            cnpj.NumeroComPontuacao = "00.000.000/0000-00";
+
+            Action resultado = () => cnpj.Validar();
+
+            resultado.Should().Throw<ExcecaoNumeroCNPJInvalido>();
+        }
+
+        [Test]
+        public void CNPJ_Validar_NumeroPequeno_Falha()
+        {
+            CNPJ cnpj = new CNPJ();
+            cnpj.NumeroComPontuacao = "35253445";
+            Action resultado = () => cnpj.Validar();
+
+            resultado.Should().Throw<ExcecaoCNPJNaoPossuiQuatorzeNumeros>();
+        }
+
+        [Test]
+        public void CNPJ_Validar_NumeroInvalido_Falha()
+        {
+            CNPJ cnpj = new CNPJ();
+            cnpj.NumeroComPontuacao = "00.000.000/0000-45";
+
+            Action resultado = () => cnpj.Validar();
+
+            resultado.Should().Throw<ExcecaoNumeroCNPJInvalido>();
         }
     }
 }

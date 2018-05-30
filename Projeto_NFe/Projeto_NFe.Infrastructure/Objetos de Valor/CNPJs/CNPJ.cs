@@ -1,14 +1,35 @@
-﻿using System;
+﻿using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Infrastructure.Objetos_de_Valor
+namespace Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs
 {
     public class CNPJ
     {
-        public string Numero { get; set; }
+        private string _numero;
+        public string Numero
+        {
+            get
+            {
+                string num = _numero.Trim();
+                num = _numero.Replace(".", "").Replace("-", "").Replace("/", "");
+                return num;
+            }
+        }
+        public string NumeroComPontuacao
+        {
+            get
+            {
+                return _numero;
+            }
+            set
+            {
+                _numero = value;
+            }
+        }
         public void Validar()
         {
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -17,11 +38,18 @@ namespace Projeto_NFe.Infrastructure.Objetos_de_Valor
             int resto;
             string digito;
             string tempCnpj;
-            Numero = Numero.Trim();
-            Numero = Numero.Replace(".", "").Replace("-", "").Replace("/", "");
 
             if (Numero.Length != 14)
-                throw new Exception("CNPJ deve possuir 14 caracteres");
+                throw new ExcecaoCNPJNaoPossuiQuatorzeNumeros();
+
+            if (Numero == "00000000000000" || Numero == "11111111111111" ||
+                Numero == "22222222222222" || Numero == "33333333333333" ||
+                Numero == "44444444444444" || Numero == "55555555555555" ||
+                Numero == "66666666666666" || Numero == "77777777777777" ||
+                Numero == "88888888888888" || Numero == "99999999999999")
+            {
+                throw new ExcecaoNumeroCNPJInvalido();
+            }
 
             tempCnpj = Numero.Substring(0, 12);
             soma = 0;
@@ -45,7 +73,8 @@ namespace Projeto_NFe.Infrastructure.Objetos_de_Valor
             digito = digito + resto.ToString();
 
             if (Numero.EndsWith(digito) == false)
-                throw new Exception("CNPJ Invalido!");
+                throw new ExcecaoNumeroCNPJInvalido();
         }
+
     }
 }
