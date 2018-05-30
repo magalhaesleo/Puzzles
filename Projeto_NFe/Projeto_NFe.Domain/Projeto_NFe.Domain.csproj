@@ -55,6 +55,7 @@
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemRazaoSocial.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoRazaoSocialEmitentePequeno.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoNomeEmitentePequeno.cs" />
+    <Compile Include="Funcionalidades\Emitentes\IEmitenteRepositorio.cs" />
     <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemBairro.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemEstado.cs" />

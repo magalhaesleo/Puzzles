@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Emitentes\EmitenteServico.cs" />
+    <Compile Include="Funcionalidades\Emitentes\IEmitenteServico.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoServico.cs" />
     <Compile Include="Funcionalidades\Enderecos\IEnderecoServico.cs" />
-    <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="Interfaces\IServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

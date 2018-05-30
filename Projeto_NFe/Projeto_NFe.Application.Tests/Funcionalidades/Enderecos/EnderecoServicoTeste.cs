@@ -43,7 +43,9 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         [Test]
         public void EnderecoService_Atualizar_Sucesso()
         {
-            _enderecoMock.Object.Id = 1;
+            long idValido = 1;
+
+            _enderecoMock.Setup(em => em.Id).Returns(idValido);
 
             _enderecoRepositorioMock.Setup(er => er.Atualizar(_enderecoMock.Object)).Returns(_enderecoMock.Object);
 
@@ -67,7 +69,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoService_Deletar_Sucesso()
+        public void EnderecoService_Excluir_Sucesso()
         {
             Endereco endereco = new Endereco() { Id = 10 };
 
@@ -76,12 +78,10 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
             _enderecoServico.Excluir(endereco);
 
             _enderecoRepositorioMock.Verify(er => er.Excluir(endereco));
-
-            _enderecoRepositorioMock.VerifyNoOtherCalls();
         }
 
         [Test]
-        public void EnderecoService_Deletar_IdMenorQueUm_Falha()
+        public void EnderecoService_Excluir_IdMenorQueUm_Falha()
         {
             Endereco endereco = new Endereco() { Id = 0 };
 
