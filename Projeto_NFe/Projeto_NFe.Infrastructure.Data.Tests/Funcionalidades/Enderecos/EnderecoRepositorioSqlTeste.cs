@@ -15,13 +15,14 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
     [TestFixture]
     public class EnderecoRepositorioSqlTeste
     {
+        
 
         EnderecoRepositorioSql _repositorio;
 
         [SetUp]
         public void IniciarCenario()
         {
-            _repositorio = new EnderecoRepositorioSql();
+           _repositorio = new EnderecoRepositorioSql();
 
             BaseSqlTeste.InicializarBancoDeDados();
         }
@@ -41,19 +42,58 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
         public void EnderecoRepositorioSql_Atualizar_Sucesso()
         {
             Endereco endereco = ObjectMother.PegarEnderecoValido();
-            endereco.Pais = "Brasil";
             endereco.Id = 1;
 
-            Endereco resultado = _repositorio.Atualizar(endereco);
+             _repositorio.Atualizar(endereco);
 
-            resultado.Pais.Should().Be("Brasil");
-            resultado.Pais.Should().NotBe(ObjectMother.PegarEnderecoValido().Pais);
-            resultado.Id.Should().Be(endereco.Id);
+            Endereco resultado = _repositorio.BuscarPorId(endereco.Id);
+
+            resultado.Pais.Should().Be(endereco.Pais);
+            resultado.Pais.Should().NotBe("Pais");
         }
         
+        [Test]
         public void EnderecoRepositorioSql_Excluir_Sucesso()
         {
+            Endereco enderecoParaDeletar = ObjectMother.PegarEnderecoValido();
 
+            enderecoParaDeletar.Id = 1;
+
+            _repositorio.Excluir(enderecoParaDeletar);
+
+            Endereco enderecoParaBuscar = _repositorio.BuscarPorId(enderecoParaDeletar.Id);
+
+            enderecoParaBuscar.Should().BeNull();
+        }
+
+        [Test]
+        public void EnderecoRepositorioSql_Buscar_Sucesso()
+        {
+            Endereco enderecoParaAdicionar = ObjectMother.PegarEnderecoValido();
+
+            Endereco enderecoAdicionado = _repositorio.Adicionar(enderecoParaAdicionar);
+
+            Endereco enderecoParaBuscar = _repositorio.BuscarPorId(enderecoAdicionado.Id);
+
+            enderecoParaBuscar.Should().NotBeNull();
+            enderecoParaBuscar.Pais.Should().Be(enderecoAdicionado.Pais);
+            enderecoParaBuscar.Numero.Should().Be(enderecoAdicionado.Numero);
+            enderecoParaBuscar.Bairro.Should().Be(enderecoAdicionado.Bairro);
+            enderecoParaBuscar.Estado.Should().Be(enderecoAdicionado.Estado);
+            enderecoParaBuscar.Logradouro.Should().Be(enderecoAdicionado.Logradouro);
+        }
+
+
+        [Test]
+        public void EnderecoRepositorioSql_BuscarTodos_Sucesso()
+        {
+            _repositorio.Adicionar(ObjectMother.PegarEnderecoValido());
+            _repositorio.Adicionar(ObjectMother.PegarEnderecoValido());
+
+            IEnumerable<Endereco> enderecosBuscados = _repositorio.BuscarTodos();
+
+            enderecosBuscados.Should().NotBeNull();
+            enderecosBuscados.Should().HaveCount(3);
         }
 
     }

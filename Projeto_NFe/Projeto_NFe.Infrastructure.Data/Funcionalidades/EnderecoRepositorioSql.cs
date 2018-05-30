@@ -17,48 +17,54 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades
         #region Scripts SQL
 
         public const string _sqlAdicionar = @"INSERT INTO TBENDERECO 
-                                            (LOGRADOURO, NUMERO, BAIRRO, MUNICIPIO, ESTADO, PAIS) 
+                                            (LOGRADOURO,NUMERO,BAIRRO,MUNICIPIO,ESTADO,PAIS) 
                                             VALUES 
-                                            ({0}LOGRADOURO,
-                                             {0}NUMERO,
-                                             {0}BAIRRO,
-                                             {0}MUNICIPIO,
-                                             {0}ESTADO,
-                                             {0}PAIS
-                                            ); SELECT SCOPE_IDENTITY();";
+                                            ({0}LOGRADOURO,{0}NUMERO,{0}BAIRRO,{0}MUNICIPIO,{0}ESTADO,{0}PAIS);SELECT SCOPE_IDENTITY();";
+
+        public const string _sqlAtualizar = @"UPDATE TBENDERECO SET 
+                                            LOGRADOURO={0}LOGRADOURO,
+                                            PAIS={0}PAIS,
+                                            MUNICIPIO={0}MUNICIPIO,
+                                            BAIRRO={0}BAIRRO,
+                                            ESTADO={0}ESTADO,
+                                            NUMERO={0}NUMERO
+                                            WHERE ID = {0}ID";
+
+        public const string _sqlBuscarPorId = @"SELECT * FROM TBENDERECO 
+                                              WHERE ID = {0}ID";
+
+        public const string _sqlExcluir = @"DELETE FROM TBENDERECO
+                                              WHERE ID = {0}ID";
+
+        public const string _sqlBuscarTodos = @"SELECT * FROM TBENDERECO";
 
         #endregion Scripts SQL
 
         public Endereco Adicionar(Endereco endereco)
         {
-            if (endereco.Id == 0)
-            {
-                endereco.Id = Db.Adicionar(_sqlAdicionar, ObterDicionarioEndereco(endereco));
-                return endereco;
-            }
-            else
-                throw new ExcecaoIdentificadorIndefinido();
-
+            endereco.Id = Db.Adicionar(_sqlAdicionar, ObterDicionarioEndereco(endereco));
+            return endereco;
         }
 
         public Endereco Atualizar(Endereco endereco)
         {
-            throw new NotImplementedException();
+            Db.Atualizar(_sqlAtualizar, ObterDicionarioEndereco(endereco));
+            return endereco;
         }
 
         public Endereco BuscarPorId(long Id)
         {
-            throw new NotImplementedException();
+            return Db.BuscarPorId(_sqlBuscarPorId, FormaObjetoEndereco, new Dictionary<string, object> { { "ID", Id } });
         }
 
         public IEnumerable<Endereco> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return Db.BuscarTodos(_sqlBuscarTodos, FormaObjetoEndereco);
         }
 
         public void Excluir(Endereco endereco)
         {
-            throw new NotImplementedException();
+            Db.Excluir(_sqlExcluir, new Dictionary<string, object> { { "ID", endereco.Id } });
         }
 
         #region Montar e Ler Objetos
