@@ -22,7 +22,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
 
             resultado.Should().NotThrow<Exception>();
             cnpj.Numero.Should().Be("99327235000150");
-
+            cnpj.NumeroComPontuacao.Should().Be("99.327.235/0001-50");
         }
 
         [Test]
@@ -55,6 +55,17 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
             Action resultado = () => cnpj.Validar();
 
             resultado.Should().Throw<ExcecaoNumeroCNPJInvalido>();
+        }
+
+        [Test]
+        public void CNPJ_Validar_ObterDigitoVerificador_Sucesso()
+        {
+            CNPJ cnpj = new CNPJ();
+            cnpj.NumeroComPontuacao = "11.222.333/0001-81";
+
+            Action resultado = () => cnpj.Validar();
+
+            resultado.Should().NotThrow<Exception>();
         }
     }
 }
