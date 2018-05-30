@@ -14,12 +14,13 @@ namespace Projeto_NFe.Domain.Funcionalidades.Emitentes
     {
         public string NomeFantasia { get; set; }
         public string RazaoSocial { get; set; }
-        public CNPJ CNPJ { get; set; }
+        public virtual CNPJ CNPJ { get; set; }
         public string InscricaoEstadual { get; set; }
         public string InscricaoMunicipal { get; set; }
-        public Endereco Endereco { get; set; }
+        public virtual Endereco Endereco { get; set; }
         public virtual void Validar()
         {
+
             if (string.IsNullOrEmpty(NomeFantasia))
                 throw new ExcecaoEmitenteSemNome();
 
@@ -53,6 +54,10 @@ namespace Projeto_NFe.Domain.Funcionalidades.Emitentes
             if (Endereco == null)
                 throw new ExcecaoEmitenteSemEndereco();
 
-        }
+            CNPJ.Validar();
+
+            Endereco.Validar();
+
+         }
     }
 }

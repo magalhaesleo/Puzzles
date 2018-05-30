@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Infrastructure.Objetos_de_Valor
+namespace Projeto_NFe.Infrastructure.Objetos_de_Valor.CPFs
 {
     class CPF
     {
+        public virtual void Validar()
+        {
+
+        }
     }
 }
