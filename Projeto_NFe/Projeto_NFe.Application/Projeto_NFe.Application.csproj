@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Funcionalidades\Enderecos\EnderecoService.cs" />
-    <Compile Include="Funcionalidades\Enderecos\IEnderecoService.cs" />
+    <Compile Include="Funcionalidades\Enderecos\EnderecoServico.cs" />
+    <Compile Include="Funcionalidades\Enderecos\IEnderecoServico.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Application.Funcionalidades.Enderecos
 {
-    public interface IEnderecoService : IService<Endereco>
+    public interface IEnderecoServico : IServico<Endereco>
     {
     }
 }

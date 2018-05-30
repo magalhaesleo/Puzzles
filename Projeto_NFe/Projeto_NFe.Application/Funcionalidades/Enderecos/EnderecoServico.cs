@@ -9,11 +9,11 @@ using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 
 namespace Projeto_NFe.Application.Funcionalidades.Enderecos
 {
-    public class EnderecoService : IEnderecoService
+    public class EnderecoServico : IEnderecoServico
     {
         private IEnderecoRepositorio _enderecoRepositorio;
 
-        public EnderecoService(IEnderecoRepositorio enderecoRepositorio)
+        public EnderecoServico(IEnderecoRepositorio enderecoRepositorio)
         {
             _enderecoRepositorio = enderecoRepositorio;
         }

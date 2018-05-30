@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Application.Interfaces
 {
-    public interface IService<T> where T : Entidade
+    public interface IServico<T> where T : Entidade
     {
         T Adicionar(T entidade);
         T Atualizar(T entidade);

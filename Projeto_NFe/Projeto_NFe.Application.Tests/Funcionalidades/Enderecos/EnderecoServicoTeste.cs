@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
 {
     [TestFixture]
-    public class EnderecoServiceTeste
+    public class EnderecoServicoTeste
     {
-        private IEnderecoService _enderecoService;
+        private IEnderecoServico _enderecoServico;
         private Mock<IEnderecoRepositorio> _enderecoRepositorioMock;
         private Mock<Endereco> _enderecoMock;
 
@@ -24,7 +24,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         public void Inicializa()
         {
             _enderecoRepositorioMock = new Mock<IEnderecoRepositorio>();
-            _enderecoService = new EnderecoService(_enderecoRepositorioMock.Object);
+            _enderecoServico = new EnderecoServico(_enderecoRepositorioMock.Object);
             _enderecoMock = new Mock<Endereco>();
         }
 
@@ -33,7 +33,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         {
             _enderecoRepositorioMock.Setup(er => er.Adicionar(_enderecoMock.Object)).Returns(_enderecoMock.Object);
 
-            Endereco enderecoAdicionado = _enderecoService.Adicionar(_enderecoMock.Object);
+            Endereco enderecoAdicionado = _enderecoServico.Adicionar(_enderecoMock.Object);
 
             _enderecoRepositorioMock.Verify(er => er.Adicionar(_enderecoMock.Object));
 
@@ -47,7 +47,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
 
             _enderecoRepositorioMock.Setup(er => er.Atualizar(_enderecoMock.Object)).Returns(_enderecoMock.Object);
 
-            Endereco enderecoAtualizado = _enderecoService.Atualizar(_enderecoMock.Object);
+            Endereco enderecoAtualizado = _enderecoServico.Atualizar(_enderecoMock.Object);
 
             _enderecoRepositorioMock.Verify(er => er.Atualizar(_enderecoMock.Object));
 
@@ -59,7 +59,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         {
             Endereco endereco = new Endereco() { Id = 0 };
 
-            Action resultado = () => _enderecoService.Atualizar(endereco);
+            Action resultado = () => _enderecoServico.Atualizar(endereco);
 
             resultado.Should().Throw<ExcecaoIdentificadorIndefinido>();
 
@@ -73,7 +73,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
 
             _enderecoRepositorioMock.Setup(er => er.Excluir(endereco));
 
-            _enderecoService.Excluir(endereco);
+            _enderecoServico.Excluir(endereco);
 
             _enderecoRepositorioMock.Verify(er => er.Excluir(endereco));
 
@@ -87,7 +87,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
 
             _enderecoRepositorioMock.Setup(er => er.Excluir(endereco));
 
-            Action resultado = () => _enderecoService.Excluir(endereco);
+            Action resultado = () => _enderecoServico.Excluir(endereco);
 
             resultado.Should().Throw<ExcecaoIdentificadorIndefinido>();
         }
@@ -99,7 +99,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
 
             _enderecoRepositorioMock.Setup(er => er.BuscarTodos()).Returns(listEnderecosMock.Object);
 
-            IEnumerable<Endereco> listaEnderecos = _enderecoService.BuscarTodos();
+            IEnumerable<Endereco> listaEnderecos = _enderecoServico.BuscarTodos();
 
             listaEnderecos.Should().NotBeNull();
 
@@ -113,7 +113,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
 
             _enderecoRepositorioMock.Setup(er => er.BuscarPorId(id));
 
-            _enderecoService.BuscarPorId(id);
+            _enderecoServico.BuscarPorId(id);
 
             _enderecoRepositorioMock.Verify(er => er.BuscarPorId(id));
         }
@@ -126,7 +126,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
 
             _enderecoRepositorioMock.Setup(er => er.BuscarPorId(id));
 
-            Action resultado = () =>_enderecoService.BuscarPorId(id);
+            Action resultado = () =>_enderecoServico.BuscarPorId(id);
 
             resultado.Should().Throw<ExcecaoIdentificadorIndefinido>();
 
