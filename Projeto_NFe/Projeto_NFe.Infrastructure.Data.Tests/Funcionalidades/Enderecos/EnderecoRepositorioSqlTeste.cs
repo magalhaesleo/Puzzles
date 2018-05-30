@@ -15,7 +15,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
     [TestFixture]
     public class EnderecoRepositorioSqlTeste
     {
-        private EnderecoRepositorioSql _repositorio;
+        private IEnderecoRepositorio _repositorio;
 
         [SetUp]
         public void IniciarCenario()
