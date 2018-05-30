@@ -38,12 +38,15 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes
 
         public Emitente BuscarPorId(long id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+                throw new ExcecaoIdentificadorIndefinido();
+
+            return _repositorio.BuscarPorId(id);
         }
 
         public IEnumerable<Emitente> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return _repositorio.BuscarTodos();
         }
 
         public void Excluir(Emitente emitente)

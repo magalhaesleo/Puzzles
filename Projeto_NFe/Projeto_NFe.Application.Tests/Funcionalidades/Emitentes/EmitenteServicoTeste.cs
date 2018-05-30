@@ -116,12 +116,37 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         [Test]
         public void EmitenteServico_BuscarPorId_Sucesso()
         {
+            long id = 1;
 
+            _mockRepositorioEmitente.Setup(er => er.BuscarPorId(id));
+
+            _emitenteServico.BuscarPorId(id);
+
+            _mockRepositorioEmitente.Verify(er => er.BuscarPorId(id));
+        }
+
+        [Test]
+        public void EmitenteServico_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        {
+            long idInvalido = 0;
+
+            _mockRepositorioEmitente.Setup(er => er.BuscarPorId(idInvalido));
+
+            Action acaoParaRetornarExcecaoIdentificadorIndefinido = () => _emitenteServico.BuscarPorId(idInvalido);
+
+            acaoParaRetornarExcecaoIdentificadorIndefinido.Should().Throw<ExcecaoIdentificadorIndefinido>();
+
+            _mockRepositorioEmitente.VerifyNoOtherCalls();
         }
 
         [Test]
         public void EmitenteServico_BuscarTodos_Sucesso()
         {
+            _mockRepositorioEmitente.Setup(mre => mre.BuscarTodos());
+
+            _emitenteServico.BuscarTodos();
+
+            _mockRepositorioEmitente.Verify(mre => mre.BuscarTodos());
 
         }
     }

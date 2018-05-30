@@ -43,7 +43,9 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         [Test]
         public void EnderecoService_Atualizar_Sucesso()
         {
-            _enderecoMock.Object.Id = 1;
+            long idValido = 1;
+
+            _enderecoMock.Setup(em => em.Id).Returns(idValido);
 
             _enderecoRepositorioMock.Setup(er => er.Atualizar(_enderecoMock.Object)).Returns(_enderecoMock.Object);
 
