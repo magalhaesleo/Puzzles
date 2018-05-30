@@ -1,6 +1,6 @@
 ﻿using Projeto_NFe.Application.Interfaces;
 using Projeto_NFe.Domain.Excecoes;
-using Projeto_NFe.Domain.Funcionalidades.CNPJs;
+using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using System;
 using System.Collections.Generic;

@@ -52,6 +52,10 @@
       <Project>{71B57985-2C26-4A87-BD86-D2EE37C0A31D}</Project>
       <Name>Projeto_NFe.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Projeto_NFe.Infrastructure\Projeto_NFe.Infrastructure.csproj">
+      <Project>{46825ec0-cc2c-4752-a78e-d6f816f32ccd}</Project>
+      <Name>Projeto_NFe.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
