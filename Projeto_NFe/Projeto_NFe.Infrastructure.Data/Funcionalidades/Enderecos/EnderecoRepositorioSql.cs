@@ -1,6 +1,4 @@
-﻿using Projeto_NFe.Domain.Excecoes;
-using Projeto_NFe.Domain.Funcionalidades.Enderecos;
-using Projeto_NFe.Domain.Interfaces;
+﻿using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using Projeto_NFe.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
@@ -9,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Infrastructure.Data.Funcionalidades
+namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Enderecos
 {
     public class EnderecoRepositorioSql : IEnderecoRepositorio
     {

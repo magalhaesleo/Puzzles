@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Projeto_NFe.Common.Tests.Base;
 using Projeto_NFe.Common.Tests.Funcionalidades.Enderecos;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
-using Projeto_NFe.Infrastructure.Data.Funcionalidades;
+using Projeto_NFe.Infrastructure.Data.Funcionalidades.Enderecos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +15,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
     [TestFixture]
     public class EnderecoRepositorioSqlTeste
     {
-        
-
-        EnderecoRepositorioSql _repositorio;
+        private EnderecoRepositorioSql _repositorio;
 
         [SetUp]
         public void IniciarCenario()
