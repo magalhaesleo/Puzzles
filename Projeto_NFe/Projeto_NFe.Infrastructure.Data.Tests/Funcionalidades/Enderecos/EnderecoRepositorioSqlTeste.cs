@@ -47,7 +47,6 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
             Endereco resultado = _repositorio.BuscarPorId(endereco.Id);
 
             resultado.Pais.Should().Be(endereco.Pais);
-            resultado.Pais.Should().NotBe("Pais");
         }
         
         [Test]
