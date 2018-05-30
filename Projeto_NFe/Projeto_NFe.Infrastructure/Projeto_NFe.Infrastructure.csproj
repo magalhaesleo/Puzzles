@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Objetos de Valor\CNPJs\CNPJ.cs" />
     <Compile Include="Database\Db.cs" />
+    <Compile Include="Objetos de Valor\CNPJs\ExcecaoCNPJNaoPossuiQuatorzeNumeros.cs" />
+    <Compile Include="Objetos de Valor\CNPJs\ExcecaoNumeroCNPJInvalido.cs" />
+    <Compile Include="Objetos de Valor\CPF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
