@@ -1,6 +1,8 @@
-﻿using Moq;
+﻿using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 using Projeto_NFe.Application.Funcionalidades.Emitentes;
+using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.CNPJs;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using System;
@@ -39,21 +41,76 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
 
             _emitenteServico.Adicionar(_mockEmitente.Object);
 
+            _mockRepositorioEmitente.Verify(mre => mre.Adicionar(_mockEmitente.Object));
+
             _mockCnpj.Verify(mc => mc.Validar());
             _mockEmitente.Verify(me => me.Validar());
-            _mockRepositorioEmitente.Verify(mre => mre.Adicionar(_mockEmitente.Object));
         }
 
         [Test]
         public void EmitenteServico_Atualizar_Sucesso()
         {
+            long idValido = 1;
+
+            _mockEmitente.Setup(me => me.Validar());
+            _mockEmitente.Setup(me => me.Id).Returns(idValido);
+            _mockCnpj.Setup(mc => mc.Validar());
+            _mockRepositorioEmitente.Setup(mre => mre.Atualizar(_mockEmitente.Object)).Returns(_mockEmitente.Object);
+
+            _emitenteServico.Atualizar(_mockEmitente.Object);
+
+            _mockRepositorioEmitente.Verify(mre => mre.Atualizar(_mockEmitente.Object));
+
+            _mockCnpj.Verify(mc => mc.Validar());
+            _mockEmitente.Verify(me => me.Validar());
+
+        }
+
+        [Test]
+        public void EmitenteServico_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        {
+            long idInvalido = 0;
+
+            _mockEmitente.Setup(me => me.Id).Returns(idInvalido);
+
+            Action acaoParaRetornarExcecaoIdentificadorIndefinido = () => _emitenteServico.Atualizar(_mockEmitente.Object);
+
+            acaoParaRetornarExcecaoIdentificadorIndefinido.Should().Throw<ExcecaoIdentificadorIndefinido>();
+
+            _mockRepositorioEmitente.VerifyNoOtherCalls();
+            _mockCnpj.VerifyNoOtherCalls();
+            _mockEmitente.Verify(me => me.Id);
 
         }
 
         [Test]
         public void EmitenteServico_Excluir_Sucesso()
         {
+            long idValido = 1;
 
+            _mockEmitente.Setup(me => me.Id).Returns(idValido);
+
+            _mockRepositorioEmitente.Setup(mre => mre.Excluir(_mockEmitente.Object));
+
+            _emitenteServico.Excluir(_mockEmitente.Object);
+
+            _mockRepositorioEmitente.Verify(mre => mre.Excluir(_mockEmitente.Object));
+        }
+
+        [Test]
+        public void EmitenteServico_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        {
+            long idInvalido = 0;
+
+            _mockEmitente.Setup(me => me.Id).Returns(idInvalido);
+
+            _mockRepositorioEmitente.Setup(mre => mre.Excluir(_mockEmitente.Object));
+
+            Action acaoParaRetornarExcecaoIdentificadorIndefinido = () => _emitenteServico.Excluir(_mockEmitente.Object);
+
+            acaoParaRetornarExcecaoIdentificadorIndefinido.Should().Throw<ExcecaoIdentificadorIndefinido>();
+
+            _mockRepositorioEmitente.VerifyNoOtherCalls();
         }
 
         [Test]

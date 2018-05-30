@@ -1,4 +1,5 @@
 ﻿using Projeto_NFe.Application.Interfaces;
+using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.CNPJs;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using System;
@@ -17,17 +18,22 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes
             this._repositorio = repositorio;
         }
 
-        public Emitente Adicionar(Emitente entidade)
+        public Emitente Adicionar(Emitente emitente)
         {
-            entidade.Validar();
-            entidade.CNPJ.Validar();
+            emitente.Validar();
+            emitente.CNPJ.Validar();
 
-           return _repositorio.Adicionar(entidade);
+           return _repositorio.Adicionar(emitente);
         }
 
-        public Emitente Atualizar(Emitente entidade)
+        public Emitente Atualizar(Emitente emitente)
         {
-            throw new NotImplementedException();
+            if (emitente.Id < 1)
+                throw new ExcecaoIdentificadorIndefinido();
+
+            emitente.Validar();
+            emitente.CNPJ.Validar();
+            return _repositorio.Atualizar(emitente);
         }
 
         public Emitente BuscarPorId(long id)
@@ -40,9 +46,12 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes
             throw new NotImplementedException();
         }
 
-        public void Excluir(Emitente entidade)
+        public void Excluir(Emitente emitente)
         {
-            throw new NotImplementedException();
+            if (emitente.Id < 1)
+                throw new ExcecaoIdentificadorIndefinido();
+
+            _repositorio.Excluir(emitente);
         }
     }
 }

@@ -67,7 +67,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoService_Deletar_Sucesso()
+        public void EnderecoService_Excluir_Sucesso()
         {
             Endereco endereco = new Endereco() { Id = 10 };
 
@@ -76,12 +76,10 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
             _enderecoServico.Excluir(endereco);
 
             _enderecoRepositorioMock.Verify(er => er.Excluir(endereco));
-
-            _enderecoRepositorioMock.VerifyNoOtherCalls();
         }
 
         [Test]
-        public void EnderecoService_Deletar_IdMenorQueUm_Falha()
+        public void EnderecoService_Excluir_IdMenorQueUm_Falha()
         {
             Endereco endereco = new Endereco() { Id = 0 };
 
