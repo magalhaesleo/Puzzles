@@ -30,7 +30,7 @@ namespace Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs
                 _numero = value;
             }
         }
-        public void Validar()
+        public virtual void Validar()
         {
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
