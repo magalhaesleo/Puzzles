@@ -1,7 +1,7 @@
 ﻿using Projeto_NFe.Domain.Base;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
-using Projeto_NFe.Infrastructure.Objetos_de_Valor;
+using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
