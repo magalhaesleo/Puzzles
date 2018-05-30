@@ -59,9 +59,9 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
             Endereco endereco = ObjectMother.PegarEnderecoValido();
             endereco.Id = 0;
 
-            Action acaoResultado = () => _servicoEndereco.Atualizar(endereco);
+            Action acaoParaRetornarExcecaoIdentificadorIndefinido = () => _servicoEndereco.Atualizar(endereco);
 
-            acaoResultado.Should().Throw<ExcecaoIdentificadorIndefinido>();
+            acaoParaRetornarExcecaoIdentificadorIndefinido.Should().Throw<ExcecaoIdentificadorIndefinido>();
         }
 
         [Test]
