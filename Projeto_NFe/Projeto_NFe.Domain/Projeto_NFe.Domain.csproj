@@ -43,6 +43,13 @@
     <Compile Include="Base\Entidade.cs" />
     <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
     <Compile Include="Excecoes\ExcecaoIdentificadorIndefinido.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Destinatario.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualNula.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemDocumento.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemEndereco.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemNome.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualAbaixoDoLimite.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualAcimaDoLimite.cs" />
     <Compile Include="Funcionalidades\Emitentes\Emitente.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoMunicipalEmitenteComLetras.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoEstadualEmitenteComLetras.cs" />
