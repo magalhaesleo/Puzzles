@@ -91,6 +91,16 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
             acaoQueDeveRetornarExecaoDestinatarioComInscricaoEstadualAbaixoDoLimite.Should().Throw<ExcecaoDestinatarioComInscricaoEstadualAbaixoDoLimite>();
         }
 
+        [Test]
+        public void Destinatario_Validar_ExcecaoDestinatarioComInscricaoEstadualNula_Falha()
+        {
+            Destinatario destinatarioParaValidar = ObjectMother.PegarDestinatarioComCNPJSemInscricaoEstadual();
+
+            Action acaoQueDeveRetornarExcecaoDestinatarioComInscricaoEstadualNula = () => destinatarioParaValidar.Validar();
+
+            acaoQueDeveRetornarExcecaoDestinatarioComInscricaoEstadualNula.Should().Throw<ExcecaoDestinatarioComInscricaoEstadualNula>();
+        }
+
 
     }
 }

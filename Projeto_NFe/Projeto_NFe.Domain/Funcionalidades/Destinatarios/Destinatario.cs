@@ -32,7 +32,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
             }
         }
 
-        public string IncricaoEstadual { get; set; }
+        public string InscricaoEstadual { get; set; }
         public void Validar()
         {
             if (String.IsNullOrEmpty(NomeRazaoSocial))
@@ -43,10 +43,13 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
 
             if (TipoDeDocumento == "CNPJ")
             {
-                if (IncricaoEstadual.Length > 15)
+                if (String.IsNullOrEmpty(InscricaoEstadual))
+                    throw new ExcecaoDestinatarioComInscricaoEstadualNula();
+
+                if (InscricaoEstadual.Length > 15)
                     throw new ExcecaoDestinatarioComInscricaoEstadualAcimaDoLimite();
 
-                if (IncricaoEstadual.Length < 15)
+                if (InscricaoEstadual.Length < 15)
                     throw new ExcecaoDestinatarioComInscricaoEstadualAbaixoDoLimite();
             }
 

@@ -20,7 +20,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
                 },
-                IncricaoEstadual = "636.330.646.110"
+                InscricaoEstadual = "636.330.646.110"
 
             };
 
@@ -36,7 +36,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
                 },
-                 IncricaoEstadual = "636.330.646.110"
+                 InscricaoEstadual = "636.330.646.110"
             };
 
         }
@@ -61,7 +61,21 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
                 },
-                IncricaoEstadual = "636.330.646.110"
+                InscricaoEstadual = "636.330.646.110"
+            };
+
+        }
+
+        public static Destinatario PegarDestinatarioComCNPJSemInscricaoEstadual()
+        {
+            return new Destinatario()
+            {
+                NomeRazaoSocial = "Nome",
+                Documento = new CNPJ()
+                {
+                    NumeroComPontuacao = "32.993.282/0001-61"
+                },
+                InscricaoEstadual = ""
             };
 
         }
@@ -75,7 +89,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
                 },
-                IncricaoEstadual = "636.330.646.0"
+                InscricaoEstadual = "636.330.646.0"
             };
 
         }
@@ -89,7 +103,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
                 },
-                IncricaoEstadual = "636.330.646.000000000"
+                InscricaoEstadual = "636.330.646.000000000"
             };
 
         }
