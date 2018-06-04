@@ -52,9 +52,11 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
         [Test]
         public void EnderecoRepositorioSql_Excluir_Sucesso()
         {
-            Endereco enderecoParaDeletar = ObjectMother.PegarEnderecoValido();
+            Endereco enderecoParaAdicionar = ObjectMother.PegarEnderecoValido();
 
-            enderecoParaDeletar.Id = 1;
+            Endereco enderecoAdicionado = _repositorio.Adicionar(enderecoParaAdicionar);
+
+            Endereco enderecoParaDeletar = enderecoAdicionado;
 
             _repositorio.Excluir(enderecoParaDeletar);
 
