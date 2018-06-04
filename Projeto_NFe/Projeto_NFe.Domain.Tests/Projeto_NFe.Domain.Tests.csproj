@@ -71,6 +71,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Destinatarios\DestinatarioTeste.cs" />
     <Compile Include="Funcionalidades\Emitentes\EmitenteTeste.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

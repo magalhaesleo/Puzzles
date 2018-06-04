@@ -1,4 +1,5 @@
-﻿using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
+﻿using Projeto_NFe.Infrastructure.Interfaces;
+using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs
 {
-    public class CNPJ
+    public class CNPJ : IDocumentO
     {
         private string _numero;
         public string Numero
