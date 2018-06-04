@@ -38,7 +38,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CNPJ_Validar_NumeroPequeno_ExcecaoCPFNaoPossuiOnzeNumeros_Falha()
+        public void CPF_Validar_NumeroPequeno_ExcecaoCPFNaoPossuiOnzeNumeros_Falha()
         {
             CPF cpf = new CPF();
             cpf.NumeroComPontuacao = "000.000-00";
@@ -48,13 +48,52 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CNPJ_Validar_NumeroGrande_ExcecaoCPFNaoPossuiOnzeNumeros_Falha()
+        public void CPF_Validar_NumeroGrande_ExcecaoCPFNaoPossuiOnzeNumeros_Falha()
         {
             CPF cpf = new CPF();
             cpf.NumeroComPontuacao = "000.000.000.000-00";
             Action resultado = () => cpf.Validar();
 
             resultado.Should().Throw<ExcecaoCPFNaoPossuiOnzeNumeros>();
+        }
+
+        [Test]
+        public void CPF_Validar_PrimeiroDigitoVerificador_Sucesso()
+        {
+            CPF cpfPrimeiroDigitoVerificador = new CPF();
+            cpfPrimeiroDigitoVerificador.NumeroComPontuacao = "867.513.141-08";
+
+            Action resultadoPrimeiroDigitoVerificador = () => cpfPrimeiroDigitoVerificador.Validar();
+
+            resultadoPrimeiroDigitoVerificador.Should().NotThrow<Exception>();
+            cpfPrimeiroDigitoVerificador.Numero.Should().Be("86751314108");
+            cpfPrimeiroDigitoVerificador.NumeroComPontuacao.Should().Be("867.513.141-08");
+        }
+
+        [Test]
+        public void CPF_Validar_SegundoDigitoVerificador_Sucesso()
+        {
+            CPF cpfSegundoDigitoVerificador = new CPF();
+            cpfSegundoDigitoVerificador.NumeroComPontuacao = "696.629.258-30";
+
+            Action resultadoSegundoDigitoVerificador = () => cpfSegundoDigitoVerificador.Validar();
+
+            resultadoSegundoDigitoVerificador.Should().NotThrow<Exception>();
+            cpfSegundoDigitoVerificador.Numero.Should().Be("69662925830");
+            cpfSegundoDigitoVerificador.NumeroComPontuacao.Should().Be("696.629.258-30");
+        }
+
+
+
+        [Test]
+        public void CPF_Validar_NumeroInvalido_ExcecaoNumeroCPFInvalido_Falha()
+        {
+            CPF cpf = new CPF();
+            cpf.NumeroComPontuacao = "123.456.789-00";
+
+            Action resultado = () => cpf.Validar();
+
+            resultado.Should().Throw<ExcecaoNumeroCPFInvalido>();
         }
 
     }
