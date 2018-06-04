@@ -61,5 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tabelas\TBENDERECO.sql" />
+    <Build Include="Tabelas\TBEMITENTE.sql" />
   </ItemGroup>
 </Project>

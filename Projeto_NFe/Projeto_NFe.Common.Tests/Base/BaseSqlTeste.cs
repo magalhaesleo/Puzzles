@@ -1,5 +1,4 @@
 ﻿using Projeto_NFe.Infrastructure.Database;
-using Projeto_NFe.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +9,24 @@ namespace Projeto_NFe.Common.Tests.Base
 {
     public static partial class BaseSqlTeste
     {
-        private const string ADICIONAR_REGISTRO_TABELA_ENDERECO = "INSERT INTO TBENDERECO (Logradouro, Numero, Bairro, Municipio, Estado, Pais) VALUES ('Logradouro', 1, 'Bairro', 'Municipio', 'Estado', 'Pais')";
+        #region Scripts SQL
         private const string EXCLUIR_REGISTRO_TABELA_ENDERECO = "DELETE FROM [dbo].[TBENDERECO]; DBCC CHECKIDENT('[dbo].[TBENDERECO]', RESEED, 0)";
-      
-
+        private const string ADICIONAR_REGISTRO_TABELA_ENDERECO = "INSERT INTO TBENDERECO (Logradouro, Numero, Bairro, Municipio, Estado, Pais) VALUES ('Logradouro', 1, 'Bairro', 'Municipio', 'Estado', 'Pais')";
+        private const string EXCLUIR_REGISTRO_TABELA_EMITENTE = "DELETE FROM [dbo].[TBEMITENTE]; DBCC CHECKIDENT('[dbo].[TBEMITENTE]', RESEED, 0)";
+        private const string ADICIONAR_REGISTRO_TABELA_EMITENTE = @"INSERT INTO TBEMITENTE (NOMEFANTASIA, RAZAOSOCIAL,
+                                                        CNPJ, INSCRICAOESTADUAL, INSCRICAOMUNICIPAL, ENDERECOID)
+                                                        VALUES ('Nome fantasia', 'Razao social', '99.327.235/0001-50',
+                                                                '296.062.760.060', '0129195449791', 1)";
+        #endregion
         public static void InicializarBancoDeDados()
         {
-
             //Excluindo
-            Db.Atualizar(EXCLUIR_REGISTRO_TABELA_ENDERECO);
+            Db.Atualizar(EXCLUIR_REGISTRO_TABELA_EMITENTE);
+            Db.Atualizar(EXCLUIR_REGISTRO_TABELA_ENDERECO);           
 
             //Adicionando
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_ENDERECO);
+            Db.Atualizar(ADICIONAR_REGISTRO_TABELA_EMITENTE);
         }
 
 
