@@ -1,9 +1,13 @@
 ﻿using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 using Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios;
 using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Destinatarios;
 using Projeto_NFe.Domain.Funcionalidades.Destinatarios.Excecoes;
+using Projeto_NFe.Domain.Funcionalidades.Enderecos;
+using Projeto_NFe.Infrastructure.Interfaces;
+using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +19,13 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
     [TestFixture]
     public class DestinatarioTeste
     {
+        Mock<IDocumento> _mockDocumentoCNPJ;
+        Mock<Endereco> _mockEndereco;
         [SetUp]
         public void Inicializa()
         {
-
+            _mockDocumentoCNPJ = new Mock<IDocumento>();
+            _mockEndereco = new Mock<Endereco>();
         }
 
         [Test]
@@ -111,6 +118,23 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
             acaoQueDeveRetornarExcecaoDestinatarioSemEndereco.Should().Throw<ExcecaoDestinatarioSemEndereco>();
         }
 
+        [Test]
+        public void Destinatario_Validar_DeveChamarValidacaoDeDocumento_Sucesso()
+        {
+            Destinatario destinatarioParaValidar = ObjectMother.PegarDestinatarioValidoComCNPJ();
+            destinatarioParaValidar.Endereco = _mockEndereco.Object;
+            destinatarioParaValidar.Documento = _mockDocumentoCNPJ.Object;
+
+            _mockEndereco.Setup(me => me.Validar());
+            _mockDocumentoCNPJ.Setup(mdc => mdc.Validar());
+
+            Action acaoDeValidacao = () => destinatarioParaValidar.Validar();
+
+            acaoDeValidacao.Should().NotThrow<ExcecaoDeNegocio>();
+
+            _mockEndereco.Verify(me => me.Validar());
+            _mockDocumentoCNPJ.Verify(mdc => mdc.Validar());
+        }
 
     }
 }
