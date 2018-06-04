@@ -33,9 +33,15 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         {
             Emitente emitente = ObjectMother.PegarEmitenteValido(_enderecoMock.Object, _cnpjMock.Object);
 
+            _enderecoMock.Setup(em => em.Validar());
+            _cnpjMock.Setup(cm => cm.Validar());
+
             Action resultado = () => emitente.Validar();
 
             resultado.Should().NotThrow<ExcecaoDeNegocio>();
+
+            _enderecoMock.Verify(em => em.Validar());
+            _cnpjMock.Verify(cm => cm.Validar());
         }
 
         [Test]
@@ -46,6 +52,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
             Action resultado = () => emitente.Validar();
 
             resultado.Should().Throw<ExcecaoEmitenteSemNome>();
+            
         }
 
         [Test]
@@ -55,6 +62,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
 
             Action resultado = () => emitente.Validar();
 
+      
             resultado.Should().Throw<ExcecaoEmitenteSemRazaoSocial>();
         }
 
@@ -75,7 +83,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
 
             Action resultado = () => emitente.Validar();
 
-            resultado.Should().Throw<ExcecaoEmitenteSemInscricaoEstadual>();
+           resultado.Should().Throw<ExcecaoEmitenteSemInscricaoEstadual>();
         }
 
         [Test]

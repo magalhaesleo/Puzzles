@@ -35,15 +35,15 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         [Test]
         public void EmitenteServico_Adicionar_Sucesso()
         {
+
             _mockEmitente.Setup(me => me.Validar());
-            _mockCnpj.Setup(mc => mc.Validar());
+
             _mockRepositorioEmitente.Setup(mre => mre.Adicionar(_mockEmitente.Object)).Returns(_mockEmitente.Object);
 
             _emitenteServico.Adicionar(_mockEmitente.Object);
 
             _mockRepositorioEmitente.Verify(mre => mre.Adicionar(_mockEmitente.Object));
 
-            _mockCnpj.Verify(mc => mc.Validar());
             _mockEmitente.Verify(me => me.Validar());
         }
 
@@ -54,14 +54,12 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
 
             _mockEmitente.Setup(me => me.Validar());
             _mockEmitente.Setup(me => me.Id).Returns(idValido);
-            _mockCnpj.Setup(mc => mc.Validar());
             _mockRepositorioEmitente.Setup(mre => mre.Atualizar(_mockEmitente.Object)).Returns(_mockEmitente.Object);
 
             _emitenteServico.Atualizar(_mockEmitente.Object);
 
             _mockRepositorioEmitente.Verify(mre => mre.Atualizar(_mockEmitente.Object));
 
-            _mockCnpj.Verify(mc => mc.Validar());
             _mockEmitente.Verify(me => me.Validar());
 
         }

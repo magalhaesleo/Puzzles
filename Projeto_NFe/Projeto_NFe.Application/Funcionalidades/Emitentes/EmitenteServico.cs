@@ -21,7 +21,6 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes
         public Emitente Adicionar(Emitente emitente)
         {
             emitente.Validar();
-            emitente.CNPJ.Validar();
 
            return _repositorio.Adicionar(emitente);
         }
@@ -32,7 +31,7 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes
                 throw new ExcecaoIdentificadorIndefinido();
 
             emitente.Validar();
-            emitente.CNPJ.Validar();
+
             return _repositorio.Atualizar(emitente);
         }
 
