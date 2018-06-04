@@ -46,6 +46,7 @@
     <Compile Include="Funcionalidades\Destinatarios\Destinatario.cs" />
     <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualNula.cs" />
     <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemDocumento.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemEndereco.cs" />
     <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemNome.cs" />
     <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualAbaixoDoLimite.cs" />
     <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualAcimaDoLimite.cs" />

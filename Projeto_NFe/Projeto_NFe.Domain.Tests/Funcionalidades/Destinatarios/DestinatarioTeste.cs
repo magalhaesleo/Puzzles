@@ -101,6 +101,16 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
             acaoQueDeveRetornarExcecaoDestinatarioComInscricaoEstadualNula.Should().Throw<ExcecaoDestinatarioComInscricaoEstadualNula>();
         }
 
+        [Test]
+        public void Destinatario_Validar_ExcecaoDestinatarioSemEndereco_Falha()
+        {
+            Destinatario destinatarioParaValidar = ObjectMother.PegarDestinatarioSemEndereco();
+
+            Action acaoQueDeveRetornarExcecaoDestinatarioSemEndereco = () => destinatarioParaValidar.Validar();
+
+            acaoQueDeveRetornarExcecaoDestinatarioSemEndereco.Should().Throw<ExcecaoDestinatarioSemEndereco>();
+        }
+
 
     }
 }
