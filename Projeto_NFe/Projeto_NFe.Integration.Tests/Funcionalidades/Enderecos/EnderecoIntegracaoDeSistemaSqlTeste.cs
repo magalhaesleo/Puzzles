@@ -5,7 +5,7 @@ using Projeto_NFe.Common.Tests.Base;
 using Projeto_NFe.Common.Tests.Funcionalidades.Enderecos;
 using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
-using Projeto_NFe.Infrastructure.Data.Funcionalidades;
+using Projeto_NFe.Infrastructure.Data.Funcionalidades.Enderecos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

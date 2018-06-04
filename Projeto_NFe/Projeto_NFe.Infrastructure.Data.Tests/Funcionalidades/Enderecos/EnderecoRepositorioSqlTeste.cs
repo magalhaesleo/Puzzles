@@ -3,7 +3,7 @@ using NUnit.Framework;
 using Projeto_NFe.Common.Tests.Base;
 using Projeto_NFe.Common.Tests.Funcionalidades.Enderecos;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
-using Projeto_NFe.Infrastructure.Data.Funcionalidades;
+using Projeto_NFe.Infrastructure.Data.Funcionalidades.Enderecos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +15,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
     [TestFixture]
     public class EnderecoRepositorioSqlTeste
     {
-        
-
-        EnderecoRepositorioSql _repositorio;
+        private IEnderecoRepositorio _repositorio;
 
         [SetUp]
         public void IniciarCenario()
@@ -49,7 +47,6 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
             Endereco resultado = _repositorio.BuscarPorId(endereco.Id);
 
             resultado.Pais.Should().Be(endereco.Pais);
-            resultado.Pais.Should().NotBe("Pais");
         }
         
         [Test]

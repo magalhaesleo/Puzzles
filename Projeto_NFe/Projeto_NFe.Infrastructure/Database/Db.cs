@@ -142,7 +142,7 @@ namespace Projeto_NFe.Infrastructure.Database
                     DefinirParametrosParaOComandoSql(command, parms);
                     connection.Open();
 
-                    idAux = Convert.ToInt32(command.ExecuteScalar());
+                    idAux = Convert.ToInt64(command.ExecuteScalar());
                 }
             }
             return idAux;
