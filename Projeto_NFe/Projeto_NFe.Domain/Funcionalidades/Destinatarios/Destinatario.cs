@@ -12,7 +12,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
 {
     public class Destinatario
     {
-        public String Nome { get; set; }
+        public String NomeRazaoSocial { get; set; }
 
         public IDocumento Documento { get; set; }
 
@@ -35,7 +35,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
         public string IncricaoEstadual { get; set; }
         public void Validar()
         {
-            if (String.IsNullOrEmpty(Nome))
+            if (String.IsNullOrEmpty(NomeRazaoSocial))
                 throw new ExcecaoDestinatarioSemNome();
 
             if (Documento == null)

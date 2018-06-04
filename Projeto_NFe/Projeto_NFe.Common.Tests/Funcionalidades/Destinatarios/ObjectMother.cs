@@ -15,7 +15,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
         {
             return new Destinatario()
             {
-                Nome = "Cia dos dev",
+                NomeRazaoSocial = "Nome",
                 Documento = new CNPJ()
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
@@ -31,7 +31,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
         {
             return new Destinatario()
             {
-                Nome = "",
+                NomeRazaoSocial = "",
                 Documento = new CNPJ()
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
@@ -45,7 +45,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
         {
             return new Destinatario()
             {
-                Nome = "Esse tem piá",
+                NomeRazaoSocial = "Nome",
                 Documento = null
 
             };
@@ -56,7 +56,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
         {
             return new Destinatario()
             {
-                Nome = "Esse tem piá",
+                NomeRazaoSocial = "Nome",
                 Documento = new CNPJ()
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
@@ -70,7 +70,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
         {
             return new Destinatario()
             {
-                Nome = "Esse tem piá",
+                NomeRazaoSocial = "Nome",
                 Documento = new CNPJ()
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
@@ -84,7 +84,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
         {
             return new Destinatario()
             {
-                Nome = "Esse tem piá",
+                NomeRazaoSocial = "Nome",
                 Documento = new CNPJ()
                 {
                     NumeroComPontuacao = "32.993.282/0001-61"
@@ -97,7 +97,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
         {
             return new Destinatario()
             {
-                Nome = "Esse tem piá",
+                NomeRazaoSocial = "Nome",
                 Documento = new CPF()
                 {
                     NumeroComPontuacao = "603.486.029-60"

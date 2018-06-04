@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.Objetos_de_Valor.CPFs
 {
-    public class CPF : IDocumentO
+    public class CPF : IDocumento
     {
 
         private string _numero;

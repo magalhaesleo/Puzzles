@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs
 {
-    public class CNPJ : IDocumentO
+    public class CNPJ : IDocumento
     {
         private string _numero;
         public string Numero
