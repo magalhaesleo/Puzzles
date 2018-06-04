@@ -5,7 +5,6 @@ using Projeto_NFe.Application.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
-using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

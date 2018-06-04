@@ -32,10 +32,10 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes
         public const string _sqlBuscarPorId = @"SELECT * FROM TBEMITENTE 
                                               WHERE ID = {0}ID";
 
-        public const string _sqlExcluir = @"DELETE FROM TBENDERECO
+        public const string _sqlExcluir = @"DELETE FROM TBEMITENTE
                                               WHERE ID = {0}ID";
 
-        public const string _sqlBuscarTodos = @"SELECT * FROM TBENDERECO";
+        public const string _sqlBuscarTodos = @"SELECT * FROM TBEMITENTE";
 
         #endregion Scripts SQL
         public Emitente Adicionar(Emitente emitente)
@@ -47,7 +47,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes
 
         public Emitente Atualizar(Emitente emitente)
         {
-            emitente.Id = Db.Atualizar(_sqlAtualizar, ObterDicionarioEmitente(emitente));
+            Db.Atualizar(_sqlAtualizar, ObterDicionarioEmitente(emitente));
             return emitente;
         }
 
@@ -58,12 +58,12 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes
 
         public IEnumerable<Emitente> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return Db.BuscarTodos(_sqlBuscarTodos, FormaObjetoEmitente);           
         }
 
         public void Excluir(Emitente emitente)
         {
-            throw new NotImplementedException();
+            Db.Excluir(_sqlExcluir, ObterDicionarioEmitente(emitente));
         }
 
         #region Montar e Ler Objetos
@@ -81,19 +81,20 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes
             };
         }
 
-        private static Func<IDataReader, Emitente> FormaObjetoEmitente = reader =>
+        private static Emitente FormaObjetoEmitente(IDataReader reader)
+        {
+            Emitente emitente = new Emitente();
 
-            new Emitente
-            {
-                Id = Convert.ToInt64(reader["Id"]),
-                NomeFantasia = Convert.ToString(reader["NOMEFANTASIA"]),
-                RazaoSocial = Convert.ToString(reader["RAZAOSOCIAL"]),
-                CNPJ = new CNPJ { NumeroComPontuacao = Convert.ToString(reader["CNPJ"]) },
-                InscricaoEstadual = Convert.ToString(reader["INSCRICAOESTADUAL"]),
-                InscricaoMunicipal = Convert.ToString(reader["INSCRICAOMUNICIPAL"]),
-                Endereco = new Endereco { Id = Convert.ToInt64(reader["ENDERECOID"]) }
-            };
+            emitente.Id = Convert.ToInt64(reader["Id"]);
+            emitente.NomeFantasia = Convert.ToString(reader["NOMEFANTASIA"]);
+            emitente.RazaoSocial = Convert.ToString(reader["RAZAOSOCIAL"]);
+            emitente.CNPJ = new CNPJ { NumeroComPontuacao = Convert.ToString(reader["CNPJ"]) };
+            emitente.InscricaoEstadual = Convert.ToString(reader["INSCRICAOESTADUAL"]);
+            emitente.InscricaoMunicipal = Convert.ToString(reader["INSCRICAOMUNICIPAL"]);
+            emitente.Endereco = new Endereco { Id = Convert.ToInt64(reader["ENDERECOID"]) };
 
+            return emitente;
+        }
         #endregion
     }
 }

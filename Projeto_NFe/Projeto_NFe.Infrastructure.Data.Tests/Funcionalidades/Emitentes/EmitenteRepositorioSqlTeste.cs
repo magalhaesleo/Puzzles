@@ -47,17 +47,76 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Emitentes
         [Test]
         public void EmitenteRepositorioSql_Atualizar_Sucesso()
         {
-            Emitente resultado = _repositorio.BuscarPorId(1);
-            //_enderecoMock.Setup(em => em.Id).Returns(1);
-            //_cnpjMock.Object.NumeroComPontuacao = "99.327.335/0001-50";
-            //Emitente emitente = ObjectMother.PegarEmitenteValido(_enderecoMock.Object, _cnpjMock.Object);
-            //emitente.Id = 1;
+            _enderecoMock.Setup(em => em.Id).Returns(1);
+            _cnpjMock.Object.NumeroComPontuacao = "99.327.335/0001-50";
 
-            //_repositorio.Atualizar(emitente);
+            Emitente emitente = ObjectMother.PegarEmitenteValido(_enderecoMock.Object, _cnpjMock.Object);
+            emitente.Id = 1;
 
-            //Emitente resultado = _repositorio.BuscarPorId(emitente.Id);
+            _repositorio.Atualizar(emitente);
 
-            //resultado.NomeFantasia.Should().Be(emitente.NomeFantasia);
+            Emitente resultado = _repositorio.BuscarPorId(emitente.Id);
+
+            resultado.NomeFantasia.Should().Be(emitente.NomeFantasia);
+            resultado.RazaoSocial.Should().Be(emitente.RazaoSocial);
+            resultado.InscricaoEstadual.Should().Be(emitente.InscricaoEstadual);
+            resultado.InscricaoMunicipal.Should().Be(emitente.InscricaoMunicipal);
+        }
+
+        [Test]
+        public void EmitenteRepositorioSql_Excluir_Sucesso()
+        {
+            _enderecoMock.Setup(em => em.Id).Returns(1);
+            _cnpjMock.Object.NumeroComPontuacao = "99.327.335/0001-50";
+
+            Emitente emitente = ObjectMother.PegarEmitenteValido(_enderecoMock.Object, _cnpjMock.Object);
+            emitente.Id = 1;
+
+            _repositorio.Excluir(emitente);
+
+            Emitente emitenteParaBuscar = _repositorio.BuscarPorId(emitente.Id);
+
+            emitenteParaBuscar.Should().BeNull(); 
+        }
+
+        [Test]
+        public void EmitenteRepositorioSql_Buscar_Sucesso()
+        {
+            _enderecoMock.Setup(em => em.Id).Returns(1);
+            _cnpjMock.Object.NumeroComPontuacao = "99.327.335/0001-50";
+
+            Emitente emitente = ObjectMother.PegarEmitenteValido(_enderecoMock.Object, _cnpjMock.Object);
+            emitente.Id = 1;
+
+            emitente = _repositorio.Adicionar(emitente);
+
+            Emitente buscarEmitente =_repositorio.BuscarPorId(emitente.Id);
+
+            buscarEmitente.Should().NotBeNull();
+            buscarEmitente.NomeFantasia.Should().Be(emitente.NomeFantasia);
+            buscarEmitente.RazaoSocial.Should().Be(emitente.RazaoSocial);
+            buscarEmitente.InscricaoEstadual.Should().Be(emitente.InscricaoEstadual);
+            buscarEmitente.InscricaoMunicipal.Should().Be(emitente.InscricaoMunicipal);
+            buscarEmitente.CNPJ.NumeroComPontuacao.Should().Be(emitente.CNPJ.NumeroComPontuacao);
+            buscarEmitente.Endereco.Id.Should().Be(emitente.Endereco.Id);
+        }
+
+        [Test]
+        public void EmitenteRepositorioSql_BuscarTodos_Sucesso()
+        {
+            _enderecoMock.Setup(em => em.Id).Returns(1);
+            _cnpjMock.Object.NumeroComPontuacao = "99.327.335/0001-50";
+
+            Emitente emitente = ObjectMother.PegarEmitenteValido(_enderecoMock.Object, _cnpjMock.Object);
+
+            emitente = _repositorio.Adicionar(emitente);
+
+            IEnumerable<Emitente> listaEmitente;
+
+            listaEmitente = _repositorio.BuscarTodos();
+
+            listaEmitente.Should().NotBeNull();
+            listaEmitente.Count().Should().Be(2);
         }
     }
 }
