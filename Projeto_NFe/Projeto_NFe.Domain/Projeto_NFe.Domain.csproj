@@ -55,7 +55,7 @@
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoMunicipalEmitenteComLetras.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoEstadualEmitenteComLetras.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemEndereco.cs" />
-    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteComInscricaoEstadualInvalida.cs" />
+    <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteComInscricaoEstadualAcimaDoLimite.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemInscricaoMunicipal.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemInscricaoEstadual.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoEmitenteSemCNPJ.cs" />
@@ -72,6 +72,13 @@
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemNumero.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemPais.cs" />
     <Compile Include="Funcionalidades\Enderecos\IEnderecoRepositorio.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualAbaixoDoLimite.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualAcimaDoLimite.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualNula.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemDocumento.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemEndereco.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemNome.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\Transportador.cs" />
     <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
