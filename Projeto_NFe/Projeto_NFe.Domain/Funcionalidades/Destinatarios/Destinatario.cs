@@ -1,4 +1,5 @@
-﻿using Projeto_NFe.Domain.Funcionalidades.Destinatarios.Excecoes;
+﻿using Projeto_NFe.Domain.Base;
+using Projeto_NFe.Domain.Funcionalidades.Destinatarios.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using Projeto_NFe.Infrastructure.Interfaces;
 using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
 {
-    public class Destinatario
+    public class Destinatario : Entidade
     {
         public String NomeRazaoSocial { get; set; }
 
@@ -37,7 +38,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
 
         public Endereco Endereco { get; set; }
 
-        public void Validar()
+        public virtual void Validar()
         {
             if (String.IsNullOrEmpty(NomeRazaoSocial))
                 throw new ExcecaoDestinatarioSemNome();

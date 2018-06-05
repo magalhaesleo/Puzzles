@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Destinatarios\DestinatarioServico.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\IDestinatarioServico.cs" />
     <Compile Include="Funcionalidades\Emitentes\EmitenteServico.cs" />
     <Compile Include="Funcionalidades\Emitentes\IEmitenteServico.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoServico.cs" />

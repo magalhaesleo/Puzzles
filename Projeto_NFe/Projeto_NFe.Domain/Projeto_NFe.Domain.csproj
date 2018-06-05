@@ -50,6 +50,7 @@
     <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioSemNome.cs" />
     <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualAbaixoDoLimite.cs" />
     <Compile Include="Funcionalidades\Destinatarios\Excecoes\ExcecaoDestinatarioComInscricaoEstadualAcimaDoLimite.cs" />
+    <Compile Include="Funcionalidades\Destinatarios\IDestinatarioRepositorio.cs" />
     <Compile Include="Funcionalidades\Emitentes\Emitente.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoMunicipalEmitenteComLetras.cs" />
     <Compile Include="Funcionalidades\Emitentes\Excecoes\ExcecaoInscricacaoEstadualEmitenteComLetras.cs" />
