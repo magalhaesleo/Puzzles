@@ -10,6 +10,11 @@ namespace Projeto_NFe.Infrastructure.Interfaces
 {
     public interface IDocumento
     {
+        string NumeroComPontuacao { get; set; }
         void Validar();
+
+        string ObterTipo();
+
+        
     }
 }

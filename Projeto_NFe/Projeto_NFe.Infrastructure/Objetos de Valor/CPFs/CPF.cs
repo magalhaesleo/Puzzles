@@ -32,6 +32,11 @@ namespace Projeto_NFe.Infrastructure.Objetos_de_Valor.CPFs
             }
         }
 
+        public virtual string ObterTipo()
+        {
+            return "CPF";
+        }
+
         public virtual void Validar()
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };

@@ -62,5 +62,9 @@
   <ItemGroup>
     <Build Include="Tabelas\TBENDERECO.sql" />
     <Build Include="Tabelas\TBEMITENTE.sql" />
+    <Build Include="Tabelas\TBDESTINATARIO.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Projeto_NFe.Database.refactorlog" />
   </ItemGroup>
 </Project>

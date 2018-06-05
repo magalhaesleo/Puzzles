@@ -16,21 +16,13 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
     {
         public String NomeRazaoSocial { get; set; }
 
-        public IDocumento Documento { get; set; }
+        public virtual IDocumento Documento { get; set; }
 
         public string TipoDeDocumento
         {
             get
             {
-                if (Documento.GetType() == typeof(CNPJ))
-                {
-                    return "CNPJ";
-                }
-                else
-                {
-                    return "CPF";
-                }
-
+                return Documento.ObterTipo();
             }
         }
 
@@ -54,8 +46,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
                 if (InscricaoEstadual.Length > 15)
                     throw new ExcecaoDestinatarioComInscricaoEstadualAcimaDoLimite();
 
-                if (InscricaoEstadual.Length < 15)
-                    throw new ExcecaoDestinatarioComInscricaoEstadualAbaixoDoLimite();
+               
             }
 
             if (Endereco == null)

@@ -101,7 +101,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
 
             IEnumerable<Endereco> listaDeEnderecos = _servicoEndereco.BuscarTodos();
 
-            listaDeEnderecos.Should().HaveCount(2);
+            listaDeEnderecos.Should().HaveCount(3);
         }
 
         [Test]
