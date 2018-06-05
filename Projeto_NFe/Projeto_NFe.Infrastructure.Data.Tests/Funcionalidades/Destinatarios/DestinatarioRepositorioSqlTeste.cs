@@ -32,14 +32,15 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
             BaseSqlTeste.InicializarBancoDeDados();
         }
 
-        [Test]
+        //[Test]
         public void DestinatarioRepositorioSql_Adicionar_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 2;
-            _mockEndereco.Setup(em => em.Id).Returns(idDoEnderecoDaBaseSql);
 
             Destinatario destinatarioValido = ObjectMother.PegarDestinatarioValidoComCPF();
+
             destinatarioValido.Id = 0;
+            destinatarioValido.Endereco.Id = idDoEnderecoDaBaseSql;
 
             Destinatario destinatarioAdicionado = _repositorio.Adicionar(destinatarioValido);
 
