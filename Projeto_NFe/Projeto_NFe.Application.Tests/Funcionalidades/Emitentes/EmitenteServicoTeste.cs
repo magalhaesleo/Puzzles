@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 
 namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
 {
@@ -17,7 +18,9 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
     public class EmitenteServicoTeste
     {
         Mock<IEmitenteRepositorio> _mockRepositorioEmitente;
+        Mock<IEnderecoRepositorio> _enderecoRepositorioMock;
         IEmitenteServico _emitenteServico;
+        Endereco _endereco;
         Mock<Emitente> _mockEmitente;
         Mock<CNPJ> _mockCnpj;
 
@@ -25,8 +28,10 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         public void InicializarTestes()
         {
             _mockRepositorioEmitente = new Mock<IEmitenteRepositorio>();
+            _enderecoRepositorioMock = new Mock<IEnderecoRepositorio>();
+            _endereco = new Endereco();
             _mockEmitente = new Mock<Emitente>();
-            _emitenteServico = new EmitenteServico(_mockRepositorioEmitente.Object);
+            _emitenteServico = new EmitenteServico(_mockRepositorioEmitente.Object, _enderecoRepositorioMock.Object);
             _mockCnpj = new Mock<CNPJ>();
 
             _mockEmitente.Object.CNPJ = _mockCnpj.Object;
@@ -35,33 +40,49 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         [Test]
         public void EmitenteServico_Adicionar_Sucesso()
         {
-
+            //Cenário
+            _endereco.Id = 1;
+            _mockRepositorioEmitente.Setup(mre => mre.Adicionar(_mockEmitente.Object)).Returns(_mockEmitente.Object);
+            _enderecoRepositorioMock.Setup(er => er.Adicionar(_endereco)).Returns(_endereco);
+            _mockEmitente.Setup(em => em.Endereco).Returns(_endereco);
             _mockEmitente.Setup(me => me.Validar());
 
-            _mockRepositorioEmitente.Setup(mre => mre.Adicionar(_mockEmitente.Object)).Returns(_mockEmitente.Object);
+            //Ação
+            Emitente emitente = _emitenteServico.Adicionar(_mockEmitente.Object);
 
-            _emitenteServico.Adicionar(_mockEmitente.Object);
-
+            //Verificar 
+            emitente.Should().NotBeNull();
+            emitente.Endereco.Should().NotBeNull();
             _mockRepositorioEmitente.Verify(mre => mre.Adicionar(_mockEmitente.Object));
-
             _mockEmitente.Verify(me => me.Validar());
+            _enderecoRepositorioMock.Verify(er => er.Adicionar(_endereco));
         }
 
         [Test]
         public void EmitenteServico_Atualizar_Sucesso()
         {
+            //Cenário
             long idValido = 1;
 
+            _mockRepositorioEmitente.Setup(mre => mre.Adicionar(_mockEmitente.Object)).Returns(_mockEmitente.Object);
+            _enderecoRepositorioMock.Setup(er => er.Adicionar(_endereco)).Returns(_endereco);
+            _mockEmitente.Setup(em => em.Endereco).Returns(_endereco);
             _mockEmitente.Setup(me => me.Validar());
+
+            Emitente emitente = _emitenteServico.Adicionar(_mockEmitente.Object);
+
             _mockEmitente.Setup(me => me.Id).Returns(idValido);
+            _enderecoRepositorioMock.Setup(en => en.Atualizar(_endereco)).Returns(_endereco);
             _mockRepositorioEmitente.Setup(mre => mre.Atualizar(_mockEmitente.Object)).Returns(_mockEmitente.Object);
 
+            //Ação
             _emitenteServico.Atualizar(_mockEmitente.Object);
 
+            //Verificar
             _mockRepositorioEmitente.Verify(mre => mre.Atualizar(_mockEmitente.Object));
+            _enderecoRepositorioMock.Verify(en => en.Atualizar(_mockEmitente.Object.Endereco));
 
             _mockEmitente.Verify(me => me.Validar());
-
         }
 
         [Test]
@@ -76,9 +97,9 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
             acaoParaRetornarExcecaoIdentificadorIndefinido.Should().Throw<ExcecaoIdentificadorIndefinido>();
 
             _mockRepositorioEmitente.VerifyNoOtherCalls();
+            _enderecoRepositorioMock.VerifyNoOtherCalls();
             _mockCnpj.VerifyNoOtherCalls();
             _mockEmitente.Verify(me => me.Id);
-
         }
 
         [Test]
@@ -86,13 +107,16 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         {
             long idValido = 1;
 
+            _endereco.Id = 1;
             _mockEmitente.Setup(me => me.Id).Returns(idValido);
 
+            _enderecoRepositorioMock.Setup(en => en.Excluir(_mockEmitente.Object.Endereco));
             _mockRepositorioEmitente.Setup(mre => mre.Excluir(_mockEmitente.Object));
 
             _emitenteServico.Excluir(_mockEmitente.Object);
 
             _mockRepositorioEmitente.Verify(mre => mre.Excluir(_mockEmitente.Object));
+            _enderecoRepositorioMock.Verify(en => en.Excluir(_mockEmitente.Object.Endereco));
         }
 
         [Test]
@@ -109,18 +133,19 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
             acaoParaRetornarExcecaoIdentificadorIndefinido.Should().Throw<ExcecaoIdentificadorIndefinido>();
 
             _mockRepositorioEmitente.VerifyNoOtherCalls();
+            _enderecoRepositorioMock.VerifyNoOtherCalls();
         }
 
         [Test]
         public void EmitenteServico_BuscarPorId_Sucesso()
         {
-            long id = 1;
+            _mockEmitente.Setup(er => er.Id).Returns(1);
 
-            _mockRepositorioEmitente.Setup(er => er.BuscarPorId(id));
+            _mockRepositorioEmitente.Setup(er => er.BuscarPorId(_mockEmitente.Object.Id)).Returns(_mockEmitente.Object);
 
-            _emitenteServico.BuscarPorId(id);
+            _emitenteServico.BuscarPorId(_mockEmitente.Object.Id);
 
-            _mockRepositorioEmitente.Verify(er => er.BuscarPorId(id));
+            _mockRepositorioEmitente.Verify(er => er.BuscarPorId(_mockEmitente.Object.Id));
         }
 
         [Test]
