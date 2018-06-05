@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Destinatarios\DestinatarioRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Emitentes\EmitenteRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoRepositorioSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,5 +11,7 @@ namespace Projeto_NFe.Infrastructure.Interfaces
     public interface IDocumento
     {
         void Validar();
+
+        string ObterTipo();
     }
 }

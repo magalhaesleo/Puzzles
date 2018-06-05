@@ -86,13 +86,11 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
         [Test]
         public void EnderecoRepositorioSql_BuscarTodos_Sucesso()
         {
-            _repositorio.Adicionar(ObjectMother.PegarEnderecoValido());
-            _repositorio.Adicionar(ObjectMother.PegarEnderecoValido());
-
+            
             IEnumerable<Endereco> enderecosBuscados = _repositorio.BuscarTodos();
 
             enderecosBuscados.Should().NotBeNull();
-            enderecosBuscados.Should().HaveCount(3);
+            enderecosBuscados.Should().HaveCount(2);
         }
 
     }
