@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Domain.Funcionalidades.Emitentes.Excecoes
 {
-    public class ExcecaoEmitenteComInscricaoEstadualInvalida : ExcecaoDeNegocio
+    public class ExcecaoEmitenteComInscricaoEstadualAcimaDoLimite : ExcecaoDeNegocio
     {
-        public ExcecaoEmitenteComInscricaoEstadualInvalida(): base("A inscricao estadual deve possuir nove caracteres")
+        public ExcecaoEmitenteComInscricaoEstadualAcimaDoLimite(): base("A inscrição estadual não pode ter mais de quinze caracteres")
         {
         }
     }
