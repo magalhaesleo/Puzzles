@@ -13,13 +13,27 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Transportadoras
 {
     public static partial class ObjectMother
     {
-        public static Transportador PegarTransportadorValidoComCNPJ(Endereco endereco, CNPJ cnpj)
+        public static Transportador PegarTransportadorValidoComDependencias(Endereco endereco, IDocumento documento)
         {
             return new Transportador()
             {
                 NomeRazaoSocial = "Razão Social",
                 InscricaoEstadual = "636.330.646.110",
-                ResponsabilidadeFrete = true         
+                ResponsabilidadeFrete = true,
+                Documento = documento,
+                Endereco = endereco
+            };
+        }
+
+        public static Transportador PegarTransportadorValidoComCNPJ(Endereco endereco, IDocumento cnpj)
+        {
+            return new Transportador()
+            {
+                NomeRazaoSocial = "Razão Social",
+                InscricaoEstadual = "636.330.646.110",
+                ResponsabilidadeFrete = true,
+                Documento = cnpj,
+                Endereco = endereco
             };
         }
 
@@ -33,63 +47,75 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Transportadoras
             };
         }
 
-        public static Transportador PegarTransportadorComInscricaoEstadualAcimaDoLimite(Endereco endereco, CNPJ cnpj)
+        public static Transportador PegarTransportadorComInscricaoEstadualAcimaDoLimite(Endereco endereco, IDocumento cnpj)
         {
             return new Transportador()
             {
                 NomeRazaoSocial = "Razão Social",
                 InscricaoEstadual = "636.330.646.11000",
-                ResponsabilidadeFrete = true
+                ResponsabilidadeFrete = true,
+                Endereco = endereco, 
+                Documento = cnpj
             };
         }
 
-        public static Transportador PegarTransportadorComInscricaoEstadualAbaixoDoLimite(Endereco endereco, CNPJ cnpj)
+        public static Transportador PegarTransportadorComInscricaoEstadualAbaixoDoLimite(Endereco endereco, IDocumento cnpj)
         {
             return new Transportador()
             {
                 NomeRazaoSocial = "Razão Social",
                 InscricaoEstadual = "636.330.646.1",
-                ResponsabilidadeFrete = true
+                ResponsabilidadeFrete = true,
+                Endereco = endereco, 
+                Documento = cnpj
             };
         }
 
-        public static Transportador PegarTransportadorSemNome(Endereco endereco, CNPJ cnpj)
+        public static Transportador PegarTransportadorSemNome(Endereco endereco, IDocumento cnpj)
         {
             return new Transportador()
             {
                 NomeRazaoSocial = "",
+                Documento = cnpj,
                 InscricaoEstadual = "636.330.646.110",
-                ResponsabilidadeFrete = true
+                ResponsabilidadeFrete = true,
+                Endereco = endereco
             };
         }
 
-        public static Transportador PegarTransportadorSemEndereco(CNPJ cnpj)
+        public static Transportador PegarTransportadorSemEndereco(Endereco endereco, IDocumento cnpj)
         {
             return new Transportador()
             {
                 NomeRazaoSocial = "Razao Social",
                 InscricaoEstadual = "636.330.646.110",
-                ResponsabilidadeFrete = true
+                ResponsabilidadeFrete = true,
+                Documento = cnpj,
+                Endereco = endereco
             };
         }
 
-        public static Transportador PegarTransportadorComInscricaoEstadualNula(Endereco endereco, CNPJ cnpj)
+        public static Transportador PegarTransportadorComInscricaoEstadualNula(Endereco endereco, IDocumento cnpj)
         {
             return new Transportador()
             {
                 NomeRazaoSocial = "Razao Social",
                 InscricaoEstadual = "",
-                ResponsabilidadeFrete = true
+                ResponsabilidadeFrete = true,
+                Endereco = endereco,
+                Documento = cnpj
             };
         }
 
-        public static Transportador PegarTransportadorSemDocumento(Endereco endereco)
+        public static Transportador PegarTransportadorSemDocumento(Endereco endereco, IDocumento cnpj)
         {
             return new Transportador()
             {
                 NomeRazaoSocial = "Razao Social",
                 InscricaoEstadual = "636.330.646.110",
-                ResponsabilidadeFrete = true
+                ResponsabilidadeFrete = true,
+                Endereco = endereco,
+                Documento = null
             };
         }
     }

@@ -72,7 +72,6 @@
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemNumero.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemPais.cs" />
     <Compile Include="Funcionalidades\Enderecos\IEnderecoRepositorio.cs" />
-    <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualAbaixoDoLimite.cs" />
     <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualAcimaDoLimite.cs" />
     <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualNula.cs" />
     <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemDocumento.cs" />

@@ -22,30 +22,27 @@ namespace Projeto_NFe.Domain.Funcionalidades.Transportadoras
         {
             get
             {
-                if (Documento.GetType() == typeof(CNPJ))
-                {
-                    return "CNPJ";
-                }
-                else
-                {
-                    return "CPF";
-                }
-
+                return Documento.ObterTipo();
             }
         }
 
         public virtual void Validar()
         {
-            if (string.IsNullOrEmpty(InscricaoEstadual))
-                throw new ExcecaoTransportadorComInscricaoEstadualNula();
-            if (InscricaoEstadual.Length > 15)
-                throw new ExcecaoTransportadorComInscricaoEstadualAcimaDoLimite();
-            if (InscricaoEstadual.Length < 15)
-                throw new ExcecaoTransportadorComInscricaoEstadualAbaixoDoLimite();
             if (string.IsNullOrEmpty(NomeRazaoSocial))
                 throw new ExcecaoTransportadorSemNome();
+
             if (Documento == null)
                 throw new ExcecaoTransportadorSemDocumento();
+
+            if (TipoDeDocumento == "CNPJ")
+            {
+                if (string.IsNullOrEmpty(InscricaoEstadual))
+                    throw new ExcecaoTransportadorComInscricaoEstadualNula();
+
+                if (InscricaoEstadual.Length > 15)
+                    throw new ExcecaoTransportadorComInscricaoEstadualAcimaDoLimite();
+            }
+
             if (Endereco == null)
                 throw new ExcecaoTransportadorSemEndereco();
 
