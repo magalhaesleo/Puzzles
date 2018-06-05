@@ -7,21 +7,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 
 namespace Projeto_NFe.Application.Funcionalidades.Emitentes
 {
     public class EmitenteServico : IEmitenteServico
     {
         IEmitenteRepositorio _repositorio;
-        public EmitenteServico(IEmitenteRepositorio repositorio)
+        IEnderecoRepositorio _enderecoRepositorio;
+        public EmitenteServico(IEmitenteRepositorio repositorio, IEnderecoRepositorio enderecoRepositorio)
         {
-            this._repositorio = repositorio;
+            _enderecoRepositorio = enderecoRepositorio;
+            _repositorio = repositorio;
         }
 
         public Emitente Adicionar(Emitente emitente)
         {
-            emitente.Validar();
+           emitente.Validar();
 
+           emitente.Endereco = _enderecoRepositorio.Adicionar(emitente.Endereco);
            return _repositorio.Adicionar(emitente);
         }
 
@@ -32,6 +36,7 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes
 
             emitente.Validar();
 
+            emitente.Endereco = _enderecoRepositorio.Atualizar(emitente.Endereco);
             return _repositorio.Atualizar(emitente);
         }
 
@@ -53,7 +58,9 @@ namespace Projeto_NFe.Application.Funcionalidades.Emitentes
             if (emitente.Id < 1)
                 throw new ExcecaoIdentificadorIndefinido();
 
+            //Adicionar validação para id do endereço
             _repositorio.Excluir(emitente);
+            _enderecoRepositorio.Excluir(emitente.Endereco);
         }
     }
 }

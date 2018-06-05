@@ -16,7 +16,7 @@ namespace Projeto_NFe.Common.Tests.Base
         private const string EXCLUIR_REGISTRO_TABELA_EMITENTE = "DELETE FROM [dbo].[TBEMITENTE]; DBCC CHECKIDENT('[dbo].[TBEMITENTE]', RESEED, 0)";
         private const string ADICIONAR_REGISTRO_TABELA_EMITENTE = @"INSERT INTO TBEMITENTE (NOMEFANTASIA, RAZAOSOCIAL,
                                                         CNPJ, INSCRICAOESTADUAL, INSCRICAOMUNICIPAL, ENDERECOID)
-                                                        VALUES ('Nome fantasia', 'Razao social', '99.327.235/0001-50',
+                                                        VALUES ('67768776876', '76887867876', '99.327.235/0001-50',
                                                                 '296.062.760.060', '0129195449791', 1)";
 
         private const string EXCLUIR_REGISTRO_TABELA_DESTINATARIO = "DELETE FROM [dbo].[TBDESTINATARIO]; DBCC CHECKIDENT('[dbo].[TBDESTINATARIO]', RESEED, 0)";

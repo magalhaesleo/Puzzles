@@ -29,13 +29,45 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes
                                             ENDERECOID={0}ENDERECOID
                                             WHERE ID = {0}ID";
 
-        public const string _sqlBuscarPorId = @"SELECT * FROM TBEMITENTE 
-                                              WHERE ID = {0}ID";
+        public const string _sqlBuscarPorId = @"SELECT
+                                                TBEMITENTE.ID[IDEMITENTE],
+                                                TBEMITENTE.NOMEFANTASIA[NOME_FANTASIA],
+                                                TBEMITENTE.RAZAOSOCIAL[RAZAO_SOCIAL],
+                                                TBEMITENTE.CNPJ[CNPJ_EMITENTE],
+                                                TBEMITENTE.INSCRICAOESTADUAL[INSCRICAO_ESTADUAL],
+                                                TBEMITENTE.INSCRICAOMUNICIPAL[INSCRICAO_MUNICIPAL],
+                                                TBEMITENTE.ENDERECOID[ENDERECO_ID],
+                                                TBENDERECO.ID[IDENDERECO],
+                                                TBENDERECO.LOGRADOURO[LOGRADOURO_ENDERECO],
+                                                TBENDERECO.NUMERO[NUMERO_ENDERECO],
+                                                TBENDERECO.BAIRRO[BAIRRO_ENDERECO],
+                                                TBENDERECO.MUNICIPIO[MUNICIPIO_ENDERECO],
+                                                TBENDERECO.ESTADO[ESTADO_ENDERECO],
+                                                TBENDERECO.PAIS[PAIS_ENDERECO]
+                                                FROM TBEMITENTE
+                                                JOIN TBENDERECO ON TBEMITENTE.ENDERECOID = TBENDERECO.ID
+                                                WHERE TBEMITENTE.ID = {0}ID";
 
         public const string _sqlExcluir = @"DELETE FROM TBEMITENTE
                                               WHERE ID = {0}ID";
 
-        public const string _sqlBuscarTodos = @"SELECT * FROM TBEMITENTE";
+        public const string _sqlBuscarTodos = @"SELECT
+                                                TBEMITENTE.ID[IDEMITENTE],
+                                                TBEMITENTE.NOMEFANTASIA[NOME_FANTASIA],
+                                                TBEMITENTE.RAZAOSOCIAL[RAZAO_SOCIAL],
+                                                TBEMITENTE.CNPJ[CNPJ_EMITENTE],
+                                                TBEMITENTE.INSCRICAOESTADUAL[INSCRICAO_ESTADUAL],
+                                                TBEMITENTE.INSCRICAOMUNICIPAL[INSCRICAO_MUNICIPAL],
+                                                TBEMITENTE.ENDERECOID[ENDERECO_ID],
+                                                TBENDERECO.ID[IDENDERECO],
+                                                TBENDERECO.LOGRADOURO[LOGRADOURO_ENDERECO],
+                                                TBENDERECO.NUMERO[NUMERO_ENDERECO],
+                                                TBENDERECO.BAIRRO[BAIRRO_ENDERECO],
+                                                TBENDERECO.MUNICIPIO[MUNICIPIO_ENDERECO],
+                                                TBENDERECO.ESTADO[ESTADO_ENDERECO],
+                                                TBENDERECO.PAIS[PAIS_ENDERECO]
+                                                FROM TBEMITENTE
+                                                JOIN TBENDERECO ON TBEMITENTE.ENDERECOID = TBENDERECO.ID";
 
         #endregion Scripts SQL
         public Emitente Adicionar(Emitente emitente)
@@ -58,7 +90,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes
 
         public IEnumerable<Emitente> BuscarTodos()
         {
-            return Db.BuscarTodos(_sqlBuscarTodos, FormaObjetoEmitente);           
+            return Db.BuscarTodos(_sqlBuscarTodos, FormaObjetoEmitente);
         }
 
         public void Excluir(Emitente emitente)
@@ -85,13 +117,22 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes
         {
             Emitente emitente = new Emitente();
 
-            emitente.Id = Convert.ToInt64(reader["Id"]);
-            emitente.NomeFantasia = Convert.ToString(reader["NOMEFANTASIA"]);
-            emitente.RazaoSocial = Convert.ToString(reader["RAZAOSOCIAL"]);
-            emitente.CNPJ = new CNPJ { NumeroComPontuacao = Convert.ToString(reader["CNPJ"]) };
-            emitente.InscricaoEstadual = Convert.ToString(reader["INSCRICAOESTADUAL"]);
-            emitente.InscricaoMunicipal = Convert.ToString(reader["INSCRICAOMUNICIPAL"]);
-            emitente.Endereco = new Endereco { Id = Convert.ToInt64(reader["ENDERECOID"]) };
+            emitente.Id = Convert.ToInt64(reader["IDEMITENTE"]);
+            emitente.NomeFantasia = Convert.ToString(reader["NOME_FANTASIA"]);
+            emitente.RazaoSocial = Convert.ToString(reader["RAZAO_SOCIAL"]);
+            emitente.CNPJ = new CNPJ { NumeroComPontuacao = Convert.ToString(reader["CNPJ_EMITENTE"]) };
+            emitente.InscricaoEstadual = Convert.ToString(reader["INSCRICAO_ESTADUAL"]);
+            emitente.InscricaoMunicipal = Convert.ToString(reader["INSCRICAO_MUNICIPAL"]);
+            emitente.Endereco = new Endereco
+            {   
+                Id = Convert.ToInt64(reader["IDENDERECO"]),
+                Logradouro = Convert.ToString(reader["LOGRADOURO_ENDERECO"]),
+                Numero = Convert.ToInt32(reader["NUMERO_ENDERECO"]),
+                Bairro = Convert.ToString(reader["BAIRRO_ENDERECO"]),
+                Municipio = Convert.ToString(reader["MUNICIPIO_ENDERECO"]),
+                Estado = Convert.ToString(reader["ESTADO_ENDERECO"]),
+                Pais = Convert.ToString(reader["PAIS_ENDERECO"])
+            };
 
             return emitente;
         }
