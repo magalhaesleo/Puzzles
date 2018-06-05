@@ -124,7 +124,8 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
                     Municipio = "Município",
                     Estado = "Estado",
                     Pais = "País"
-                }
+                },
+                
             };
         }
 

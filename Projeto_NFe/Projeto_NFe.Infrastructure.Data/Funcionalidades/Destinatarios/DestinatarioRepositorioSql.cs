@@ -1,5 +1,6 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Destinatarios;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
+using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using Projeto_NFe.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,12 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Destinatarios
         #region Scripts SQL
 
         public const string _sqlAdicionar = @"INSERT INTO TBDESTINATARIO 
-                                            (NOME,DOCUMENTO,TIPODEDOCUMENTO,INSCRICAOESTADUAL,ENDERECOID) 
+                                            (Nome, Documento, TipoDeDocumento, InscricaoEstadual, EnderecoId) 
                                             VALUES 
-                                            ({0}NOME,{0}DOCUMENTO,{0}TIPODEDOCUMENTO,{0}INSCRICAOESTADUAL,{0}ENDERECOID);SELECT SCOPE_IDENTITY();";
+                                            ({0}Nome, {0}Documento, {0}TipoDeDocumento, {0}InscricaoEstadual, {0}EnderecoId);
+                                            SELECT SCOPE_IDENTITY();";
 
-      
+
         #endregion Scripts SQL
 
 
@@ -52,32 +54,40 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Destinatarios
         #region Montar e Ler Objetos
         private Dictionary<string, object> ObterDicionarioDestinatario(Destinatario destinatario)
         {
-            return new Dictionary<string, object>
-            {
-                { "ID", destinatario.Id },
-                { "NOME", destinatario.NomeRazaoSocial},
-                { "DOCUMENTO", destinatario.Documento.NumeroComPontuacao },
-                { "INSCRICAOESTADUAL", destinatario.InscricaoEstadual},
-                { "TIPODEDOCUMENTO", destinatario.TipoDeDocumento},
-                { "ENDERECOID", destinatario.Endereco.Id}
-            };
+            var dicionario = new Dictionary<string, object>();
+
+            dicionario.Add("Id", destinatario.Id);
+            dicionario.Add("Nome", destinatario.NomeRazaoSocial);
+            dicionario.Add("Documento", destinatario.Documento.NumeroComPontuacao);
+
+            if (destinatario.InscricaoEstadual.Equals(null))
+                dicionario.Add("InscricaoEstadual", DBNull.Value);
+            else
+            dicionario.Add("InscricaoEstadual", destinatario.InscricaoEstadual);
+
+            dicionario.Add("TipoDeDocumento", destinatario.TipoDeDocumento);
+            dicionario.Add("EnderecoId", destinatario.Endereco.Id);
+
+            return dicionario;
         }
 
 
-        //private static Emitente FormaObjetoEmitente(IDataReader reader)
-        //{
-        //    Emitente emitente = new Emitente();
+        private static Destinatario FormaObjetoDestinatario(IDataReader reader)
+        {
+            Destinatario destinatario = new Destinatario();
 
-        //    emitente.Id = Convert.ToInt64(reader["Id"]);
-        //    emitente.NomeFantasia = Convert.ToString(reader["NOMEFANTASIA"]);
-        //    emitente.RazaoSocial = Convert.ToString(reader["RAZAOSOCIAL"]);
-        //    emitente.CNPJ = new CNPJ { NumeroComPontuacao = Convert.ToString(reader["CNPJ"]) };
-        //    emitente.InscricaoEstadual = Convert.ToString(reader["INSCRICAOESTADUAL"]);
-        //    emitente.InscricaoMunicipal = Convert.ToString(reader["INSCRICAOMUNICIPAL"]);
-        //    emitente.Endereco = new Endereco { Id = Convert.ToInt64(reader["ENDERECOID"]) };
-
-        //    return emitente;
-        //}
+            destinatario.Id = Convert.ToInt64(reader["Id"]);
+            destinatario.NomeRazaoSocial = Convert.ToString(reader["Nome"]);
+            destinatario.Documento.NumeroComPontuacao = Convert.ToString(reader["Documento"]);
+            destinatario.InscricaoEstadual = Convert.ToString(reader["InscricaoEstadual"]);
+            destinatario.Endereco = new Endereco
+            {
+                Id = Convert.ToInt64(reader["EnderecoId"])
+                //continuar
+            };
+            
+            return destinatario;
+        }
         #endregion
     }
 }

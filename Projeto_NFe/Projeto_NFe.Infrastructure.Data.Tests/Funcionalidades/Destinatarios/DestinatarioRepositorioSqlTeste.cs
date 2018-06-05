@@ -32,7 +32,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
             BaseSqlTeste.InicializarBancoDeDados();
         }
 
-        //[Test]
+        [Test]
         public void DestinatarioRepositorioSql_Adicionar_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 2;
@@ -41,10 +41,13 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
 
             destinatarioValido.Id = 0;
             destinatarioValido.Endereco.Id = idDoEnderecoDaBaseSql;
+        
 
             Destinatario destinatarioAdicionado = _repositorio.Adicionar(destinatarioValido);
 
             destinatarioAdicionado.Id.Should().BeGreaterThan(0);
+
+            //fazer o get
         }
     }
 }

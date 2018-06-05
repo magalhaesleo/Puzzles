@@ -26,9 +26,10 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
             }
         }
 
-        public string InscricaoEstadual { get; set; }
+        public string InscricaoEstadual { get ; set; }
 
         public Endereco Endereco { get; set; }
+
 
         public virtual void Validar()
         {
