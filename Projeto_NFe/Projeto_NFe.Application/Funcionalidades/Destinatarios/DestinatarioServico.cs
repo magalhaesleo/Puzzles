@@ -42,12 +42,15 @@ namespace Projeto_NFe.Application.Funcionalidades.Destinatarios
 
         public Destinatario BuscarPorId(long id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+                throw new ExcecaoIdentificadorIndefinido();
+
+            return _destinatarioRepositorio.BuscarPorId(id);
         }
 
         public IEnumerable<Destinatario> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return _destinatarioRepositorio.BuscarTodos();
         }
 
         public void Excluir(Destinatario destinatario)

@@ -125,6 +125,42 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
 
         }
 
+        [Test]
+        public void DestinatarioServico_BuscarPorId_Sucesso()
+        {
+            long id = 1;
+
+            _mockRepositorioDestinatario.Setup(er => er.BuscarPorId(id));
+
+            _servicoDestinatario.BuscarPorId(id);
+
+            _mockRepositorioDestinatario.Verify(er => er.BuscarPorId(id));
+        }
+
+        [Test]
+        public void DestinatarioServico_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        {
+            long id = 0;
+
+            Action acaoParaRetornarExcecaoIdentificadorIndefinido = () => _servicoDestinatario.BuscarPorId(id);
+
+            acaoParaRetornarExcecaoIdentificadorIndefinido.Should().Throw<ExcecaoIdentificadorIndefinido>();
+        }
+
+        [Test]
+        public void DestinatarioServico_BuscarTodos_Sucesso()
+        {
+            long id = 1;
+
+            _mockRepositorioDestinatario.Setup(er => er.BuscarTodos());
+
+            _servicoDestinatario.BuscarTodos();
+
+            _mockRepositorioDestinatario.Verify(er => er.BuscarTodos());
+        }
+
+
+
 
     }
 }
