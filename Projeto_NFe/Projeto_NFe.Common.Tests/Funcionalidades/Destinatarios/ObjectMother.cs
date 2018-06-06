@@ -36,6 +36,29 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
             };
 
         }
+        public static Destinatario PegarDestinatarioValidoComCNPJSemDependencias()
+        {
+            return new Destinatario()
+            {
+                NomeRazaoSocial = "Nome",
+                InscricaoEstadual = "636.330.646.110",
+                Documento = new CNPJ()
+                {
+                    NumeroComPontuacao = "99.327.235/0001-50"
+                },
+                Endereco = new Endereco()
+                {
+                    Logradouro = "Logradouro",
+                    Numero = 1,
+                    Bairro = "Bairro",
+                    Municipio = "Município",
+                    Estado = "Estado",
+                    Pais = "País"
+                },
+
+            };
+
+        }
 
         public static Destinatario PegarDestinatarioSemNome(Endereco endereco, IDocumento cnpj)
         {
@@ -61,18 +84,6 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
 
         }
 
-        public static Destinatario PegarDestinatarioComCNPJ(Endereco endereco, IDocumento cnpj)
-        {
-            return new Destinatario()
-            {
-                NomeRazaoSocial = "Nome",
-                Documento = cnpj,
-                InscricaoEstadual = "636.330.646.110",
-                Endereco = endereco
-            };
-
-        }
-
         public static Destinatario PegarDestinatarioComCNPJSemInscricaoEstadual(Endereco endereco, IDocumento cnpj)
         {
             return new Destinatario()
@@ -83,17 +94,6 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
                 Endereco = endereco
             };
 
-        }
-
-        public static Destinatario PegarDestinatarioComInscricaoEstadualAbaixoDoPadrao(Endereco endereco, IDocumento cnpj)
-        {
-            return new Destinatario()
-            {
-                NomeRazaoSocial = "Nome",
-                Documento = cnpj,
-                InscricaoEstadual = "636.330.646.0",
-                Endereco = endereco
-            };
         }
 
         public static Destinatario PegarDestinatarioComInscricaoEstadualAcimaDoPadrao(Endereco endereco, IDocumento cnpj)
@@ -124,7 +124,8 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
                     Municipio = "Município",
                     Estado = "Estado",
                     Pais = "País"
-                }
+                },
+                
             };
         }
 
