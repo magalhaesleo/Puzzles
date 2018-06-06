@@ -37,13 +37,15 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Transportadoras
             };
         }
 
-        public static Transportador PegarTransportadorValidoComCPF(Endereco endereco, CPF cpf)
+        public static Transportador PegarTransportadorValidoComCPF(Endereco endereco, IDocumento cpf)
         {
             return new Transportador()
             {
                 NomeRazaoSocial = "Razão Social",
                 InscricaoEstadual = "636.330.646.110",
-                ResponsabilidadeFrete = true
+                ResponsabilidadeFrete = true,
+                Documento = cpf,
+                Endereco = endereco
             };
         }
 

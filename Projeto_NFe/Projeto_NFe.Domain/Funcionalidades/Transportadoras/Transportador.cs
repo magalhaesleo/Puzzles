@@ -1,7 +1,6 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Transportadoras.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using Projeto_NFe.Infrastructure.Interfaces;
-using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +17,6 @@ namespace Projeto_NFe.Domain.Funcionalidades.Transportadoras
         public Endereco Endereco { get; set; }
         public IDocumento Documento { get; set; }
 
-        public string TipoDeDocumento
-        {
-            get
-            {
-                return Documento.ObterTipo();
-            }
-        }
-
         public virtual void Validar()
         {
             if (string.IsNullOrEmpty(NomeRazaoSocial))
@@ -34,7 +25,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Transportadoras
             if (Documento == null)
                 throw new ExcecaoTransportadorSemDocumento();
 
-            if (TipoDeDocumento == "CNPJ")
+            if (Documento.ObterTipo() == "CNPJ")
             {
                 if (string.IsNullOrEmpty(InscricaoEstadual))
                     throw new ExcecaoTransportadorComInscricaoEstadualNula();
