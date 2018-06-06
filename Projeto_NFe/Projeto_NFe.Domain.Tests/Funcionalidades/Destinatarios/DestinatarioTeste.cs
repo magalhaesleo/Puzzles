@@ -96,22 +96,22 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void Destinatario_TipeDeDocumento_DeveRetornar_CNPJ_Sucesso()
+        public void Destinatario_TipoDeDocumento_DeveRetornar_CNPJ_Sucesso()
         {
             
-            Destinatario destinatarioParaValidarTipoDeDocumento = ObjectMother.PegarDestinatarioComCNPJ(_mockEndereco.Object, _fakeCNPJ);
+            Destinatario destinatarioParaValidarTipoDeDocumento = ObjectMother.PegarDestinatarioValidoComDependencias(_mockEndereco.Object, _fakeCNPJ);
 
-            destinatarioParaValidarTipoDeDocumento.TipoDeDocumento.Should().Be("CNPJ");
+            destinatarioParaValidarTipoDeDocumento.Documento.ObterTipo().Should().Be("CNPJ");
 
         }
 
         [Test]
-        public void Destinatario_TipeDeDocumento_DeveRetornar_CPF_Sucesso()
+        public void Destinatario_TipoDeDocumento_DeveRetornar_CPF_Sucesso()
         {
 
-            Destinatario destinatarioParaValidarTipoDeDocumento = ObjectMother.PegarDestinatarioComCNPJ(_mockEndereco.Object, _fakeCPF);
+            Destinatario destinatarioParaValidarTipoDeDocumento = ObjectMother.PegarDestinatarioValidoComDependencias(_mockEndereco.Object, _fakeCPF);
 
-            destinatarioParaValidarTipoDeDocumento.TipoDeDocumento.Should().Be("CPF");
+            destinatarioParaValidarTipoDeDocumento.Documento.ObterTipo().Should().Be("CPF");
 
         }
 
