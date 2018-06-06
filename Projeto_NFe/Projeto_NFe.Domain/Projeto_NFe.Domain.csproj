@@ -76,7 +76,7 @@
     <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemDocumento.cs" />
     <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemEndereco.cs" />
     <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemNome.cs" />
-    <Compile Include="Funcionalidades\Transportadoras\ITransportadoraRepositorio.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\ITransportadorRepositorio.cs" />
     <Compile Include="Funcionalidades\Transportadoras\Transportador.cs" />
     <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

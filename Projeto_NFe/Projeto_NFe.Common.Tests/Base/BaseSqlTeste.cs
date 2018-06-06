@@ -34,6 +34,7 @@ namespace Projeto_NFe.Common.Tests.Base
             //Adicionando
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_ENDERECO);
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_ENDERECO);
+            Db.Atualizar(ADICIONAR_REGISTRO_TABELA_ENDERECO);
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_EMITENTE);
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_DESTINATARIO);
         }

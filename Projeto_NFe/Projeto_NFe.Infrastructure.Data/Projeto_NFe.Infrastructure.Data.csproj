@@ -43,6 +43,7 @@
     <Compile Include="Funcionalidades\Destinatarios\DestinatarioRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Emitentes\EmitenteRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoRepositorioSql.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\TransportadorRepositorioSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,8 +56,6 @@
       <Name>Projeto_NFe.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Funcionalidades\Trans\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

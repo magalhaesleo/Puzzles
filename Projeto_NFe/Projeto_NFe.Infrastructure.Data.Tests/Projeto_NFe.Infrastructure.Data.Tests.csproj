@@ -74,6 +74,7 @@
     <Compile Include="Funcionalidades\Destinatarios\DestinatarioRepositorioSqlTeste.cs" />
     <Compile Include="Funcionalidades\Emitentes\EmitenteRepositorioSqlTeste.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoRepositorioSqlTeste.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\TransportadorRepositorioSqlTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
