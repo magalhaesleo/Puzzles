@@ -1,8 +1,6 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using Projeto_NFe.Infrastructure.Interfaces;
-using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
-using Projeto_NFe.Infrastructure.Objetos_de_Valor.CPFs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,13 +35,15 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Transportadoras
             };
         }
 
-        public static Transportador PegarTransportadorValidoComCPF(Endereco endereco, CPF cpf)
+        public static Transportador PegarTransportadorValidoComCPF(Endereco endereco, IDocumento cpf)
         {
             return new Transportador()
             {
                 NomeRazaoSocial = "Razão Social",
                 InscricaoEstadual = "636.330.646.110",
-                ResponsabilidadeFrete = true
+                ResponsabilidadeFrete = true,
+                Documento = cpf,
+                Endereco = endereco
             };
         }
 

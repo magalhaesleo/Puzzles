@@ -21,7 +21,6 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
     [TestFixture]
     public class TransportadorTeste
     {
-        Mock<IDocumento> _mockDocumento;
         Mock<Endereco> _mockEndereco;
         Mock<CNPJ> _mockCNPJ;
         Mock<CPF> _mockCPF;
@@ -35,7 +34,6 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
             _mockCPF = new Mock<CPF>();
             _fakeCNPJ = new FakeCNPJ();
             _fakeCPF = new FakeCPF();
-            _mockDocumento = new Mock<IDocumento>();
             _mockEndereco = new Mock<Endereco>();
         }
 
@@ -135,15 +133,15 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         {
             Transportador transportador = ObjectMother.PegarTransportadorValidoComCNPJ(_mockEndereco.Object, _fakeCNPJ);
 
-            transportador.TipoDeDocumento.Should().Be("CNPJ");
+            transportador.Documento.ObterTipo().Should().Be("CNPJ");
         }
 
         [Test]
         public void Transportador_TipoDeDocumento_DeveRetornar_CPF_Sucesso()
         {
-            Transportador transportador = ObjectMother.PegarTransportadorValidoComCNPJ(_mockEndereco.Object, _fakeCPF);
+            Transportador transportador = ObjectMother.PegarTransportadorValidoComCPF(_mockEndereco.Object, _fakeCPF);
 
-            transportador.TipoDeDocumento.Should().Be("CPF");
+            transportador.Documento.ObterTipo().Should().Be("CPF");
         }
 
         [Test]

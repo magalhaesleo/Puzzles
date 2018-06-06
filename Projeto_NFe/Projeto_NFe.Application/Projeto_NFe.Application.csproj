@@ -46,6 +46,8 @@
     <Compile Include="Funcionalidades\Emitentes\IEmitenteServico.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoServico.cs" />
     <Compile Include="Funcionalidades\Enderecos\IEnderecoServico.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\ITransportadorServico.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\TransportadorServico.cs" />
     <Compile Include="Interfaces\IServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

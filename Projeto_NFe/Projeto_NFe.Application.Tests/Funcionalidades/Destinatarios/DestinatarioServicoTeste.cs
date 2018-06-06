@@ -150,7 +150,6 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
         [Test]
         public void DestinatarioServico_BuscarTodos_Sucesso()
         {
-            long id = 1;
 
             _mockRepositorioDestinatario.Setup(er => er.BuscarTodos());
 
@@ -158,9 +157,5 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
 
             _mockRepositorioDestinatario.Verify(er => er.BuscarTodos());
         }
-
-
-
-
     }
 }

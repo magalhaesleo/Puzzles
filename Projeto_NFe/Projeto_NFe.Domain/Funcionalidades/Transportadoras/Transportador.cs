@@ -1,30 +1,22 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Transportadoras.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using Projeto_NFe.Infrastructure.Interfaces;
-using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Projeto_NFe.Domain.Base;
 
 namespace Projeto_NFe.Domain.Funcionalidades.Transportadoras
 {
-    public class Transportador
+    public class Transportador : Entidade
     {
         public string NomeRazaoSocial { get; set; }
         public string InscricaoEstadual { get; set; }
         public bool ResponsabilidadeFrete { get; set; }
         public Endereco Endereco { get; set; }
         public IDocumento Documento { get; set; }
-
-        public string TipoDeDocumento
-        {
-            get
-            {
-                return Documento.ObterTipo();
-            }
-        }
 
         public virtual void Validar()
         {
@@ -34,7 +26,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Transportadoras
             if (Documento == null)
                 throw new ExcecaoTransportadorSemDocumento();
 
-            if (TipoDeDocumento == "CNPJ")
+            if (Documento.ObterTipo() == "CNPJ")
             {
                 if (string.IsNullOrEmpty(InscricaoEstadual))
                     throw new ExcecaoTransportadorComInscricaoEstadualNula();
