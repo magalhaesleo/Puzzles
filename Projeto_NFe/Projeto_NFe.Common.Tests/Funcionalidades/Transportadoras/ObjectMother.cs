@@ -1,8 +1,6 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using Projeto_NFe.Infrastructure.Interfaces;
-using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
-using Projeto_NFe.Infrastructure.Objetos_de_Valor.CPFs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

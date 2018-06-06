@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Projeto_NFe.Domain.Base;
 
 namespace Projeto_NFe.Domain.Funcionalidades.Transportadoras
 {
-    public class Transportador
+    public class Transportador : Entidade
     {
         public string NomeRazaoSocial { get; set; }
         public string InscricaoEstadual { get; set; }

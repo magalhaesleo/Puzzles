@@ -21,7 +21,6 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
     [TestFixture]
     public class TransportadorTeste
     {
-        Mock<IDocumento> _mockDocumento;
         Mock<Endereco> _mockEndereco;
         Mock<CNPJ> _mockCNPJ;
         Mock<CPF> _mockCPF;
@@ -35,7 +34,6 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
             _mockCPF = new Mock<CPF>();
             _fakeCNPJ = new FakeCNPJ();
             _fakeCPF = new FakeCPF();
-            _mockDocumento = new Mock<IDocumento>();
             _mockEndereco = new Mock<Endereco>();
         }
 
