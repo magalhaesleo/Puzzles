@@ -23,7 +23,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         IEmitenteRepositorio _repositorio;
         IEnderecoRepositorio _enderecoRepositorio;
         IEmitenteServico _emitenteServico;
-        Endereco endereco = new Endereco();
+        Endereco endereco;
 
         [SetUp]
         public void IniciarCenario()
@@ -32,7 +32,9 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
             _enderecoRepositorio = new EnderecoRepositorioSql();
             _emitenteServico = new EmitenteServico(_repositorio, _enderecoRepositorio);
             BaseSqlTeste.InicializarBancoDeDados();
-           
+
+            endereco = new Endereco();
+
             endereco.Id = 1;
             endereco.Bairro = "Bela Vista";
             endereco.Estado = "SC";
@@ -160,7 +162,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteIntegracaoSistemaSqlTeste_BuscarTodos_Sucesso()
+        public void EmitenteIntegracaoDeSistemSqlTeste_BuscarTodos_Sucesso()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";
