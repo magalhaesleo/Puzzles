@@ -133,7 +133,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
 
             Action resultado = () => emitente.Validar();
 
-            resultado.Should().Throw<ExcecaoEmitenteComInscricaoEstadualInvalida>();
+            resultado.Should().Throw<ExcecaoEmitenteComInscricaoEstadualAcimaDoLimite>();
         }
 
         [Test]

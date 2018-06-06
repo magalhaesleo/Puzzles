@@ -145,7 +145,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Emitentes
                 NomeFantasia = "nome fantasia",
                 RazaoSocial = "razao social",
                 CNPJ = cnpj,
-                InscricaoEstadual = "213",
+                InscricaoEstadual = "2137653456547654",
                 InscricaoMunicipal = "478548383",
                 Endereco = endereco
             };

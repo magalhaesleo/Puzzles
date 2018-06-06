@@ -38,8 +38,6 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
 
                 if (InscricaoEstadual.Length > 15)
                     throw new ExcecaoDestinatarioComInscricaoEstadualAcimaDoLimite();
-
-               
             }
 
             if (Endereco == null)
