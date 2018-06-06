@@ -95,7 +95,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Emitentes
 
         public void Excluir(Emitente emitente)
         {
-            Db.Excluir(_sqlExcluir, ObterDicionarioEmitente(emitente));
+            Db.Excluir(_sqlExcluir, new Dictionary<string, object> { { "ID", emitente.Id } });
         }
 
         #region Montar e Ler Objetos

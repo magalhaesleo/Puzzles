@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Nome] VARCHAR(100) NOT NULL, 
-    [Documento] VARCHAR(15) NOT NULL, 
+    [Documento] VARCHAR(20) NOT NULL, 
     [TipoDeDocumento] VARCHAR(4) NOT NULL, 
     [InscricaoEstadual] VARCHAR(15) NULL, 
     [EnderecoId] INT NOT NULL, 
