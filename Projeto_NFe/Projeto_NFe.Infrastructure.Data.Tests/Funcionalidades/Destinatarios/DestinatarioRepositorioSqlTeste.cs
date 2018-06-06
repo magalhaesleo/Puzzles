@@ -42,12 +42,15 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
             destinatarioValido.Id = 0;
             destinatarioValido.Endereco.Id = idDoEnderecoDaBaseSql;
         
-
             Destinatario destinatarioAdicionado = _repositorio.Adicionar(destinatarioValido);
 
             destinatarioAdicionado.Id.Should().BeGreaterThan(0);
 
-            //fazer o get
+            Destinatario destinatarioResultadoDoGet = _repositorio.BuscarPorId(destinatarioAdicionado.Id);
+
+            destinatarioResultadoDoGet.NomeRazaoSocial.Should().Be(destinatarioAdicionado.NomeRazaoSocial);
+            destinatarioResultadoDoGet.Endereco.Should().Be(destinatarioAdicionado.Endereco);
+            destinatarioAdicionado.Documento.ObterTipo();
         }
     }
 }

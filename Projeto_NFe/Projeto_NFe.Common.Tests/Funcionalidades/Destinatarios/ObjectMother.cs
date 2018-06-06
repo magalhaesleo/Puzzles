@@ -61,18 +61,6 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios
 
         }
 
-        public static Destinatario PegarDestinatarioComCNPJ(Endereco endereco, IDocumento cnpj)
-        {
-            return new Destinatario()
-            {
-                NomeRazaoSocial = "Nome",
-                Documento = cnpj,
-                InscricaoEstadual = "636.330.646.110",
-                Endereco = endereco
-            };
-
-        }
-
         public static Destinatario PegarDestinatarioComCNPJSemInscricaoEstadual(Endereco endereco, IDocumento cnpj)
         {
             return new Destinatario()

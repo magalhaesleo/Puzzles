@@ -18,14 +18,6 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
 
         public virtual IDocumento Documento { get; set; }
 
-        public string TipoDeDocumento
-        {
-            get
-            {
-                return Documento.ObterTipo();
-            }
-        }
-
         public string InscricaoEstadual { get ; set; }
 
         public Endereco Endereco { get; set; }
@@ -39,7 +31,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Destinatarios
             if (Documento == null)
                 throw new ExcecaoDestinatarioSemDocumento();
 
-            if (TipoDeDocumento == "CNPJ")
+            if (Documento.ObterTipo() == "CNPJ")
             {
                 if (String.IsNullOrEmpty(InscricaoEstadual))
                     throw new ExcecaoDestinatarioComInscricaoEstadualNula();

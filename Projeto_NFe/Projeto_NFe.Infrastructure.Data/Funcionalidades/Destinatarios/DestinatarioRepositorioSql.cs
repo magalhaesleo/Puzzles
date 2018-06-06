@@ -60,12 +60,12 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Destinatarios
             dicionario.Add("Nome", destinatario.NomeRazaoSocial);
             dicionario.Add("Documento", destinatario.Documento.NumeroComPontuacao);
 
-            if (destinatario.InscricaoEstadual.Equals(null))
+            if (destinatario.InscricaoEstadual == null)
                 dicionario.Add("InscricaoEstadual", DBNull.Value);
             else
             dicionario.Add("InscricaoEstadual", destinatario.InscricaoEstadual);
 
-            dicionario.Add("TipoDeDocumento", destinatario.TipoDeDocumento);
+            dicionario.Add("TipoDeDocumento", destinatario.Documento.ObterTipo());
             dicionario.Add("EnderecoId", destinatario.Endereco.Id);
 
             return dicionario;
