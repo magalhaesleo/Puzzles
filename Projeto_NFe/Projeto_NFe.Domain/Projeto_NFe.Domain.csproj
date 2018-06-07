@@ -75,6 +75,7 @@
     <Compile Include="Funcionalidades\Produto\Excecoes\ExcecaoProdutoSemCodigo.cs" />
     <Compile Include="Funcionalidades\Produto\Excecoes\ExcecaoProdutoSemDescricao.cs" />
     <Compile Include="Funcionalidades\Produto\Produto.cs" />
+    <Compile Include="Funcionalidades\Produto\ProdutoNotaFiscal.cs" />
     <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualAcimaDoLimite.cs" />
     <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorComInscricaoEstadualNula.cs" />
     <Compile Include="Funcionalidades\Transportadoras\Excecoes\ExcecaoTransportadorSemDocumento.cs" />
