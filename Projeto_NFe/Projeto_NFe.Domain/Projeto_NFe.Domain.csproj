@@ -71,6 +71,8 @@
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemNumero.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemPais.cs" />
     <Compile Include="Funcionalidades\Enderecos\IEnderecoRepositorio.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\ExcecaoTransportadorInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscal.cs" />
     <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoComValorNegativo.cs" />
     <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoSemCodigo.cs" />
     <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoSemDescricao.cs" />
