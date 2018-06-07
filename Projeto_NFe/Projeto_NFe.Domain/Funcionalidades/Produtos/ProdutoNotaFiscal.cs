@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Domain.Funcionalidades.Produto
+namespace Projeto_NFe.Domain.Funcionalidades.Produtos
 {
     public class ProdutoNotaFiscal
     {
