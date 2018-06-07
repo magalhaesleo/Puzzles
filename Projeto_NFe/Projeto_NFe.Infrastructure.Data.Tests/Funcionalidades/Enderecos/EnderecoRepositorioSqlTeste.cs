@@ -90,7 +90,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
             IEnumerable<Endereco> enderecosBuscados = _repositorio.BuscarTodos();
 
             enderecosBuscados.Should().NotBeNull();
-            enderecosBuscados.Should().HaveCount(2);
+            enderecosBuscados.Should().HaveCountGreaterOrEqualTo(2);
         }
 
     }
