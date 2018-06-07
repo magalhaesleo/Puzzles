@@ -22,7 +22,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         private Mock<CNPJ> _cnpjMock;
 
         [SetUp]
-        public void Inicializa()
+        public void Inicializar()
         {
             _enderecoMock = new Mock<Endereco>();
             _cnpjMock = new Mock<CNPJ>();
