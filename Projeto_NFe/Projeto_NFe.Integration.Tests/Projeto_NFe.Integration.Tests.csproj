@@ -63,6 +63,7 @@
     <Compile Include="Funcionalidades\Destinatarios\DestinatarioIntegracaoDeSistemaSqlTeste.cs" />
     <Compile Include="Funcionalidades\Emitentes\EmitenteIntegracaoDeSistemaSqlTeste.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoIntegracaoDeSistemaSqlTeste.cs" />
+    <Compile Include="Funcionalidades\Transportadoras\TransportadorIntegracaoDeSistemaSqlTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
