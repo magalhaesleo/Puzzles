@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Domain.Funcionalidades.Produto
+namespace Projeto_NFe.Domain.Funcionalidades.Produtos
 {
     public class Produto : Entidade
     {
@@ -23,7 +23,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Produto
 
         public string Descricao { get; set; }
 
-        public void Validar()
+        public virtual void Validar()
         {
             if (String.IsNullOrEmpty(Codigo))
                 throw new ExcecaoProdutoSemCodigo();

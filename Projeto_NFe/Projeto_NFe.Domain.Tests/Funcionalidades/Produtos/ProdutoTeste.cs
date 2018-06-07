@@ -4,6 +4,7 @@ using Projeto_NFe.Common.Tests.Funcionalidades.Produtos;
 using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Produto;
 using Projeto_NFe.Domain.Funcionalidades.Produto.Excecoes;
+using Projeto_NFe.Domain.Funcionalidades.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

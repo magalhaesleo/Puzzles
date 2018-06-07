@@ -1,4 +1,5 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Produto;
+using Projeto_NFe.Domain.Funcionalidades.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
