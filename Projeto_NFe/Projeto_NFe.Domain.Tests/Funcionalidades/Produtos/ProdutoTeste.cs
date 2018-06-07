@@ -61,5 +61,29 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Produtos
             acaoQueNaoDeveRetornarExcessao.Should().Throw<ExcecaoProdutoSemDescricao>();
         }
 
+        [Test]
+        public void Produto_Validar_AliquotaIPI_Sucesso()
+        {
+            Produto produtoParaSerValidado = ObjectMother.ObterProdutoValido();
+
+            Action acaoQueNaoDeveRetornarExcessao = () => produtoParaSerValidado.Validar();
+
+            acaoQueNaoDeveRetornarExcessao.Should().NotThrow<ExcecaoDeNegocio>();
+
+            produtoParaSerValidado.AliquotaIPI.Should().Be(0.10);
+        }
+
+        [Test]
+        public void Produto_Validar_AliquotaICMS_Sucesso()
+        {
+            Produto produtoParaSerValidado = ObjectMother.ObterProdutoValido();
+
+            Action acaoQueNaoDeveRetornarExcessao = () => produtoParaSerValidado.Validar();
+
+            acaoQueNaoDeveRetornarExcessao.Should().NotThrow<ExcecaoDeNegocio>();
+
+            produtoParaSerValidado.AliquotaICMS.Should().Be(0.04);
+        }
+
     }
 }
