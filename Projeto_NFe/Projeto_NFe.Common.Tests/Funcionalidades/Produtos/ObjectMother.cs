@@ -14,9 +14,9 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Produtos
         {
             return new Produto()
             {
-                Codigo = "12345",
+                Codigo = "123",
                 Descricao = "Produto",
-                Valor = 0.89
+                Valor = 1
             };
         }
         public static Produto ObterProdutoComValorNegativo()
