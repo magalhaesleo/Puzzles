@@ -24,11 +24,12 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
                                             SELECT SCOPE_IDENTITY();";
 
         public const string _sqlBuscarPorId = @"SELECT 
-                                                TBDESTINATARIO.ID[ID],
-                                                TBDESTINATARIO.NOME[NOME],
-                                                TBDESTINATARIO.DOCUMENTO[DOCUMENTO],
-                                                TBDESTINATARIO.TIPODEDOCUMENTO[TIPODEDOCUMENTO],
-                                                TBDESTINATARIO.INSCRICAOESTADUAL[INSCRICAOESTADUAL],
+                                                TBTRANSPORTADOR.ID[ID],
+                                                TBTRANSPORTADOR.NOME[NOME],
+                                                TBTRANSPORTADOR.DOCUMENTO[DOCUMENTO],
+                                                TBTRANSPORTADOR.TIPODOCUMENTO[TIPODOCUMENTO],
+                                                TBTRANSPORTADOR.INSCRICAOESTADUAL[INSCRICAOESTADUAL],
+                                                TBTRANSPORTADOR.RESPONSABILIDADEFRETE[RESPONSABILIDADEFRETE],
                                                 TBENDERECO.ID[IDENDERECO],
                                                 TBENDERECO.LOGRADOURO[LOGRADOURO_ENDERECO],
                                                 TBENDERECO.NUMERO[NUMERO_ENDERECO],
@@ -36,16 +37,17 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
                                                 TBENDERECO.MUNICIPIO[MUNICIPIO_ENDERECO],
                                                 TBENDERECO.ESTADO[ESTADO_ENDERECO],
                                                 TBENDERECO.PAIS[PAIS_ENDERECO]
-                                                FROM TBDESTINATARIO
-                                                JOIN TBENDERECO ON TBDESTINATARIO.ENDERECOID = TBENDERECO.ID
-                                                WHERE TBDESTINATARIO.ID = {0}ID";
+                                                FROM TBTRANSPORTADOR
+                                                JOIN TBENDERECO ON TBTRANSPORTADOR.ENDERECOID = TBENDERECO.ID
+                                                WHERE TBTRANSPORTADOR.ID = {0}ID";
 
         public const string _sqlBuscarTodos = @"SELECT 
-                                                TBDESTINATARIO.ID[ID],
-                                                TBDESTINATARIO.NOME[NOME],
-                                                TBDESTINATARIO.DOCUMENTO[DOCUMENTO],
-                                                TBDESTINATARIO.TIPODEDOCUMENTO[TIPODEDOCUMENTO],
-                                                TBDESTINATARIO.INSCRICAOESTADUAL[INSCRICAOESTADUAL],
+                                                TBTRANSPORTADOR.ID[ID],
+                                                TBTRANSPORTADOR.NOME[NOME],
+                                                TBTRANSPORTADOR.DOCUMENTO[DOCUMENTO],
+                                                TBTRANSPORTADOR.TIPODOCUMENTO[TIPODOCUMENTO],
+                                                TBTRANSPORTADOR.INSCRICAOESTADUAL[INSCRICAOESTADUAL],
+                                                TBTRANSPORTADOR.RESPONSABILIDADEFRETE[RESPONSABILIDADEFRETE],
                                                 TBENDERECO.ID[IDENDERECO],
                                                 TBENDERECO.LOGRADOURO[LOGRADOURO_ENDERECO],
                                                 TBENDERECO.NUMERO[NUMERO_ENDERECO],
@@ -53,50 +55,52 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
                                                 TBENDERECO.MUNICIPIO[MUNICIPIO_ENDERECO],
                                                 TBENDERECO.ESTADO[ESTADO_ENDERECO],
                                                 TBENDERECO.PAIS[PAIS_ENDERECO]
-                                                FROM TBDESTINATARIO
-                                                JOIN TBENDERECO ON TBDESTINATARIO.ENDERECOID = TBENDERECO.ID";
+                                                FROM TBTRANSPORTADOR
+                                                JOIN TBENDERECO ON TBTRANSPORTADOR.ENDERECOID = TBENDERECO.ID";
 
-        public const string _sqlAtualizar = @"UPDATE TBDESTINATARIO SET 
+        public const string _sqlAtualizar = @"UPDATE TBTRANSPORTADOR SET 
                                             NOME={0}NOME,
                                             INSCRICAOESTADUAL={0}INSCRICAOESTADUAL,
-                                            TIPODEDOCUMENTO={0}TIPODEDOCUMENTO,
+                                            TIPODOCUMENTO={0}TIPODOCUMENTO,
                                             DOCUMENTO={0}DOCUMENTO,
-                                            ENDERECOID={0}ENDERECOID
+                                            ENDERECOID={0}ENDERECOID,
+                                            RESPONSABILIDADEFRETE={0}RESPONSABILIDADEFRETE
                                             WHERE ID = {0}ID";
 
-        public const string _sqlExcluir = @"DELETE FROM TBDESTINATARIO
+        public const string _sqlExcluir = @"DELETE FROM TBTRANSPORTADOR
                                               WHERE ID = {0}ID";
 
 
         #endregion Scripts SQL
         public Transportador Adicionar(Transportador transportador)
         {
-            transportador.Id = Db.Adicionar(_sqlAdicionar, ObterDicionarioDestinatario(transportador));
+            transportador.Id = Db.Adicionar(_sqlAdicionar, ObterDicionarioTransportador(transportador));
             return transportador;
         }
 
         public Transportador Atualizar(Transportador transportador)
         {
-            throw new NotImplementedException();
+            Db.Atualizar(_sqlAtualizar, ObterDicionarioTransportador(transportador));
+            return transportador;
         }
 
         public Transportador BuscarPorId(long Id)
         {
-            throw new NotImplementedException();
+            return Db.BuscarPorId(_sqlBuscarPorId, FormaObjetoTransportador, new Dictionary<string, object> { { "ID", Id } });
         }
 
         public IEnumerable<Transportador> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return Db.BuscarTodos(_sqlBuscarTodos, FormaObjetoTransportador);
         }
 
         public void Excluir(Transportador transportador)
         {
-            throw new NotImplementedException();
+            Db.Excluir(_sqlExcluir, ObterDicionarioTransportador(transportador));
         }
 
         #region Montar e Ler Objetos
-        private Dictionary<string, object> ObterDicionarioDestinatario(Transportador transportador)
+        private Dictionary<string, object> ObterDicionarioTransportador(Transportador transportador)
         {
             Dictionary<string, object> dicionario = new Dictionary<string, object>
             {
@@ -104,7 +108,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
                 { "NOME", transportador.NomeRazaoSocial},
                 { "DOCUMENTO",transportador.Documento.NumeroComPontuacao },
                 { "TIPODOCUMENTO", transportador.Documento.ObterTipo() },
-                { "InscricaoEstadual", transportador.InscricaoEstadual },                
+                { "InscricaoEstadual", transportador.InscricaoEstadual },
                 { "RESPONSABILIDADEFRETE", transportador.ResponsabilidadeFrete },
                 { "ENDERECOID", transportador.Endereco.Id }
             };
@@ -113,7 +117,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
         }
 
 
-        private static Transportador FormaObjetoDestinatario(IDataReader reader)
+        private static Transportador FormaObjetoTransportador(IDataReader reader)
         {
             IDocumento documento;
             if (Convert.ToString(reader["TIPODOCUMENTO"]) == "CPF")
@@ -131,25 +135,21 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Transportadoras
                 };
             }
 
-            Transportador transportador = new Transportador
-            {
-                Id = Convert.ToInt64(reader["ID"]),
-                NomeRazaoSocial = Convert.ToString(reader["NOME"]),
-                Documento = documento,
-                Endereco = new Endereco
-                {
-                    Id = Convert.ToInt64(reader["IDENDERECO"]),
-                    Logradouro = Convert.ToString(reader["LOGRADOURO_ENDERECO"]),
-                    Numero = Convert.ToInt32(reader["NUMERO_ENDERECO"]),
-                    Bairro = Convert.ToString(reader["BAIRRO_ENDERECO"]),
-                    Municipio = Convert.ToString(reader["MUNICIPIO_ENDERECO"]),
-                    Estado = Convert.ToString(reader["ESTADO_ENDERECO"]),
-                    Pais = Convert.ToString(reader["PAIS_ENDERECO"])
-                },
-                InscricaoEstadual = Convert.ToString(reader["InscricaoEstadual"]),
-                ResponsabilidadeFrete = Convert.ToBoolean(reader["RESPONSABILIDADEFRETE"])
-            };
+            Transportador transportador = new Transportador();
+            transportador.Id = Convert.ToInt64(reader["ID"]);
+            transportador.NomeRazaoSocial = Convert.ToString(reader["NOME"]);
+            transportador.Documento = documento;
+            transportador.Endereco = new Endereco();
+            transportador.InscricaoEstadual = Convert.ToString(reader["InscricaoEstadual"]);
+            transportador.ResponsabilidadeFrete = Convert.ToBoolean(reader["RESPONSABILIDADEFRETE"]);
 
+            transportador.Endereco.Id = Convert.ToInt64(reader["IDENDERECO"]);
+            transportador.Endereco.Logradouro = Convert.ToString(reader["LOGRADOURO_ENDERECO"]);
+            transportador.Endereco.Numero = Convert.ToInt32(reader["NUMERO_ENDERECO"]);
+            transportador.Endereco.Bairro = Convert.ToString(reader["BAIRRO_ENDERECO"]);
+            transportador.Endereco.Municipio = Convert.ToString(reader["MUNICIPIO_ENDERECO"]);
+            transportador.Endereco.Estado = Convert.ToString(reader["ESTADO_ENDERECO"]);
+            transportador.Endereco.Pais = Convert.ToString(reader["PAIS_ENDERECO"]);
 
             return transportador;
         }

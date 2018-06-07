@@ -30,6 +30,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
             BaseSqlTeste.InicializarBancoDeDados();
             _endereco = new Endereco();
             _CPF = new CPF();
+            _CNPJ = new CNPJ();
         }
 
         [Test]
@@ -42,6 +43,91 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
             Transportador transportadorAdicionado = transportadorRepositorio.Adicionar(transportador);
 
             transportadorAdicionado.Should().NotBeNull();
+
+            Transportador transportadorBuscado = transportadorRepositorio.BuscarPorId(transportadorAdicionado.Id);
+
+            transportadorBuscado.NomeRazaoSocial.Should().Be(transportadorAdicionado.NomeRazaoSocial);
+            transportadorBuscado.Endereco.Id.Should().Be(transportadorAdicionado.Endereco.Id);
+        }
+
+        [Test]
+        public void TransportadorRepositorioSql_Atualizar_Sucesso()
+        {
+            _CNPJ.NumeroComPontuacao = "37.311.068/0001-00";
+            long idDoEnderecoDaBaseSql = 3;
+            Transportador transportador = ObjectMother.PegarTransportadorValidoComCNPJ(_endereco, _CNPJ);
+            transportador.Id = 1;
+            transportador.Endereco.Id = idDoEnderecoDaBaseSql;
+
+            transportadorRepositorio.Atualizar(transportador);
+
+            Transportador buscarTransportador = transportadorRepositorio.BuscarPorId(transportador.Id);
+
+            buscarTransportador.NomeRazaoSocial.Should().Be(transportador.NomeRazaoSocial);
+            buscarTransportador.InscricaoEstadual.Should().Be(transportador.InscricaoEstadual);
+            buscarTransportador.ResponsabilidadeFrete.Should().Be(transportador.ResponsabilidadeFrete);
+            buscarTransportador.Endereco.Id.Should().Be(transportador.Endereco.Id);
+            buscarTransportador.Documento.NumeroComPontuacao.Should().Be(transportador.Documento.NumeroComPontuacao);
+        }
+
+        [Test]
+        public void TransportadorRepositorioSql_BuscarTodos_Sucesso()
+        {
+            long idDoEnderecoDaBaseSql = 3;
+            _CPF.NumeroComPontuacao = "619.648.783-30";
+            Transportador transportador = ObjectMother.PegarTransportadorValidoComCPF(_endereco, _CPF);
+            transportador.Endereco.Id = idDoEnderecoDaBaseSql;
+            Transportador transportadorAdicionado = transportadorRepositorio.Adicionar(transportador);
+
+            IEnumerable<Transportador> transportadores = transportadorRepositorio.BuscarTodos();
+            transportadores.Should().HaveCountGreaterOrEqualTo(2);
+        }
+
+        [Test]
+        public void TransportadorRepositorioSql_BuscarPorId_Sucesso()
+        {
+            long idDoEnderecoDaBaseSql = 3;
+            _CPF.NumeroComPontuacao = "619.648.783-30";
+            Transportador transportador = ObjectMother.PegarTransportadorValidoComCPF(_endereco, _CPF);
+
+            transportador.Endereco.Id = idDoEnderecoDaBaseSql;
+            transportador.Endereco.Numero = 1 ;
+            transportador.Endereco.Logradouro = "Logradouro";
+            transportador.Endereco.Bairro = "Bairro";
+            transportador.Endereco.Municipio = "Município";
+            transportador.Endereco.Estado = "Estado";
+            transportador.Endereco.Pais = "País";
+            transportador = transportadorRepositorio.Adicionar(transportador);
+
+            Transportador transportadorBuscado = transportadorRepositorio.BuscarPorId(transportador.Id);
+
+            transportadorBuscado.NomeRazaoSocial.Should().Be(transportador.NomeRazaoSocial);
+            transportadorBuscado.InscricaoEstadual.Should().Be(transportador.InscricaoEstadual);
+            transportadorBuscado.Documento.NumeroComPontuacao.Should().Be(transportador.Documento.NumeroComPontuacao);
+            transportadorBuscado.ResponsabilidadeFrete.Should().Be(transportador.ResponsabilidadeFrete);
+            transportadorBuscado.Endereco.Id.Should().Be(transportador.Endereco.Id);
+            transportadorBuscado.Endereco.Numero.Should().Be(transportador.Endereco.Numero);
+            transportadorBuscado.Endereco.Logradouro.Should().Be(transportador.Endereco.Logradouro);
+            transportadorBuscado.Endereco.Bairro.Should().Be(transportador.Endereco.Bairro);
+            transportadorBuscado.Endereco.Municipio.Should().Be(transportador.Endereco.Municipio);
+            transportadorBuscado.Endereco.Estado.Should().Be(transportador.Endereco.Estado);
+            transportadorBuscado.Endereco.Pais.Should().Be(transportador.Endereco.Pais);
+        }
+
+        [Test]
+        public void TransportadorRepositorioSql_Excluir_Sucesso()
+        {
+            _CNPJ.NumeroComPontuacao = "37.311.068/0001-00";
+            long idDoEnderecoDaBaseSql = 3;
+            Transportador transportador = ObjectMother.PegarTransportadorValidoComCNPJ(_endereco, _CNPJ);
+            transportador.Id = 1;
+            transportador.Endereco.Id = idDoEnderecoDaBaseSql;
+
+            transportadorRepositorio.Excluir(transportador);
+
+            Transportador buscarTransportador = transportadorRepositorio.BuscarPorId(transportador.Id);
+
+            buscarTransportador.Should().BeNull();
         }
     }
 }
