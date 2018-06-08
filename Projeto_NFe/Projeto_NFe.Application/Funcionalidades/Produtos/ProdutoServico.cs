@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Projeto_NFe.Domain.Excecoes;
-using Projeto_NFe.Domain.Funcionalidades.Produto;
 using Projeto_NFe.Domain.Funcionalidades.Produtos;
 
 namespace Projeto_NFe.Application.Funcionalidades.Produtos
