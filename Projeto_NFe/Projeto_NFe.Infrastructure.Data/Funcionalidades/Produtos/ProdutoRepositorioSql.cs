@@ -49,12 +49,12 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Produtos
 
         public IEnumerable<Produto> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return Db.BuscarTodos(_sqlBuscarTodos, FormaObjetoProduto);
         }
 
         public void Excluir(Produto produto)
         {
-            throw new NotImplementedException();
+            Db.Excluir(_sqlExcluir, new Dictionary<string, object> { { "ID", produto.Id } });
         }
 
         #region Montar e Ler Objetos

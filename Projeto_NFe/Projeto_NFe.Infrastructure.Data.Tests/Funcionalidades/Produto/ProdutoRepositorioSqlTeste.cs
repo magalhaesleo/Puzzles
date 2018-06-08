@@ -62,19 +62,41 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Produtos
         [Test]
         public void ProdutoRepositorioSql_Excluir_Sucesso()
         {
-            
+            Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
+
+            Produto produtoAdicionado = _repositorio.Adicionar(produtoParaAdicionar);
+
+            _repositorio.Excluir(produtoAdicionado);
+
+            Produto produtoBuscado = _repositorio.BuscarPorId(produtoAdicionado.Id);
+
+            produtoBuscado.Should().BeNull();
         }
 
         [Test]
         public void ProdutoRepositorioSql_BuscarPorId_Sucesso()
         {
+            Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
 
+            Produto produtoParaBuscar = _repositorio.Adicionar(produtoParaAdicionar);
+
+            Produto produtoBuscado = _repositorio.BuscarPorId(produtoParaBuscar.Id);
+
+            produtoBuscado.Id.Should().Be(produtoParaBuscar.Id);
+            produtoBuscado.Valor.Should().Be(produtoParaAdicionar.Valor);
+            produtoBuscado.Codigo.Should().Be(produtoParaAdicionar.Codigo);
+            produtoBuscado.Descricao.Should().Be(produtoParaAdicionar.Descricao);
         }
 
         [Test]
         public void ProdutoRepositorioSql_BuscarTodos_Sucesso()
         {
+            IEnumerable<Produto> produtosBuscados;
 
+            produtosBuscados = _repositorio.BuscarTodos();
+
+            produtosBuscados.Should().NotBeNull();
+            produtosBuscados.Count().Should().Be(1);
         }
     }
 }
