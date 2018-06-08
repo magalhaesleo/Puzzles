@@ -37,7 +37,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Nota_Fiscal
             _notaFiscal.NaturezaOperacao = "Natureza";
             _notaFiscal.DataEntrada = DateTime.Now;
 
-            Action resultado = _notaFiscal.Validar;
+            Action resultado = _notaFiscal.ValidarGeracao;
 
             resultado.Should().NotThrow<ExcecaoDeNegocio>();
         }
@@ -49,7 +49,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Nota_Fiscal
             _notaFiscal.NaturezaOperacao = "Natureza";
             _notaFiscal.DataEntrada = DateTime.Now;
 
-            Action resultado = _notaFiscal.Validar;
+            Action resultado = _notaFiscal.ValidarGeracao;
 
             resultado.Should().Throw<ExcecaoTransportadorInvalido>();
         }
@@ -61,7 +61,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Nota_Fiscal
             _notaFiscal.NaturezaOperacao = "Natureza";
             _notaFiscal.DataEntrada = DateTime.Now;
 
-            Action acaoComExcecao = _notaFiscal.Validar;
+            Action acaoComExcecao = _notaFiscal.ValidarGeracao;
 
             acaoComExcecao.Should().Throw<ExcecaoDestinatarioInvalido>();
         }
@@ -74,7 +74,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Nota_Fiscal
             _notaFiscal.NaturezaOperacao = "";
             _notaFiscal.DataEntrada = DateTime.Now;
 
-            Action acaoComExcecao = _notaFiscal.Validar;
+            Action acaoComExcecao = _notaFiscal.ValidarGeracao;
 
             acaoComExcecao.Should().Throw<ExcecaoSemNaturezaOperacao>();
         }
@@ -87,9 +87,29 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Nota_Fiscal
             _notaFiscal.NaturezaOperacao = "Natureza";
             _notaFiscal.DataEntrada = DateTime.Now.AddDays(2);
 
-            Action acaoComExcecao = _notaFiscal.Validar;
+            Action acaoComExcecao = _notaFiscal.ValidarGeracao;
 
             acaoComExcecao.Should().Throw<ExcecaoDataEntradaInvalida>();
+        }
+
+        [Test]
+        public void NotaFiscal_TamanhoChaveDeAcessoDeveSer44_Sucesso()
+        {
+            Random sorteador = new Random();
+            _notaFiscal.GerarChaveDeAcesso(sorteador);
+            string chaveGerada = _notaFiscal.ChaveAcesso;
+
+            chaveGerada.Length.Should().Be(44);
+        }
+
+        [Test]
+        public void NotaFiscal_ValidarValores_Sucesso()
+        {
+            Random sorteador = new Random();
+            _notaFiscal.GerarChaveDeAcesso(sorteador);
+            string chaveGerada = _notaFiscal.ChaveAcesso;
+
+            chaveGerada.Length.Should().Be(44);
         }
     }
 }
