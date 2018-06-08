@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
+namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal.Excecoes
 {
     public class ExcecaoTransportadorInvalido : ExcecaoDeNegocio
     {
