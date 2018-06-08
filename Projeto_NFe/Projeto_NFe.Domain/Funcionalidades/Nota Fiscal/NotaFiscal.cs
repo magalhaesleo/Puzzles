@@ -2,6 +2,7 @@
 using Projeto_NFe.Domain.Funcionalidades.Destinatarios;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal.Excecoes;
+using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
 using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
         public Emitente Emitente { get; set; }
         public string NaturezaOperacao { get; set; }
         public DateTime DataEntrada { get; set; }
+        public List<ProdutoNotaFiscal> Produtos { get; set; }
         public string ChaveAcesso { get; set; }
         public double ValorTotalICMS { get; set; }
         public double ValorTotalIPI { get; set; }
@@ -38,6 +40,8 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
 
             if (Destinatario == null)
                 throw new ExcecaoDestinatarioInvalido();
+            if (Emitente == null)
+                throw new ExcecaoEmitenteInvalido();
 
             if (string.IsNullOrEmpty(NaturezaOperacao))
                 throw new ExcecaoSemNaturezaOperacao();
@@ -49,7 +53,15 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
 
         public virtual void ValidarParaEmitir()
         {
-            
+            if (ValorTotalICMS < 1)
+                throw new ExcecaoValorTotalICMSInvalido();
+
+            if (ValorTotalIPI < 1)
+                throw new ExcecaoValorTotalIPIInvalido();
+
+            if (ValorTotalProduto < 1)
+                throw new ExcecaoValorTotalProdutoInvalido();
+
         }
     }
 }
