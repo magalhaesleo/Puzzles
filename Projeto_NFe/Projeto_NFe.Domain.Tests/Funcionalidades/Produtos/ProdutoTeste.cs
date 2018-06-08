@@ -2,9 +2,8 @@
 using NUnit.Framework;
 using Projeto_NFe.Common.Tests.Funcionalidades.Produtos;
 using Projeto_NFe.Domain.Excecoes;
-using Projeto_NFe.Domain.Funcionalidades.Produto;
-using Projeto_NFe.Domain.Funcionalidades.Produto.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Produtos;
+using Projeto_NFe.Domain.Funcionalidades.Produtos.Excecoes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +13,8 @@ using System.Threading.Tasks;
 namespace Projeto_NFe.Domain.Tests.Funcionalidades.Produtos
 {
     [TestFixture]
-    public class ProdutoTeste
-    {
-        [SetUp]
-        public void Inicializar()
-        {
+    public class ProdutoTeste { 
 
-        }
 
         [Test]
         public void Produto_Validar_Sucesso()

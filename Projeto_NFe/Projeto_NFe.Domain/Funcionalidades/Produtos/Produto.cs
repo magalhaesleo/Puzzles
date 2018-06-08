@@ -1,5 +1,5 @@
 ﻿using Projeto_NFe.Domain.Base;
-using Projeto_NFe.Domain.Funcionalidades.Produto.Excecoes;
+using Projeto_NFe.Domain.Funcionalidades.Produtos.Excecoes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +15,11 @@ namespace Projeto_NFe.Domain.Funcionalidades.Produtos
 
         public string Codigo { get; set; }
 
-        public double Valor { get; set; }
+        public virtual double Valor { get; set; }
 
-        public double AliquotaIPI { get { return _aliquotaIPI; } }
+        public virtual double AliquotaIPI { get { return _aliquotaIPI; } }
 
-        public double AliquotaICMS { get { return _aliquotaICMS; } }
+        public virtual double AliquotaICMS { get { return _aliquotaICMS; } }
 
         public string Descricao { get; set; }
 

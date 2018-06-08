@@ -25,6 +25,11 @@ namespace Projeto_NFe.Common.Tests.Base
         private const string EXCLUIR_REGISTRO_TABELA_TRANSPORTADOR = "DELETE FROM [dbo].[TBTRANSPORTADOR]; DBCC CHECKIDENT('[dbo].[TBTRANSPORTADOR]', RESEED, 0)";
         private const string ADICIONAR_REGISTRO_TABELA_TRANSPORTADOR = "INSERT INTO TBTRANSPORTADOR (Nome, Documento, TipoDocumento, InscricaoEstadual, EnderecoId, ResponsabilidadeFrete)" +
                                                                     "VALUES ('Nome ou Razao Social', '111.444.777-35', 'CNPJ', '319.402.517', 2, 1)";
+
+        private const string EXCLUIR_REGISTRO_TABELA_PRODUTO = "DELETE FROM [dbo].[TBPRODUTO]; DBCC CHECKIDENT('[dbo].[TBPRODUTO]', RESEED, 0)";
+        private const string ADICIONAR_REGISTRO_TABELA_PRODUTO = "INSERT INTO TBPRODUTO (CODIGO, DESCRICAO, VALOR) VALUES ('CODIGO', 'DESCRICAO', 100)";
+
+
         #endregion
         public static void InicializarBancoDeDados()
         {
@@ -41,6 +46,12 @@ namespace Projeto_NFe.Common.Tests.Base
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_EMITENTE);
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_DESTINATARIO);
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_TRANSPORTADOR);
+        }
+
+        public static void InicializarBancoDeDadosPrepararProduto()
+        {
+            Db.Atualizar(EXCLUIR_REGISTRO_TABELA_PRODUTO);
+            Db.Atualizar(ADICIONAR_REGISTRO_TABELA_PRODUTO);
         }
 
 

@@ -1,5 +1,4 @@
-﻿using Projeto_NFe.Domain.Funcionalidades.Produto;
-using Projeto_NFe.Domain.Funcionalidades.Produtos;
+﻿using Projeto_NFe.Domain.Funcionalidades.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +13,9 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Produtos
         {
             return new Produto()
             {
-                Codigo = "12345",
+                Codigo = "123",
                 Descricao = "Produto",
-                Valor = 0.89
+                Valor = 1
             };
         }
         public static Produto ObterProdutoComValorNegativo()
