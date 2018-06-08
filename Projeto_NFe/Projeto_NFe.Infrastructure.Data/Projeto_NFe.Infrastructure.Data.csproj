@@ -43,6 +43,7 @@
     <Compile Include="Funcionalidades\Destinatarios\DestinatarioRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Emitentes\EmitenteRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoRepositorioSql.cs" />
+    <Compile Include="Funcionalidades\ProdutoNotasFiscais\ProdutoNotaFiscalRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Produtos\ProdutoRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Transportadoras\TransportadorRepositorioSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -67,11 +67,6 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
             Destinatario destinatarioAdicionado = _repositorio.Adicionar(destinatarioValido);
 
             destinatarioAdicionado.Id.Should().BeGreaterThan(0);
-
-            Destinatario destinatarioResultadoDoGet = _repositorio.BuscarPorId(destinatarioAdicionado.Id);
-
-            destinatarioResultadoDoGet.NomeRazaoSocial.Should().Be(destinatarioAdicionado.NomeRazaoSocial);
-            destinatarioResultadoDoGet.Endereco.Pais.Should().Be(destinatarioAdicionado.Endereco.Pais);
         }
 
         [Test]

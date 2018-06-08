@@ -79,6 +79,7 @@
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalComQuantidadeInferiorAzero.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalSemNotaFiscal.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalSemProduto.cs" />
+    <Compile Include="Funcionalidades\ProdutoNotasFiscais\IProdutoNotaFiscalRepositorio.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\ProdutoNotaFiscal.cs" />
     <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoComValorNegativo.cs" />
     <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoSemCodigo.cs" />

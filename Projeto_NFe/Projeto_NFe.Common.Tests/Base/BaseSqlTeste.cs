@@ -29,6 +29,13 @@ namespace Projeto_NFe.Common.Tests.Base
         private const string EXCLUIR_REGISTRO_TABELA_PRODUTO = "DELETE FROM [dbo].[TBPRODUTO]; DBCC CHECKIDENT('[dbo].[TBPRODUTO]', RESEED, 0)";
         private const string ADICIONAR_REGISTRO_TABELA_PRODUTO = "INSERT INTO TBPRODUTO (CODIGO, DESCRICAO, VALOR) VALUES ('CODIGO', 'DESCRICAO', 100)";
 
+        private const string EXCLUIR_REGISTRO_TABELA_PRODUTONOTAFISCAL = "DELETE FROM [dbo].[TBPRODUTONOTAFISCAL]; DBCC CHECKIDENT('[dbo].[TBPRODUTONOTAFISCAL]', RESEED, 0)";
+        private const string ADICIONAR_REGISTRO_TABELA_PRODUTONOTAFISCAL = "INSERT INTO TBPRODUTONOTAFISCAL (ProdutoId, NotaFiscalId, Quantidade) VALUES (1, 1, 100)";
+
+        private const string EXCLUIR_REGISTRO_TABELA_NOTAFISCAL = "DELETE FROM [dbo].[TBNOTAFISCAL]; DBCC CHECKIDENT('[dbo].[TBNOTAFISCAL]', RESEED, 0)";
+        private const string ADICIONAR_REGISTRO_TABELA_NOTAFISCAL = "INSERT INTO TBNOTAFISCAL (EmitenteId, DestinatarioId, TransportadorId, NaturezaDaOperacao, DataEntrada) VALUES (1, 1, 1, 'NaturezaDaOperacao', '07-05-2018 00:00:00')";
+
+
 
         #endregion
         public static void InicializarBancoDeDados()
@@ -52,6 +59,23 @@ namespace Projeto_NFe.Common.Tests.Base
         {
             Db.Atualizar(EXCLUIR_REGISTRO_TABELA_PRODUTO);
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_PRODUTO);
+        }
+
+        public static void InicializarBancoDeDadosPrepararNotaFiscal()
+        {
+            InicializarBancoDeDados();
+
+            Db.Atualizar(EXCLUIR_REGISTRO_TABELA_NOTAFISCAL);
+            Db.Atualizar(ADICIONAR_REGISTRO_TABELA_NOTAFISCAL);
+
+            InicializarBancoDeDadosPrepararTesteRepositorioProdutoNotaFiscal();
+        }
+
+        //Deve ser chamado após a criação de uma nota fiscal
+        public static void InicializarBancoDeDadosPrepararTesteRepositorioProdutoNotaFiscal()
+        {
+            Db.Atualizar(EXCLUIR_REGISTRO_TABELA_PRODUTONOTAFISCAL);
+            Db.Atualizar(ADICIONAR_REGISTRO_TABELA_PRODUTONOTAFISCAL);
         }
 
 
