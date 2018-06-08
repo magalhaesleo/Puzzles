@@ -59,17 +59,6 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Transportadoras
             };
         }
 
-        public static Transportador PegarTransportadorComInscricaoEstadualAbaixoDoLimite(Endereco endereco, IDocumento cnpj)
-        {
-            return new Transportador()
-            {
-                NomeRazaoSocial = "Razão Social",
-                InscricaoEstadual = "636.330.646.1",
-                ResponsabilidadeFrete = true,
-                Endereco = endereco, 
-                Documento = cnpj
-            };
-        }
 
         public static Transportador PegarTransportadorSemNome(Endereco endereco, IDocumento cnpj)
         {
