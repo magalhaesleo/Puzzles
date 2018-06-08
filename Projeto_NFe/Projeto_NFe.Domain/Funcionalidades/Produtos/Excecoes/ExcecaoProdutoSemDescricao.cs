@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Domain.Funcionalidades.Produto.Excecoes
+namespace Projeto_NFe.Domain.Funcionalidades.Produtos.Excecoes
 {
     public class ExcecaoProdutoSemDescricao : ExcecaoDeNegocio
     {
