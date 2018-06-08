@@ -72,12 +72,13 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.ProdutoNotasFiscais
 
         public IEnumerable<ProdutoNotaFiscal> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return Db.BuscarTodos(_sqlBuscarTodos, FormaObjetoProdutoNotaFiscal);
         }
 
         public void Excluir(ProdutoNotaFiscal produtoNotaFiscal)
         {
-            throw new NotImplementedException();
+            Db.Excluir(_sqlExcluir, new Dictionary<string, object> { { "ID", produtoNotaFiscal.Id } });
+
         }
 
         #region Montar e Ler Objetos

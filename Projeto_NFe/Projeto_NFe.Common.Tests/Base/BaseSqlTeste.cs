@@ -41,6 +41,9 @@ namespace Projeto_NFe.Common.Tests.Base
         public static void InicializarBancoDeDados()
         {
             //Excluindo
+            Db.Atualizar(EXCLUIR_REGISTRO_TABELA_PRODUTO);
+            Db.Atualizar(EXCLUIR_REGISTRO_TABELA_PRODUTONOTAFISCAL);
+            Db.Atualizar(EXCLUIR_REGISTRO_TABELA_NOTAFISCAL);
             Db.Atualizar(EXCLUIR_REGISTRO_TABELA_DESTINATARIO);
             Db.Atualizar(EXCLUIR_REGISTRO_TABELA_EMITENTE);
             Db.Atualizar(EXCLUIR_REGISTRO_TABELA_TRANSPORTADOR);

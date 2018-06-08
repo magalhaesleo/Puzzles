@@ -33,8 +33,6 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
             _mockNotaFiscal = new Mock<NotaFiscal>();
         }
 
-
-
         [Test]
         public void ProdutoNotaFiscalRepositorioSql_Adicionar_Sucesso()
         {
@@ -73,23 +71,10 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
         [Test]
         public void ProdutoNotaFiscalRepositorioSql_BuscarTodos_Sucesso()
         {
-            1.Should().Be(2);
+            IEnumerable<ProdutoNotaFiscal> listaProdutoNotaFiscal = _repositorio.BuscarTodos();
 
-            //long idDoEnderecoDaBaseSql = 2;
-
-            //ProdutoNotaFiscal produtoNotaFiscalValido = ObjectMother.PegarProdutoNotaFiscalValidoComCPF();
-
-            //produtoNotaFiscalValido.Endereco.Id = idDoEnderecoDaBaseSql;
-
-            ////Adicionando varios produtoNotaFiscals vinculados ao mesmo endereco (Só para teste)
-            //ProdutoNotaFiscal produtoNotaFiscalAdicionado1 = _repositorio.Adicionar(produtoNotaFiscalValido);
-            //ProdutoNotaFiscal produtoNotaFiscalAdicionado2 = _repositorio.Adicionar(produtoNotaFiscalValido);
-            //ProdutoNotaFiscal produtoNotaFiscalAdicionado3 = _repositorio.Adicionar(produtoNotaFiscalValido);
-            //ProdutoNotaFiscal produtoNotaFiscalAdicionado4 = _repositorio.Adicionar(produtoNotaFiscalValido);
-
-            //IEnumerable<ProdutoNotaFiscal> produtoNotaFiscalsResultadoDoBuscarTodos = _repositorio.BuscarTodos();
-
-            //produtoNotaFiscalsResultadoDoBuscarTodos.Count().Should().Be(5);
+            listaProdutoNotaFiscal.Should().NotBeNull();
+            listaProdutoNotaFiscal.Count().Should().Be(1);
 
         }
 
@@ -123,17 +108,21 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
         [Test]
         public void ProdutoNotaFiscalRepositorioSql_Excluir_Sucesso()
         {
-            1.Should().Be(2);
+            ProdutoNotaFiscal produtoNotaFiscalValido = ObjectMother.PegarProdutoNotaFiscalValido(_mockProduto.Object, _mockNotaFiscal.Object);
 
-            //long idDoProdutoNotaFiscalDaBaseSql = 1;
+            long idDeProdutoCadastrado = 1;
+            long idDeNotaFiscalCadastrada = 1;
 
-            //ProdutoNotaFiscal produtoNotaFiscalResultadoDoBuscar = _repositorio.BuscarPorId(idDoProdutoNotaFiscalDaBaseSql);
+            _mockProduto.Setup(mp => mp.Id).Returns(idDeProdutoCadastrado);
+            _mockNotaFiscal.Setup(mnf => mnf.Id).Returns(idDeNotaFiscalCadastrada);
 
-            //_repositorio.Excluir(produtoNotaFiscalResultadoDoBuscar);
+            ProdutoNotaFiscal produtoNotaFiscalAdicionado = _repositorio.Adicionar(produtoNotaFiscalValido);
 
-            //ProdutoNotaFiscal produtoNotaFiscalQueDeveSerNullo = _repositorio.BuscarPorId(produtoNotaFiscalResultadoDoBuscar.Id);
+            _repositorio.Excluir(produtoNotaFiscalAdicionado);
 
-            //produtoNotaFiscalQueDeveSerNullo.Should().BeNull();
+            ProdutoNotaFiscal produtoBuscado = _repositorio.BuscarPorId(produtoNotaFiscalAdicionado.Id);
+
+            produtoBuscado.Should().BeNull();
         }
     }
 }
