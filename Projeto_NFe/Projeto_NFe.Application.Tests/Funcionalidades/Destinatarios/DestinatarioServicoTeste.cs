@@ -40,7 +40,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioServico_Adicionar_Sucesso()
+        public void Destinatario_Aplicacao_Adicionar_Sucesso()
         {
             _mockDestinatario.Object.Endereco = _mockEndereco.Object;
             _mockDestinatario.Object.Documento = _mockCnpj.Object;
@@ -59,7 +59,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioServico_Atualizar_Sucesso()
+        public void Destinatario_Aplicacao_Atualizar_Sucesso()
         {
             _mockDestinatario.Object.Endereco = _mockEndereco.Object;
             _mockDestinatario.Object.Documento = _mockCnpj.Object;
@@ -79,7 +79,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioServico_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        public void Destinatario_Aplicacao_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 
@@ -94,7 +94,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioServico_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        public void Destinatario_Aplicacao_Excluir_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 
@@ -109,7 +109,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioServico_Excluir_Sucesso()
+        public void Destinatario_Aplicacao_Excluir_Sucesso()
         {
             long idValido = 1;
 
@@ -126,7 +126,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioServico_BuscarPorId_Sucesso()
+        public void Destinatario_Aplicacao_BuscarPorId_Sucesso()
         {
             long id = 1;
 
@@ -138,7 +138,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioServico_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        public void Destinatario_Aplicacao_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
         {
             long id = 0;
 
@@ -148,7 +148,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioServico_BuscarTodos_Sucesso()
+        public void Destinatario_Aplicacao_BuscarTodos_Sucesso()
         {
 
             _mockRepositorioDestinatario.Setup(er => er.BuscarTodos());

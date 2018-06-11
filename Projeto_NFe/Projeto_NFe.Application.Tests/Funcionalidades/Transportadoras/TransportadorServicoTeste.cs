@@ -37,7 +37,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorServico_Adicionar_Sucesso()
+        public void Transportador_Aplicacao_Adicionar_Sucesso()
         {
             _transportadorRepositorioMock.Setup(tr => tr.Adicionar(_transportadorMock.Object)).Returns(_transportadorMock.Object);
             _transportadorMock.Setup(tr => tr.Validar());
@@ -55,7 +55,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorServico_Atualizar_Sucesso()
+        public void Transportador_Aplicacao_Atualizar_Sucesso()
         {
             _transportadorMock.Setup(tr => tr.Id).Returns(1);
             _enderecoMock.Setup(en => en.Id).Returns(1);
@@ -76,7 +76,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorServico_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        public void Transportador_Aplicacao_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
         {
             _transportadorMock.Setup(tr => tr.Id).Returns(0);
             _enderecoMock.Setup(en => en.Id).Returns(0);
@@ -91,7 +91,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorServico_Excluir_Sucesso()
+        public void Transportador_Aplicacao_Excluir_Sucesso()
         {
             _transportadorMock.Setup(tr => tr.Id).Returns(1);
             _enderecoMock.Setup(en => en.Id).Returns(1);
@@ -108,7 +108,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorServico_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        public void Transportador_Aplicacao_Excluir_ExcecaoIdentificadorIndefinido_Falha()
         {
             _transportadorMock.Setup(tr => tr.Id).Returns(0);
             _enderecoMock.Setup(en => en.Id).Returns(0);
@@ -121,7 +121,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorServico_BuscarPorId_Sucesso()
+        public void Transportador_Aplicacao_BuscarPorId_Sucesso()
         {
             _transportadorRepositorioMock.Setup(tr => tr.BuscarPorId(9)).Returns(_transportadorMock.Object);
 
@@ -134,7 +134,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorServico_BuscarPorId_Falha()
+        public void Transportador_Aplicacao_BuscarPorId_Falha()
         {
 
             Action resultado = () => _transportadorServico.BuscarPorId(-10);
@@ -146,7 +146,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorServico_BuscarTodos_Sucesso()
+        public void Transportador_Aplicacao_BuscarTodos_Sucesso()
         {
             List<Transportador> transportadoresLista = new List<Transportador>();
 

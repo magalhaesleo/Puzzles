@@ -38,7 +38,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteServico_Adicionar_Sucesso()
+        public void Emitente_Aplicacao_Adicionar_Sucesso()
         {
             //Cenário
             _endereco.Id = 1;
@@ -59,7 +59,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteServico_Atualizar_Sucesso()
+        public void Emitente_Aplicacao_Atualizar_Sucesso()
         {
             //Cenário
             long idValido = 1;
@@ -86,7 +86,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteServico_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        public void Emitente_Aplicacao_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 
@@ -103,7 +103,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteServico_Excluir_Sucesso()
+        public void Emitente_Aplicacao_Excluir_Sucesso()
         {
             long idValido = 1;
 
@@ -120,7 +120,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteServico_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        public void Emitente_Aplicacao_Excluir_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 
@@ -137,7 +137,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteServico_BuscarPorId_Sucesso()
+        public void Emitente_Aplicacao_BuscarPorId_Sucesso()
         {
             _mockEmitente.Setup(er => er.Id).Returns(1);
 
@@ -149,7 +149,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteServico_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        public void Emitente_Aplicacao_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 
@@ -163,7 +163,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteServico_BuscarTodos_Sucesso()
+        public void Emitente_Aplicacao_BuscarTodos_Sucesso()
         {
             _mockRepositorioEmitente.Setup(mre => mre.BuscarTodos());
 

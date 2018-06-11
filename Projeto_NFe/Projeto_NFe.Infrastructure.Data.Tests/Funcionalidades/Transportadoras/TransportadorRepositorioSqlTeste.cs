@@ -34,7 +34,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorRepositorioSql_Adicionar_Sucesso()
+        public void Transportador_InfraData_Adicionar_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 3;
             _CPF.NumeroComPontuacao = "619.648.783-30";
@@ -51,7 +51,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorRepositorioSql_Atualizar_Sucesso()
+        public void Transportador_InfraData_Atualizar_Sucesso()
         {
             _CNPJ.NumeroComPontuacao = "37.311.068/0001-00";
             long idDoEnderecoDaBaseSql = 3;
@@ -71,7 +71,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorRepositorioSql_BuscarTodos_Sucesso()
+        public void Transportador_InfraData_BuscarTodos_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 3;
             _CPF.NumeroComPontuacao = "619.648.783-30";
@@ -84,7 +84,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorRepositorioSql_BuscarPorId_Sucesso()
+        public void Transportador_InfraData_BuscarPorId_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 3;
             _CPF.NumeroComPontuacao = "619.648.783-30";
@@ -115,7 +115,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorRepositorioSql_Excluir_Sucesso()
+        public void Transportador_InfraData_Excluir_Sucesso()
         {
             _CNPJ.NumeroComPontuacao = "37.311.068/0001-00";
             long idDoEnderecoDaBaseSql = 3;

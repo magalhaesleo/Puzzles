@@ -29,7 +29,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_Sucesso()
+        public void Emitente_Dominio_Validar_Sucesso()
         {
             Emitente emitente = ObjectMother.PegarEmitenteValido(_enderecoMock.Object, _cnpjMock.Object);
 
@@ -45,7 +45,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_SemNome_Falha()
+        public void Emitente_Dominio_Validar_SemNome_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteSemNome(_enderecoMock.Object, _cnpjMock.Object);
 
@@ -56,7 +56,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_SemRazaoSocial_Falha()
+        public void Emitente_Dominio_Validar_SemRazaoSocial_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteSemRazaoSocial(_enderecoMock.Object, _cnpjMock.Object);
 
@@ -67,7 +67,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_SemCNPJ_Falha()
+        public void Emitente_Dominio_Validar_SemCNPJ_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteSemCNPJ(_enderecoMock.Object);
 
@@ -77,7 +77,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_SemInscricaoEstadual_Falha()
+        public void Emitente_Dominio_Validar_SemInscricaoEstadual_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteSemInscricaoEstadual(_enderecoMock.Object, _cnpjMock.Object);
 
@@ -87,7 +87,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_SemInscricaoMunicipal_Falha()
+        public void Emitente_Dominio_Validar_SemInscricaoMunicipal_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteSemInscricaoMunicipal(_enderecoMock.Object, _cnpjMock.Object);
 
@@ -97,7 +97,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_SemEndereco_Falha()
+        public void Emitente_Dominio_Validar_SemEndereco_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteSemEndereco(_cnpjMock.Object);
 
@@ -107,7 +107,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_Nome3Letras_Falha()
+        public void Emitente_Dominio_Validar_Nome3Letras_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteComNomeDe3Letras(_enderecoMock.Object, _cnpjMock.Object);
 
@@ -117,7 +117,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_RazaoSocial3Letras_Falha()
+        public void Emitente_Dominio_Validar_RazaoSocial3Letras_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteComRazaoSocialDe3Letras(_enderecoMock.Object, _cnpjMock.Object);
 
@@ -127,7 +127,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_InscricaoEstadualInvalida_Falha()
+        public void Emitente_Dominio_Validar_InscricaoEstadualInvalida_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteComInscricaoEstadualInvalida(_enderecoMock.Object, _cnpjMock.Object);
 
@@ -137,7 +137,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_InscricaoEstadualComLetras_Falha()
+        public void Emitente_Dominio_Validar_InscricaoEstadualComLetras_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteComInscricaoEstadualComLetras(_enderecoMock.Object, _cnpjMock.Object);
 
@@ -147,7 +147,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void Emitente_Validar_InscricaoMunicipalComLetras_Falha()
+        public void Emitente_Dominio_Validar_InscricaoMunicipalComLetras_Falha()
         {
             Emitente emitente = ObjectMother.PegarEmitenteComInscricaoMunicipalComLetras(_enderecoMock.Object, _cnpjMock.Object);
 

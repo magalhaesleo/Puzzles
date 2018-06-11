@@ -34,7 +34,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
         }
 
         [Test]
-        public void ProdutoNotaFiscalRepositorioSql_Adicionar_Sucesso()
+        public void ProdutoNotaFiscal_InfraData_Adicionar_Sucesso()
         {
             ProdutoNotaFiscal produtoNotaFiscalValido = ObjectMother.PegarProdutoNotaFiscalValido(_mockProduto.Object, _mockNotaFiscal.Object);
 
@@ -50,7 +50,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
         }
 
         [Test]
-        public void ProdutoNotaFiscalRepositorioSql_BuscarPorId_Sucesso()
+        public void ProdutoNotaFiscal_InfraData_BuscarPorId_Sucesso()
         {
             ProdutoNotaFiscal produtoNotaFiscalValido = ObjectMother.PegarProdutoNotaFiscalValido(_mockProduto.Object, _mockNotaFiscal.Object);
 
@@ -73,7 +73,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
         }
 
         [Test]
-        public void ProdutoNotaFiscalRepositorioSql_BuscarTodos_Sucesso()
+        public void ProdutoNotaFiscal_InfraData_BuscarTodos_Sucesso()
         {
             IEnumerable<ProdutoNotaFiscal> listaProdutoNotaFiscal = _repositorio.BuscarTodos();
 
@@ -83,7 +83,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
         }
 
         [Test]
-        public void ProdutoNotaFiscalRepositorioSql_Atualizar_Sucesso()
+        public void ProdutoNotaFiscal_InfraData_Atualizar_Sucesso()
         {
             long idDoProdutoNotaFiscalDaBaseSql = 1;
 
@@ -99,7 +99,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
         }
 
         [Test]
-        public void ProdutoNotaFiscalRepositorioSql_Excluir_Sucesso()
+        public void ProdutoNotaFiscal_InfraData_Excluir_Sucesso()
         {
             ProdutoNotaFiscal produtoNotaFiscalValido = ObjectMother.PegarProdutoNotaFiscalValido(_mockProduto.Object, _mockNotaFiscal.Object);
 

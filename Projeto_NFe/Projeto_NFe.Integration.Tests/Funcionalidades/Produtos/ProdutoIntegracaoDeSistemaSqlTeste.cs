@@ -27,7 +27,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoIntegracaoDeSistemaSql_Adicionar_Sucesso()
+        public void Produto_IntegracaoDeSistema_Sql_Adicionar_Sucesso()
         {
             Produto produto = ObjectMother.ObterProdutoValido();
 
@@ -37,7 +37,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoIntegracaoDeSistemaSql_Atualizar_Sucesso()
+        public void Produto_IntegracaoDeSistema_Sql_Atualizar_Sucesso()
         {
             Produto produto = ObjectMother.ObterProdutoValido();
             produto.Id = 1;
@@ -51,7 +51,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoIntegracaoDeSistemaSql_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        public void Produto_IntegracaoDeSistema_Sql_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
         {
             Produto produto = ObjectMother.ObterProdutoValido();
             produto.Id = 0;
@@ -62,7 +62,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoIntegracaoDeSistemaSql_BuscarPorId_Sucesso()
+        public void Produto_IntegracaoDeSistema_Sql_BuscarPorId_Sucesso()
         {
             Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
 
@@ -77,7 +77,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoIntegracaoDeSistemaSql_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        public void Produto_IntegracaoDeSistema_Sql_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
         {
             Produto produtoParaBuscar = ObjectMother.ObterProdutoValido();
             produtoParaBuscar.Id = 0;
@@ -88,7 +88,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoIntegracaoDeSistemaSql_BuscarTodos_Sucesso()
+        public void Produto_IntegracaoDeSistema_Sql_BuscarTodos_Sucesso()
         {
             int quantidadeDeProdutosAdicionadosPeloBaseSql = 1;
 
@@ -102,7 +102,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoIntegracaoDeSistemaSql_Excluir_Sucesso()
+        public void Produto_IntegracaoDeSistema_Sql_Excluir_Sucesso()
         {
             Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
 
@@ -117,7 +117,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoIntegracaoDeSistemaSql_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        public void Produto_IntegracaoDeSistema_Sql_Excluir_ExcecaoIdentificadorIndefinido_Falha()
         {
             Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
 

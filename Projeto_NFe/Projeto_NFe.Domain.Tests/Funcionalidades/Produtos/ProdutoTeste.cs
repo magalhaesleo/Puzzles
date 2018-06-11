@@ -17,7 +17,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Produtos
 
 
         [Test]
-        public void Produto_Validar_Sucesso()
+        public void Produto_Dominio_Validar_Sucesso()
         {
             Produto produtoParaSerValidado = ObjectMother.ObterProdutoValido();
 
@@ -27,7 +27,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void Produto_Validar_ExcecaoProdutoComValorNegativo_Falha()
+        public void Produto_Dominio_Validar_ExcecaoProdutoComValorNegativo_Falha()
         {
             Produto produtoParaSerValidado = ObjectMother.ObterProdutoComValorNegativo();
 
@@ -37,7 +37,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void Produto_Validar_ExcecaoProdutoSemCodigo_Falha()
+        public void Produto_Dominio_Validar_ExcecaoProdutoSemCodigo_Falha()
         {
             Produto produtoParaSerValidado = ObjectMother.ObterProdutoSemCodigo();
 
@@ -47,7 +47,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void Produto_Validar_ExcecaoProdutoSemDescricao_Falha()
+        public void Produto_Dominio_Validar_ExcecaoProdutoSemDescricao_Falha()
         {
             Produto produtoParaSerValidado = ObjectMother.ObterProdutoSemDescricao();
 
@@ -57,7 +57,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void Produto_Validar_AliquotaIPI_Sucesso()
+        public void Produto_Dominio_Validar_AliquotaIPI_Sucesso()
         {
             Produto produtoParaSerValidado = ObjectMother.ObterProdutoValido();
 
@@ -69,7 +69,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void Produto_Validar_AliquotaICMS_Sucesso()
+        public void Produto_Dominio_Validar_AliquotaICMS_Sucesso()
         {
             Produto produtoParaSerValidado = ObjectMother.ObterProdutoValido();
 

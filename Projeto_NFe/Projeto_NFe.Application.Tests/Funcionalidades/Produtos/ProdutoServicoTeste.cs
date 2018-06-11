@@ -28,7 +28,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoServico_Adicionar_Sucesso()
+        public void Produto_Aplicacao_Adicionar_Sucesso()
         {
             _mockProduto.Setup(mp => mp.Validar());
             _mockRepositorioProduto.Setup(mrp => mrp.Adicionar(_mockProduto.Object)).Returns(_mockProduto.Object);
@@ -41,7 +41,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoServico_Atualizar_Sucesso()
+        public void Produto_Aplicacao_Atualizar_Sucesso()
         {
             _mockProduto.Setup(mp => mp.Validar());
             _mockProduto.Setup(mp => mp.Id).Returns(1);
@@ -54,7 +54,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoServico_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        public void Produto_Aplicacao_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 
@@ -68,7 +68,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoServico_BuscarPorId_Sucesso()
+        public void Produto_Aplicacao_BuscarPorId_Sucesso()
         {
             long idValido = 1;
 
@@ -82,7 +82,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoServico_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        public void Produto_Aplicacao_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 
@@ -96,7 +96,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoServico_BuscarTodos_Sucesso()
+        public void Produto_Aplicacao_BuscarTodos_Sucesso()
         {
             _mockRepositorioProduto.Setup(mpr => mpr.BuscarTodos());
 
@@ -106,7 +106,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoServico_Excluir_Sucesso()
+        public void Produto_Aplicacao_Excluir_Sucesso()
         {
             long idValido = 1;
 
@@ -121,7 +121,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoServico_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        public void Produto_Aplicacao_Excluir_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 
