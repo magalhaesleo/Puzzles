@@ -14,7 +14,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
     {
 
         [Test]
-        public void CPF_Validar_Sucesso()
+        public void CPF_Infraestrutura_Validar_Sucesso()
         {
             CPF cpf = new CPF();
             cpf.NumeroComPontuacao = "111.444.777-35";
@@ -27,7 +27,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CPF_Validar_NumeroZerado_ExcecaoNumeroCPFInvalido_Falha()
+        public void CPF_Infraestrutura_Validar_NumeroZerado_ExcecaoNumeroCPFInvalido_Falha()
         {
             CPF cpf = new CPF();
             cpf.NumeroComPontuacao = "000.000.000-00";
@@ -38,7 +38,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CPF_Validar_NumeroPequeno_ExcecaoCPFNaoPossuiOnzeNumeros_Falha()
+        public void CPF_Infraestrutura_Validar_NumeroPequeno_ExcecaoCPFNaoPossuiOnzeNumeros_Falha()
         {
             CPF cpf = new CPF();
             cpf.NumeroComPontuacao = "000.000-00";
@@ -48,7 +48,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CPF_Validar_NumeroGrande_ExcecaoCPFNaoPossuiOnzeNumeros_Falha()
+        public void CPF_Infraestrutura_Validar_NumeroGrande_ExcecaoCPFNaoPossuiOnzeNumeros_Falha()
         {
             CPF cpf = new CPF();
             cpf.NumeroComPontuacao = "000.000.000.000-00";
@@ -58,7 +58,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CPF_Validar_PrimeiroDigitoVerificador_Sucesso()
+        public void CPF_Infraestrutura_Validar_PrimeiroDigitoVerificador_Sucesso()
         {
             CPF cpfPrimeiroDigitoVerificador = new CPF();
             cpfPrimeiroDigitoVerificador.NumeroComPontuacao = "867.513.141-08";
@@ -71,7 +71,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CPF_Validar_SegundoDigitoVerificador_Sucesso()
+        public void CPF_Infraestrutura_Validar_SegundoDigitoVerificador_Sucesso()
         {
             CPF cpfSegundoDigitoVerificador = new CPF();
             cpfSegundoDigitoVerificador.NumeroComPontuacao = "696.629.258-30";
@@ -86,7 +86,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
 
 
         [Test]
-        public void CPF_Validar_NumeroInvalido_ExcecaoNumeroCPFInvalido_Falha()
+        public void CPF_Infraestrutura_Validar_NumeroInvalido_ExcecaoNumeroCPFInvalido_Falha()
         {
             CPF cpf = new CPF();
             cpf.NumeroComPontuacao = "123.456.789-00";

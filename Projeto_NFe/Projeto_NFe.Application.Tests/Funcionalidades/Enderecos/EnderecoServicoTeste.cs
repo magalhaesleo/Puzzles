@@ -29,7 +29,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoServico_Adicionar_Sucesso()
+        public void Endereco_Aplicacao_Adicionar_Sucesso()
         {
             _enderecoRepositorioMock.Setup(er => er.Adicionar(_enderecoMock.Object)).Returns(_enderecoMock.Object);
 
@@ -41,7 +41,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoServico_Atualizar_Sucesso()
+        public void Endereco_Aplicacao_Atualizar_Sucesso()
         {
             long idValido = 1;
 
@@ -57,7 +57,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoServico_Atualizar_IdMenorQueUm_Falha()
+        public void Endereco_Aplicacao_Atualizar_IdMenorQueUm_Falha()
         {
             Endereco endereco = new Endereco() { Id = 0 };
 
@@ -69,7 +69,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoServico_Excluir_Sucesso()
+        public void Endereco_Aplicacao_Excluir_Sucesso()
         {
             Endereco endereco = new Endereco() { Id = 10 };
 
@@ -81,7 +81,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoServico_Excluir_IdMenorQueUm_Falha()
+        public void Endereco_Aplicacao_Excluir_IdMenorQueUm_Falha()
         {
             Endereco endereco = new Endereco() { Id = 0 };
 
@@ -93,7 +93,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoServico_BuscarTodos_Sucesso()
+        public void Endereco_Aplicacao_BuscarTodos_Sucesso()
         {
             Mock<List<Endereco>> listEnderecosMock = new Mock<List<Endereco>>();
 
@@ -107,7 +107,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoServico_BuscarPorId_Sucesso()
+        public void Endereco_Aplicacao_BuscarPorId_Sucesso()
         {
             long id = 1;
 
@@ -120,7 +120,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Enderecos
 
 
         [Test]
-        public void EnderecoServico_BuscarPorId_IdMenorQueUm_Falha()
+        public void Endereco_Aplicacao_BuscarPorId_IdMenorQueUm_Falha()
         {
             long id = -10;
 

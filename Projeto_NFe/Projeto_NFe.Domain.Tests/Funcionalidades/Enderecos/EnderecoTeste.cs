@@ -16,7 +16,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Enderecos
     {
 
         [Test]
-        public void Endereco_Validar_Sucesso()
+        public void Endereco_Dominio_Validar_Sucesso()
         {
             Endereco enderecoParaValidar = ObjectMother.PegarEnderecoValido();
 
@@ -26,7 +26,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void Endereco_Validar_ExcecaoEnderecoSemBairro_Falha()
+        public void Endereco_Dominio_Validar_ExcecaoEnderecoSemBairro_Falha()
         {
             Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemBairro();
 
@@ -36,7 +36,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void Endereco_Validar_ExcecaoEnderecoSemMunicipio_Falha()
+        public void Endereco_Dominio_Validar_ExcecaoEnderecoSemMunicipio_Falha()
         {
             Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemMunicipio();
 
@@ -46,7 +46,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void Endereco_Validar_ExcecaoEnderecoSemPais_Falha()
+        public void Endereco_Dominio_Validar_ExcecaoEnderecoSemPais_Falha()
         {
             Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemPais();
 
@@ -56,7 +56,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void Endereco_Validar_ExcecaoEnderecoSemEstado_Falha()
+        public void Endereco_Dominio_Validar_ExcecaoEnderecoSemEstado_Falha()
         {
             Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemEstado();
 
@@ -66,7 +66,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void Endereco_Validar_ExcecaoEnderecoSemLogradouro_Falha()
+        public void Endereco_Dominio_Validar_ExcecaoEnderecoSemLogradouro_Falha()
         {
             Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemLogradouro();
 
@@ -76,7 +76,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void Endereco_Validar_ExcecaoEnderecoSemNumero_Falha()
+        public void Endereco_Dominio_Validar_ExcecaoEnderecoSemNumero_Falha()
         {
             Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemNumero();
 

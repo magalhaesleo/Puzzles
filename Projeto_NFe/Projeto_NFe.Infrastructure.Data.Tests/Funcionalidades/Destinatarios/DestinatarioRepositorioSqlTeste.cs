@@ -35,7 +35,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioRepositorioSql_Adicionar_ComCPF_Sucesso()
+        public void Destinatario_InfraData_Adicionar_ComCPF_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 2;
 
@@ -55,7 +55,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioRepositorioSql_Adicionar_ComCNPJ_Sucesso()
+        public void Destinatario_InfraData_Adicionar_ComCNPJ_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 2;
 
@@ -70,7 +70,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioRepositorioSql_BuscarPorId_Sucesso()
+        public void Destinatario_InfraData_BuscarPorId_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 2;
 
@@ -87,7 +87,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioRepositorioSql_BuscarPorId_DestinatarioDaBaseSql_Sucesso()
+        public void Destinatario_InfraData_BuscarPorId_DestinatarioDaBaseSql_Sucesso()
         {
             long idDoDestinatarioDaBaseSql = 1;
 
@@ -98,7 +98,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioRepositorioSql_BuscarTodos_Sucesso()
+        public void Destinatario_InfraData_BuscarTodos_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 2;
 
@@ -119,7 +119,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioRepositorioSql_Atualizar_Sucesso()
+        public void Destinatario_InfraData_Atualizar_Sucesso()
         {
             long idDoDestinatarioDaBaseSql = 1;
 
@@ -144,7 +144,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioRepositorioSql_Excluir_Sucesso()
+        public void Destinatario_InfraData_Excluir_Sucesso()
         {
             long idDoDestinatarioDaBaseSql = 1;
 

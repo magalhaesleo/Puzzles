@@ -45,7 +45,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteIntegracaoDeSistemaSqlTeste_Adicionar_Sucesso()
+        public void Emitente_IntegracaoDeSistema_Sql_Adicionar_Sucesso()
         {         
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";
@@ -66,7 +66,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteIntegracaoDeSistemaSqlTeste_Atualizar_Sucesso()
+        public void Emitente_IntegracaoDeSistema_Sql_Atualizar_Sucesso()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";
@@ -88,7 +88,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteIntegracaoDeSistemaSqlTeste_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        public void Emitente_IntegracaoDeSistema_Sql_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";
@@ -101,7 +101,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteIntegracaoDeSistemaSqlTeste_BuscarPorId_Sucesso()
+        public void Emitente_IntegracaoDeSistema_Sql_BuscarPorId_Sucesso()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";
@@ -121,7 +121,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteIntegracaoDeSistemaSqlTeste_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        public void Emitente_IntegracaoDeSistema_Sql_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";
@@ -134,7 +134,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteIntegracaoDeSistemaSqlTeste_Excluir_Sucesso()
+        public void Emitente_IntegracaoDeSistema_Sql_Excluir_Sucesso()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";
@@ -149,7 +149,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteIntegracaoDeSistemaSqlTeste_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        public void Emitente_IntegracaoDeSistema_Sql_Excluir_ExcecaoIdentificadorIndefinido_Falha()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";
@@ -162,7 +162,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteIntegracaoDeSistemSqlTeste_BuscarTodos_Sucesso()
+        public void Emitente_IntegracaoDeSistema_Sql_BuscarTodos_Sucesso()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";

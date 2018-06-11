@@ -38,7 +38,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorComCNPJ_Validar_Sucesso()
+        public void Transportador_Dominio_ComCNPJ_Validar_Sucesso()
         {
             _mockEndereco.Setup(me => me.Validar());
             _mockCNPJ.Setup(mdc => mdc.Validar());
@@ -53,7 +53,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorComCPF_Validar_Sucesso()
+        public void Transportador_Dominio_ComCPF_Validar_Sucesso()
         {
             Transportador transportador = ObjectMother.PegarTransportadorValidoComDependencias(_mockEndereco.Object, _mockCPF.Object);
 
@@ -65,7 +65,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void Transportador_Validar_ExcecaoTransportadorComInscricaoEstadualAcimaDoLimite_Falha()
+        public void Transportador_Dominio_Validar_ExcecaoTransportadorComInscricaoEstadualAcimaDoLimite_Falha()
         {
             Transportador transportador = ObjectMother.PegarTransportadorComInscricaoEstadualAcimaDoLimite(_mockEndereco.Object, _fakeCNPJ);
 
@@ -78,7 +78,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void Transportador_Validar_ExcecaoTransportadorSemNome_Falha()
+        public void Transportador_Dominio_Validar_ExcecaoTransportadorSemNome_Falha()
         {
             Transportador transportador = ObjectMother.PegarTransportadorSemNome(_mockEndereco.Object, _mockCNPJ.Object);
 
@@ -88,7 +88,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void Transportador_Validar_ExcecaoTransportadorSemEndereco_Falha()
+        public void Transportador_Dominio_Validar_ExcecaoTransportadorSemEndereco_Falha()
         {
             object enderecoNulo = null;
 
@@ -102,7 +102,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void Transportador_Validar_ExcecaoTransportadorComInscricaoEstadualNula_Falha()
+        public void Transportador_Dominio_Validar_ExcecaoTransportadorComInscricaoEstadualNula_Falha()
         {
             Transportador transportador = ObjectMother.PegarTransportadorComInscricaoEstadualNula(_mockEndereco.Object, _fakeCNPJ);
 
@@ -115,7 +115,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void Transportador_Validar_ExcecaoTransportadorSemDocumento_Falha()
+        public void Transportador_Dominio_Validar_ExcecaoTransportadorSemDocumento_Falha()
         {
             _mockEndereco.Setup(en => en.Validar());
 
@@ -129,7 +129,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void Transportador_TipoDeDocumento_DeveRetornar_CNPJ_Sucesso()
+        public void Transportador_Dominio_TipoDeDocumento_DeveRetornar_CNPJ_Sucesso()
         {
             Transportador transportador = ObjectMother.PegarTransportadorValidoComCNPJ(_mockEndereco.Object, _fakeCNPJ);
 
@@ -137,7 +137,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void Transportador_TipoDeDocumento_DeveRetornar_CPF_Sucesso()
+        public void Transportador_Dominio_TipoDeDocumento_DeveRetornar_CPF_Sucesso()
         {
             Transportador transportador = ObjectMother.PegarTransportadorValidoComCPF(_mockEndereco.Object, _fakeCPF);
 
@@ -145,7 +145,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void Transportador_Validar_DeveChamarValidacaoDeDocumento_Sucesso()
+        public void Transportador_Dominio_Validar_DeveChamarValidacaoDeDocumento_Sucesso()
         {
             Transportador transportador = ObjectMother.PegarTransportadorValidoComCNPJ(_mockEndereco.Object, _mockCNPJ.Object);
 

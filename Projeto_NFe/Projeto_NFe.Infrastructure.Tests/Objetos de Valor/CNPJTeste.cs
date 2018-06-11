@@ -13,7 +13,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
     public class CNPJTeste
     {
         [Test]
-        public void CNPJ_Validar_Sucesso()
+        public void CNPJ_Infraestrutura_Validar_Sucesso()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "99.327.235/0001-50";
@@ -26,7 +26,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CNPJ_Validar_NumeroZerado_Falha()
+        public void CNPJ_Infraestrutura_Validar_NumeroZerado_Falha()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "00.000.000/0000-00";
@@ -37,7 +37,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CNPJ_Validar_NumeroPequeno_Falha()
+        public void CNPJ_Infraestrutura_Validar_NumeroPequeno_Falha()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "35253445";
@@ -47,7 +47,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CNPJ_Validar_NumeroInvalido_Falha()
+        public void CNPJ_Infraestrutura_Validar_NumeroInvalido_Falha()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "00.000.000/0000-45";
@@ -58,7 +58,7 @@ namespace Projeto_NFe.Infrastructure.Tests.Objetos_de_Valor
         }
 
         [Test]
-        public void CNPJ_Validar_ObterDigitoVerificador_Sucesso()
+        public void CNPJ_Infraestrutura_Validar_ObterDigitoVerificador_Sucesso()
         {
             CNPJ cnpj = new CNPJ();
             cnpj.NumeroComPontuacao = "11.222.333/0001-81";

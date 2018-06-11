@@ -26,7 +26,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoRepositorioSql_Adicionar_Sucesso()
+        public void Produto_InfraData_Adicionar_Sucesso()
         {
             Produto produto = ObjectMother.ObterProdutoValido();
 
@@ -36,7 +36,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoRepositorioSql_Atualizar_Sucesso()
+        public void Produto_InfraData_Atualizar_Sucesso()
         {
             Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
 
@@ -60,7 +60,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoRepositorioSql_Excluir_Sucesso()
+        public void Produto_InfraData_Excluir_Sucesso()
         {
             Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
 
@@ -74,7 +74,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoRepositorioSql_BuscarPorId_Sucesso()
+        public void Produto_InfraData_BuscarPorId_Sucesso()
         {
             Produto produtoParaAdicionar = ObjectMother.ObterProdutoValido();
 
@@ -89,7 +89,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Produtos
         }
 
         [Test]
-        public void ProdutoRepositorioSql_BuscarTodos_Sucesso()
+        public void Produto_InfraData_BuscarTodos_Sucesso()
         {
             IEnumerable<Produto> produtosBuscados;
 
