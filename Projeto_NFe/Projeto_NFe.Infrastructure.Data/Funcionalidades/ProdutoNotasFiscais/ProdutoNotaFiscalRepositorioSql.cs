@@ -36,7 +36,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.ProdutoNotasFiscais
                                                 TBPRODUTO.VALOR[VALOR_PRODUTO]
                                                 FROM TBPRODUTONOTAFISCAL
                                                 JOIN TBPRODUTO ON TBPRODUTO.ID = TBPRODUTONOTAFISCAL.PRODUTOID
-                                                WHERE TBPRODUTONOTAFISCAL.ID = ID{0}";
+                                                WHERE TBPRODUTONOTAFISCAL.ID = {0}ID";
 
         public const string _sqlExcluir = @"DELETE FROM TBPRODUTONOTAFISCAL
                                             WHERE ID = {0}ID";
@@ -62,7 +62,8 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.ProdutoNotasFiscais
 
         public ProdutoNotaFiscal Atualizar(ProdutoNotaFiscal produtoNotaFiscal)
         {
-            throw new NotImplementedException();
+            Db.Atualizar(_sqlAtualizar, ObterDicionarioProdutoNotaFiscal(produtoNotaFiscal));
+            return produtoNotaFiscal;
         }
 
         public ProdutoNotaFiscal BuscarPorId(long Id)
@@ -106,6 +107,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.ProdutoNotasFiscais
 
                 Produto = new Produto
                 {
+                    Id = Convert.ToInt64(reader["PRODUTOID"]),
                     Codigo = Convert.ToString(reader["CODIGO_PRODUTO"]),
                     Descricao = Convert.ToString(reader["DESCRICAO_PRODUTO"]),
                     Valor = Convert.ToDouble(reader["VALOR_PRODUTO"])

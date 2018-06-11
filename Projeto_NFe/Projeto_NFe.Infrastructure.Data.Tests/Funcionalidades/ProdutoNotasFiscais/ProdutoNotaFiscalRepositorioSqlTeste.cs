@@ -57,14 +57,18 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
             long idDeProdutoCadastrado = 1;
             long idDeNotaFiscalCadastrada = 1;
 
+            double valorDoProdutoDeId1NoBanco = 100;
+
             _mockProduto.Setup(mp => mp.Id).Returns(idDeProdutoCadastrado);
             _mockNotaFiscal.Setup(mnf => mnf.Id).Returns(idDeNotaFiscalCadastrada);
+
+
 
             ProdutoNotaFiscal produtoNotaFiscalAdicionado = _repositorio.Adicionar(produtoNotaFiscalValido);
 
             ProdutoNotaFiscal produtoNotaFiscalBuscado = _repositorio.BuscarPorId(produtoNotaFiscalAdicionado.Id);
 
-            produtoNotaFiscalBuscado.Produto.Valor.Should().Be(produtoNotaFiscalAdicionado.Produto.Valor);
+            produtoNotaFiscalBuscado.Produto.Valor.Should().Be(valorDoProdutoDeId1NoBanco);
             produtoNotaFiscalBuscado.Quantidade.Should().Be(produtoNotaFiscalAdicionado.Quantidade);
         }
 
@@ -81,28 +85,17 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.ProdutoNotasFisc
         [Test]
         public void ProdutoNotaFiscalRepositorioSql_Atualizar_Sucesso()
         {
-            1.Should().Be(2);
+            long idDoProdutoNotaFiscalDaBaseSql = 1;
 
-            //long idDoProdutoNotaFiscalDaBaseSql = 1;
+            ProdutoNotaFiscal produtoNotaFiscalResultadoDoBuscarParaAtualizar = _repositorio.BuscarPorId(idDoProdutoNotaFiscalDaBaseSql);
 
-            //ProdutoNotaFiscal produtoNotaFiscalResultadoDoBuscarParaAtualizar = _repositorio.BuscarPorId(idDoProdutoNotaFiscalDaBaseSql);
+            produtoNotaFiscalResultadoDoBuscarParaAtualizar.Quantidade += 1;
 
-            //produtoNotaFiscalResultadoDoBuscarParaAtualizar.Documento = new CPF()
-            //{
-            //    NumeroComPontuacao = "085.544.678-00"
-            //};
+            _repositorio.Atualizar(produtoNotaFiscalResultadoDoBuscarParaAtualizar);
 
-            //produtoNotaFiscalResultadoDoBuscarParaAtualizar.NomeRazaoSocial = "Alterado";
-            //produtoNotaFiscalResultadoDoBuscarParaAtualizar.InscricaoEstadual = null;
+            ProdutoNotaFiscal produtoNotaFiscalResultadoAposAtualizacao = _repositorio.BuscarPorId(produtoNotaFiscalResultadoDoBuscarParaAtualizar.Id);
 
-
-            //_repositorio.Atualizar(produtoNotaFiscalResultadoDoBuscarParaAtualizar);
-
-            //ProdutoNotaFiscal produtoNotaFiscalResultadoAposAtualizacao = _repositorio.BuscarPorId(produtoNotaFiscalResultadoDoBuscarParaAtualizar.Id);
-
-            //produtoNotaFiscalResultadoAposAtualizacao.InscricaoEstadual.Should().Be(produtoNotaFiscalResultadoDoBuscarParaAtualizar.InscricaoEstadual);
-            //produtoNotaFiscalResultadoAposAtualizacao.NomeRazaoSocial.Should().Be(produtoNotaFiscalResultadoDoBuscarParaAtualizar.NomeRazaoSocial);
-            //produtoNotaFiscalResultadoAposAtualizacao.Documento.ObterTipo().Should().Be(produtoNotaFiscalResultadoDoBuscarParaAtualizar.Documento.ObterTipo());
+            produtoNotaFiscalResultadoAposAtualizacao.Quantidade.Should().Be(produtoNotaFiscalResultadoDoBuscarParaAtualizar.Quantidade);
         }
 
         [Test]
