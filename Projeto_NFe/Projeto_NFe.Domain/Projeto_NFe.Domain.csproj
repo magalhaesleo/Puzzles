@@ -79,6 +79,8 @@
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalICMSInvalido.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalIPIInvalido.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalProdutoInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\INotaFiscalEmitidaRepositorio.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\INotaFiscalRepositorio.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscal.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalComQuantidadeInferiorAzero.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalSemNotaFiscal.cs" />
