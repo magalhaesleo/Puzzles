@@ -17,13 +17,13 @@ namespace Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais
 
         public NotaFiscal NotaFiscal { get; set; }
 
-        public int Quantidade { get; set; }
+        public virtual int Quantidade { get; set; }
 
-        public double ValorTotal { get { return Produto.Valor * Quantidade; } }
+        public virtual double ValorTotal { get { return Produto.Valor * Quantidade; } }
 
-        public double ValorICMS { get { return Produto.AliquotaICMS * ValorTotal; } }
+        public virtual double ValorICMS { get { return Produto.AliquotaICMS * ValorTotal; } }
 
-        public double ValorIPI { get { return Produto.AliquotaIPI * ValorTotal; } }
+        public virtual double ValorIPI { get { return Produto.AliquotaIPI * ValorTotal; } }
 
         public ProdutoNotaFiscal(NotaFiscal notaFiscal, Produto produto, int quantidadeProduto)
         {

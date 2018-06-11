@@ -46,6 +46,7 @@
     <Compile Include="Funcionalidades\Documentos\FakeCPF.cs" />
     <Compile Include="Funcionalidades\Emitentes\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Enderecos\ObjectMother.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\ObjectMother.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Produtos\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Transportadoras\ObjectMother.cs" />

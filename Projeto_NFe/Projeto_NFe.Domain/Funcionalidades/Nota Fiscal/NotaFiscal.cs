@@ -19,15 +19,18 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
         public Emitente Emitente { get; set; }
         public string NaturezaOperacao { get; set; }
         public DateTime DataEntrada { get; set; }
+        public DateTime? DataEmissao { get; set; }
         public List<ProdutoNotaFiscal> Produtos { get; set; }
         public string ChaveAcesso { get; set; }
         public double ValorTotalICMS { get; set; }
         public double ValorTotalIPI { get; set; }
-        public double ValorTotalProduto { get; set; }
+        public double ValorTotalProdutos { get; set; }
         public double ValorTotalFrete { get; set; }
+        public double ValorTotalImpostos { get; set; }
         public double ValorTotalNota { get; set; }
         public void GerarChaveDeAcesso(Random sorteador)
         {
+            ChaveAcesso = "";
             for (int i = 0; i < 44; i++)
             {
                 ChaveAcesso += sorteador.Next(0, 10);
@@ -40,6 +43,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
 
             if (Destinatario == null)
                 throw new ExcecaoDestinatarioInvalido();
+
             if (Emitente == null)
                 throw new ExcecaoEmitenteInvalido();
 
@@ -49,19 +53,51 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
             if (DataEntrada > DateTime.Now)
                 throw new ExcecaoDataEntradaInvalida();
 
+            if (Destinatario.Documento.NumeroComPontuacao == Emitente.CNPJ.NumeroComPontuacao)
+                throw new ExcecaoDestinatarioIgualAEmitente();
+
         }
 
         public virtual void ValidarParaEmitir()
         {
-            if (ValorTotalICMS < 1)
+            if (ValorTotalICMS <= 0)
                 throw new ExcecaoValorTotalICMSInvalido();
 
-            if (ValorTotalIPI < 1)
+            if (ValorTotalIPI <= 0)
                 throw new ExcecaoValorTotalIPIInvalido();
 
-            if (ValorTotalProduto < 1)
+            if (ValorTotalProdutos <= 0)
                 throw new ExcecaoValorTotalProdutoInvalido();
 
+            if (ValorTotalImpostos <= 0)
+                throw new ExcecaoValorTotalImpostosInvalido();
+
+            if (ValorTotalNota <= 0)
+                throw new ExcecaoValorTotalNotaInvalido();
+
+            foreach (ProdutoNotaFiscal produto in Produtos)
+            {
+                if (produto.ValorTotal <= 0)
+                    throw new ExcecaoProdutoSemValor();
+            } 
+
+        }
+
+        public void CalcularValoresTotais()
+        {
+            ValorTotalICMS = 0;
+            ValorTotalIPI = 0;
+            ValorTotalProdutos = 0;
+
+            foreach (ProdutoNotaFiscal produtoNotaFiscal in Produtos)
+            {
+                ValorTotalICMS += produtoNotaFiscal.ValorICMS;
+                ValorTotalIPI += produtoNotaFiscal.ValorIPI;
+                ValorTotalProdutos += produtoNotaFiscal.ValorTotal;
+            }
+
+            ValorTotalImpostos = ValorTotalICMS + ValorTotalIPI;
+            ValorTotalNota = ValorTotalFrete + ValorTotalImpostos + ValorTotalProdutos;
         }
     }
 }

@@ -72,12 +72,16 @@
     <Compile Include="Funcionalidades\Enderecos\Excecoes\ExcecaoEnderecoSemPais.cs" />
     <Compile Include="Funcionalidades\Enderecos\IEnderecoRepositorio.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoDataEntradaInvalida.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoDestinatarioIgualAEmitente.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoDestinatarioInvalido.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoEmitenteInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoProdutoSemValor.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoSemNaturezaOperacao.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoTransportadorInvalido.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalICMSInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalImpostosInvalido.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalIPIInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalNotaInvalido.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalProdutoInvalido.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscal.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalComQuantidadeInferiorAzero.cs" />
