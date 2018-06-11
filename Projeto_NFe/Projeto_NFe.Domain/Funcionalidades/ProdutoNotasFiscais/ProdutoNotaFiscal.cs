@@ -32,6 +32,11 @@ namespace Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais
             Quantidade = quantidadeProduto;
         }
 
+        public ProdutoNotaFiscal()
+        {
+
+        }
+
         public void Validar()
         {
             if (Produto == null)
