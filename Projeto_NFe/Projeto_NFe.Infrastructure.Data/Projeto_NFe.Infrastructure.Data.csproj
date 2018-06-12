@@ -44,6 +44,7 @@
     <Compile Include="Funcionalidades\Emitentes\EmitenteRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscalEmitidaRepositorioSql.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscalRepositorioSql.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\ProdutoNotaFiscalRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Produtos\ProdutoRepositorioSql.cs" />
     <Compile Include="Funcionalidades\Transportadoras\TransportadorRepositorioSql.cs" />
