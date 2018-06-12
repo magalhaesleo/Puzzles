@@ -1,6 +1,7 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Destinatarios;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
 using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using System;
 using System.Collections.Generic;
@@ -96,6 +97,25 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal
                 Destinatario = destinatario,
                 Emitente = emitente,
                 Transportador = transportador
+            };
+        }
+
+        public static NotaFiscal PegarNotaFiscalValidaComListaDeProdutos(Emitente emitente, Destinatario destinatario, Transportador transportador, List<ProdutoNotaFiscal> produtos)
+        {
+            return new NotaFiscal
+            {
+                ValorTotalICMS = 90,
+                ValorTotalIPI = 10,
+                ValorTotalFrete = 50,
+                ValorTotalNota = 1000,
+                ValorTotalProdutos = 800,
+                ValorTotalImpostos = 100,
+                NaturezaOperacao = "Natureza",
+                DataEntrada = DateTime.Now,
+                Destinatario = destinatario,
+                Emitente = emitente,
+                Transportador = transportador,
+                Produtos = produtos
             };
         }
     }

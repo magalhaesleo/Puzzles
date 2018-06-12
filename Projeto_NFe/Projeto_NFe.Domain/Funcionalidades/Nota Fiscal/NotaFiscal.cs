@@ -28,6 +28,16 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
         public double ValorTotalFrete { get; set; }
         public double ValorTotalImpostos { get; set; }
         public double ValorTotalNota { get; set; }
+        public bool FoiEmitida {
+            get
+            {
+                if (string.IsNullOrEmpty(ChaveAcesso))
+                    return false;
+
+                return true;
+            }
+        }
+
         public void GerarChaveDeAcesso(Random sorteador)
         {
             ChaveAcesso = "";
@@ -37,10 +47,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
             }
         }
         public virtual void ValidarGeracao()
-        {
-            if (Transportador == null)
-                throw new ExcecaoTransportadorInvalido();
-
+        {                           
             if (Destinatario == null)
                 throw new ExcecaoDestinatarioInvalido();
 
@@ -59,7 +66,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
         }
 
         public virtual void ValidarParaEmitir()
-        {
+        {            
             if (ValorTotalICMS <= 0)
                 throw new ExcecaoValorTotalICMSInvalido();
 
@@ -75,11 +82,21 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
             if (ValorTotalNota <= 0)
                 throw new ExcecaoValorTotalNotaInvalido();
 
-            foreach (ProdutoNotaFiscal produto in Produtos)
+            if (Produtos == null || Produtos.Count == 0)
+                throw new ExcecaoListaDeProdutoVazia();
+
+            foreach (ProdutoNotaFiscal produtoNotaFiscal in Produtos)
             {
-                if (produto.ValorTotal <= 0)
+                if (produtoNotaFiscal.ValorTotal <= 0)
                     throw new ExcecaoProdutoSemValor();
-            } 
+            }
+
+            if (Transportador == null)           
+                TransportadorReceberValoresDeDestinatario();           
+
+            Destinatario.Validar();
+            Emitente.Validar();
+            Transportador.Validar();
 
         }
 
@@ -98,6 +115,17 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
 
             ValorTotalImpostos = ValorTotalICMS + ValorTotalIPI;
             ValorTotalNota = ValorTotalFrete + ValorTotalImpostos + ValorTotalProdutos;
+        }
+
+        private void TransportadorReceberValoresDeDestinatario()
+        {
+            Transportador = new Transportador();
+
+            Transportador.NomeRazaoSocial = Destinatario.NomeRazaoSocial;
+            Transportador.InscricaoEstadual = Destinatario.InscricaoEstadual;
+            Transportador.Documento = Destinatario.Documento;
+            Transportador.Endereco = Destinatario.Endereco;
+            Transportador.ResponsabilidadeFrete = true;
         }
     }
 }
