@@ -20,13 +20,13 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
         public string NaturezaOperacao { get; set; }
         public DateTime DataEntrada { get; set; }
         public List<ProdutoNotaFiscal> Produtos { get; set; }
-        public string ChaveAcesso { get; set; }
+        public virtual string ChaveAcesso { get; set; }
         public double ValorTotalICMS { get; set; }
         public double ValorTotalIPI { get; set; }
         public double ValorTotalProduto { get; set; }
         public double ValorTotalFrete { get; set; }
         public double ValorTotalNota { get; set; }
-        public void GerarChaveDeAcesso(Random sorteador)
+        public virtual void GerarChaveDeAcesso(Random sorteador)
         {
             for (int i = 0; i < 44; i++)
             {

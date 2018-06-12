@@ -74,6 +74,7 @@
     <Compile Include="Funcionalidades\Destinatarios\DestinatarioServicoTeste.cs" />
     <Compile Include="Funcionalidades\Emitentes\EmitenteServicoTeste.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoServicoTeste.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscalServicoTeste.cs" />
     <Compile Include="Funcionalidades\Produtos\ProdutoServicoTeste.cs" />
     <Compile Include="Funcionalidades\Transportadoras\TransportadorServicoTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
