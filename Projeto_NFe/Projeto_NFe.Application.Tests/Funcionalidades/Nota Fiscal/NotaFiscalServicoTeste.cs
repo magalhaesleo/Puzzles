@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using Projeto_NFe.Application.Funcionalidades.Notas_Fiscais;
+using Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
 using System;
@@ -22,7 +23,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
         private Mock<INotaFiscalEmitidaRepositorio> _mockNotaFiscalEmitidaRepositorio;
 
         private Mock<NotaFiscal> _mockNotaFiscal;
-        
+
 
         [SetUp]
         public void Inicializar()
@@ -72,7 +73,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
             acaoQueDeveRetornarExcecaoIdentificadorIndefinido.Should().Throw<ExcecaoIdentificadorIndefinido>();
 
             _mockNotaFiscalRepositorio.VerifyNoOtherCalls();
-            
+
         }
 
         [Test]
@@ -90,7 +91,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
 
             _mockNotaFiscalRepositorio.Verify(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
 
-            
+
         }
 
         [Test]
@@ -108,8 +109,8 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
             _mockNotaFiscal.Verify(mnf => mnf.Id);
 
             _mockNotaFiscalRepositorio.VerifyNoOtherCalls();
-            
-            
+
+
         }
 
         [Test]
@@ -153,14 +154,104 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
         }
 
         [Test]
+        public void NotaFiscal_Aplicacao_Emitir_ComFakeParaRepetirChaveDeAcesso_Sucesso()
+        {
+            long idAposAdicionar = 1;
+
+            FakeNotaFiscalEmitidaRepositorio fakeNotaFiscalEmitidaRepositorio = new FakeNotaFiscalEmitidaRepositorio();
+
+            NotaFiscalServico _servicoNotaFiscalComRepositorioFake = new NotaFiscalServico(_mockNotaFiscalRepositorio.Object, fakeNotaFiscalEmitidaRepositorio);
+
+            Mock<Random> mockRandom = new Mock<Random>();
+
+            //_mockNotaFiscal.Setup(mnf => mnf.CalcularValoresTotais());
+            _mockNotaFiscal.Setup(mnf => mnf.ValidarParaEmitir());
+            _mockNotaFiscal.Setup(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
+            _mockNotaFiscal.Setup(mnf => mnf.Id).Returns(idAposAdicionar);
+
+            //Setup mock nota fiscal repositorio
+            _mockNotaFiscalRepositorio.Setup(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
+
+            //Acao
+            _servicoNotaFiscalComRepositorioFake.Emitir(_mockNotaFiscal.Object, mockRandom.Object);
+
+            //Verificacoes
+            _mockNotaFiscal.Verify(mnf => mnf.ValidarParaEmitir());
+            _mockNotaFiscal.Verify(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
+            _mockNotaFiscal.Verify(mnf => mnf.ChaveAcesso);
+            _mockNotaFiscal.Verify(mnf => mnf.Id);
+
+            _mockNotaFiscalRepositorio.Verify(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
+        }
+
+        [Test]
         public void NotaFiscal_Aplicacao_Emitir_Sucesso()
         {
-            1.Should().Be(2);
+            long idAposAdicionar = 1;
+
+            Mock<Random> mockRandom = new Mock<Random>();
+
+            //_mockNotaFiscal.Setup(mnf => mnf.CalcularValoresTotais());
+            _mockNotaFiscal.Setup(mnf => mnf.ValidarParaEmitir());
+            _mockNotaFiscal.Setup(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
+            _mockNotaFiscal.Setup(mnf => mnf.Id).Returns(idAposAdicionar);
+
+            //Setup mock nota fiscal repositorio
+            _mockNotaFiscalRepositorio.Setup(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
+            _mockNotaFiscalEmitidaRepositorio.Setup(mnfer => mnfer.Adicionar(_mockNotaFiscal.Object)).Returns(_mockNotaFiscal.Object);
+
+            //Acao
+            _servicoNotaFiscal.Emitir(_mockNotaFiscal.Object, mockRandom.Object);
+
+            //Verificacoes
+            _mockNotaFiscal.Verify(mnf => mnf.ValidarParaEmitir());
+            _mockNotaFiscal.Verify(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
+            _mockNotaFiscal.Verify(mnf => mnf.ChaveAcesso);
+            _mockNotaFiscal.Verify(mnf => mnf.Id);
+
+            _mockNotaFiscalRepositorio.Verify(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
+            _mockNotaFiscalEmitidaRepositorio.Verify(mnfer => mnfer.Adicionar(_mockNotaFiscal.Object));
+        }
+
+        [Test]
+        public void NotaFiscal_Aplicacao_Emitir_ComIdZero_Sucesso()
+        {
+            long idAposAdicionar = 0;
+
+            Mock<Random> mockRandom = new Mock<Random>();
+
+            //_mockNotaFiscal.Setup(mnf => mnf.CalcularValoresTotais());
+            _mockNotaFiscal.Setup(mnf => mnf.ValidarParaEmitir());
+            _mockNotaFiscal.Setup(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
+            _mockNotaFiscal.Setup(mnf => mnf.Id).Returns(idAposAdicionar);
+
+            //Setup mock nota fiscal repositorio
+            _mockNotaFiscalRepositorio.Setup(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
+            _mockNotaFiscalEmitidaRepositorio.Setup(mnfer => mnfer.Adicionar(_mockNotaFiscal.Object)).Returns(_mockNotaFiscal.Object);
+
+            //Acao
+            _servicoNotaFiscal.Emitir(_mockNotaFiscal.Object, mockRandom.Object);
+
+            //Verificacoes
+            _mockNotaFiscal.Verify(mnf => mnf.ValidarParaEmitir());
+            _mockNotaFiscal.Verify(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
+            _mockNotaFiscal.Verify(mnf => mnf.ChaveAcesso);
+            _mockNotaFiscal.Verify(mnf => mnf.Id);
+
+            _mockNotaFiscalRepositorio.VerifyNoOtherCalls();
+            _mockNotaFiscalEmitidaRepositorio.Verify(mnfer => mnfer.Adicionar(_mockNotaFiscal.Object));
         }
 
         [Test]
         public void NotaFiscal_Aplicacao_ConsultarExistenciaDeNotaEmitida_Sucesso()
         {
+            string chaveDeAcessoParaConsultarExistencia = "21098309812309812038912098312098312089312121212";
+
+            _mockNotaFiscalEmitidaRepositorio.Setup(mnfer => mnfer.ConsultarExistenciaDeNotaEmitida(chaveDeAcessoParaConsultarExistencia));
+
+            _servicoNotaFiscal.ConsultarExistenciaDeNotaEmitida(chaveDeAcessoParaConsultarExistencia);
+
+            _mockNotaFiscalEmitidaRepositorio.Verify(mnfer => mnfer.ConsultarExistenciaDeNotaEmitida(chaveDeAcessoParaConsultarExistencia));
         }
 
         [Test]

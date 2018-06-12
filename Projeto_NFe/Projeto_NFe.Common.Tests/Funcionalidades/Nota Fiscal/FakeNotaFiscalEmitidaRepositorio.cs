@@ -5,16 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
+namespace Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal
 {
-    public class NotaFiscalEmitidaRepositorioSql : INotaFiscalEmitidaRepositorio
+    public class FakeNotaFiscalEmitidaRepositorio : INotaFiscalEmitidaRepositorio
     {
-        public NotaFiscal Adicionar(NotaFiscal entidade)
+        public static int _count = 0;
+
+        public virtual NotaFiscal Adicionar(NotaFiscal notaFiscal)
         {
-            throw new NotImplementedException();
+            return notaFiscal;
         }
 
-        public NotaFiscal Atualizar(NotaFiscal entidade)
+        public NotaFiscal Atualizar(NotaFiscal notaFiscal)
         {
             throw new NotImplementedException();
         }
@@ -34,12 +36,18 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
             throw new NotImplementedException();
         }
 
-        public int ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso)
+        public virtual int ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso)
         {
-            throw new NotImplementedException();
+            if (_count < 2)
+            {
+                _count++;
+                return 1;
+            }
+            else
+                return 0;
         }
 
-        public void Excluir(NotaFiscal entidade)
+        public void Excluir(NotaFiscal notaFiscal)
         {
             throw new NotImplementedException();
         }

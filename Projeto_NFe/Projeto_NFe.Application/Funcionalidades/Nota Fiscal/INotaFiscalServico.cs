@@ -12,7 +12,7 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
     {
         bool ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso);
 
-        NotaFiscal Emitir(NotaFiscal notaFiscal);
+        NotaFiscal Emitir(NotaFiscal notaFiscal, Random sorteador);
 
         NotaFiscal BuscarNotaFiscalEmitidaPorChave(string chaveDeAcesso);
     }

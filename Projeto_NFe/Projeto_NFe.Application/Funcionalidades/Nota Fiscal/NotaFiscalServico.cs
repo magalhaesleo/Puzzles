@@ -10,8 +10,8 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
 {
     public class NotaFiscalServico : INotaFiscalServico
     {
-        INotaFiscalRepositorio _notaFiscalRepositorio;
-        INotaFiscalEmitidaRepositorio _notaFiscalEmitidaRepositorio;
+        private INotaFiscalRepositorio _notaFiscalRepositorio;
+        private INotaFiscalEmitidaRepositorio _notaFiscalEmitidaRepositorio;
 
         public NotaFiscalServico(INotaFiscalRepositorio notaFiscalRepositorio, INotaFiscalEmitidaRepositorio notaFiscalEmitidaRepositorio)
         {
@@ -67,17 +67,17 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
             _notaFiscalRepositorio.Excluir(notaFiscal);
         }
 
-        public NotaFiscal Emitir(NotaFiscal notaFiscal)
+        public NotaFiscal Emitir(NotaFiscal notaFiscal, Random sorteador)
         {
             //notaFiscal.CalcularValoresTotais();
 
             notaFiscal.ValidarParaEmitir();
 
-            notaFiscal.GerarChaveDeAcesso(new Random());
+            notaFiscal.GerarChaveDeAcesso(sorteador);
 
             while (ConsultarExistenciaDeNotaEmitida(notaFiscal.ChaveAcesso))
             {
-                notaFiscal.GerarChaveDeAcesso(new Random());
+                notaFiscal.GerarChaveDeAcesso(sorteador);
             }
 
             //Gerar XML
