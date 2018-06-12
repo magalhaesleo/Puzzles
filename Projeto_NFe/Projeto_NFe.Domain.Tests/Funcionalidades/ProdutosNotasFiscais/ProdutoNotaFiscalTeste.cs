@@ -29,7 +29,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.ProdutosNotasFiscais
         }
 
         [Test]
-        public void ProdutoNotaFiscal_Validar_Sucesso()
+        public void ProdutoNotaFiscal_Dominio_Validar_Sucesso()
         {
             ProdutoNotaFiscal produtoParaSerValidado = ObjectMother.PegarProdutoNotaFiscalValido(_mockProduto.Object,_mockNotaFiscal.Object);
 
@@ -39,7 +39,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.ProdutosNotasFiscais
         }
 
         [Test]
-        public void ProdutoNotaFiscal_Validar_ExcecaoProdutoNotaFiscalSemProduto()
+        public void ProdutoNotaFiscal_Dominio_Validar_ExcecaoProdutoNotaFiscalSemProduto()
         {
             ProdutoNotaFiscal produtoParaSerValidado = ObjectMother.PegarProdutoNotaFiscalSemProdutoVinculadoValido(_mockNotaFiscal.Object);
 
@@ -49,7 +49,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.ProdutosNotasFiscais
         }
 
         [Test]
-        public void ProdutoNotaFiscal_Validar_ExcecaoProdutoNotaFiscalSemNotaFiscal()
+        public void ProdutoNotaFiscal_Dominio_Validar_ExcecaoProdutoNotaFiscalSemNotaFiscal()
         {
             ProdutoNotaFiscal produtoParaSerValidado = ObjectMother.PegarProdutoNotaFiscalSemNotaFiscalVinculadaValido(_mockProduto.Object);
 
@@ -59,7 +59,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.ProdutosNotasFiscais
         }
 
         [Test]
-        public void ProdutoNotaFiscal_Validar_ExcecaoProdutoNotaFiscalComQuantidadeInferiorAum()
+        public void ProdutoNotaFiscal_Dominio_Validar_ExcecaoProdutoNotaFiscalComQuantidadeInferiorAum()
         {
             ProdutoNotaFiscal produtoParaSerValidado = ObjectMother.PegarProdutoNotaFiscalComQuantidadeInferiorAumValido(_mockProduto.Object, _mockNotaFiscal.Object);
 
@@ -69,7 +69,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.ProdutosNotasFiscais
         }
 
         [Test]
-        public void ProdutoNotaFiscal_ValorTotal_Sucesso()
+        public void ProdutoNotaFiscal_Dominio_ValorTotal_Sucesso()
         {
             ProdutoNotaFiscal produtoNotaFiscalParaCalcularValorTotal = ObjectMother.PegarProdutoNotaFiscalValido(_mockProduto.Object, _mockNotaFiscal.Object);
 
@@ -82,7 +82,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.ProdutosNotasFiscais
         }
 
         [Test]
-        public void ProdutoNotaFiscal_ValorIPI_Sucesso()
+        public void ProdutoNotaFiscal_Dominio_ValorIPI_Sucesso()
         {
             ProdutoNotaFiscal produtoNotaFiscalParaCalcularValorIPI = ObjectMother.PegarProdutoNotaFiscalValido(_mockProduto.Object, _mockNotaFiscal.Object);
 
@@ -97,7 +97,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.ProdutosNotasFiscais
         }
 
         [Test]
-        public void ProdutoNotaFiscal_ValorICMS_Sucesso()
+        public void ProdutoNotaFiscal_Dominio_ValorICMS_Sucesso()
         {
             ProdutoNotaFiscal produtoNotaFiscalParaCalcularValorICMS = ObjectMother.PegarProdutoNotaFiscalValido(_mockProduto.Object, _mockNotaFiscal.Object);
 

@@ -40,7 +40,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioComCNPJ_Validar_Sucesso()
+        public void Destinatario_Dominio_ComCNPJ_Validar_Sucesso()
         {
             _mockEndereco.Setup(me => me.Validar());
             _mockDocumentoCNPJ.Setup(mdc => mdc.Validar());
@@ -55,7 +55,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioComCPF_Validar_Sucesso()
+        public void Destinatario_Dominio_Validar_Sucesso()
         {
             _mockEndereco.Setup(me => me.Validar());
             _mockDocumentoCPF.Setup(mdc => mdc.Validar());
@@ -70,7 +70,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void Destinatario_Validar_ExcecaoDestinatarioSemNome_Falha()
+        public void Destinatario_Dominio_Validar_ExcecaoDestinatarioSemNome_Falha()
         {
       
             Destinatario destinatarioParaValidar = ObjectMother.PegarDestinatarioSemNome(_mockEndereco.Object, _mockDocumentoCPF.Object);
@@ -81,7 +81,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void Destinatario_Validar_ExcecaoDestinatarioSemDocumento_Falha()
+        public void Destinatario_Dominio_Validar_ExcecaoDestinatarioSemDocumento_Falha()
         {
             _mockEndereco.Setup(me => me.Validar());
 
@@ -96,7 +96,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void Destinatario_TipoDeDocumento_DeveRetornar_CNPJ_Sucesso()
+        public void Destinatario_Dominio_TipoDeDocumento_DeveRetornar_CNPJ_Sucesso()
         {
             
             Destinatario destinatarioParaValidarTipoDeDocumento = ObjectMother.PegarDestinatarioValidoComDependencias(_mockEndereco.Object, _fakeCNPJ);
@@ -106,7 +106,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void Destinatario_TipoDeDocumento_DeveRetornar_CPF_Sucesso()
+        public void Destinatario_Dominio_TipoDeDocumento_DeveRetornar_CPF_Sucesso()
         {
 
             Destinatario destinatarioParaValidarTipoDeDocumento = ObjectMother.PegarDestinatarioValidoComDependencias(_mockEndereco.Object, _fakeCPF);
@@ -116,7 +116,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void Destinatario_Validar_ExecaoDestinatarioComInscricaoEstadualAcimaDoLimite_Falha()
+        public void Destinatario_Dominio_Validar_ExecaoDestinatarioComInscricaoEstadualAcimaDoLimite_Falha()
         {
             Destinatario destinatarioParaValidar = ObjectMother.PegarDestinatarioComInscricaoEstadualAcimaDoPadrao(_mockEndereco.Object, _fakeCNPJ);
 
@@ -130,7 +130,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
 
 
         [Test]
-        public void Destinatario_Validar_ExcecaoDestinatarioComInscricaoEstadualNula_Falha()
+        public void Destinatario_Dominio_Validar_ExcecaoDestinatarioComInscricaoEstadualNula_Falha()
         {
             Destinatario destinatarioParaValidar = ObjectMother.PegarDestinatarioComCNPJSemInscricaoEstadual(_mockEndereco.Object,_fakeCNPJ);
 
@@ -144,7 +144,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void Destinatario_Validar_ExcecaoDestinatarioSemEndereco_Falha()
+        public void Destinatario_Dominio_Validar_ExcecaoDestinatarioSemEndereco_Falha()
         {
             object enderecoNulo = null;
 
@@ -158,7 +158,7 @@ namespace Projeto_NFe.Domain.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void Destinatario_Validar_DeveChamarValidacaoDeDocumento_Sucesso()
+        public void Destinatario_Dominio_Validar_DeveChamarValidacaoDeDocumento_Sucesso()
         {
             Destinatario destinatarioParaValidar = ObjectMother.PegarDestinatarioValidoComCNPJ(_mockEndereco.Object, _mockDocumentoCNPJ.Object);
          

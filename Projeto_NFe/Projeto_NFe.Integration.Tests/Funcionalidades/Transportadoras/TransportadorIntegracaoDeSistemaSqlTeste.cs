@@ -45,7 +45,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorIntegracaoDeSistemaSql_Adicionar_Sucesso()
+        public void Transportador_IntegracaoDeSistema_Sql_Adicionar_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 3;
             _cnpj.NumeroComPontuacao = "37.311.068/0001-00";
@@ -60,7 +60,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorIntegracaoDeSistemaSql_Atualizar_Sucesso()
+        public void Transportador_IntegracaoDeSistema_Sql_Atualizar_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 3;
             _cnpj.NumeroComPontuacao = "37.311.068/0001-00";
@@ -88,7 +88,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorIntegracaoDeSistemaSql_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        public void Transportador_IntegracaoDeSistema_Sql_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idDoEnderecoDaBaseSql = 3;
             _cpf.NumeroComPontuacao = "619.648.783-30";
@@ -103,7 +103,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorIntegracaoDeSistemaSql_Excluir_Sucesso()
+        public void Transportador_IntegracaoDeSistema_Sql_Excluir_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 3;
             _cpf.NumeroComPontuacao = "619.648.783-30";
@@ -120,7 +120,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorIntegracaoDeSistemaSql_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        public void Transportador_IntegracaoDeSistema_Sql_Excluir_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idDoEnderecoDaBaseSql = 3;
             _cnpj.NumeroComPontuacao = "37.311.068/0001-00";
@@ -135,7 +135,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorIntegracaoDeSistemaSql_BuscarPorId_Sucesso()
+        public void Transportador_IntegracaoDeSistema_Sql_BuscarPorId_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 3;
             _cpf.NumeroComPontuacao = "619.648.783-30";
@@ -162,7 +162,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorIntegracaoDeSistemaSql_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        public void Transportador_IntegracaoDeSistema_Sql_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idDoEnderecoDaBaseSql = 3;
             _cpf.NumeroComPontuacao = "619.648.783-30";
@@ -177,7 +177,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Transportadoras
         }
 
         [Test]
-        public void TransportadorIntegracaoDeSistemaSql_BuscarTodos_Sucesso()
+        public void Transportador_IntegracaoDeSistema_Sql_BuscarTodos_Sucesso()
         {
             long idDoEnderecoDaBaseSql = 3;
             _cpf.NumeroComPontuacao = "619.648.783-30";

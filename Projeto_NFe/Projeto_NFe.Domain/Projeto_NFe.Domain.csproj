@@ -83,10 +83,13 @@
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalIPIInvalido.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalNotaInvalido.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Excecoes\ExcecaoValorTotalProdutoInvalido.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\INotaFiscalEmitidaRepositorio.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\INotaFiscalRepositorio.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscal.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalComQuantidadeInferiorAzero.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalSemNotaFiscal.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\Excecoes\ExcecaoProdutoNotaFiscalSemProduto.cs" />
+    <Compile Include="Funcionalidades\ProdutoNotasFiscais\IProdutoNotaFiscalRepositorio.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\ProdutoNotaFiscal.cs" />
     <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoComValorNegativo.cs" />
     <Compile Include="Funcionalidades\Produtos\Excecoes\ExcecaoProdutoSemCodigo.cs" />

@@ -33,7 +33,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteRepositorioSql_Adicionar_Sucesso()
+        public void Emitente_InfraData_Adicionar_Sucesso()
         {            
             _enderecoMock.Setup(em => em.Id).Returns(1);
             _cnpjMock.Object.NumeroComPontuacao = "99.327.235/0001-50";
@@ -45,7 +45,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteRepositorioSql_Atualizar_Sucesso()
+        public void Emitente_InfraData_Atualizar_Sucesso()
         {
             _enderecoMock.Setup(em => em.Id).Returns(1);
             _cnpjMock.Object.NumeroComPontuacao = "99.327.335/0001-50";
@@ -64,7 +64,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteRepositorioSql_Excluir_Sucesso()
+        public void Emitente_InfraData_Excluir_Sucesso()
         {
             _enderecoMock.Setup(em => em.Id).Returns(1);
             _cnpjMock.Object.NumeroComPontuacao = "99.327.335/0001-50";
@@ -80,7 +80,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteRepositorioSql_Buscar_Sucesso()
+        public void Emitente_InfraData_Buscar_Sucesso()
         {
             _enderecoMock.Setup(em => em.Id).Returns(1);
             _cnpjMock.Object.NumeroComPontuacao = "99.327.335/0001-50";
@@ -102,7 +102,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Emitentes
         }
 
         [Test]
-        public void EmitenteRepositorioSql_BuscarTodos_Sucesso()
+        public void Emitente_InfraData_BuscarTodos_Sucesso()
         {
             _enderecoMock.Setup(em => em.Id).Returns(1);
             _cnpjMock.Object.NumeroComPontuacao = "99.327.335/0001-50";

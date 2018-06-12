@@ -36,7 +36,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioIntegracaoDeSistemaSqlTeste_Adicionar_Sucesso()
+        public void Destinatario_IntegracaoDeSistema_Sql_Adicionar_Sucesso()
         {
             Destinatario destinatarioParaAdicionar = ObjectMother.PegarDestinatarioValidoComCNPJSemDependencias();
 
@@ -51,7 +51,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioIntegracaoDeSistemaSqlTeste_Excluir_Sucesso()
+        public void Destinatario_IntegracaoDeSistema_Sql_Excluir_Sucesso()
         {
             Destinatario destinatarioParaAdicionar = ObjectMother.PegarDestinatarioValidoComCNPJSemDependencias();
 
@@ -65,7 +65,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioIntegracaoDeSistemaSqlTeste_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        public void Destinatario_IntegracaoDeSistema_Sql_Excluir_ExcecaoIdentificadorIndefinido_Falha()
         {
             Destinatario destinatarioParaAdicionar = ObjectMother.PegarDestinatarioValidoComCNPJSemDependencias();
 
@@ -77,7 +77,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioIntegracaoDeSistemaSqlTeste_BuscarTodos_Sucesso()
+        public void Destinatario_IntegracaoDeSistema_Sql_BuscarTodos_Sucesso()
         {
             int numeroDeRegistrosDeDestinatariosInseridos = 1;
 
@@ -98,7 +98,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Destinatarios
 
 
         [Test]
-        public void DestinatarioIntegracaoDeSistemaSqlTeste_BuscarPorId_Sucesso()
+        public void Destinatario_IntegracaoDeSistema_Sql_BuscarPorId_Sucesso()
         {
             Destinatario destinatarioParaAdicionar = ObjectMother.PegarDestinatarioValidoComCNPJSemDependencias();
 
@@ -114,7 +114,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Destinatarios
 
 
         [Test]
-        public void DestinatarioIntegracaoDeSistemaSqlTeste_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        public void Destinatario_IntegracaoDeSistema_Sql_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 
@@ -124,7 +124,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioIntegracaoDeSistemaSqlTeste_Atualizar_Sucesso()
+        public void Destinatario_IntegracaoDeSistema_Sql_Atualizar_Sucesso()
         {
             Destinatario destinatarioParaAdicionar = ObjectMother.PegarDestinatarioValidoComCNPJSemDependencias();
 
@@ -146,7 +146,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Destinatarios
         }
 
         [Test]
-        public void DestinatarioIntegracaoDeSistemaSqlTeste_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        public void Destinatario_IntegracaoDeSistema_Sql_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
         {
             long idInvalido = 0;
 

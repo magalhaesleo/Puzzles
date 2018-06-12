@@ -46,6 +46,8 @@
     <Compile Include="Funcionalidades\Emitentes\IEmitenteServico.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoServico.cs" />
     <Compile Include="Funcionalidades\Enderecos\IEnderecoServico.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\INotaFiscalServico.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscalServico.cs" />
     <Compile Include="Funcionalidades\Produtos\IProdutoServico.cs" />
     <Compile Include="Funcionalidades\Produtos\ProdutoServico.cs" />
     <Compile Include="Funcionalidades\Transportadoras\ITransportadorServico.cs" />

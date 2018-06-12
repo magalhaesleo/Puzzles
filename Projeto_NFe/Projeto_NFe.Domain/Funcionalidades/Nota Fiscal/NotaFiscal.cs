@@ -21,7 +21,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
         public DateTime DataEntrada { get; set; }
         public DateTime? DataEmissao { get; set; }
         public List<ProdutoNotaFiscal> Produtos { get; set; }
-        public string ChaveAcesso { get; set; }
+        public virtual string ChaveAcesso { get; set; }
         public double ValorTotalICMS { get; set; }
         public double ValorTotalIPI { get; set; }
         public double ValorTotalProdutos { get; set; }

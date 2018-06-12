@@ -30,7 +30,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoIntegracaoDeSistemaSql_Adicionar_Sucesso()
+        public void Endereco_IntegracaoDeSistema_Sql_Adicionar_Sucesso()
         {
             Endereco endereco = ObjectMother.PegarEnderecoValido();
 
@@ -40,7 +40,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoIntegracaoDeSistemaSql_Atualizar_Sucesso()
+        public void Endereco_IntegracaoDeSistema_Sql_Atualizar_Sucesso()
         {
             Endereco endereco = ObjectMother.PegarEnderecoValido();
             endereco.Id = 1;
@@ -54,7 +54,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoIntegracaoDeSistemaSql_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
+        public void Endereco_IntegracaoDeSistema_Sql_Atualizar_ExcecaoIdentificadorIndefinido_Falha()
         {
             Endereco endereco = ObjectMother.PegarEnderecoValido();
             endereco.Id = 0;
@@ -65,7 +65,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoIntegracaoDeSistemaSql_BuscarPorId_Sucesso()
+        public void Endereco_IntegracaoDeSistema_Sql_BuscarPorId_Sucesso()
         {
             Endereco enderecoParaAdicionar = ObjectMother.PegarEnderecoValido();
 
@@ -82,7 +82,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoIntegracaoDeSistemaSql_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
+        public void Endereco_IntegracaoDeSistema_Sql_BuscarPorId_ExcecaoIdentificadorIndefinido_Falha()
         {
             Endereco enderecoParaBuscar = ObjectMother.PegarEnderecoValido();
             enderecoParaBuscar.Id = 0;
@@ -93,7 +93,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoIntegracaoDeSistemaSql_BuscarTodos_Sucesso()
+        public void Endereco_IntegracaoDeSistema_Sql_BuscarTodos_Sucesso()
         {
             Endereco enderecoParaAdicionar = ObjectMother.PegarEnderecoValido();
 
@@ -105,7 +105,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoIntegracaoDeSistemaSql_Excluir_Sucesso()
+        public void Endereco_IntegracaoDeSistema_Sql_Excluir_Sucesso()
         {
             Endereco enderecoParaAdicionar = ObjectMother.PegarEnderecoValido();
 
@@ -120,7 +120,7 @@ namespace Projeto_NFe.Integration.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoIntegracaoDeSistemaSql_Excluir_ExcecaoIdentificadorIndefinido_Falha()
+        public void Endereco_IntegracaoDeSistema_Sql_Excluir_ExcecaoIdentificadorIndefinido_Falha()
         {
             Endereco enderecoParaAdicionar = ObjectMother.PegarEnderecoValido();
 

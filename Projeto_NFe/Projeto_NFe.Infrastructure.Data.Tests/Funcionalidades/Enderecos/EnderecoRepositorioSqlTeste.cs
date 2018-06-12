@@ -26,7 +26,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoRepositorioSql_Adicionar_Sucesso()
+        public void Endereco_InfraData_Adicionar_Sucesso()
         {
             Endereco endereco = ObjectMother.PegarEnderecoValido();
             endereco.Id = 0;
@@ -37,7 +37,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoRepositorioSql_Atualizar_Sucesso()
+        public void Endereco_InfraData_Atualizar_Sucesso()
         {
             Endereco endereco = ObjectMother.PegarEnderecoValido();
             endereco.Id = 1;
@@ -50,7 +50,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
         }
         
         [Test]
-        public void EnderecoRepositorioSql_Excluir_Sucesso()
+        public void Endereco_InfraData_Excluir_Sucesso()
         {
             Endereco enderecoParaAdicionar = ObjectMother.PegarEnderecoValido();
 
@@ -66,7 +66,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
         }
 
         [Test]
-        public void EnderecoRepositorioSql_Buscar_Sucesso()
+        public void Endereco_InfraData_Buscar_Sucesso()
         {
             Endereco enderecoParaAdicionar = ObjectMother.PegarEnderecoValido();
 
@@ -84,7 +84,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Enderecos
 
 
         [Test]
-        public void EnderecoRepositorioSql_BuscarTodos_Sucesso()
+        public void Endereco_InfraData_BuscarTodos_Sucesso()
         {
             
             IEnumerable<Endereco> enderecosBuscados = _repositorio.BuscarTodos();
