@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal.Excecoes
 {
-    public class ExcecaoTransportadorInvalido : ExcecaoDeNegocio
+    public class ExcecaoValorTotalImpostosInvalido : ExcecaoDeNegocio
     {
-        public ExcecaoTransportadorInvalido() : base("Não é possivel adicionar uma nota fiscal sem transportador")
+        public ExcecaoValorTotalImpostosInvalido() : base("Não é possivel emitir uma nota com valor total dos impostos menor ou igual a 0.")
         {
-
         }
     }
 }
