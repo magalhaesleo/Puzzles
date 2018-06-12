@@ -9,5 +9,6 @@ namespace Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais
 {
     public interface IProdutoNotaFiscalRepositorio : IRepositorio<ProdutoNotaFiscal>
     {
+        IEnumerable<ProdutoNotaFiscal> BuscarListaPorId(long id);
     }
 }

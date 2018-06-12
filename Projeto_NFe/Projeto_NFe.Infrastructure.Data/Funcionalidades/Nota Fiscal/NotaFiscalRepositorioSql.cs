@@ -1,47 +1,154 @@
-﻿using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
+﻿using Projeto_NFe.Domain.Funcionalidades.Destinatarios;
+using Projeto_NFe.Domain.Funcionalidades.Emitentes;
+using Projeto_NFe.Domain.Funcionalidades.Enderecos;
+using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
+using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
+using Projeto_NFe.Infrastructure.Objetos_de_Valor.CPFs;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
 {
-    #region Scripts SQL
 
-    public const string _sqlAdicionar = @"";
-
-    public const string _sqlAtualizar = @"";
-
-    public const string _sqlBuscarPorId = @"
-
-ID = {0}ID";
-
-    public const string _sqlExcluir = @"DELETE FROM TBEMITENTE
-                                              WHERE ID = {0}ID";
-
-    public const string _sqlBuscarTodos = @"SELECT
-                                                TBEMITENTE.ID[IDEMITENTE],
-                                                TBEMITENTE.NOMEFANTASIA[NOME_FANTASIA],
-                                                TBEMITENTE.RAZAOSOCIAL[RAZAO_SOCIAL],
-                                                TBEMITENTE.CNPJ[CNPJ_EMITENTE],
-                                                TBEMITENTE.INSCRICAOESTADUAL[INSCRICAO_ESTADUAL],
-                                                TBEMITENTE.INSCRICAOMUNICIPAL[INSCRICAO_MUNICIPAL],
-                                                TBEMITENTE.ENDERECOID[ENDERECO_ID],
-                                                TBENDERECO.ID[IDENDERECO],
-                                                TBENDERECO.LOGRADOURO[LOGRADOURO_ENDERECO],
-                                                TBENDERECO.NUMERO[NUMERO_ENDERECO],
-                                                TBENDERECO.BAIRRO[BAIRRO_ENDERECO],
-                                                TBENDERECO.MUNICIPIO[MUNICIPIO_ENDERECO],
-                                                TBENDERECO.ESTADO[ESTADO_ENDERECO],
-                                                TBENDERECO.PAIS[PAIS_ENDERECO]
-                                                FROM TBEMITENTE
-                                                JOIN TBENDERECO ON TBEMITENTE.ENDERECOID = TBENDERECO.ID";
-
-    #endregion Scripts SQL
 
     public class NotaFiscalRepositorioSql : INotaFiscalRepositorio
     {
+
+        #region Scripts SQL
+
+        public const string _sqlAdicionar = @"INSERT INTO TBNOTAFISCAL 
+                                                (TransportadorId, DestinatarioId, EmitenteId, NaturezaDaOperacao, DataEntrada) 
+                                                VALUES 
+                                                ({0}IDTRANSPORTADOR, {0}IDDESTINATARIO, {0}IDEMITENTE, {0}NATUREZA_OPERACAO, {0}DATA_ENTRADA);";
+
+        public const string _sqlAtualizar = @"UPDATE TBNOTAFISCAL SET
+                                                TRANSPORTADORID={0}IDTRANSPORTADOR,
+                                                DESTINATARIOID={0}IDDESTINATARIO,
+                                                EMITENTEID={0}IDEMITENTE,
+                                                NATUREZADAOPERACAO={0}NATUREZA_OPERACAO,
+                                                DATAENTRADA={0}DATA_ENTRADA
+                                                WHERE ID = {0}ID";
+
+        public const string _sqlBuscarPorId = @"SELECT 
+                                    TBNOTAFISCAL.Id[ID],
+                                    TBNOTAFISCAL.DataEntrada[DATA_ENTRADA],
+                                    TBNOTAFISCAL.NaturezaDaOperacao[NATUREZA_OPERACAO],
+
+                                    TBTRANSPORTADOR.Id[IDTRANSPORTADOR],
+                                    TBTRANSPORTADOR.Documento[DOCUMENTO_TRANSPORTADOR],
+                                    TBTRANSPORTADOR.InscricaoEstadual[INSCRICAOESTADUAL_TRANSPORTADORD],
+                                    TBTRANSPORTADOR.Nome[NOME_TRANSPORTADOR],
+                                    TBTRANSPORTADOR.ResponsabilidadeFrete[RESPONSABILIDADEFRETE_TRANSPORTADOR],
+                                    TBTRANSPORTADOR.TipoDocumento[TIPODOCUMENTO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Bairro[BAIRRO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Estado[ESTADO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Logradouro[LOGRADOURO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Municipio[MUNICIPIO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Numero[NUMERO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Pais[PAIS_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Id[ID_ENDERECO_TRANSPORTADOR],
+
+                                    TBDESTINATARIO.Id[IDDESTINATARIO],
+                                    TBDESTINATARIO.Documento[DOCUMENTO_DESTINATARIO],
+                                    TBDESTINATARIO.InscricaoEstadual[INSCRICAOESTADUAL_TBDESTINATARIO],
+                                    TBDESTINATARIO.Nome[NOME_DESTINATARIO],
+                                    TBDESTINATARIO.TipoDeDocumento[TIPODEDOCUMENTO_DESTINATARIO],
+                                    TBENDERECO.Id[ID_ENDERECO_DESTINATARIO],
+                                    TBENDERECO.Bairro[BAIRRO_DESTINATARIO],
+                                    TBENDERECO.Estado[ESTADO_DESTINATARIO],
+                                    TBENDERECO.Logradouro[LOGRADOURO_DESTINATARIO],
+                                    TBENDERECO.Municipio[MUNICIPIO_DESTINATARIO],
+                                    TBENDERECO.Numero[NUMERO_DESTINATARIO],
+                                    TBENDERECO.Pais[PAIS_DESTINATARIO],
+
+                                    TBEMITENTE.Id[IDEMITENTE],
+                                    TBEMITENTE.CNPJ[CNPJ_EMITENTE],
+                                    TBEMITENTE.InscricaoEstadual[INSCRICAOESTADUAL_EMITENTE],
+                                    TBEMITENTE.InscricaoMunicipal[INSCRICAOMUNICIPAL_EMITENTE],
+                                    TBEMITENTE.NomeFantasia[NOMEFANTASIA_EMITENTE],
+                                    TBEMITENTE.RazaoSocial[RAZAOSOCIAL_EMITENTE],
+                                    TBENDERECO_EMITENTE.Id[IDEMITENTE],
+                                    TBENDERECO_EMITENTE.Bairro[BAIRRO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Estado[ESTADO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Logradouro[LOGRADOURO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Municipio[MUNICIPIO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Numero[NUMERO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Pais[PAIS_EMITENTE]
+
+                                    FROM TBNOTAFISCAL
+                                    JOIN TBTRANSPORTADOR ON TBNOTAFISCAL.TransportadorId = TBTRANSPORTADOR.Id
+                                    JOIN TBDESTINATARIO ON TBNOTAFISCAL.DestinatarioId = TBDESTINATARIO.Id
+                                    JOIN TBEMITENTE  ON TBNOTAFISCAL.EmitenteId = TBEMITENTE.Id
+                                    JOIN TBENDERECO ON TBDESTINATARIO.EnderecoId = TBENDERECO.Id
+                                    JOIN TBENDERECO [TBENDERECO_EMITENTE] ON TBEMITENTE.EnderecoId = TBENDERECO.Id
+                                    JOIN TBENDERECO [TBENDERECO_TRANSPORTADOR] ON TBTRANSPORTADOR.EnderecoId = TBENDERECO.Id
+
+                                    WHERE ID = {0}ID";
+
+        public const string _sqlExcluir = @"DELETE FROM TBNOTAFISCAL
+                                              WHERE ID = {0}ID";
+
+        public const string _sqlBuscarTodos = @"SELECT 
+                                    TBNOTAFISCAL.Id[ID],
+                                    TBNOTAFISCAL.DataEntrada[DATA_ENTRADA],
+                                    TBNOTAFISCAL.NaturezaDaOperacao[NATUREZA_OPERACAO],
+
+                                    TBTRANSPORTADOR.Id[IDTRANSPORTADOR],
+                                    TBTRANSPORTADOR.Documento[DOCUMENTO_TRANSPORTADOR],
+                                    TBTRANSPORTADOR.InscricaoEstadual[INSCRICAOESTADUAL_TRANSPORTADOR],
+                                    TBTRANSPORTADOR.Nome[NOME_TRANSPORTADOR],
+                                    TBTRANSPORTADOR.ResponsabilidadeFrete[RESPONSABILIDADEFRETE_TRANSPORTADOR],
+                                    TBTRANSPORTADOR.TipoDocumento[TIPODOCUMENTO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Bairro[BAIRRO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Estado[ESTADO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Logradouro[LOGRADOURO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Municipio[MUNICIPIO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Numero[NUMERO_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Pais[PAIS_TRANSPORTADOR],
+                                    TBENDERECO_TRANSPORTADOR.Id[ID_ENDERECO_TRANSPORTADOR],
+
+                                    TBDESTINATARIO.Id[IDDESTINATARIO],
+                                    TBDESTINATARIO.Documento[DOCUMENTO_DESTINATARIO],
+                                    TBDESTINATARIO.InscricaoEstadual[INSCRICAOESTADUAL_TBDESTINATARIO],
+                                    TBDESTINATARIO.Nome[NOME_DESTINATARIO],
+                                    TBDESTINATARIO.TipoDeDocumento[TIPODEDOCUMENTO_DESTINATARIO],
+                                    TBENDERECO.Id[ID_ENDERECO_DESTINATARIO],
+                                    TBENDERECO.Bairro[BAIRRO_DESTINATARIO],
+                                    TBENDERECO.Estado[ESTADO_DESTINATARIO],
+                                    TBENDERECO.Logradouro[LOGRADOURO_DESTINATARIO],
+                                    TBENDERECO.Municipio[MUNICIPIO_DESTINATARIO],
+                                    TBENDERECO.Numero[NUMERO_DESTINATARIO],
+                                    TBENDERECO.Pais[PAIS_DESTINATARIO],
+
+                                    TBEMITENTE.Id[IDEMITENTE],
+                                    TBEMITENTE.CNPJ[CNPJ_EMITENTE],
+                                    TBEMITENTE.InscricaoEstadual[INSCRICAOESTADUAL_EMITENTE],
+                                    TBEMITENTE.InscricaoMunicipal[INSCRICAOMUNICIPAL_EMITENTE],
+                                    TBEMITENTE.NomeFantasia[NOMEFANTASIA_EMITENTE],
+                                    TBEMITENTE.RazaoSocial[RAZAOSOCIAL_EMITENTE],
+                                    TBENDERECO_EMITENTE.Id[IDEMITENTE],
+                                    TBENDERECO_EMITENTE.Bairro[BAIRRO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Estado[ESTADO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Logradouro[LOGRADOURO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Municipio[MUNICIPIO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Numero[NUMERO_EMITENTE],
+                                    TBENDERECO_EMITENTE.Pais[PAIS_EMITENTE]
+
+                                    FROM TBNOTAFISCAL
+                                    JOIN TBTRANSPORTADOR ON TBNOTAFISCAL.TransportadorId = TBTRANSPORTADOR.Id
+                                    JOIN TBDESTINATARIO ON TBNOTAFISCAL.DestinatarioId = TBDESTINATARIO.Id
+                                    JOIN TBEMITENTE  ON TBNOTAFISCAL.EmitenteId = TBEMITENTE.Id
+                                    JOIN TBENDERECO ON TBDESTINATARIO.EnderecoId = TBENDERECO.Id
+                                    JOIN TBENDERECO [TBENDERECO_EMITENTE] ON TBEMITENTE.EnderecoId = TBENDERECO.Id
+                                    JOIN TBENDERECO [TBENDERECO_TRANSPORTADOR] ON TBTRANSPORTADOR.EnderecoId = TBENDERECO.Id";
+
+        #endregion Scripts SQL
+
         public NotaFiscal Adicionar(NotaFiscal entidade)
         {
             throw new NotImplementedException();
@@ -66,5 +173,128 @@ ID = {0}ID";
         {
             throw new NotImplementedException();
         }
+
+        #region Montar e Ler Objetos
+        private Dictionary<string, object> ObterDicionarioEmitente(NotaFiscal notaFiscal)
+        {
+            return new Dictionary<string, object>
+            {
+                { "ID", notaFiscal.Id },
+                { "NOMEFANTASIA", notaFiscal.},
+                { "RAZAOSOCIAL", notaFiscal.},
+                { "CNPJ", notaFiscal.},
+                { "INSCRICAOESTADUAL", notaFiscal.},
+                { "INSCRICAOMUNICIPAL", notaFiscal.},
+                { "ENDERECOID", notaFiscal.}
+            };
+        }
+
+        private static NotaFiscal FormaObjetoEmitente(IDataReader reader)
+        {
+            NotaFiscal notaFiscal = new NotaFiscal();
+
+            notaFiscal.Id = Convert.ToInt64(reader["ID"]);
+            notaFiscal.DataEntrada = Convert.ToDateTime(reader["DATA_ENTRADA"]);
+            notaFiscal.NaturezaOperacao = Convert.ToString(reader["NATUREZA_OPERACAO"]);
+
+            //Transportador
+
+            notaFiscal.Transportador = new Transportador()
+            {
+                Id = Convert.ToInt64(reader["IDTRANSPORTADOR"]),
+                InscricaoEstadual = Convert.ToString(reader["INSCRICAOESTADUAL_TRANSPORTADOR"]),
+                NomeRazaoSocial = Convert.ToString(reader["NOME_TRANSPORTADOR"]),
+                ResponsabilidadeFrete = Convert.ToBoolean(reader["RESPONSABILIDADEFRETE_TRANSPORTADOR"]),
+                Endereco = new Endereco()
+                {
+                    Id = Convert.ToInt64(reader["ID_ENDERECO_TRANSPORTADOR"]),
+                    Bairro = Convert.ToString(reader["BAIRRO_TRANSPORTADOR"]),
+                    Estado = Convert.ToString(reader["ESTADO_TRANSPORTADOR"]),
+                    Logradouro = Convert.ToString(reader["LOGRADOURO_TRANSPORTADOR"]),
+                    Municipio = Convert.ToString(reader["MUNICIPIO_TRANSPORTADOR"]),
+                    Numero = Convert.ToInt32(reader["NUMERO_TRANSPORTADOR"]),
+                    Pais = Convert.ToString(reader["PAIS_TRANSPORTADOR"])
+                }
+            };
+
+            if (Convert.ToString(reader["TIPODOCUMENTO_TRANSPORTADOR"]).Equals("CPF"))
+            {
+                notaFiscal.Transportador.Documento = new CPF()
+                {
+                    NumeroComPontuacao = Convert.ToString("DOCUMENTO_TRANSPORTADOR")
+                };
+            }
+            else
+            {
+                notaFiscal.Transportador.Documento = new CNPJ()
+                {
+                    NumeroComPontuacao = Convert.ToString("DOCUMENTO_TRANSPORTADOR")
+                };
+            }
+
+
+
+            //Destinatario
+
+            notaFiscal.Destinatario = new Destinatario
+            {
+                Id = Convert.ToInt64(reader["IDDESTINATARIO"]),
+                InscricaoEstadual = Convert.ToString(reader["INSCRICAOESTADUAL_TBDESTINATARIO"]),
+                NomeRazaoSocial = Convert.ToString(reader["NOME_DESTINATARIO"]),
+                Endereco = new Endereco
+                {
+                    Id = Convert.ToInt64(reader["ID_ENDERECO_DESTINATARIO"]),
+                    Bairro = Convert.ToString(reader["BAIRRO_DESTINATARIO"]),
+                    Estado = Convert.ToString(reader["ESTADO_DESTINATARIO"]),
+                    Logradouro = Convert.ToString(reader["LOGRADOURO_DESTINATARIO"]),
+                    Municipio = Convert.ToString(reader["MUNICIPIO_DESTINATARIO"]),
+                    Numero = Convert.ToInt32(reader["NUMERO_DESTINATARIO"]),
+                    Pais = Convert.ToString(reader["PAIS_DESTINATARIO"])
+                }
+            };
+
+
+            if (Convert.ToString(reader["TIPODOCUMENTO_DESTINATARIO"]).Equals("CPF"))
+            {
+                notaFiscal.Destinatario.Documento = new CPF()
+                {
+                    NumeroComPontuacao = Convert.ToString("DOCUMENTO_DESTINATARIO")
+                };
+            }
+            else
+            {
+                notaFiscal.Destinatario.Documento = new CNPJ()
+                {
+                    NumeroComPontuacao = Convert.ToString("DOCUMENTO_DESTINATARIO")
+                };
+            }
+
+            // Emitente
+            notaFiscal.Emitente = new Emitente
+            {
+                Id = Convert.ToInt64(reader["IDEMITENTE"]),
+                InscricaoEstadual = Convert.ToString(reader["INSCRICAOESTADUAL_TBEMITENTE"]),
+                InscricaoMunicipal = Convert.ToString(reader["INSCRICAOMUNICIPAL_TBEMITENTE"]),
+                NomeFantasia = Convert.ToString(reader["NOMEFANTASIA_TBEMITENTE"]),
+                RazaoSocial = Convert.ToString(reader["RAZAOSOCIAL_EMITENTE"]),
+
+                CNPJ = new CNPJ() { NumeroComPontuacao = Convert.ToString("CNPJ_EMITENTE") },
+
+                Endereco = new Endereco
+                {
+                    Id = Convert.ToInt64(reader["ID_ENDERECO_EMITENTE"]),
+                    Bairro = Convert.ToString(reader["BAIRRO_EMITENTE"]),
+                    Estado = Convert.ToString(reader["ESTADO_EMITENTE"]),
+                    Logradouro = Convert.ToString(reader["LOGRADOURO_EMITENTE"]),
+                    Municipio = Convert.ToString(reader["MUNICIPIO_EMITENTE"]),
+                    Numero = Convert.ToInt32(reader["NUMERO_EMITENTE"]),
+                    Pais = Convert.ToString(reader["PAIS_EMITENTE"])
+                }
+            };
+
+            return notaFiscal;
+        }
+        #endregion
+
     }
 }
