@@ -15,7 +15,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais
     {
         public Produto Produto { get; set; }
 
-        public NotaFiscal NotaFiscal { get; set; }
+        public virtual NotaFiscal NotaFiscal { get; set; }
 
         public virtual int Quantidade { get; set; }
 

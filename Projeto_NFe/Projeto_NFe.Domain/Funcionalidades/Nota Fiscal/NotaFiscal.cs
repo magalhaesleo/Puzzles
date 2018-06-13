@@ -20,7 +20,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
         public string NaturezaOperacao { get; set; }
         public DateTime DataEntrada { get; set; }
         public DateTime? DataEmissao { get; set; }
-        public List<ProdutoNotaFiscal> Produtos { get; set; }
+        public virtual List<ProdutoNotaFiscal> Produtos { get; set; }
         public virtual string ChaveAcesso { get; set; }
         public double ValorTotalICMS { get; set; }
         public double ValorTotalIPI { get; set; }
@@ -100,7 +100,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
 
         }
 
-        public void CalcularValoresTotais()
+        public virtual void CalcularValoresTotais()
         {
             ValorTotalICMS = 0;
             ValorTotalIPI = 0;

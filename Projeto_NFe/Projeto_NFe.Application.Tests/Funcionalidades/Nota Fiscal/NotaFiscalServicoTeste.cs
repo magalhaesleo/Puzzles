@@ -5,6 +5,8 @@ using Projeto_NFe.Application.Funcionalidades.Notas_Fiscais;
 using Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
+using Projeto_NFe.Domain.Funcionalidades.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,25 +23,43 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
 
         private Mock<INotaFiscalRepositorio> _mockNotaFiscalRepositorio;
         private Mock<INotaFiscalEmitidaRepositorio> _mockNotaFiscalEmitidaRepositorio;
+        private Mock<IProdutoNotaFiscalRepositorio> _mockProdutoNotaFiscalRepositorio;
+        private Mock<List<ProdutoNotaFiscal>> _mockListaDeProdutoNotaFiscal;
+        private Mock<List<NotaFiscal>> _mockListaNotaFiscal;
 
         private Mock<NotaFiscal> _mockNotaFiscal;
-
+        private Mock<ProdutoNotaFiscal> _mockProdutoNotaFiscal;
 
         [SetUp]
         public void Inicializar()
         {
             _mockNotaFiscalRepositorio = new Mock<INotaFiscalRepositorio>();
             _mockNotaFiscalEmitidaRepositorio = new Mock<INotaFiscalEmitidaRepositorio>();
+            _mockProdutoNotaFiscalRepositorio = new Mock<IProdutoNotaFiscalRepositorio>();
+            _mockListaDeProdutoNotaFiscal = new Mock<List<ProdutoNotaFiscal>>();
+            _mockListaNotaFiscal = new Mock<List<NotaFiscal>>();
 
-            _servicoNotaFiscal = new NotaFiscalServico(_mockNotaFiscalRepositorio.Object, _mockNotaFiscalEmitidaRepositorio.Object);
+            _servicoNotaFiscal = new NotaFiscalServico(_mockNotaFiscalRepositorio.Object, _mockNotaFiscalEmitidaRepositorio.Object, _mockProdutoNotaFiscalRepositorio.Object);
 
             _mockNotaFiscal = new Mock<NotaFiscal>();
+            _mockProdutoNotaFiscal = new Mock<ProdutoNotaFiscal>();
         }
 
         [Test]
         public void NotaFiscal_Aplicacao_Adicionar_Sucesso()
         {
+            long idValidoDaNota = 1;
+            _mockNotaFiscal.Setup(mnf => mnf.Id).Returns(idValidoDaNota);
+
             _mockNotaFiscalRepositorio.Setup(nfr => nfr.Adicionar(_mockNotaFiscal.Object)).Returns(_mockNotaFiscal.Object);
+
+            _mockProdutoNotaFiscalRepositorio.Setup(mpnfr => mpnfr.Adicionar(_mockProdutoNotaFiscal.Object));
+
+            _mockListaDeProdutoNotaFiscal.Object.Add(_mockProdutoNotaFiscal.Object);
+
+            _mockProdutoNotaFiscal.Setup(mpnf => mpnf.NotaFiscal.Id).Returns(idValidoDaNota);
+
+            _mockNotaFiscal.Setup(mnf => mnf.Produtos).Returns(_mockListaDeProdutoNotaFiscal.Object);
 
             NotaFiscal notaFiscalAdicionada = _servicoNotaFiscal.Adicionar(_mockNotaFiscal.Object);
 
@@ -52,9 +72,18 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
         public void NotaFiscal_Aplicacao_Atualizar_Sucesso()
         {
             _mockNotaFiscal.Setup(mnf => mnf.ValidarGeracao());
+
             _mockNotaFiscal.Setup(mnf => mnf.Id).Returns(1);
 
             _mockNotaFiscalRepositorio.Setup(mnfr => mnfr.Atualizar(_mockNotaFiscal.Object));
+
+            _mockNotaFiscalRepositorio.Setup(nfr => nfr.Atualizar(_mockNotaFiscal.Object)).Returns(_mockNotaFiscal.Object);
+
+            _mockProdutoNotaFiscalRepositorio.Setup(mpnfr => mpnfr.Adicionar(_mockProdutoNotaFiscal.Object));
+
+            _mockListaDeProdutoNotaFiscal.Object.Add(_mockProdutoNotaFiscal.Object);
+
+            _mockNotaFiscal.Setup(mnf => mnf.Produtos).Returns(new List<ProdutoNotaFiscal>());
 
             _servicoNotaFiscal.Atualizar(_mockNotaFiscal.Object);
 
@@ -145,11 +174,25 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
         [Test]
         public void NotaFiscal_Aplicacao_BuscarTodos_Sucesso()
         {
-            _mockNotaFiscalRepositorio.Setup(nfr => nfr.BuscarTodos());
+            //Arrange
+
+            //MockListaDeNotasFiscais
+            _mockNotaFiscalRepositorio.Setup(nfr => nfr.BuscarTodos()).Returns(_mockListaNotaFiscal.Object);
+            
+            _mockListaNotaFiscal.Object.Add(_mockNotaFiscal.Object);
+
+            _mockNotaFiscal.Setup(mnf => mnf.Id).Returns(1);
+            _mockProdutoNotaFiscalRepositorio.Setup(mpnf => mpnf.BuscarListaPorId(_mockNotaFiscal.Object.Id)).Returns(_mockListaDeProdutoNotaFiscal.Object);
+
+            _mockListaDeProdutoNotaFiscal.Object.Add(_mockProdutoNotaFiscal.Object);
+
+            //MockListaProdutoNotaFiscal
 
             _servicoNotaFiscal.BuscarTodos();
 
             _mockNotaFiscalRepositorio.Verify(mnfr => mnfr.BuscarTodos());
+            _mockProdutoNotaFiscalRepositorio.Verify(mpnfr => mpnfr.BuscarListaPorId(_mockNotaFiscal.Object.Id));
+            _mockNotaFiscal.Verify(mnf => mnf.Id);
 
         }
 
@@ -160,11 +203,11 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
 
             FakeNotaFiscalEmitidaRepositorio fakeNotaFiscalEmitidaRepositorio = new FakeNotaFiscalEmitidaRepositorio();
 
-            NotaFiscalServico _servicoNotaFiscalComRepositorioFake = new NotaFiscalServico(_mockNotaFiscalRepositorio.Object, fakeNotaFiscalEmitidaRepositorio);
+            NotaFiscalServico _servicoNotaFiscalComRepositorioFake = new NotaFiscalServico(_mockNotaFiscalRepositorio.Object, fakeNotaFiscalEmitidaRepositorio, _mockProdutoNotaFiscalRepositorio.Object);
 
             Mock<Random> mockRandom = new Mock<Random>();
 
-            //_mockNotaFiscal.Setup(mnf => mnf.CalcularValoresTotais());
+            _mockNotaFiscal.Setup(mnf => mnf.CalcularValoresTotais());
             _mockNotaFiscal.Setup(mnf => mnf.ValidarParaEmitir());
             _mockNotaFiscal.Setup(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
             _mockNotaFiscal.Setup(mnf => mnf.Id).Returns(idAposAdicionar);
