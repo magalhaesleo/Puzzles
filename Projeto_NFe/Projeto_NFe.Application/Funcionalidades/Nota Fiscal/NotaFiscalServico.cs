@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
 
 namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
 {
@@ -12,18 +13,28 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
     {
         private INotaFiscalRepositorio _notaFiscalRepositorio;
         private INotaFiscalEmitidaRepositorio _notaFiscalEmitidaRepositorio;
+        private IProdutoNotaFiscalRepositorio _produtoNotaFiscalRepositorio;
 
-        public NotaFiscalServico(INotaFiscalRepositorio notaFiscalRepositorio, INotaFiscalEmitidaRepositorio notaFiscalEmitidaRepositorio)
+        public NotaFiscalServico(INotaFiscalRepositorio notaFiscalRepositorio, INotaFiscalEmitidaRepositorio notaFiscalEmitidaRepositorio, IProdutoNotaFiscalRepositorio produtoNotaFiscalRepositorio)
         {
             this._notaFiscalRepositorio = notaFiscalRepositorio;
             this._notaFiscalEmitidaRepositorio = notaFiscalEmitidaRepositorio;
+            this._produtoNotaFiscalRepositorio = produtoNotaFiscalRepositorio;
         }
 
         public NotaFiscal Adicionar(NotaFiscal notaFiscal)
         {
             notaFiscal.ValidarGeracao();
 
-            return _notaFiscalRepositorio.Adicionar(notaFiscal);
+            notaFiscal = _notaFiscalRepositorio.Adicionar(notaFiscal);
+
+            foreach (var produto in notaFiscal.Produtos)
+            {
+                produto.NotaFiscal.Id = notaFiscal.Id;
+                _produtoNotaFiscalRepositorio.Adicionar(produto);
+            }
+
+            return notaFiscal;
         }
 
         public NotaFiscal Atualizar(NotaFiscal notaFiscal)
@@ -33,6 +44,12 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
 
             notaFiscal.ValidarGeracao();
 
+            foreach (var produto in notaFiscal.Produtos)
+            {
+                produto.NotaFiscal.Id = notaFiscal.Id;
+                _produtoNotaFiscalRepositorio.Atualizar(produto);
+            }
+
             return _notaFiscalRepositorio.Atualizar(notaFiscal);
         }
 
@@ -41,7 +58,13 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
             if (id < 1)
                 throw new ExcecaoIdentificadorIndefinido();
 
-            return _notaFiscalRepositorio.BuscarPorId(id);
+            NotaFiscal notaFiscal = _notaFiscalRepositorio.BuscarPorId(id);
+
+            IEnumerable<ProdutoNotaFiscal> produtosNotaFiscal = _produtoNotaFiscalRepositorio.BuscarListaPorId(notaFiscal.Id);
+
+            notaFiscal.Produtos = produtosNotaFiscal.ToList();
+
+            return notaFiscal;
         }
 
         public bool ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso)
@@ -56,7 +79,16 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
 
         public IEnumerable<NotaFiscal> BuscarTodos()
         {
-            return _notaFiscalRepositorio.BuscarTodos();
+            IEnumerable<NotaFiscal> notasFiscais = _notaFiscalRepositorio.BuscarTodos();
+
+            foreach (var notaFiscal in notasFiscais)
+            {
+                IEnumerable<ProdutoNotaFiscal> produtosNotaFiscal = _produtoNotaFiscalRepositorio.BuscarListaPorId(notaFiscal.Id);
+
+                notaFiscal.Produtos = produtosNotaFiscal.ToList();
+            }
+
+            return notasFiscais;
         }
 
         public void Excluir(NotaFiscal notaFiscal)
@@ -69,7 +101,7 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
 
         public NotaFiscal Emitir(NotaFiscal notaFiscal, Random sorteador)
         {
-            //notaFiscal.CalcularValoresTotais();
+            notaFiscal.CalcularValoresTotais();
 
             notaFiscal.ValidarParaEmitir();
 
