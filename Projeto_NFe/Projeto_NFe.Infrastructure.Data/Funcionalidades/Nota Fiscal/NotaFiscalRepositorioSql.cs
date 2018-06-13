@@ -175,17 +175,16 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
         }
 
         #region Montar e Ler Objetos
-        private Dictionary<string, object> ObterDicionarioEmitente(NotaFiscal notaFiscal)
+        private Dictionary<string, object> ObterDicionarioNotaFiscal(NotaFiscal notaFiscal)
         {
             return new Dictionary<string, object>
             {
                 { "ID", notaFiscal.Id },
-                { "NOMEFANTASIA", notaFiscal.},
-                { "RAZAOSOCIAL", notaFiscal.},
-                { "CNPJ", notaFiscal.},
-                { "INSCRICAOESTADUAL", notaFiscal.},
-                { "INSCRICAOMUNICIPAL", notaFiscal.},
-                { "ENDERECOID", notaFiscal.}
+                { "IDDESTINATARIO", notaFiscal.Destinatario.Id},
+                { "IDEMITENTE", notaFiscal.Emitente.Id},
+                { "IDTRANSPORTADOR", notaFiscal.Transportador.Id},
+                { "NATUREZA_OPERACAO", notaFiscal.NaturezaOperacao},
+                { "DATA_ENTRADA", notaFiscal.DataEntrada}
             };
         }
 
