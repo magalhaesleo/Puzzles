@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using Projeto_NFe.Common.Tests.Base;
+using Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal;
 using System;
@@ -16,23 +18,26 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Nota_Fiscal
     {
         private INotaFiscalRepositorio _repositorio;
 
+        private NotaFiscal _notaFiscalValida;
+
         [SetUp]
         public void IniciarCenario()
         {
             _repositorio = new NotaFiscalRepositorioSql();
 
             BaseSqlTeste.InicializarBancoDeDadosPrepararNotaFiscal();
+
+            long idEmitenteCadastradoPorBaseSql = 1;
+            long idDestinatarioCadastradoPorBaseSql = 1;
+            long idTransportadorCadastradoPorBaseSql = 1;
+
+            _notaFiscalValida = ObjectMother.PegarNotaFiscalValidaComIdDasDependencias(idEmitenteCadastradoPorBaseSql, idDestinatarioCadastradoPorBaseSql, idTransportadorCadastradoPorBaseSql);
         }
 
         [Test]
         public void NotaFiscal_InfraData_Adicionar_Sucesso()
         {
-            //Pegar objeto válido pelo ObjectMother
-            //NotaFiscal notaFiscalValida = ObjectMother.PegarNotaFiscalValida();
-            1.Should().Be(2);
-            NotaFiscal notaFiscalValida = new NotaFiscal();
-
-            NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(notaFiscalValida);
+            NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(_notaFiscalValida);
 
             notaFiscalAdicionada.Id.Should().BeGreaterThan(0);
         }
@@ -40,9 +45,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Nota_Fiscal
         [Test]
         public void NotaFiscal_InfraData_Atualizar_Sucesso()
         {
-            //NotaFiscal notaFiscalParaAtualizar = ObjectMother.PegarNotaFiscalValida();
-            1.Should().Be(2);
-            NotaFiscal notaFiscalParaAtualizar = new NotaFiscal();
+            NotaFiscal notaFiscalParaAtualizar = _notaFiscalValida;
             notaFiscalParaAtualizar.Id = 1;
 
             string naturezaOperacaoSobrescrita = notaFiscalParaAtualizar.NaturezaOperacao;
@@ -56,15 +59,13 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Nota_Fiscal
             notaFiscalBuscada.NaturezaOperacao.Should().Be(notaFiscalParaAtualizar.NaturezaOperacao);
             notaFiscalBuscada.NaturezaOperacao.Should().NotBe(naturezaOperacaoSobrescrita);
 
-            notaFiscalBuscada.DataEntrada.Should().Be(notaFiscalParaAtualizar.DataEntrada);
+            notaFiscalBuscada.DataEntrada.Minute.Should().Be(notaFiscalParaAtualizar.DataEntrada.Minute);
         }
 
         [Test]
         public void NotaFiscal_InfraData_BuscarPorId_Sucesso()
         {
-            //NotaFiscal notaFiscalParaAdicionar = ObjectMother.PegarNotaFiscalValida();
-            1.Should().Be(2);
-            NotaFiscal notaFiscalParaAdicionar = new NotaFiscal();
+            NotaFiscal notaFiscalParaAdicionar = _notaFiscalValida;
 
             NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(notaFiscalParaAdicionar);
 
@@ -72,7 +73,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Nota_Fiscal
 
             notaFiscalParaBuscar.Should().NotBeNull();
             notaFiscalParaBuscar.NaturezaOperacao.Should().Be(notaFiscalAdicionada.NaturezaOperacao);
-            notaFiscalParaBuscar.DataEntrada.Should().Be(notaFiscalAdicionada.DataEntrada);
+            notaFiscalParaBuscar.DataEntrada.Minute.Should().Be(notaFiscalAdicionada.DataEntrada.Minute);
             notaFiscalParaBuscar.Destinatario.Id.Should().Be(notaFiscalAdicionada.Destinatario.Id);
             notaFiscalParaBuscar.Emitente.Id.Should().Be(notaFiscalAdicionada.Emitente.Id);
             notaFiscalParaBuscar.Transportador.Id.Should().Be(notaFiscalAdicionada.Transportador.Id);
@@ -90,9 +91,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Nota_Fiscal
         [Test]
         public void NotaFiscal_InfraData_Excluir_Sucesso()
         {
-            //NotaFiscal notaFiscalParaAdicionar = ObjectMother.PegarNotaFiscalValida();
-            1.Should().Be(2);
-            NotaFiscal notaFiscalParaAdicionar = new NotaFiscal();
+            NotaFiscal notaFiscalParaAdicionar = _notaFiscalValida;
 
             NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(notaFiscalParaAdicionar);
 

@@ -38,7 +38,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
             }
         }
 
-        public void GerarChaveDeAcesso(Random sorteador)
+        public virtual void GerarChaveDeAcesso(Random sorteador)
         {
             ChaveAcesso = "";
             for (int i = 0; i < 44; i++)

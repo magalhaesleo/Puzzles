@@ -3,6 +3,7 @@ using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
+using Projeto_NFe.Infrastructure.Database;
 using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using Projeto_NFe.Infrastructure.Objetos_de_Valor.CPFs;
 using System;
@@ -24,7 +25,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
         public const string _sqlAdicionar = @"INSERT INTO TBNOTAFISCAL 
                                                 (TransportadorId, DestinatarioId, EmitenteId, NaturezaDaOperacao, DataEntrada) 
                                                 VALUES 
-                                                ({0}IDTRANSPORTADOR, {0}IDDESTINATARIO, {0}IDEMITENTE, {0}NATUREZA_OPERACAO, {0}DATA_ENTRADA);";
+                                                ({0}IDTRANSPORTADOR, {0}IDDESTINATARIO, {0}IDEMITENTE, {0}NATUREZA_OPERACAO, {0}DATA_ENTRADA);SELECT SCOPE_IDENTITY();";
 
         public const string _sqlAtualizar = @"UPDATE TBNOTAFISCAL SET
                                                 TRANSPORTADORID={0}IDTRANSPORTADOR,
@@ -41,10 +42,10 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
 
                                     TBTRANSPORTADOR.Id[IDTRANSPORTADOR],
                                     TBTRANSPORTADOR.Documento[DOCUMENTO_TRANSPORTADOR],
-                                    TBTRANSPORTADOR.InscricaoEstadual[INSCRICAOESTADUAL_TRANSPORTADORD],
+                                    TBTRANSPORTADOR.InscricaoEstadual[INSCRICAOESTADUAL_TRANSPORTADOR],
                                     TBTRANSPORTADOR.Nome[NOME_TRANSPORTADOR],
                                     TBTRANSPORTADOR.ResponsabilidadeFrete[RESPONSABILIDADEFRETE_TRANSPORTADOR],
-                                    TBTRANSPORTADOR.TipoDocumento[TIPODOCUMENTO_TRANSPORTADOR],
+                                    TBTRANSPORTADOR.TipoDocumento[TIPODEDOCUMENTO_TRANSPORTADOR],
                                     TBENDERECO_TRANSPORTADOR.Bairro[BAIRRO_TRANSPORTADOR],
                                     TBENDERECO_TRANSPORTADOR.Estado[ESTADO_TRANSPORTADOR],
                                     TBENDERECO_TRANSPORTADOR.Logradouro[LOGRADOURO_TRANSPORTADOR],
@@ -58,13 +59,13 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
                                     TBDESTINATARIO.InscricaoEstadual[INSCRICAOESTADUAL_TBDESTINATARIO],
                                     TBDESTINATARIO.Nome[NOME_DESTINATARIO],
                                     TBDESTINATARIO.TipoDeDocumento[TIPODEDOCUMENTO_DESTINATARIO],
-                                    TBENDERECO.Id[ID_ENDERECO_DESTINATARIO],
-                                    TBENDERECO.Bairro[BAIRRO_DESTINATARIO],
-                                    TBENDERECO.Estado[ESTADO_DESTINATARIO],
-                                    TBENDERECO.Logradouro[LOGRADOURO_DESTINATARIO],
-                                    TBENDERECO.Municipio[MUNICIPIO_DESTINATARIO],
-                                    TBENDERECO.Numero[NUMERO_DESTINATARIO],
-                                    TBENDERECO.Pais[PAIS_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Id[ID_ENDERECO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Bairro[BAIRRO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Estado[ESTADO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Logradouro[LOGRADOURO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Municipio[MUNICIPIO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Numero[NUMERO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Pais[PAIS_DESTINATARIO],
 
                                     TBEMITENTE.Id[IDEMITENTE],
                                     TBEMITENTE.CNPJ[CNPJ_EMITENTE],
@@ -72,7 +73,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
                                     TBEMITENTE.InscricaoMunicipal[INSCRICAOMUNICIPAL_EMITENTE],
                                     TBEMITENTE.NomeFantasia[NOMEFANTASIA_EMITENTE],
                                     TBEMITENTE.RazaoSocial[RAZAOSOCIAL_EMITENTE],
-                                    TBENDERECO_EMITENTE.Id[IDEMITENTE],
+                                    TBENDERECO_EMITENTE.Id[ID_ENDERECO_EMITENTE],
                                     TBENDERECO_EMITENTE.Bairro[BAIRRO_EMITENTE],
                                     TBENDERECO_EMITENTE.Estado[ESTADO_EMITENTE],
                                     TBENDERECO_EMITENTE.Logradouro[LOGRADOURO_EMITENTE],
@@ -84,11 +85,11 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
                                     JOIN TBTRANSPORTADOR ON TBNOTAFISCAL.TransportadorId = TBTRANSPORTADOR.Id
                                     JOIN TBDESTINATARIO ON TBNOTAFISCAL.DestinatarioId = TBDESTINATARIO.Id
                                     JOIN TBEMITENTE  ON TBNOTAFISCAL.EmitenteId = TBEMITENTE.Id
-                                    JOIN TBENDERECO ON TBDESTINATARIO.EnderecoId = TBENDERECO.Id
-                                    JOIN TBENDERECO [TBENDERECO_EMITENTE] ON TBEMITENTE.EnderecoId = TBENDERECO.Id
-                                    JOIN TBENDERECO [TBENDERECO_TRANSPORTADOR] ON TBTRANSPORTADOR.EnderecoId = TBENDERECO.Id
+                                    JOIN TBENDERECO [TBENDERECO_DESTINATARIO] ON TBDESTINATARIO.EnderecoId = [TBENDERECO_DESTINATARIO].Id
+                                    JOIN TBENDERECO [TBENDERECO_EMITENTE] ON TBEMITENTE.EnderecoId = [TBENDERECO_EMITENTE].Id
+                                    JOIN TBENDERECO [TBENDERECO_TRANSPORTADOR] ON TBTRANSPORTADOR.EnderecoId = [TBENDERECO_TRANSPORTADOR].Id
 
-                                    WHERE ID = {0}ID";
+                                    WHERE TBNOTAFISCAL.ID = {0}ID";
 
         public const string _sqlExcluir = @"DELETE FROM TBNOTAFISCAL
                                               WHERE ID = {0}ID";
@@ -103,7 +104,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
                                     TBTRANSPORTADOR.InscricaoEstadual[INSCRICAOESTADUAL_TRANSPORTADOR],
                                     TBTRANSPORTADOR.Nome[NOME_TRANSPORTADOR],
                                     TBTRANSPORTADOR.ResponsabilidadeFrete[RESPONSABILIDADEFRETE_TRANSPORTADOR],
-                                    TBTRANSPORTADOR.TipoDocumento[TIPODOCUMENTO_TRANSPORTADOR],
+                                    TBTRANSPORTADOR.TipoDocumento[TIPODEDOCUMENTO_TRANSPORTADOR],
                                     TBENDERECO_TRANSPORTADOR.Bairro[BAIRRO_TRANSPORTADOR],
                                     TBENDERECO_TRANSPORTADOR.Estado[ESTADO_TRANSPORTADOR],
                                     TBENDERECO_TRANSPORTADOR.Logradouro[LOGRADOURO_TRANSPORTADOR],
@@ -117,13 +118,13 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
                                     TBDESTINATARIO.InscricaoEstadual[INSCRICAOESTADUAL_TBDESTINATARIO],
                                     TBDESTINATARIO.Nome[NOME_DESTINATARIO],
                                     TBDESTINATARIO.TipoDeDocumento[TIPODEDOCUMENTO_DESTINATARIO],
-                                    TBENDERECO.Id[ID_ENDERECO_DESTINATARIO],
-                                    TBENDERECO.Bairro[BAIRRO_DESTINATARIO],
-                                    TBENDERECO.Estado[ESTADO_DESTINATARIO],
-                                    TBENDERECO.Logradouro[LOGRADOURO_DESTINATARIO],
-                                    TBENDERECO.Municipio[MUNICIPIO_DESTINATARIO],
-                                    TBENDERECO.Numero[NUMERO_DESTINATARIO],
-                                    TBENDERECO.Pais[PAIS_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Id[ID_ENDERECO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Bairro[BAIRRO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Estado[ESTADO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Logradouro[LOGRADOURO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Municipio[MUNICIPIO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Numero[NUMERO_DESTINATARIO],
+                                    [TBENDERECO_DESTINATARIO].Pais[PAIS_DESTINATARIO],
 
                                     TBEMITENTE.Id[IDEMITENTE],
                                     TBEMITENTE.CNPJ[CNPJ_EMITENTE],
@@ -131,7 +132,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
                                     TBEMITENTE.InscricaoMunicipal[INSCRICAOMUNICIPAL_EMITENTE],
                                     TBEMITENTE.NomeFantasia[NOMEFANTASIA_EMITENTE],
                                     TBEMITENTE.RazaoSocial[RAZAOSOCIAL_EMITENTE],
-                                    TBENDERECO_EMITENTE.Id[IDEMITENTE],
+                                    TBENDERECO_EMITENTE.Id[ID_ENDERECO_EMITENTE],
                                     TBENDERECO_EMITENTE.Bairro[BAIRRO_EMITENTE],
                                     TBENDERECO_EMITENTE.Estado[ESTADO_EMITENTE],
                                     TBENDERECO_EMITENTE.Logradouro[LOGRADOURO_EMITENTE],
@@ -143,35 +144,38 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
                                     JOIN TBTRANSPORTADOR ON TBNOTAFISCAL.TransportadorId = TBTRANSPORTADOR.Id
                                     JOIN TBDESTINATARIO ON TBNOTAFISCAL.DestinatarioId = TBDESTINATARIO.Id
                                     JOIN TBEMITENTE  ON TBNOTAFISCAL.EmitenteId = TBEMITENTE.Id
-                                    JOIN TBENDERECO ON TBDESTINATARIO.EnderecoId = TBENDERECO.Id
-                                    JOIN TBENDERECO [TBENDERECO_EMITENTE] ON TBEMITENTE.EnderecoId = TBENDERECO.Id
-                                    JOIN TBENDERECO [TBENDERECO_TRANSPORTADOR] ON TBTRANSPORTADOR.EnderecoId = TBENDERECO.Id";
+                                    JOIN TBENDERECO [TBENDERECO_DESTINATARIO] ON TBDESTINATARIO.EnderecoId = [TBENDERECO_DESTINATARIO].Id
+                                    JOIN TBENDERECO [TBENDERECO_EMITENTE] ON TBEMITENTE.EnderecoId = [TBENDERECO_EMITENTE].Id
+                                    JOIN TBENDERECO [TBENDERECO_TRANSPORTADOR] ON TBTRANSPORTADOR.EnderecoId = [TBENDERECO_TRANSPORTADOR].Id
+";
 
         #endregion Scripts SQL
 
-        public NotaFiscal Adicionar(NotaFiscal entidade)
+        public NotaFiscal Adicionar(NotaFiscal notaFiscal)
         {
-            throw new NotImplementedException();
+            notaFiscal.Id = Db.Adicionar(_sqlAdicionar, ObterDicionarioNotaFiscal(notaFiscal));
+            return notaFiscal;
         }
 
-        public NotaFiscal Atualizar(NotaFiscal entidade)
+        public NotaFiscal Atualizar(NotaFiscal notaFiscal)
         {
-            throw new NotImplementedException();
+            Db.Atualizar(_sqlAtualizar, ObterDicionarioNotaFiscal(notaFiscal));
+            return notaFiscal;
         }
 
         public NotaFiscal BuscarPorId(long Id)
         {
-            throw new NotImplementedException();
+            return Db.BuscarPorId(_sqlBuscarPorId, FormaObjetoNotaFiscal, new Dictionary<string, object> { { "ID", Id } });
         }
 
         public IEnumerable<NotaFiscal> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return Db.BuscarTodos(_sqlBuscarTodos, FormaObjetoNotaFiscal);
         }
 
-        public void Excluir(NotaFiscal entidade)
+        public void Excluir(NotaFiscal notaFiscal)
         {
-            throw new NotImplementedException();
+            Db.Excluir(_sqlExcluir, new Dictionary<string, object> { { "ID", notaFiscal.Id } });
         }
 
         #region Montar e Ler Objetos
@@ -188,7 +192,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
             };
         }
 
-        private static NotaFiscal FormaObjetoEmitente(IDataReader reader)
+        private static NotaFiscal FormaObjetoNotaFiscal(IDataReader reader)
         {
             NotaFiscal notaFiscal = new NotaFiscal();
 
@@ -216,7 +220,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
                 }
             };
 
-            if (Convert.ToString(reader["TIPODOCUMENTO_TRANSPORTADOR"]).Equals("CPF"))
+            if (Convert.ToString(reader["TIPODEDOCUMENTO_TRANSPORTADOR"]).Equals("CPF"))
             {
                 notaFiscal.Transportador.Documento = new CPF()
                 {
@@ -253,7 +257,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
             };
 
 
-            if (Convert.ToString(reader["TIPODOCUMENTO_DESTINATARIO"]).Equals("CPF"))
+            if (Convert.ToString(reader["TIPODEDOCUMENTO_DESTINATARIO"]).Equals("CPF"))
             {
                 notaFiscal.Destinatario.Documento = new CPF()
                 {
@@ -272,9 +276,9 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
             notaFiscal.Emitente = new Emitente
             {
                 Id = Convert.ToInt64(reader["IDEMITENTE"]),
-                InscricaoEstadual = Convert.ToString(reader["INSCRICAOESTADUAL_TBEMITENTE"]),
-                InscricaoMunicipal = Convert.ToString(reader["INSCRICAOMUNICIPAL_TBEMITENTE"]),
-                NomeFantasia = Convert.ToString(reader["NOMEFANTASIA_TBEMITENTE"]),
+                InscricaoEstadual = Convert.ToString(reader["INSCRICAOESTADUAL_EMITENTE"]),
+                InscricaoMunicipal = Convert.ToString(reader["INSCRICAOMUNICIPAL_EMITENTE"]),
+                NomeFantasia = Convert.ToString(reader["NOMEFANTASIA_EMITENTE"]),
                 RazaoSocial = Convert.ToString(reader["RAZAOSOCIAL_EMITENTE"]),
 
                 CNPJ = new CNPJ() { NumeroComPontuacao = Convert.ToString("CNPJ_EMITENTE") },

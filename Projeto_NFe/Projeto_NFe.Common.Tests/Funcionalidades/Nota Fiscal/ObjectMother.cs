@@ -2,6 +2,7 @@
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
+using Projeto_NFe.Domain.Funcionalidades.Produtos;
 using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,24 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal
                 Destinatario = destinatario,
                 Emitente = emitente,
                 Transportador = transportador
+            };
+        }
+
+        public static NotaFiscal PegarNotaFiscalValidaComIdDasDependencias(long idEmitente, long idDestinatario, long idTransportador)
+        {
+            return new NotaFiscal
+            {
+                ValorTotalICMS = 90,
+                ValorTotalIPI = 10,
+                ValorTotalFrete = 50,
+                ValorTotalNota = 1000,
+                ValorTotalProdutos = 800,
+                ValorTotalImpostos = 100,
+                NaturezaOperacao = "Natureza",
+                DataEntrada = DateTime.Now,
+                Destinatario = new Destinatario { Id = idDestinatario },
+                Emitente = new Emitente { Id = idEmitente },
+                Transportador = new Transportador { Id = idTransportador }
             };
         }
 
@@ -115,6 +134,45 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal
                 Destinatario = destinatario,
                 Emitente = emitente,
                 Transportador = transportador,
+                Produtos = produtos
+            };
+        }
+
+        public static NotaFiscal PegarNotaFiscalValidaSemDependencias()
+        {
+            List<ProdutoNotaFiscal> produtos = new List<ProdutoNotaFiscal>();
+
+            Produto produtoValido = new Produto
+            {
+                Id = 1,
+                Codigo = "",
+                Descricao = "",
+                Valor = 10
+            };
+
+            ProdutoNotaFiscal produtoValidoParaNota = new ProdutoNotaFiscal
+            {
+                Id = 1,
+                NotaFiscal = new NotaFiscal
+                {
+                    Id = 1
+                },
+                Produto = produtoValido,
+                Quantidade = 10
+            };
+
+            produtos.Add(produtoValidoParaNota);
+
+            return new NotaFiscal
+            {
+                ValorTotalICMS = 90,
+                ValorTotalIPI = 10,
+                ValorTotalFrete = 50,
+                ValorTotalNota = 1000,
+                ValorTotalProdutos = 800,
+                ValorTotalImpostos = 100,
+                NaturezaOperacao = "Natureza",
+                DataEntrada = DateTime.Now,
                 Produtos = produtos
             };
         }
