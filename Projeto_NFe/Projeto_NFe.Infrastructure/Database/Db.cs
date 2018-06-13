@@ -76,7 +76,7 @@ namespace Projeto_NFe.Infrastructure.Database
 
 
                     T t = default(T);
-                    var reader = command.ExecuteReader();
+                    IDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                         t = convertRelactionalData(reader);
                     

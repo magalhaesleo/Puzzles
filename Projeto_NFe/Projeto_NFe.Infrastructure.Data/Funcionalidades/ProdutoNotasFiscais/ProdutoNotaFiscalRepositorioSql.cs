@@ -94,6 +94,11 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.ProdutoNotasFiscais
             };
         }
 
+        public IEnumerable<ProdutoNotaFiscal> BuscarListaPorId(long id)
+        {
+            throw new NotImplementedException();
+        }
+
         private static Func<IDataReader, ProdutoNotaFiscal> FormaObjetoProdutoNotaFiscal = reader =>
             new ProdutoNotaFiscal
             {

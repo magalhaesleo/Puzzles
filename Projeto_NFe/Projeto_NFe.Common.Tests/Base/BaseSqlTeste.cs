@@ -21,10 +21,17 @@ namespace Projeto_NFe.Common.Tests.Base
 
         private const string EXCLUIR_REGISTRO_TABELA_DESTINATARIO = "DELETE FROM [dbo].[TBDESTINATARIO]; DBCC CHECKIDENT('[dbo].[TBDESTINATARIO]', RESEED, 0)";
         private const string ADICIONAR_REGISTRO_TABELA_DESTINATARIO = "INSERT INTO TBDESTINATARIO (Nome, Documento, TipoDeDocumento, InscricaoEstadual, EnderecoId)" +
-                                                                    "VALUES ('Nome ou Razao Social', '111.444.777-35', 'CNPJ', '319.402.517', 2)";
+                                                                    "VALUES ('Nome ou Razao Social', '99.327.235/0001-50', 'CNPJ', '319.402.517', 2)";
+
         private const string EXCLUIR_REGISTRO_TABELA_TRANSPORTADOR = "DELETE FROM [dbo].[TBTRANSPORTADOR]; DBCC CHECKIDENT('[dbo].[TBTRANSPORTADOR]', RESEED, 0)";
         private const string ADICIONAR_REGISTRO_TABELA_TRANSPORTADOR = "INSERT INTO TBTRANSPORTADOR (Nome, Documento, TipoDocumento, InscricaoEstadual, EnderecoId, ResponsabilidadeFrete)" +
-                                                                    "VALUES ('Nome ou Razao Social', '111.444.777-35', 'CNPJ', '319.402.517', 2, 1)";
+                                                                    "VALUES ('Nome ou Razao Social', '99.327.235/0001-50', 'CNPJ', '319.402.517', 2, 1)";
+
+        private const string ADICIONAR_REGISTRO_TABELA_DESTINATARIO_COMCPF = "INSERT INTO TBDESTINATARIO (Nome, Documento, TipoDeDocumento, InscricaoEstadual, EnderecoId)" +
+                                                                    "VALUES ('Nome ou Razao Social', '111.444.777-35', 'CPF', '319.402.517', 2)";
+
+        private const string ADICIONAR_REGISTRO_TABELA_TRANSPORTADOR_COMCPF = "INSERT INTO TBTRANSPORTADOR (Nome, Documento, TipoDocumento, InscricaoEstadual, EnderecoId, ResponsabilidadeFrete)" +
+                                                                    "VALUES ('Nome ou Razao Social', '111.444.777-35', 'CPF', '319.402.517', 2, 1)";
 
         private const string EXCLUIR_REGISTRO_TABELA_PRODUTO = "DELETE FROM [dbo].[TBPRODUTO]; DBCC CHECKIDENT('[dbo].[TBPRODUTO]', RESEED, 0)";
         private const string ADICIONAR_REGISTRO_TABELA_PRODUTO = "INSERT INTO TBPRODUTO (CODIGO, DESCRICAO, VALOR) VALUES ('CODIGO', 'DESCRICAO', 100)";
@@ -87,6 +94,12 @@ namespace Projeto_NFe.Common.Tests.Base
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_PRODUTONOTAFISCAL);
         }
 
+        public static void InicializarBancoDeDadosPrepararEntidadesComCPF()
+        {
+            Db.Atualizar(ADICIONAR_REGISTRO_TABELA_DESTINATARIO_COMCPF);
+            Db.Atualizar(ADICIONAR_REGISTRO_TABELA_TRANSPORTADOR_COMCPF);
+            Db.Atualizar(ADICIONAR_REGISTRO_TABELA_EMITENTE);
+        }
 
     }
 }

@@ -74,6 +74,7 @@
     <Compile Include="Funcionalidades\Destinatarios\DestinatarioRepositorioSqlTeste.cs" />
     <Compile Include="Funcionalidades\Emitentes\EmitenteRepositorioSqlTeste.cs" />
     <Compile Include="Funcionalidades\Enderecos\EnderecoRepositorioSqlTeste.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscalRepositorioSqlTeste.cs" />
     <Compile Include="Funcionalidades\ProdutoNotasFiscais\ProdutoNotaFiscalRepositorioSqlTeste.cs" />
     <Compile Include="Funcionalidades\Produtos\ProdutoRepositorioSqlTeste.cs" />
     <Compile Include="Funcionalidades\Transportadoras\TransportadorRepositorioSqlTeste.cs" />
