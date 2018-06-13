@@ -63,8 +63,31 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Nota_Fiscal
         }
 
         [Test]
-        public void NotaFiscal_InfraData_BuscarPorId_Sucesso()
+        public void NotaFiscal_InfraData_BuscarPorId_EntidadesComCNPJ_Sucesso()
         {
+            NotaFiscal notaFiscalParaAdicionar = _notaFiscalValida;
+
+            NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(notaFiscalParaAdicionar);
+
+            NotaFiscal notaFiscalParaBuscar = _repositorio.BuscarPorId(notaFiscalAdicionada.Id);
+
+            notaFiscalParaBuscar.Should().NotBeNull();
+            notaFiscalParaBuscar.NaturezaOperacao.Should().Be(notaFiscalAdicionada.NaturezaOperacao);
+            notaFiscalParaBuscar.DataEntrada.Minute.Should().Be(notaFiscalAdicionada.DataEntrada.Minute);
+            notaFiscalParaBuscar.Destinatario.Id.Should().Be(notaFiscalAdicionada.Destinatario.Id);
+            notaFiscalParaBuscar.Emitente.Id.Should().Be(notaFiscalAdicionada.Emitente.Id);
+            notaFiscalParaBuscar.Transportador.Id.Should().Be(notaFiscalAdicionada.Transportador.Id);
+        }
+
+        [Test]
+        public void NotaFiscal_InfraData_BuscarPorId_EntidadesComCPF_Sucesso()
+        {
+            BaseSqlTeste.InicializarBancoDeDadosPrepararEntidadesComCPF();
+            long idEmitenteCadastradoPorBaseSql = 2;
+            long idDestinatarioCadastradoPorBaseSql = 2;
+            long idTransportadorCadastradoPorBaseSql = 2;
+            _notaFiscalValida = ObjectMother.PegarNotaFiscalValidaComIdDasDependencias(idEmitenteCadastradoPorBaseSql, idDestinatarioCadastradoPorBaseSql, idTransportadorCadastradoPorBaseSql);
+
             NotaFiscal notaFiscalParaAdicionar = _notaFiscalValida;
 
             NotaFiscal notaFiscalAdicionada = _repositorio.Adicionar(notaFiscalParaAdicionar);
