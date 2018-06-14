@@ -104,6 +104,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal
         {
             return new NotaFiscal
             {
+                ChaveAcesso = "1111111111111111111111111111111111111111111",
                 ValorTotalICMS = 90,
                 ValorTotalIPI = 10,
                 ValorTotalFrete = 50,
