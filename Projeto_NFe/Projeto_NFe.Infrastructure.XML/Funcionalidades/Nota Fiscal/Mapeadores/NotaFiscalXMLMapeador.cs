@@ -30,9 +30,23 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
             infNFeConf.det = MontarListaDeProdutosConfiguracao(notaFiscal);
             infNFeConf.ide = MontarIdeConfiguracao(notaFiscal);
             infNFeConf.total = MontarTotalConfiguracao(notaFiscal);
-            infNFeConf.Versao
+            infNFeConf.transp = MontarTransportadoraConfiguracao(notaFiscal);
 
             return infNFeConf;
+        }
+
+        private static TransportadorConfiguracao MontarTransportadoraConfiguracao(NotaFiscal notaFiscal)
+        {
+            TransportadorConfiguracao transportadorConfiguracao = new TransportadorConfiguracao();
+            transportadorConfiguracao.Transporta.CnpjDestinatario = notaFiscal.Destinatario.Documento.NumeroComPontuacao;
+            transportadorConfiguracao.Transporta.Estado = notaFiscal.Transportador.Endereco.Estado;
+            transportadorConfiguracao.Transporta.InscricaoEstadual = notaFiscal.Transportador.InscricaoEstadual;
+            transportadorConfiguracao.Transporta.Logradouro = notaFiscal.Transportador.Endereco.Logradouro;
+            transportadorConfiguracao.Transporta.Municipio = notaFiscal.Transportador.Endereco.Municipio;
+            transportadorConfiguracao.Transporta.Nome = notaFiscal.Transportador.NomeRazaoSocial;
+            transportadorConfiguracao.modFrete = Convert.ToInt32(notaFiscal.Transportador.ResponsabilidadeFrete);
+
+            return transportadorConfiguracao;
         }
 
         private static TotalConfiguracao MontarTotalConfiguracao(NotaFiscal notaFiscal)
