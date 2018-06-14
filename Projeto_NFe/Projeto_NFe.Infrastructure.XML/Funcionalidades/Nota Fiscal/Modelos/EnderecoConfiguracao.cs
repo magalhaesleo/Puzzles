@@ -15,7 +15,7 @@ namespace NFe.Infra.XML.Features.NotasFiscais.Modelos
         public string Logradouro { get; set; }
 
         [XmlElement(ElementName = "nro")]
-        public string Numero { get; set; }
+        public int Numero { get; set; }
 
         [XmlElement(ElementName = "xBairro")]
         public string Bairro { get; set; }

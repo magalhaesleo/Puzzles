@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Nota Fiscal\Mapeadores\NotaFiscalXMLModeloParaNotaFiscal.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Modelos\DestinatarioConfiguracao.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Modelos\EmitenteConfiguracao.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Modelos\EnderecoConfiguracao.cs" />
