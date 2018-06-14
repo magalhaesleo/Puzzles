@@ -13,7 +13,7 @@ namespace NFe.Infra.XML.Features.NotasFiscais.Modelos
     {
         public EmitenteConfiguracao()
         {
-            enderDest = new EnderDestConfiguracao();
+            enderDest = new EnderecoConfiguracao();
         }
 
         [XmlElement(ElementName = "CNPJ")]
@@ -32,6 +32,6 @@ namespace NFe.Infra.XML.Features.NotasFiscais.Modelos
         public string InscricaoMunicipal { get; set; }
 
         [XmlElement(ElementName = "enderEmit")]
-        public EnderDestConfiguracao enderDest { get; set; }
+        public EnderecoConfiguracao enderEmit { get; set; }
     }
 }

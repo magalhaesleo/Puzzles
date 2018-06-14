@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 
 namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal
 {
-    public static class NotaFiscalXML
+    public static class NotaFiscalXMLRepositorio
     {
         public static string Serializar(NotaFiscal notaFiscal, string path)
         {

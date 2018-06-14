@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace NFe.Infra.XML.Features.NotasFiscais.Modelos
 {
     [ExcludeFromCodeCoverage]
-    public class EnderDestConfiguracao
+    public class EnderecoConfiguracao
     {
         [XmlElement(ElementName = "xLgr")]
         public string Logradouro { get; set; }

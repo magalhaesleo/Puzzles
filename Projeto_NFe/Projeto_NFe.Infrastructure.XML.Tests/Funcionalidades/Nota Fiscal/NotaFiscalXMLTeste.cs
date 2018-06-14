@@ -44,7 +44,7 @@ namespace Projeto_NFe.Infrastructure.XML.Tests.Funcionalidades.Nota_Fiscal
             _notaFiscal = ObjectMother.PegarNotaFiscalValidaComListaDeProdutos(_emitente, _destinatario, _transportador, _produtosNotaFiscal);
             //NotaFiscalDTO dto = NotaFiscalMapper.Criar(_notaFiscal);
             string path = @"C:\Users\ndduser\Desktop\NotaFiscal.xml";
-            string resultado = NotaFiscalXML.Serializar(_notaFiscal, path);
+            string resultado = NotaFiscalXMLRepositorio.Serializar(_notaFiscal, path);
         }
     }
 }

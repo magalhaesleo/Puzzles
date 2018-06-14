@@ -28,18 +28,18 @@ namespace NFe.Infra.XML.Features.NotasFiscais.Modelos
         }
 
         [XmlElement(ElementName = "vICMS")]
-        public decimal ValorIcms { get; set; }
+        public double ValorIcms { get; set; }
 
         [XmlElement(ElementName = "vFrete")]
-        public decimal ValorFrete { get; set; }
+        public double ValorFrete { get; set; }
 
         [XmlElement(ElementName = "vIPI")]
-        public decimal ValorIpi { get; set; }
+        public double ValorIpi { get; set; }
 
         [XmlElement(ElementName = "vNF")]
-        public decimal ValorProdutos { get; set; }
+        public double ValorProdutos { get; set; }
 
         [XmlElement(ElementName = "vTotTrib")]
-        public decimal ValorTotalNota { get; set; }
+        public double ValorTotalNota { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace NFe.Infra.XML.Features.NotasFiscais.Modelos
     public class ProdConfiguracao
     {
         [XmlElement(ElementName = "cProd")]
-        public int CodigoProduto { get; set; }
+        public string CodigoProduto { get; set; }
 
         [XmlElement(ElementName = "xProd")]
         public string DescricaoProduto { get; set; }
@@ -40,10 +40,10 @@ namespace NFe.Infra.XML.Features.NotasFiscais.Modelos
         public int Quantidade { get; set; }
 
         [XmlElement(ElementName = "vUnCom")]
-        public decimal Unitario { get; set; }
+        public double Unitario { get; set; }
 
         [XmlElement(ElementName = "vProd")]
-        public decimal Total { get; set; }
+        public double Total { get; set; }
     }
 
     [ExcludeFromCodeCoverage]
@@ -74,9 +74,9 @@ namespace NFe.Infra.XML.Features.NotasFiscais.Modelos
     public class IcmsProduto
     {
         [XmlElement(ElementName = "pICMS")]
-        public decimal Ipi { get; set; }
+        public double Ipi { get; set; }
 
         [XmlElement(ElementName = "vICMS")]
-        public decimal Icms { get; set; }
+        public double Icms { get; set; }
     }
 }

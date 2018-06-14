@@ -41,9 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Funcionalidades\Emitentes\EmitenteXML.cs" />
-    <Compile Include="Funcionalidades\Emitentes\EmitenteXMLModelo.cs" />
-    <Compile Include="Funcionalidades\Enderecos\EnderecoXMLModelo.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Modelos\DestinatarioConfiguracao.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Modelos\EmitenteConfiguracao.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Modelos\EnderecoConfiguracao.cs" />
@@ -53,9 +50,8 @@
     <Compile Include="Funcionalidades\Nota Fiscal\Modelos\ProdutoConfiguracao.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Modelos\TotalConfiguracao.cs" />
     <Compile Include="Funcionalidades\Nota Fiscal\Modelos\TransportadorConfiguracao.cs" />
-    <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscalXML.cs" />
-    <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscalXMLModelo.cs" />
-    <Compile Include="Funcionalidades\Produtos\ProdutoXMLModelo.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\NotaFiscalXMLRepositorio.cs" />
+    <Compile Include="Funcionalidades\Nota Fiscal\Mapeadores\NotaFiscalXMLMapeador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
