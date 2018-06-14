@@ -12,6 +12,8 @@ using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Domain.Funcionalidades.Produtos;
 using Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
+using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 
 namespace Projeto_NFe.Infrastructure.XML.Tests.Funcionalidades.Nota_Fiscal
 {
@@ -25,26 +27,45 @@ namespace Projeto_NFe.Infrastructure.XML.Tests.Funcionalidades.Nota_Fiscal
         Produto _produto;
         ProdutoNotaFiscal _produtoNotaFiscal;
         List<ProdutoNotaFiscal> _produtosNotaFiscal;
+        CNPJ _CNPJ;
+        Endereco _endereco;
+
 
         [SetUp]
         public void IniciarCenario()
         {
-            _produto = new Produto();
-            _emitente = new Emitente();
-            _destinatario = new Destinatario();
-            _transportador = new Transportador();
-            _produtosNotaFiscal = new List<ProdutoNotaFiscal>();
-            _produtoNotaFiscal = new ProdutoNotaFiscal(_notaFiscal, _produto, 1);
+            _endereco = Common.Tests.Funcionalidades.Enderecos.ObjectMother.PegarEnderecoValido();
+
+            _emitente = Common.Tests.Funcionalidades.Emitentes.ObjectMother.PegarEmitenteValido(_endereco, new CNPJ { NumeroComPontuacao = "99.327.235/0001-50" });
+            _destinatario = Common.Tests.Funcionalidades.Destinatarios.ObjectMother.PegarDestinatarioValidoComCNPJ(_endereco, new CNPJ { NumeroComPontuacao = "13.106.137/0001-77" });
+            _transportador = Common.Tests.Funcionalidades.Transportadoras.ObjectMother.PegarTransportadorValidoComCNPJ(_endereco, new CNPJ { NumeroComPontuacao = "11.222.333/0001-81" });
+
+            _notaFiscal = ObjectMother.PegarNotaFiscalValida(_emitente, _destinatario, _transportador);
+            _notaFiscal.DataEmissao = DateTime.Now;
+            _produto = Common.Tests.Funcionalidades.Produtos.ObjectMother.ObterProdutoValido();
+            _produtoNotaFiscal = Common.Tests.Funcionalidades.ProdutoNotasFiscais.ObjectMother.PegarProdutoNotaFiscalValido(_produto, _notaFiscal);
+
+            _notaFiscal.Produtos = new List<ProdutoNotaFiscal>();
+            _notaFiscal.Produtos.Add(_produtoNotaFiscal);
+
+            _notaFiscal.ValidarGeracao();
+            _notaFiscal.ValidarParaEmitir();
+            _notaFiscal.CalcularValoresTotais();
+            _notaFiscal.GerarChaveDeAcesso(new Random());
+            _notaFiscal.DataEmissao = DateTime.Now;
         }
 
         [Test]
         public void NotaFiscal_InfraXML_Serializar_Sucesso()
         {
-            _produtosNotaFiscal.Add(_produtoNotaFiscal);
-            _notaFiscal = ObjectMother.PegarNotaFiscalValidaComListaDeProdutos(_emitente, _destinatario, _transportador, _produtosNotaFiscal);
-            //NotaFiscalDTO dto = NotaFiscalMapper.Criar(_notaFiscal);
+            string resultado = NotaFiscalXMLRepositorio.Serializar(_notaFiscal);
+        }
+
+        [Test]
+        public void NotaFiscal_InfraXML_SerializarParaArquivo_Sucesso()
+        {
             string path = @"C:\Users\ndduser\Desktop\NotaFiscal.xml";
-            string resultado = NotaFiscalXMLRepositorio.Serializar(_notaFiscal, path);
+            NotaFiscalXMLRepositorio.Serializar(_notaFiscal, path);
         }
     }
 }

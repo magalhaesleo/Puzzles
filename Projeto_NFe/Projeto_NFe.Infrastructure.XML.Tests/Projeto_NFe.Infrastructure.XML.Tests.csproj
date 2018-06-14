@@ -85,6 +85,10 @@
       <Project>{34F74DD5-AC1A-47DE-8C92-BCC2B4684C51}</Project>
       <Name>Projeto_NFe.Infrastructure.XML</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Projeto_NFe.Infrastructure\Projeto_NFe.Infrastructure.csproj">
+      <Project>{46825EC0-CC2C-4752-A78E-D6F816F32CCD}</Project>
+      <Name>Projeto_NFe.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
