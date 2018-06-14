@@ -1,15 +1,7 @@
 ﻿using NUnit.Framework;
-using Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal;
-using Projeto_NFe.Common.Tests.Funcionalidades.Enderecos;
-using Projeto_NFe.Common.Tests.Funcionalidades.Emitentes;
-using Projeto_NFe.Common.Tests.Funcionalidades.Destinatarios;
-using Projeto_NFe.Common.Tests.Funcionalidades.Transportadoras;
 using Projeto_NFe.Infrastructure.PDF.Funcionalidades.Nota_Fiscal;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Projeto_NFe.Domain.Funcionalidades.Emitentes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
@@ -18,6 +10,9 @@ using Projeto_NFe.Domain.Funcionalidades.Destinatarios;
 using Projeto_NFe.Domain.Funcionalidades.Transportadoras;
 using Projeto_NFe.Domain.Funcionalidades.Produtos;
 using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
+using System.IO;
+using NUnit.Framework;
+using FluentAssertions;
 
 namespace Projeto_NFe.Infrastructure.PDF.Tests.Funcionalidades.Nota_Fiscal
 {
@@ -53,6 +48,13 @@ namespace Projeto_NFe.Infrastructure.PDF.Tests.Funcionalidades.Nota_Fiscal
 
             NotaFiscalRepositorioPDF gerador = new NotaFiscalRepositorioPDF();
             gerador.Exportar(caminhoParaANovaNotaFiscal, notaFiscal);
+
+            Action acaoParaVerificarSeArquivoExiste = () => File.Exists(caminhoParaANovaNotaFiscal);
+
+            acaoParaVerificarSeArquivoExiste.Should().Equals(true);
+
+            File.Delete(caminhoParaANovaNotaFiscal);
+
         }
 
         [Test]
@@ -78,7 +80,6 @@ namespace Projeto_NFe.Infrastructure.PDF.Tests.Funcionalidades.Nota_Fiscal
             notaFiscal.Produtos.Add(produtoNotaFiscal);
             notaFiscal.Produtos.Add(produtoNotaFiscal);
 
-
             notaFiscal.ValidarGeracao();
             notaFiscal.ValidarParaEmitir();
             notaFiscal.CalcularValoresTotais();
@@ -89,6 +90,13 @@ namespace Projeto_NFe.Infrastructure.PDF.Tests.Funcionalidades.Nota_Fiscal
 
             NotaFiscalRepositorioPDF gerador = new NotaFiscalRepositorioPDF();
             gerador.Exportar(caminhoParaANovaNotaFiscal, notaFiscal);
+
+            Action acaoParaVerificarSeArquivoExiste = () => File.Exists(caminhoParaANovaNotaFiscal);
+
+            acaoParaVerificarSeArquivoExiste.Should().Equals(true);
+
+            File.Delete(caminhoParaANovaNotaFiscal);
+
         }
 
     }
