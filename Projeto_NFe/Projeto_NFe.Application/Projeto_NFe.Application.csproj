@@ -60,6 +60,10 @@
       <Project>{71B57985-2C26-4A87-BD86-D2EE37C0A31D}</Project>
       <Name>Projeto_NFe.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Projeto_NFe.Infrastructure.XML\Projeto_NFe.Infrastructure.XML.csproj">
+      <Project>{34f74dd5-ac1a-47de-8c92-bcc2b4684c51}</Project>
+      <Name>Projeto_NFe.Infrastructure.XML</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Projeto_NFe.Infrastructure\Projeto_NFe.Infrastructure.csproj">
       <Project>{46825ec0-cc2c-4752-a78e-d6f816f32ccd}</Project>
       <Name>Projeto_NFe.Infrastructure</Name>

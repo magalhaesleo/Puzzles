@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
+using Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal;
 
 namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
 {
@@ -14,12 +15,12 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
         private INotaFiscalRepositorio _notaFiscalRepositorio;
         private INotaFiscalEmitidaRepositorio _notaFiscalEmitidaRepositorio;
         private IProdutoNotaFiscalRepositorio _produtoNotaFiscalRepositorio;
-
         public NotaFiscalServico(INotaFiscalRepositorio notaFiscalRepositorio, INotaFiscalEmitidaRepositorio notaFiscalEmitidaRepositorio, IProdutoNotaFiscalRepositorio produtoNotaFiscalRepositorio)
         {
             this._notaFiscalRepositorio = notaFiscalRepositorio;
             this._notaFiscalEmitidaRepositorio = notaFiscalEmitidaRepositorio;
             this._produtoNotaFiscalRepositorio = produtoNotaFiscalRepositorio;
+          
         }
 
         public NotaFiscal Adicionar(NotaFiscal notaFiscal)
@@ -69,7 +70,7 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
 
         public bool ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso)
         {
-            int quantidadeDenotasFiscaisEncontrada = _notaFiscalEmitidaRepositorio.ConsultarExistenciaDeNotaEmitida(chaveDeAcesso);
+            long quantidadeDenotasFiscaisEncontrada = _notaFiscalEmitidaRepositorio.ConsultarExistenciaDeNotaEmitida(chaveDeAcesso);
 
             if (quantidadeDenotasFiscaisEncontrada > 0)
                 return true;
@@ -112,11 +113,12 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
                 notaFiscal.GerarChaveDeAcesso(sorteador);
             }
 
-            //Gerar XML
+            //Gerarando XML para inserção em banco
+            string notaFiscalSerializadaParaXML = NotaFiscalXMLRepositorio.Serializar(notaFiscal);
 
-            NotaFiscal notaFiscalEmitida = _notaFiscalEmitidaRepositorio.Adicionar(notaFiscal);
+            long idNotaFiscalEmitida = _notaFiscalEmitidaRepositorio.Adicionar(notaFiscalSerializadaParaXML,notaFiscal.ChaveAcesso);
 
-            if (notaFiscalEmitida.Id != 0)
+            if (idNotaFiscalEmitida != 0)
                 _notaFiscalRepositorio.Excluir(notaFiscal);
 
             return notaFiscal;
