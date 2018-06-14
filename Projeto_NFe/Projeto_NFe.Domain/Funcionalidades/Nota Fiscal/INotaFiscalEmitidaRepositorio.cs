@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal
 {
-    public interface INotaFiscalEmitidaRepositorio : IRepositorio<NotaFiscal>
+    public interface INotaFiscalEmitidaRepositorio
     {
-        int ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso);
+        long Adicionar(string xml,string chaveDeAcesso);
+
+        long ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso);
 
         NotaFiscal BuscarNotaFiscalEmitidaPorChave(string chaveDeAcesso);
     }

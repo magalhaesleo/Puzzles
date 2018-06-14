@@ -1,4 +1,5 @@
 ﻿using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
+using Projeto_NFe.Infrastructure.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,32 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
 {
     public class NotaFiscalEmitidaRepositorioSql : INotaFiscalEmitidaRepositorio
     {
-        public NotaFiscal Adicionar(NotaFiscal entidade)
-        {
-            throw new NotImplementedException();
-        }
+        #region Scripts SQL
 
-        public NotaFiscal Atualizar(NotaFiscal entidade)
+        public const string _sqlAdicionar = @"INSERT INTO TBNOTAFISCALEMITIDA 
+                                            (CHAVEDEACESSO,XML) 
+                                            VALUES 
+                                            ({0}CHAVEDANOTAFISCAL,{0}XML); SELECT SCOPE_IDENTITY();";
+
+        public const string _sqlBuscarPorId = @"SELECT * FROM TBNOTAFISCALEMITIDA 
+                                              WHERE ID = {0}ID";
+
+        public const string _sqlBuscarPorChaveDeAcesso = @"SELECT * FROM TBNOTAFISCALEMITIDA 
+                                              WHERE CHAVEDEACESSO = {0}CHAVEDEACESSO";
+
+
+        public const string _sqlExcluir = @"DELETE FROM TBNOTAFISCALEMITIDA
+                                             WHERE ID = {0}ID";
+
+        public const string _sqlBuscarTodos = @"SELECT * FROM TBNOTAFISCALEMITIDA";
+
+        public const string _sqlConsultaExistenciaDeNotaChaveDeAcesso = @"SELECT * FROM TBNOTAFISCALEMITIDA";
+
+        #endregion Scripts SQL
+
+        public long Adicionar(string xmlNotaFiscal, string chaveDeAcesso)
         {
-            throw new NotImplementedException();
+           return Db.Adicionar(_sqlAdicionar, new Dictionary<string, object> { { "CHAVEDEACESSO", chaveDeAcesso }, { "XML", xmlNotaFiscal } });
         }
 
         public NotaFiscal BuscarNotaFiscalEmitidaPorChave(string chaveDeAcesso)
@@ -24,24 +43,9 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
             throw new NotImplementedException();
         }
 
-        public NotaFiscal BuscarPorId(long Id)
+        public long ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<NotaFiscal> BuscarTodos()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Excluir(NotaFiscal entidade)
-        {
-            throw new NotImplementedException();
+            return Db.Adicionar(_sqlConsultaExistenciaDeNotaChaveDeAcesso, new Dictionary<string, object> { { "CHAVEDEACESSO", chaveDeAcesso } });
         }
     }
 }

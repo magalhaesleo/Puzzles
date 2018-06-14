@@ -11,9 +11,10 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal
     {
         public static int _count = 0;
 
-        public virtual NotaFiscal Adicionar(NotaFiscal notaFiscal)
+        public long Adicionar(string xml, string chaveDeAcesso)
         {
-            return notaFiscal;
+            long idRetornado = 1;
+            return idRetornado;
         }
 
         public NotaFiscal Atualizar(NotaFiscal notaFiscal)
@@ -36,7 +37,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal
             throw new NotImplementedException();
         }
 
-        public virtual int ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso)
+        public virtual long ConsultarExistenciaDeNotaEmitida(string chaveDeAcesso)
         {
             if (_count < 2)
             {
