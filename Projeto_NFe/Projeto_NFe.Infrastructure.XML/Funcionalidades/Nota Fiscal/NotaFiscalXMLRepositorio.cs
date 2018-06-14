@@ -19,13 +19,13 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal
     {
        public static string Serializar(NotaFiscal notaFiscal)
         {
-            NotaFiscalModeloXml notaFiscalXML = NotaFiscalXMLMapper.MontarNotaFiscalXMLModelo(notaFiscal);
+            NotaFiscalModeloXml notaFiscalXML = NotaFiscalParaNotaFiscalXMLModelo.MontarNotaFiscalXMLModelo(notaFiscal);
             return XMLHelper.Serializar(notaFiscalXML);
         }
 
         public static void Serializar(NotaFiscal notaFiscal, string path)
         {
-            NotaFiscalModeloXml notaFiscalXML = NotaFiscalXMLMapper.MontarNotaFiscalXMLModelo(notaFiscal);
+            NotaFiscalModeloXml notaFiscalXML = NotaFiscalParaNotaFiscalXMLModelo.MontarNotaFiscalXMLModelo(notaFiscal);
             XMLHelper.SerializarParaAquivo(notaFiscalXML, path);
         }
     }

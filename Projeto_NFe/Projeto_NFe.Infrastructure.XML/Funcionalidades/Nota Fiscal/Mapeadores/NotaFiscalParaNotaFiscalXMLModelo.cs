@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
 {
-    public class NotaFiscalXMLMapper
+    public class NotaFiscalParaNotaFiscalXMLModelo
     {
         public static NotaFiscalModeloXml MontarNotaFiscalXMLModelo(NotaFiscal notaFiscal)
         {
