@@ -138,44 +138,5 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Nota_Fiscal
                 Produtos = produtos
             };
         }
-
-        public static NotaFiscal PegarNotaFiscalValidaSemDependencias()
-        {
-            List<ProdutoNotaFiscal> produtos = new List<ProdutoNotaFiscal>();
-
-            Produto produtoValido = new Produto
-            {
-                Id = 1,
-                Codigo = "",
-                Descricao = "",
-                Valor = 10
-            };
-
-            ProdutoNotaFiscal produtoValidoParaNota = new ProdutoNotaFiscal
-            {
-                Id = 1,
-                NotaFiscal = new NotaFiscal
-                {
-                    Id = 1
-                },
-                Produto = produtoValido,
-                Quantidade = 10
-            };
-
-            produtos.Add(produtoValidoParaNota);
-
-            return new NotaFiscal
-            {
-                ValorTotalICMS = 90,
-                ValorTotalIPI = 10,
-                ValorTotalFrete = 50,
-                ValorTotalNota = 1000,
-                ValorTotalProdutos = 800,
-                ValorTotalImpostos = 100,
-                NaturezaOperacao = "Natureza",
-                DataEntrada = DateTime.Now,
-                Produtos = produtos
-            };
-        }
     }
 }

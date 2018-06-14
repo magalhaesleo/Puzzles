@@ -74,9 +74,9 @@ namespace NFe.Infra.XML.Features.NotasFiscais.Modelos
     public class IcmsProduto
     {
         [XmlElement(ElementName = "pICMS")]
-        public double Ipi { get; set; }
+        public double AliquotaICMS { get; set; }
 
         [XmlElement(ElementName = "vICMS")]
-        public double Icms { get; set; }
+        public double ValorICMS { get; set; }
     }
 }

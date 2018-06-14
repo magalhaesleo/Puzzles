@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
 {
-    public class NotaFiscalXMLMapper
+    public class NotaFiscalParaNotaFiscalXMLModelo
     {
         public static NotaFiscalModeloXml MontarNotaFiscalXMLModelo(NotaFiscal notaFiscal)
         {
@@ -25,6 +25,7 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
         {
             InfNFeConfiguracao infNFeConf = new InfNFeConfiguracao();
             infNFeConf.ChaveAcesso = notaFiscal.ChaveAcesso;
+            infNFeConf.Versao = "3.10";
             infNFeConf.dest = MontarDestinatarioConfiguracao(notaFiscal);
             infNFeConf.emit = MontarEmitenteConfiguracao(notaFiscal);
             infNFeConf.det = MontarListaDeProdutosConfiguracao(notaFiscal);
@@ -82,7 +83,7 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
             {
                 destinatarioConfiguracao.CpfDestinatario = notaFiscal.Destinatario.Documento.NumeroComPontuacao;
             }
-            destinatarioConfiguracao.enderDest = MontarEnderecoConfiguracao(notaFiscal);
+            destinatarioConfiguracao.enderDest = MontarEnderecoDestinatarioConfiguracao(notaFiscal);
 
             destinatarioConfiguracao.InscricaoEstadual = notaFiscal.Destinatario.InscricaoEstadual;
             destinatarioConfiguracao.Nome = notaFiscal.Destinatario.NomeRazaoSocial;
@@ -99,16 +100,16 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
             emitConfiguracao.InscricaoMunicipal = notaFiscal.Emitente.InscricaoMunicipal;
             emitConfiguracao.Nome = notaFiscal.Emitente.NomeFantasia;
             emitConfiguracao.RazaoSocial = notaFiscal.Emitente.RazaoSocial;
-            emitConfiguracao.enderEmit = MontarEnderecoConfiguracao(notaFiscal);
+            emitConfiguracao.enderEmit = MontarEnderecoEmitenteConfiguracao(notaFiscal);
 
             return emitConfiguracao;
         }
 
-        private static EnderecoConfiguracao MontarEnderecoConfiguracao(NotaFiscal notaFiscal)
+        private static EnderecoConfiguracao MontarEnderecoDestinatarioConfiguracao(NotaFiscal notaFiscal)
         {
             EnderecoConfiguracao enderDestConfiguracao = new EnderecoConfiguracao();
 
-            enderDestConfiguracao.Numero = notaFiscal.Destinatario.Endereco.Numero.ToString();
+            enderDestConfiguracao.Numero = notaFiscal.Destinatario.Endereco.Numero;
             enderDestConfiguracao.Logradouro = notaFiscal.Destinatario.Endereco.Logradouro;
             enderDestConfiguracao.Municipio = notaFiscal.Destinatario.Endereco.Municipio;
             enderDestConfiguracao.Estado = notaFiscal.Destinatario.Endereco.Estado;
@@ -117,7 +118,21 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
 
             return enderDestConfiguracao;
         }
-        
+
+        private static EnderecoConfiguracao MontarEnderecoEmitenteConfiguracao(NotaFiscal notaFiscal)
+        {
+            EnderecoConfiguracao enderDestConfiguracao = new EnderecoConfiguracao();
+
+            enderDestConfiguracao.Numero = notaFiscal.Emitente.Endereco.Numero;
+            enderDestConfiguracao.Logradouro = notaFiscal.Emitente.Endereco.Logradouro;
+            enderDestConfiguracao.Municipio = notaFiscal.Emitente.Endereco.Municipio;
+            enderDestConfiguracao.Estado = notaFiscal.Emitente.Endereco.Estado;
+            enderDestConfiguracao.Bairro = notaFiscal.Emitente.Endereco.Bairro;
+            enderDestConfiguracao.Pais = notaFiscal.Emitente.Endereco.Pais;
+
+            return enderDestConfiguracao;
+        }
+
         private static List<ProdutoConfiguracao> MontarListaDeProdutosConfiguracao(NotaFiscal notaFiscal)
         {
             List<ProdutoConfiguracao> listaProdutos = new List<ProdutoConfiguracao>();
@@ -154,8 +169,8 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
             IcmsProduto icmsProduto = new IcmsProduto();
             Icms icms = new Icms();
             icms.IcmsProduto = icmsProduto;
-            icmsProduto.Icms = produtoNotaFiscal.Produto.AliquotaICMS;
-            icmsProduto.Ipi = produtoNotaFiscal.ValorICMS;
+            icmsProduto.AliquotaICMS = produtoNotaFiscal.Produto.AliquotaICMS * 100;
+            icmsProduto.ValorICMS = produtoNotaFiscal.ValorICMS;
             impostoConfiguracao.Icms = icms;
 
             return impostoConfiguracao;
