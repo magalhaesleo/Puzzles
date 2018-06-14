@@ -11,7 +11,7 @@ namespace Projeto_NFe.Common.Tests.Base
     {
         #region Scripts SQL
         private const string EXCLUIR_REGISTRO_TABELA_ENDERECO = "DELETE FROM [dbo].[TBENDERECO]; DBCC CHECKIDENT('[dbo].[TBENDERECO]', RESEED, 0)";
-        private const string ADICIONAR_REGISTRO_TABELA_ENDERECO = "INSERT INTO TBENDERECO (Logradouro, Numero, Bairro, Municipio, Estado, Pais) VALUES ('Logradouro', 1, 'Bairro', 'Município', 'Estado', 'País')";
+        private const string ADICIONAR_REGISTRO_TABELA_ENDERECO = "INSERT INTO TBENDERECO (Logradouro, Numero, Bairro, Municipio, Estado, Pais) VALUES ('Logradouro', 1, 'Bairro', 'Município', 'SC', 'País')";
 
         private const string EXCLUIR_REGISTRO_TABELA_EMITENTE = "DELETE FROM [dbo].[TBEMITENTE]; DBCC CHECKIDENT('[dbo].[TBEMITENTE]', RESEED, 0)";
         private const string ADICIONAR_REGISTRO_TABELA_EMITENTE = @"INSERT INTO TBEMITENTE (NOMEFANTASIA, RAZAOSOCIAL,
