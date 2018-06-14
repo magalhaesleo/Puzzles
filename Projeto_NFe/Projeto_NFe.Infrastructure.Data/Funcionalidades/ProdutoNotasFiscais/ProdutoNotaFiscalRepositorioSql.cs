@@ -52,6 +52,18 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.ProdutoNotasFiscais
                                                 FROM TBPRODUTONOTAFISCAL
                                                 JOIN TBPRODUTO ON TBPRODUTO.ID = TBPRODUTONOTAFISCAL.PRODUTOID";
 
+        public const string _sqlBuscarListaPorIdNotaFiscal = @"SELECT
+                                                TBPRODUTONOTAFISCAL.Id[ID],
+                                                TBPRODUTONOTAFISCAL.NotaFiscalId[NOTAFISCALID],
+                                                TBPRODUTONOTAFISCAL.ProdutoId[PRODUTOID],
+                                                TBPRODUTONOTAFISCAL.Quantidade[QUANTIDADE],
+                                                TBPRODUTO.CODIGO[CODIGO_PRODUTO],
+                                                TBPRODUTO.DESCRICAO[DESCRICAO_PRODUTO],
+                                                TBPRODUTO.VALOR[VALOR_PRODUTO]
+                                                FROM TBPRODUTONOTAFISCAL
+                                                JOIN TBPRODUTO ON TBPRODUTO.ID = TBPRODUTONOTAFISCAL.PRODUTOID
+                                                WHERE NOTAFISCALID = {0}NOTAFISCALID";
+        
         #endregion Scripts SQL
 
         public ProdutoNotaFiscal Adicionar(ProdutoNotaFiscal produtoNotaFiscal)
@@ -81,6 +93,12 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.ProdutoNotasFiscais
             Db.Excluir(_sqlExcluir, new Dictionary<string, object> { { "ID", produtoNotaFiscal.Id } });
 
         }
+
+        public IEnumerable<ProdutoNotaFiscal> BuscarListaPorId(long id)
+        {
+            return Db.BuscarListaPorId(_sqlBuscarListaPorIdNotaFiscal, FormaObjetoProdutoNotaFiscal, new Dictionary<string, object> { { "NOTAFISCALID", id } });
+        }
+
 
         #region Montar e Ler Objetos
         private Dictionary<string, object> ObterDicionarioProdutoNotaFiscal(ProdutoNotaFiscal produtoNotaFiscal)
