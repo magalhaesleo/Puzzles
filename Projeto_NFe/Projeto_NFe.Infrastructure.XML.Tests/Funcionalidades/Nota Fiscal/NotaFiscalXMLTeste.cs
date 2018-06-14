@@ -27,15 +27,13 @@ namespace Projeto_NFe.Infrastructure.XML.Tests.Funcionalidades.Nota_Fiscal
         NotaFiscal _notaFiscal;
         Produto _produto;
         ProdutoNotaFiscal _produtoNotaFiscal;
-        List<ProdutoNotaFiscal> _produtosNotaFiscal;
-        CNPJ _CNPJ;
         Endereco _endereco;
-        string _path;
+        string _file;
 
         [SetUp]
         public void IniciarCenario()
         {
-            _path = @"C:\Users\ndduser\Desktop\NotaFiscal.xml";
+            _file = @"C:\Users\ndduser\Desktop\notafiscal.xml";
             _endereco = Common.Tests.Funcionalidades.Enderecos.ObjectMother.PegarEnderecoValido();
 
             _emitente = Common.Tests.Funcionalidades.Emitentes.ObjectMother.PegarEmitenteValido(_endereco, new CNPJ { NumeroComPontuacao = "99.327.235/0001-50" });
@@ -56,7 +54,7 @@ namespace Projeto_NFe.Infrastructure.XML.Tests.Funcionalidades.Nota_Fiscal
             _notaFiscal.GerarChaveDeAcesso(new Random());
             _notaFiscal.DataEmissao = DateTime.Now;
 
-            File.Delete(_path);
+            File.Delete(_file);
         }
 
         [Test]
@@ -69,7 +67,7 @@ namespace Projeto_NFe.Infrastructure.XML.Tests.Funcionalidades.Nota_Fiscal
         public void NotaFiscal_InfraXML_SerializarParaArquivo_Sucesso()
         {
             
-            NotaFiscalXMLRepositorio.Serializar(_notaFiscal, _path);
+            NotaFiscalXMLRepositorio.Serializar(_notaFiscal, _file);
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
         {
             InfNFeConfiguracao infNFeConf = new InfNFeConfiguracao();
             infNFeConf.ChaveAcesso = notaFiscal.ChaveAcesso;
+            infNFeConf.Versao = "3.10";
             infNFeConf.dest = MontarDestinatarioConfiguracao(notaFiscal);
             infNFeConf.emit = MontarEmitenteConfiguracao(notaFiscal);
             infNFeConf.det = MontarListaDeProdutosConfiguracao(notaFiscal);
@@ -154,8 +155,8 @@ namespace Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal.Mapeadores
             IcmsProduto icmsProduto = new IcmsProduto();
             Icms icms = new Icms();
             icms.IcmsProduto = icmsProduto;
-            icmsProduto.Icms = produtoNotaFiscal.Produto.AliquotaICMS;
-            icmsProduto.Ipi = produtoNotaFiscal.ValorICMS;
+            icmsProduto.AliquotaICMS = produtoNotaFiscal.Produto.AliquotaICMS * 100;
+            icmsProduto.ValorICMS = produtoNotaFiscal.ValorICMS;
             impostoConfiguracao.Icms = icms;
 
             return impostoConfiguracao;
