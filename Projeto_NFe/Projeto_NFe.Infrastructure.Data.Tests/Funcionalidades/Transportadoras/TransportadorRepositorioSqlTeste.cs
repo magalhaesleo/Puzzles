@@ -90,13 +90,9 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
             _CPF.NumeroComPontuacao = "619.648.783-30";
             Transportador transportador = ObjectMother.PegarTransportadorValidoComCPF(_endereco, _CPF);
 
+            transportador.Endereco = Common.Tests.Funcionalidades.Enderecos.ObjectMother.PegarEnderecoValido();
             transportador.Endereco.Id = idDoEnderecoDaBaseSql;
-            transportador.Endereco.Numero = 1 ;
-            transportador.Endereco.Logradouro = "Logradouro";
-            transportador.Endereco.Bairro = "Bairro";
-            transportador.Endereco.Municipio = "Município";
-            transportador.Endereco.Estado = "Estado";
-            transportador.Endereco.Pais = "País";
+            
             transportador = transportadorRepositorio.Adicionar(transportador);
 
             Transportador transportadorBuscado = transportadorRepositorio.BuscarPorId(transportador.Id);
@@ -106,12 +102,7 @@ namespace Projeto_NFe.Infrastructure.Data.Tests.Funcionalidades.Transportadoras
             transportadorBuscado.Documento.NumeroComPontuacao.Should().Be(transportador.Documento.NumeroComPontuacao);
             transportadorBuscado.ResponsabilidadeFrete.Should().Be(transportador.ResponsabilidadeFrete);
             transportadorBuscado.Endereco.Id.Should().Be(transportador.Endereco.Id);
-            transportadorBuscado.Endereco.Numero.Should().Be(transportador.Endereco.Numero);
-            transportadorBuscado.Endereco.Logradouro.Should().Be(transportador.Endereco.Logradouro);
-            transportadorBuscado.Endereco.Bairro.Should().Be(transportador.Endereco.Bairro);
-            transportadorBuscado.Endereco.Municipio.Should().Be(transportador.Endereco.Municipio);
             transportadorBuscado.Endereco.Estado.Should().Be(transportador.Endereco.Estado);
-            transportadorBuscado.Endereco.Pais.Should().Be(transportador.Endereco.Pais);
         }
 
         [Test]
