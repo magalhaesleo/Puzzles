@@ -14,7 +14,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
             return new Endereco()
             {
                 Bairro = "Amaciota",
-                Estado = "Santa Catarina",
+                Estado = "SC",
                 Logradouro = "02",
                 Municipio = "Lages",
                 Numero = 803,
@@ -27,7 +27,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
             return new Endereco()
             {
                 Bairro = "",
-                Estado = "Santa Catarina",
+                Estado = "SC",
                 Logradouro = "02",
                 Municipio = "Lages",
                 Numero = 803,
@@ -40,7 +40,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
             return new Endereco()
             {
                 Bairro = "Santa Catarina",
-                Estado = "Santa Catarina",
+                Estado = "SC",
                 Logradouro = "02",
                 Municipio = "",
                 Numero = 803,
@@ -53,7 +53,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
             return new Endereco()
             {
                 Bairro = "Santa Catarina",
-                Estado = "Santa Catarina",
+                Estado = "SC",
                 Logradouro = "02",
                 Municipio = "Lages",
                 Numero = 803,
@@ -79,7 +79,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
             return new Endereco()
             {
                 Bairro = "Santa Catarina",
-                Estado = "Santa catarina",
+                Estado = "SC",
                 Logradouro = "",
                 Municipio = "Lages",
                 Numero = 803,
@@ -92,7 +92,7 @@ namespace Projeto_NFe.Common.Tests.Funcionalidades.Enderecos
             return new Endereco()
             {
                 Bairro = "Santa Catarina",
-                Estado = "Santa catarina",
+                Estado = "SC",
                 Logradouro = "logradouro",
                 Municipio = "Lages",
                 Pais = "Brasil"
