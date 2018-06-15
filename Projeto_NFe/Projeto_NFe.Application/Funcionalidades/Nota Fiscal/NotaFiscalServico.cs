@@ -15,12 +15,14 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
         private INotaFiscalRepositorio _notaFiscalRepositorio;
         private INotaFiscalEmitidaRepositorio _notaFiscalEmitidaRepositorio;
         private IProdutoNotaFiscalRepositorio _produtoNotaFiscalRepositorio;
-        public NotaFiscalServico(INotaFiscalRepositorio notaFiscalRepositorio, INotaFiscalEmitidaRepositorio notaFiscalEmitidaRepositorio, IProdutoNotaFiscalRepositorio produtoNotaFiscalRepositorio)
+        private NotaFiscalRepositorioXML _notaFiscalRepositorioXML;
+
+        public NotaFiscalServico(INotaFiscalRepositorio notaFiscalRepositorio, INotaFiscalEmitidaRepositorio notaFiscalEmitidaRepositorio, IProdutoNotaFiscalRepositorio produtoNotaFiscalRepositorio, NotaFiscalRepositorioXML notaFiscalRepositorioXML)
         {
             this._notaFiscalRepositorio = notaFiscalRepositorio;
             this._notaFiscalEmitidaRepositorio = notaFiscalEmitidaRepositorio;
             this._produtoNotaFiscalRepositorio = produtoNotaFiscalRepositorio;
-          
+            this._notaFiscalRepositorioXML = notaFiscalRepositorioXML;
         }
 
         public NotaFiscal Adicionar(NotaFiscal notaFiscal)
@@ -114,7 +116,7 @@ namespace Projeto_NFe.Application.Funcionalidades.Notas_Fiscais
             }
 
             //Gerarando XML para inserção em banco
-            string notaFiscalSerializadaParaXML = NotaFiscalXMLRepositorio.Serializar(notaFiscal);
+            string notaFiscalSerializadaParaXML = _notaFiscalRepositorioXML.Serializar(notaFiscal);
 
             long idNotaFiscalEmitida = _notaFiscalEmitidaRepositorio.Adicionar(notaFiscalSerializadaParaXML,notaFiscal.ChaveAcesso);
 

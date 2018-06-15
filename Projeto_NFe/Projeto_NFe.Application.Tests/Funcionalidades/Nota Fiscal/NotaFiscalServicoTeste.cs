@@ -7,6 +7,7 @@ using Projeto_NFe.Domain.Excecoes;
 using Projeto_NFe.Domain.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Domain.Funcionalidades.ProdutoNotasFiscais;
 using Projeto_NFe.Domain.Funcionalidades.Produtos;
+using Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
         private Mock<INotaFiscalRepositorio> _mockNotaFiscalRepositorio;
         private Mock<INotaFiscalEmitidaRepositorio> _mockNotaFiscalEmitidaRepositorio;
         private Mock<IProdutoNotaFiscalRepositorio> _mockProdutoNotaFiscalRepositorio;
+        private Mock<NotaFiscalRepositorioXML> _mockNotaFiscalRepositorioXML;
+
         private Mock<List<ProdutoNotaFiscal>> _mockListaDeProdutoNotaFiscal;
         private Mock<List<NotaFiscal>> _mockListaNotaFiscal;
 
@@ -36,10 +39,11 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
             _mockNotaFiscalRepositorio = new Mock<INotaFiscalRepositorio>();
             _mockNotaFiscalEmitidaRepositorio = new Mock<INotaFiscalEmitidaRepositorio>();
             _mockProdutoNotaFiscalRepositorio = new Mock<IProdutoNotaFiscalRepositorio>();
+            _mockNotaFiscalRepositorioXML = new Mock<NotaFiscalRepositorioXML>();
             _mockListaDeProdutoNotaFiscal = new Mock<List<ProdutoNotaFiscal>>();
             _mockListaNotaFiscal = new Mock<List<NotaFiscal>>();
 
-            _servicoNotaFiscal = new NotaFiscalServico(_mockNotaFiscalRepositorio.Object, _mockNotaFiscalEmitidaRepositorio.Object, _mockProdutoNotaFiscalRepositorio.Object);
+            _servicoNotaFiscal = new NotaFiscalServico(_mockNotaFiscalRepositorio.Object, _mockNotaFiscalEmitidaRepositorio.Object, _mockProdutoNotaFiscalRepositorio.Object, _mockNotaFiscalRepositorioXML.Object);
 
             _mockNotaFiscal = new Mock<NotaFiscal>();
             _mockProdutoNotaFiscal = new Mock<ProdutoNotaFiscal>();
@@ -195,10 +199,11 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
         public void NotaFiscal_Aplicacao_Emitir_ComFakeParaRepetirChaveDeAcesso_Sucesso()
         {
             long idAposAdicionar = 1;
+            string xmlObitdo = "";
 
             FakeNotaFiscalEmitidaRepositorio fakeNotaFiscalEmitidaRepositorio = new FakeNotaFiscalEmitidaRepositorio();
 
-            NotaFiscalServico _servicoNotaFiscalComRepositorioFake = new NotaFiscalServico(_mockNotaFiscalRepositorio.Object, fakeNotaFiscalEmitidaRepositorio, _mockProdutoNotaFiscalRepositorio.Object);
+            NotaFiscalServico _servicoNotaFiscalComRepositorioFake = new NotaFiscalServico(_mockNotaFiscalRepositorio.Object, fakeNotaFiscalEmitidaRepositorio, _mockProdutoNotaFiscalRepositorio.Object, _mockNotaFiscalRepositorioXML.Object);
 
             Mock<Random> mockRandom = new Mock<Random>();
 
@@ -209,6 +214,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
 
             //Setup mock nota fiscal repositorio
             _mockNotaFiscalRepositorio.Setup(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
+            _mockNotaFiscalRepositorioXML.Setup(mnfrx => mnfrx.Serializar(_mockNotaFiscal.Object)).Returns(xmlObitdo);
 
             //Acao
             _servicoNotaFiscalComRepositorioFake.Emitir(_mockNotaFiscal.Object, mockRandom.Object);
@@ -217,9 +223,10 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
             _mockNotaFiscal.Verify(mnf => mnf.ValidarParaEmitir());
             _mockNotaFiscal.Verify(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
             _mockNotaFiscal.Verify(mnf => mnf.ChaveAcesso);
-            _mockNotaFiscal.Verify(mnf => mnf.Id);
 
             _mockNotaFiscalRepositorio.Verify(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
+
+            _mockNotaFiscalRepositorioXML.Verify(mnfrx => mnfrx.Serializar(_mockNotaFiscal.Object));
         }
 
         [Test]
@@ -240,6 +247,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
             //Setup mock nota fiscal repositorio
             _mockNotaFiscalRepositorio.Setup(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
             _mockNotaFiscalEmitidaRepositorio.Setup(mnfer => mnfer.Adicionar(xml, _mockNotaFiscal.Object.ChaveAcesso)).Returns(idAposAdicionar);
+            _mockNotaFiscalRepositorioXML.Setup(mnfrx => mnfrx.Serializar(_mockNotaFiscal.Object)).Returns(xml);
 
             //Acao
             _servicoNotaFiscal.Emitir(_mockNotaFiscal.Object, mockRandom.Object);
@@ -248,10 +256,10 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
             _mockNotaFiscal.Verify(mnf => mnf.ValidarParaEmitir());
             _mockNotaFiscal.Verify(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
             _mockNotaFiscal.Verify(mnf => mnf.ChaveAcesso);
-            _mockNotaFiscal.Verify(mnf => mnf.Id);
 
             _mockNotaFiscalRepositorio.Verify(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
             _mockNotaFiscalEmitidaRepositorio.Verify(mnfer => mnfer.Adicionar(xml, _mockNotaFiscal.Object.ChaveAcesso));
+            _mockNotaFiscalRepositorioXML.Verify(mnfrx => mnfrx.Serializar(_mockNotaFiscal.Object));
         }
 
         [Test]
@@ -272,6 +280,7 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
             //Setup mock nota fiscal repositorio
             _mockNotaFiscalRepositorio.Setup(mnfr => mnfr.Excluir(_mockNotaFiscal.Object));
             _mockNotaFiscalEmitidaRepositorio.Setup(mnfer => mnfer.Adicionar(xml, _mockNotaFiscal.Object.ChaveAcesso)).Returns(idAposAdicionar);
+            _mockNotaFiscalRepositorioXML.Setup(mnfrx => mnfrx.Serializar(_mockNotaFiscal.Object)).Returns(xml);
 
             //Acao
             _servicoNotaFiscal.Emitir(_mockNotaFiscal.Object, mockRandom.Object);
@@ -280,10 +289,10 @@ namespace Projeto_NFe.Application.Tests.Funcionalidades.Nota_Fiscal
             _mockNotaFiscal.Verify(mnf => mnf.ValidarParaEmitir());
             _mockNotaFiscal.Verify(mnf => mnf.GerarChaveDeAcesso(mockRandom.Object));
             _mockNotaFiscal.Verify(mnf => mnf.ChaveAcesso);
-            _mockNotaFiscal.Verify(mnf => mnf.Id);
 
             _mockNotaFiscalRepositorio.VerifyNoOtherCalls();
             _mockNotaFiscalEmitidaRepositorio.Verify(mnfer => mnfer.Adicionar(xml, _mockNotaFiscal.Object.ChaveAcesso));
+            _mockNotaFiscalRepositorioXML.Verify(mnfrx => mnfrx.Serializar(_mockNotaFiscal.Object));
         }
 
         [Test]

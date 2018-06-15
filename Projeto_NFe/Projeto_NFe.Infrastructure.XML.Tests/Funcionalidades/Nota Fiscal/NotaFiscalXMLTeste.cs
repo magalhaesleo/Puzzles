@@ -15,6 +15,7 @@ using Projeto_NFe.Infrastructure.XML.Funcionalidades.Nota_Fiscal;
 using Projeto_NFe.Infrastructure.Objetos_de_Valor.CNPJs;
 using Projeto_NFe.Domain.Funcionalidades.Enderecos;
 using System.IO;
+using FluentAssertions;
 
 namespace Projeto_NFe.Infrastructure.XML.Tests.Funcionalidades.Nota_Fiscal
 {
@@ -28,12 +29,16 @@ namespace Projeto_NFe.Infrastructure.XML.Tests.Funcionalidades.Nota_Fiscal
         Produto _produto;
         ProdutoNotaFiscal _produtoNotaFiscal;
         Endereco _endereco;
-        string _file;
+
+        NotaFiscalRepositorioXML _notaFiscalRepositorioXML;
+
+        string _caminho = @"..\..\..\NotaFiscal.xml";
 
         [SetUp]
         public void IniciarCenario()
         {
-            _file = @"C:\Users\ndduser\Desktop\notafiscal.xml";
+            _notaFiscalRepositorioXML = new NotaFiscalRepositorioXML();
+
             _endereco = Common.Tests.Funcionalidades.Enderecos.ObjectMother.PegarEnderecoValido();
 
             _emitente = Common.Tests.Funcionalidades.Emitentes.ObjectMother.PegarEmitenteValido(_endereco, new CNPJ { NumeroComPontuacao = "99.327.235/0001-50" });
@@ -53,21 +58,27 @@ namespace Projeto_NFe.Infrastructure.XML.Tests.Funcionalidades.Nota_Fiscal
             _notaFiscal.CalcularValoresTotais();
             _notaFiscal.GerarChaveDeAcesso(new Random());
             _notaFiscal.DataEmissao = DateTime.Now;
-
-            File.Delete(_file);
         }
 
         [Test]
         public void NotaFiscal_InfraXML_Serializar_Sucesso()
         {
-            string resultado = NotaFiscalXMLRepositorio.Serializar(_notaFiscal);
+            string resultado = _notaFiscalRepositorioXML.Serializar(_notaFiscal);
+
+            resultado.Should().NotBeNull();
+            resultado.Should().NotBeEmpty();
         }
 
         [Test]
         public void NotaFiscal_InfraXML_SerializarParaArquivo_Sucesso()
         {
-            
-            NotaFiscalXMLRepositorio.Serializar(_notaFiscal, _file);
+            _notaFiscalRepositorioXML.Serializar(_notaFiscal, _caminho);
+
+            Action acaoParaVerificarSeArquivoExiste = () => File.Exists(_caminho);
+
+            acaoParaVerificarSeArquivoExiste.Should().Equals(true);
+
+            File.Delete(_caminho);
         }
     }
 }

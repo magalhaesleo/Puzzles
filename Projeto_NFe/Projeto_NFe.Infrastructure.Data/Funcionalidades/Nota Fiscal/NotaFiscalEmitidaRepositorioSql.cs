@@ -15,7 +15,7 @@ namespace Projeto_NFe.Infrastructure.Data.Funcionalidades.Nota_Fiscal
         public const string _sqlAdicionar = @"INSERT INTO TBNOTAFISCALEMITIDA 
                                             (CHAVEDEACESSO,XML) 
                                             VALUES 
-                                            ({0}CHAVEDANOTAFISCAL,{0}XML); SELECT SCOPE_IDENTITY();";
+                                            ({0}CHAVEDEACESSO,{0}XML);SELECT SCOPE_IDENTITY();";
 
         public const string _sqlBuscarPorId = @"SELECT * FROM TBNOTAFISCALEMITIDA 
                                               WHERE ID = {0}ID";

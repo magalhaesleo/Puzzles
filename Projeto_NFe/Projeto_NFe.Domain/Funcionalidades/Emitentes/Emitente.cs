@@ -39,7 +39,7 @@ namespace Projeto_NFe.Domain.Funcionalidades.Emitentes
             if (string.IsNullOrEmpty(InscricaoEstadual))
                 throw new ExcecaoEmitenteSemInscricaoEstadual();
 
-            if (!InscricaoEstadual.All(char.IsDigit))
+            if (!InscricaoEstadual.All(char.IsDigit) && !InscricaoEstadual.Contains("."))
                 throw new ExcecaoInscricacaoEstadualEmitenteComLetras();
 
             if (InscricaoEstadual.Length > 15)
