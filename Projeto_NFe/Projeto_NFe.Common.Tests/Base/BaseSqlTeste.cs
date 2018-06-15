@@ -21,11 +21,11 @@ namespace Projeto_NFe.Common.Tests.Base
 
         private const string EXCLUIR_REGISTRO_TABELA_DESTINATARIO = "DELETE FROM [dbo].[TBDESTINATARIO]; DBCC CHECKIDENT('[dbo].[TBDESTINATARIO]', RESEED, 0)";
         private const string ADICIONAR_REGISTRO_TABELA_DESTINATARIO = "INSERT INTO TBDESTINATARIO (Nome, Documento, TipoDeDocumento, InscricaoEstadual, EnderecoId)" +
-                                                                    "VALUES ('Nome ou Razao Social', '99.327.235/0001-50', 'CNPJ', '319.402.517', 2)";
+                                                                    "VALUES ('Nome ou Razao Social', '83.111.377/0001-45', 'CNPJ', '319.402.517', 2)";
 
         private const string EXCLUIR_REGISTRO_TABELA_TRANSPORTADOR = "DELETE FROM [dbo].[TBTRANSPORTADOR]; DBCC CHECKIDENT('[dbo].[TBTRANSPORTADOR]', RESEED, 0)";
         private const string ADICIONAR_REGISTRO_TABELA_TRANSPORTADOR = "INSERT INTO TBTRANSPORTADOR (Nome, Documento, TipoDocumento, InscricaoEstadual, EnderecoId, ResponsabilidadeFrete)" +
-                                                                    "VALUES ('Nome ou Razao Social', '99.327.235/0001-50', 'CNPJ', '319.402.517', 2, 1)";
+                                                                    "VALUES ('Nome ou Razao Social', '61.893.657/0001-10', 'CNPJ', '319.402.517', 2, 1)";
 
         private const string ADICIONAR_REGISTRO_TABELA_DESTINATARIO_COMCPF = "INSERT INTO TBDESTINATARIO (Nome, Documento, TipoDeDocumento, InscricaoEstadual, EnderecoId)" +
                                                                     "VALUES ('Nome ou Razao Social', '111.444.777-35', 'CPF', '319.402.517', 2)";
@@ -85,6 +85,14 @@ namespace Projeto_NFe.Common.Tests.Base
             Db.Atualizar(ADICIONAR_REGISTRO_TABELA_NOTAFISCAL);
 
             InicializarBancoDeDadosPrepararTesteRepositorioProdutoNotaFiscal();
+        }
+
+        public static void InicializarBancoDeDadosPrepararNotaFiscalEmitida()
+        {
+            InicializarBancoDeDadosPrepararNotaFiscal();
+
+            //Excluir registro tabela NotaFiscalEmitida
+            //Inserir registro tabela NotaFiscalEmitida
         }
 
         //Deve ser chamado após a criação de uma nota fiscal
