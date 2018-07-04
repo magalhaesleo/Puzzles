@@ -40,14 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Funcionalidades\ProdutosPedido\ObjectMother.cs" />
+    <Compile Include="Funcionalidades\Pedidos\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Funcionalidades\Adicionais\" />
     <Folder Include="Funcionalidades\Clientes\" />
     <Folder Include="Funcionalidades\Enderecos\" />
-    <Folder Include="Funcionalidades\Pedidos\" />
     <Folder Include="Funcionalidades\Produtos\" />
     <Folder Include="Funcionalidades\Sabores\" />
   </ItemGroup>

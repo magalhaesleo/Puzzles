@@ -63,15 +63,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Funcionalidades\ProdutosPedido\ProdutoPedidoTeste.cs" />
+    <Compile Include="Funcionalidades\Pedidos\PedidoTeste.cs" />
+    <Compile Include="Funcionalidades\Produtos\Pizzas\PizzaTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Funcionalidades\Adicionais\" />
     <Folder Include="Funcionalidades\Clientes\" />
     <Folder Include="Funcionalidades\Enderecos\" />
-    <Folder Include="Funcionalidades\Pedidos\" />
-    <Folder Include="Funcionalidades\Produtos\" />
     <Folder Include="Funcionalidades\Sabores\" />
   </ItemGroup>
   <ItemGroup>

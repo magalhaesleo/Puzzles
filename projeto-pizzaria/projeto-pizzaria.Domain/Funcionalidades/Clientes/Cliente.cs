@@ -9,5 +9,8 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Clientes
 {
     public class Cliente : Entidade
     {
+        public void Validar()
+        {
+        }
     }
 }

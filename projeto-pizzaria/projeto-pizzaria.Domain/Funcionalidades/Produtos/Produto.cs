@@ -9,7 +9,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos
 {
     public abstract class Produto : Entidade
     {
-        public double Valor { get; set; }
+        public virtual double Valor { get; set; }
 
         public abstract string ObterTipo();
     }
