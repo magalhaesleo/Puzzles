@@ -12,7 +12,6 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 {
     public partial class RealizarPedido_Dialog : Form
     {
-     
 
     }
 }
