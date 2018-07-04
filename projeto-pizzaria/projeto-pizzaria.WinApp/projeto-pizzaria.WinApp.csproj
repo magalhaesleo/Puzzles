@@ -45,12 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Base\GerenciadorDeFormulario.cs" />
+    <Compile Include="Base\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Base\Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Funcionalidades\Pedidos\PedidoGerenciadorDeFormulario.cs" />
     <Compile Include="Funcionalidades\Pedidos\RealizarPedido\RealizarPedido_Dialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +61,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Base\Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Funcionalidades\Pedidos\RealizarPedido\RealizarPedido_Dialog.resx">
       <DependentUpon>RealizarPedido_Dialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +89,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\projeto-pizzaria.Domain\projeto-pizzaria.Domain.csproj">
+      <Project>{0819DC63-67C7-4451-8AC2-BD4C092F8C50}</Project>
+      <Name>projeto-pizzaria.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
