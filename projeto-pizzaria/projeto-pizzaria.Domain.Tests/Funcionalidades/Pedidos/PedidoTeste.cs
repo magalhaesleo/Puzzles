@@ -31,9 +31,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Pedidos
             _clienteMock = new Mock<Cliente>();
             _produtos = new List<Produto>();
             _produtoMock = new Mock<Produto>();
-
-
-            }
+        }
 
         [Test]
         public void Pedido_Dominio_Validar_Sucesso()
@@ -90,6 +88,21 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Pedidos
             Action resultado = _pedido.Validar;
 
             resultado.Should().Throw<PedidoComValorTotalZeroOuNegativoExcecao>();
+        }
+
+
+        [Test]
+        public void Pedido_Dominio_AtualizarStatus_Sucesso()
+        {
+            _produtoMock.Setup(pm => pm.Valor).Returns(1);
+            _produtos.Add(_produtoMock.Object);
+            _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
+
+            //var statusAntigo = _pedido.Status;
+
+            _pedido.AtualizarStatus();
+
+            _pedido.Status.Should().Be(StatusPedido.EM_MONTAGEM);
         }
     }
 }

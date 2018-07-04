@@ -8,10 +8,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
 {
     public enum StatusPedido
     {
-        AGUARDANDO_MONTAGEM = 2,
-        EM_MONTAGEM = 1,
-        AGUARDANDO_ENTREGA,
-        EM_ENTREGA,
-        ENTREGUE
+        AGUARDANDO_MONTAGEM = 1,
+        EM_MONTAGEM = 2,
+        AGUARDANDO_ENTREGA = 3,
+        EM_ENTREGA = 4,
+        ENTREGUE = 5
     }
 }

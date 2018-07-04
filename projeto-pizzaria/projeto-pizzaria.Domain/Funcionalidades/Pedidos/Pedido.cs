@@ -36,7 +36,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
 
         public Pedido()
         {
-            Status = StatusPedido.AGUARDANDO_ENTREGA;
+            //Status = StatusPedido.AGUARDANDO_ENTREGA;
             Data = DateTime.Now;
             Produtos = new List<Produto>();
         }
@@ -51,6 +51,11 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
             }
 
             return valorTotal;
+        }
+
+        public void AtualizarStatus()
+        {
+            Status++; //fazer extension method?
         }
 
         public void Validar()
