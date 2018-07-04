@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace projeto_pizzaria.Domain.Funcionalidades.Produtos
 {
-    public class Produto : Entidade
+    public abstract class Produto : Entidade
     {
+        public double Valor { get; set; }
+
+        public abstract string ObterTipo();
     }
 }
