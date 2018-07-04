@@ -67,7 +67,8 @@
             this.listBoxAdicionais = new System.Windows.Forms.ListBox();
             this.botaoAdicionarBorda = new System.Windows.Forms.Button();
             this.comboBoxAdicionais = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.maskedTextBoxBuscarPorTelefone = new System.Windows.Forms.MaskedTextBox();
+            this.botaFiltrarPorTelefone = new System.Windows.Forms.Button();
             this.grupoAdicionarItemPedido.SuspendLayout();
             this.grupoAdicionarSabores.SuspendLayout();
             this.grupoPedidoParaEmpresa.SuspendLayout();
@@ -458,19 +459,31 @@
             this.comboBoxAdicionais.Size = new System.Drawing.Size(204, 21);
             this.comboBoxAdicionais.TabIndex = 3;
             // 
-            // textBox1
+            // maskedTextBoxBuscarPorTelefone
             // 
-            this.textBox1.Location = new System.Drawing.Point(261, 10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(97, 20);
-            this.textBox1.TabIndex = 29;
+            this.maskedTextBoxBuscarPorTelefone.Location = new System.Drawing.Point(261, 10);
+            this.maskedTextBoxBuscarPorTelefone.Mask = "(99) 0000-0000";
+            this.maskedTextBoxBuscarPorTelefone.Name = "maskedTextBoxBuscarPorTelefone";
+            this.maskedTextBoxBuscarPorTelefone.Size = new System.Drawing.Size(92, 20);
+            this.maskedTextBoxBuscarPorTelefone.TabIndex = 30;
+            // 
+            // botaFiltrarPorTelefone
+            // 
+            this.botaFiltrarPorTelefone.Enabled = false;
+            this.botaFiltrarPorTelefone.Location = new System.Drawing.Point(359, 9);
+            this.botaFiltrarPorTelefone.Name = "botaFiltrarPorTelefone";
+            this.botaFiltrarPorTelefone.Size = new System.Drawing.Size(100, 23);
+            this.botaFiltrarPorTelefone.TabIndex = 28;
+            this.botaFiltrarPorTelefone.Text = "Filtrar por telefone";
+            this.botaFiltrarPorTelefone.UseVisualStyleBackColor = true;
             // 
             // RealizarPedido_Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 749);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.botaFiltrarPorTelefone);
+            this.Controls.Add(this.maskedTextBoxBuscarPorTelefone);
             this.Controls.Add(this.groupBoxAdicionais);
             this.Controls.Add(this.botaoAdicionarPedido);
             this.Controls.Add(this.labelValorTotalExibido);
@@ -542,6 +555,7 @@
         private System.Windows.Forms.ListBox listBoxAdicionais;
         private System.Windows.Forms.Button botaoAdicionarBorda;
         private System.Windows.Forms.ComboBox comboBoxAdicionais;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxBuscarPorTelefone;
+        private System.Windows.Forms.Button botaFiltrarPorTelefone;
     }
 }
