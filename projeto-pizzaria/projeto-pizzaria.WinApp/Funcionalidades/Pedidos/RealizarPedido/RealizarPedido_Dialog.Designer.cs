@@ -67,6 +67,7 @@
             this.listBoxAdicionais = new System.Windows.Forms.ListBox();
             this.botaoAdicionarBorda = new System.Windows.Forms.Button();
             this.comboBoxAdicionais = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.grupoAdicionarItemPedido.SuspendLayout();
             this.grupoAdicionarSabores.SuspendLayout();
             this.grupoPedidoParaEmpresa.SuspendLayout();
@@ -88,7 +89,7 @@
             this.comboBoxCliente.FormattingEnabled = true;
             this.comboBoxCliente.Location = new System.Drawing.Point(62, 10);
             this.comboBoxCliente.Name = "comboBoxCliente";
-            this.comboBoxCliente.Size = new System.Drawing.Size(188, 21);
+            this.comboBoxCliente.Size = new System.Drawing.Size(193, 21);
             this.comboBoxCliente.TabIndex = 1;
             // 
             // labelTipo
@@ -373,7 +374,7 @@
             // labelValorTotal
             // 
             this.labelValorTotal.AutoSize = true;
-            this.labelValorTotal.Location = new System.Drawing.Point(10, 698);
+            this.labelValorTotal.Location = new System.Drawing.Point(10, 704);
             this.labelValorTotal.Name = "labelValorTotal";
             this.labelValorTotal.Size = new System.Drawing.Size(61, 13);
             this.labelValorTotal.TabIndex = 20;
@@ -381,7 +382,7 @@
             // 
             // botaoCancelarPedido
             // 
-            this.botaoCancelarPedido.Location = new System.Drawing.Point(314, 723);
+            this.botaoCancelarPedido.Location = new System.Drawing.Point(390, 714);
             this.botaoCancelarPedido.Name = "botaoCancelarPedido";
             this.botaoCancelarPedido.Size = new System.Drawing.Size(75, 23);
             this.botaoCancelarPedido.TabIndex = 22;
@@ -399,7 +400,7 @@
             // 
             // botaoAdicionarPedido
             // 
-            this.botaoAdicionarPedido.Location = new System.Drawing.Point(395, 723);
+            this.botaoAdicionarPedido.Location = new System.Drawing.Point(309, 714);
             this.botaoAdicionarPedido.Name = "botaoAdicionarPedido";
             this.botaoAdicionarPedido.Size = new System.Drawing.Size(75, 23);
             this.botaoAdicionarPedido.TabIndex = 24;
@@ -457,11 +458,19 @@
             this.comboBoxAdicionais.Size = new System.Drawing.Size(204, 21);
             this.comboBoxAdicionais.TabIndex = 3;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(261, 10);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(97, 20);
+            this.textBox1.TabIndex = 29;
+            // 
             // RealizarPedido_Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 749);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.groupBoxAdicionais);
             this.Controls.Add(this.botaoAdicionarPedido);
             this.Controls.Add(this.labelValorTotalExibido);
@@ -533,5 +542,6 @@
         private System.Windows.Forms.ListBox listBoxAdicionais;
         private System.Windows.Forms.Button botaoAdicionarBorda;
         private System.Windows.Forms.ComboBox comboBoxAdicionais;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
