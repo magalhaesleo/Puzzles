@@ -51,8 +51,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Funcionalidades\Pedidos\RealizarPedido\RealizarPedido_Dialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Funcionalidades\Pedidos\RealizarPedido\RealizarPedido_Dialog.Designer.cs">
+      <DependentUpon>RealizarPedido_Dialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Funcionalidades\Pedidos\RealizarPedido\RealizarPedido_Dialog.resx">
+      <DependentUpon>RealizarPedido_Dialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,5 +84,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
