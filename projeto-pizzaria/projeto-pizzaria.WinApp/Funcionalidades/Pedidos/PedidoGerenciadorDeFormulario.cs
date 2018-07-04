@@ -1,4 +1,5 @@
-﻿using projeto_pizzaria.WinApp.Base;
+﻿using projeto_pizzaria.Domain.helpers.VisibleBotoes;
+using projeto_pizzaria.WinApp.Base;
 using projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
 {
-    public class PedidoGerenciadorDeFormulario : GerenciadorFormulario
+    public class PedidoGerenciadorDeFormulario : GerenciadorDeFormulario
     {
         public override void Adicionar()
         {
@@ -36,6 +37,14 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
         public override string ObtemTipo()
         {
             throw new NotImplementedException();
+        }
+
+        public override VisibleBotao ObterPropriedadeVisibleDosBotoes()
+        {
+            return new VisibleBotao()
+            {
+                Adicionar = true
+            };
         }
     }
 }

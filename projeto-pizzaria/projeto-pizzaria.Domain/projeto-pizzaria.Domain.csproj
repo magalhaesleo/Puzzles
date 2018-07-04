@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Entidade.cs" />
+    <Compile Include="helpers\EnableBotoes\EnableBotao.cs" />
+    <Compile Include="helpers\VisibleBotoes\VisbleBotao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

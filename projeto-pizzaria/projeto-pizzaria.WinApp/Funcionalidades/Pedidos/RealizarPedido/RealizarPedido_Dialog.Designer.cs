@@ -79,7 +79,7 @@
             // labelCliente
             // 
             this.labelCliente.AutoSize = true;
-            this.labelCliente.Location = new System.Drawing.Point(13, 13);
+            this.labelCliente.Location = new System.Drawing.Point(17, 17);
             this.labelCliente.Name = "labelCliente";
             this.labelCliente.Size = new System.Drawing.Size(42, 13);
             this.labelCliente.TabIndex = 0;
@@ -121,7 +121,7 @@
             this.grupoAdicionarItemPedido.Controls.Add(this.grupoAdicionarSabores);
             this.grupoAdicionarItemPedido.Controls.Add(this.labelItem);
             this.grupoAdicionarItemPedido.Controls.Add(this.comboBoxItem);
-            this.grupoAdicionarItemPedido.Location = new System.Drawing.Point(12, 80);
+            this.grupoAdicionarItemPedido.Location = new System.Drawing.Point(569, 13);
             this.grupoAdicionarItemPedido.Name = "grupoAdicionarItemPedido";
             this.grupoAdicionarItemPedido.Size = new System.Drawing.Size(453, 312);
             this.grupoAdicionarItemPedido.TabIndex = 12;
@@ -265,7 +265,7 @@
             // listBoxItensPedido
             // 
             this.listBoxItensPedido.FormattingEnabled = true;
-            this.listBoxItensPedido.Location = new System.Drawing.Point(12, 407);
+            this.listBoxItensPedido.Location = new System.Drawing.Point(569, 340);
             this.listBoxItensPedido.Name = "listBoxItensPedido";
             this.listBoxItensPedido.Size = new System.Drawing.Size(453, 95);
             this.listBoxItensPedido.TabIndex = 13;
@@ -273,7 +273,7 @@
             // textBoxDocumentoNotaFiscal
             // 
             this.textBoxDocumentoNotaFiscal.AutoSize = true;
-            this.textBoxDocumentoNotaFiscal.Location = new System.Drawing.Point(127, 668);
+            this.textBoxDocumentoNotaFiscal.Location = new System.Drawing.Point(135, 245);
             this.textBoxDocumentoNotaFiscal.Name = "textBoxDocumentoNotaFiscal";
             this.textBoxDocumentoNotaFiscal.Size = new System.Drawing.Size(68, 13);
             this.textBoxDocumentoNotaFiscal.TabIndex = 18;
@@ -281,7 +281,7 @@
             // 
             // textBoxCnpjEmpresa
             // 
-            this.textBoxCnpjEmpresa.Location = new System.Drawing.Point(195, 663);
+            this.textBoxCnpjEmpresa.Location = new System.Drawing.Point(203, 240);
             this.textBoxCnpjEmpresa.Name = "textBoxCnpjEmpresa";
             this.textBoxCnpjEmpresa.Size = new System.Drawing.Size(158, 20);
             this.textBoxCnpjEmpresa.TabIndex = 19;
@@ -297,7 +297,7 @@
             // checkBoxNotaFiscal
             // 
             this.checkBoxNotaFiscal.AutoSize = true;
-            this.checkBoxNotaFiscal.Location = new System.Drawing.Point(12, 667);
+            this.checkBoxNotaFiscal.Location = new System.Drawing.Point(21, 243);
             this.checkBoxNotaFiscal.Name = "checkBoxNotaFiscal";
             this.checkBoxNotaFiscal.Size = new System.Drawing.Size(113, 17);
             this.checkBoxNotaFiscal.TabIndex = 17;
@@ -311,9 +311,9 @@
             this.grupoPedidoParaEmpresa.Controls.Add(this.labelResponsavel);
             this.grupoPedidoParaEmpresa.Controls.Add(this.textBoxDepartamento);
             this.grupoPedidoParaEmpresa.Controls.Add(this.labelDepartamento);
-            this.grupoPedidoParaEmpresa.Location = new System.Drawing.Point(12, 508);
+            this.grupoPedidoParaEmpresa.Location = new System.Drawing.Point(20, 85);
             this.grupoPedidoParaEmpresa.Name = "grupoPedidoParaEmpresa";
-            this.grupoPedidoParaEmpresa.Size = new System.Drawing.Size(453, 91);
+            this.grupoPedidoParaEmpresa.Size = new System.Drawing.Size(453, 92);
             this.grupoPedidoParaEmpresa.TabIndex = 18;
             this.grupoPedidoParaEmpresa.TabStop = false;
             this.grupoPedidoParaEmpresa.Text = "Pedido para empresa";
@@ -365,9 +365,9 @@
             // grupoFormaDePagamento
             // 
             this.grupoFormaDePagamento.Controls.Add(this.comboBoxFormaDePagamento);
-            this.grupoFormaDePagamento.Location = new System.Drawing.Point(13, 606);
+            this.grupoFormaDePagamento.Location = new System.Drawing.Point(21, 183);
             this.grupoFormaDePagamento.Name = "grupoFormaDePagamento";
-            this.grupoFormaDePagamento.Size = new System.Drawing.Size(199, 46);
+            this.grupoFormaDePagamento.Size = new System.Drawing.Size(199, 47);
             this.grupoFormaDePagamento.TabIndex = 19;
             this.grupoFormaDePagamento.TabStop = false;
             this.grupoFormaDePagamento.Text = "Forma de pagamento";
@@ -375,15 +375,16 @@
             // labelValorTotal
             // 
             this.labelValorTotal.AutoSize = true;
-            this.labelValorTotal.Location = new System.Drawing.Point(10, 704);
+            this.labelValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelValorTotal.Location = new System.Drawing.Point(571, 449);
             this.labelValorTotal.Name = "labelValorTotal";
-            this.labelValorTotal.Size = new System.Drawing.Size(61, 13);
+            this.labelValorTotal.Size = new System.Drawing.Size(68, 15);
             this.labelValorTotal.TabIndex = 20;
             this.labelValorTotal.Text = "Valor Total:";
             // 
             // botaoCancelarPedido
             // 
-            this.botaoCancelarPedido.Location = new System.Drawing.Point(390, 714);
+            this.botaoCancelarPedido.Location = new System.Drawing.Point(947, 460);
             this.botaoCancelarPedido.Name = "botaoCancelarPedido";
             this.botaoCancelarPedido.Size = new System.Drawing.Size(75, 23);
             this.botaoCancelarPedido.TabIndex = 22;
@@ -394,14 +395,15 @@
             // 
             this.labelValorTotalExibido.AutoSize = true;
             this.labelValorTotalExibido.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelValorTotalExibido.Location = new System.Drawing.Point(76, 687);
+            this.labelValorTotalExibido.Location = new System.Drawing.Point(638, 444);
             this.labelValorTotalExibido.Name = "labelValorTotalExibido";
-            this.labelValorTotalExibido.Size = new System.Drawing.Size(0, 24);
+            this.labelValorTotalExibido.Size = new System.Drawing.Size(55, 24);
             this.labelValorTotalExibido.TabIndex = 23;
+            this.labelValorTotalExibido.Text = "22.50";
             // 
             // botaoAdicionarPedido
             // 
-            this.botaoAdicionarPedido.Location = new System.Drawing.Point(309, 714);
+            this.botaoAdicionarPedido.Location = new System.Drawing.Point(866, 460);
             this.botaoAdicionarPedido.Name = "botaoAdicionarPedido";
             this.botaoAdicionarPedido.Size = new System.Drawing.Size(75, 23);
             this.botaoAdicionarPedido.TabIndex = 24;
@@ -414,7 +416,7 @@
             this.groupBoxAdicionais.Controls.Add(this.listBoxAdicionais);
             this.groupBoxAdicionais.Controls.Add(this.botaoAdicionarBorda);
             this.groupBoxAdicionais.Controls.Add(this.comboBoxAdicionais);
-            this.groupBoxAdicionais.Location = new System.Drawing.Point(16, 264);
+            this.groupBoxAdicionais.Location = new System.Drawing.Point(573, 197);
             this.groupBoxAdicionais.Name = "groupBoxAdicionais";
             this.groupBoxAdicionais.Size = new System.Drawing.Size(427, 95);
             this.groupBoxAdicionais.TabIndex = 28;
@@ -481,7 +483,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 749);
+            this.ClientSize = new System.Drawing.Size(1047, 488);
             this.Controls.Add(this.botaFiltrarPorTelefone);
             this.Controls.Add(this.maskedTextBoxBuscarPorTelefone);
             this.Controls.Add(this.groupBoxAdicionais);
