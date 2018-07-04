@@ -41,11 +41,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Entidade.cs" />
+    <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
+    <Compile Include="Funcionalidades\Adicionais\Adicional.cs" />
+    <Compile Include="Funcionalidades\Clientes\Cliente.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
+    <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoComValorTotalZeroOuNegativoExcecao.cs" />
+    <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemFormaDePagamentoExcecao.cs" />
+    <Compile Include="Funcionalidades\Pedidos\FormaPagamentoPedido.cs" />
+    <Compile Include="Funcionalidades\Pedidos\Pedido.cs" />
+    <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemClienteExcecao.cs" />
+    <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemProdutosExcecao.cs" />
+    <Compile Include="Funcionalidades\Pedidos\StatusPedido.cs" />
+    <Compile Include="Funcionalidades\Produtos\Bebidas\Bebida.cs" />
+    <Compile Include="Funcionalidades\Produtos\Calzones\Calzone.cs" />
+    <Compile Include="Funcionalidades\Produtos\Pizzas\Pizza.cs" />
+    <Compile Include="Funcionalidades\Produtos\Pizzas\TamanhoPizza.cs" />
+    <Compile Include="Funcionalidades\Produtos\Produto.cs" />
+    <Compile Include="Funcionalidades\Sabores\Sabor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Excecoes\" />
-    <Folder Include="Funcionalidades\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
