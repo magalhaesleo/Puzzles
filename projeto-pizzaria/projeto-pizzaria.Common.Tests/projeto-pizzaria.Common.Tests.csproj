@@ -41,15 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Funcionalidades\Pedidos\ObjectMother.cs" />
-    <Compile Include="Funcionalidades\ProdutosPedido\ObjectMother.cs" />
+    <Compile Include="Funcionalidades\Produtos\Pizzas\ObjectMother.cs" />
+    <Compile Include="Funcionalidades\Sabores\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Funcionalidades\Adicionais\" />
     <Folder Include="Funcionalidades\Clientes\" />
     <Folder Include="Funcionalidades\Enderecos\" />
-    <Folder Include="Funcionalidades\Produtos\" />
-    <Folder Include="Funcionalidades\Sabores\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\projeto-pizzaria.Domain\projeto-pizzaria.Domain.csproj">

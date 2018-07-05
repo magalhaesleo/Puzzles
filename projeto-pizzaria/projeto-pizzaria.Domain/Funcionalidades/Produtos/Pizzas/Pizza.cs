@@ -10,7 +10,8 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
 {
     public class Pizza : Produto
     {
-        public List<Sabor> Sabores { get; set; }
+        public Sabor Sabor1 { get; set; }
+        public Sabor Sabor2 { get; set; }
         public Adicional Adicional { get; set; }
         public virtual TamanhoPizza Tamanho { get; set; }
 
