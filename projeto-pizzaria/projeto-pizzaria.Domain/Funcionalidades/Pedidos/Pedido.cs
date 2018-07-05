@@ -2,6 +2,7 @@
 using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos.Excecoes;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos;
+using projeto_pizzaria.Infra.Extensao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
 
         public Pedido()
         {
-            //Status = StatusPedido.AGUARDANDO_ENTREGA;
+            Status = StatusPedido.AGUARDANDO_MONTAGEM;
             Data = DateTime.Now;
             Produtos = new List<Produto>();
         }
@@ -55,7 +56,8 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
 
         public void AtualizarStatus()
         {
-            Status++; //fazer extension method?
+            //Utilizando Método de Extensão
+            this.Status = this.Status.Next();
         }
 
         public void Validar()

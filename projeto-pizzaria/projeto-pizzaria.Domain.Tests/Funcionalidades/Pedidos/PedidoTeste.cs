@@ -98,9 +98,11 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Pedidos
             _produtos.Add(_produtoMock.Object);
             _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
 
-            //var statusAntigo = _pedido.Status;
+            var statusAntigo = _pedido.Status;
 
             _pedido.AtualizarStatus();
+
+            var statusNovo = _pedido.Status;
 
             _pedido.Status.Should().Be(StatusPedido.EM_MONTAGEM);
         }

@@ -63,5 +63,11 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\projeto-pizzaria.Infra\projeto-pizzaria.Infra.csproj">
+      <Project>{1645a60a-9345-4309-b930-5c67b6f3ff58}</Project>
+      <Name>projeto-pizzaria.Infra</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
