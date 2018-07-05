@@ -57,7 +57,8 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
         public void AtualizarStatus()
         {
             //Utilizando Método de Extensão
-            this.Status = this.Status.Next();
+            if(!Status.Equals(StatusPedido.ENTREGUE))
+                Status = Status.Next();
         }
 
         public void Validar()

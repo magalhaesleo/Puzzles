@@ -98,13 +98,23 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Pedidos
             _produtos.Add(_produtoMock.Object);
             _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
 
-            var statusAntigo = _pedido.Status;
+            _pedido.AtualizarStatus();
+
+            _pedido.Status.Should().Be(StatusPedido.EM_MONTAGEM);
+        }
+
+        [Test]
+        public void Pedido_Dominio_AtualizarStatus_PedidoEntregue_DevePermanecerEntregue()
+        {
+            _produtoMock.Setup(pm => pm.Valor).Returns(1);
+            _produtos.Add(_produtoMock.Object);
+            _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
+
+            _pedido.Status = StatusPedido.ENTREGUE;
 
             _pedido.AtualizarStatus();
 
-            var statusNovo = _pedido.Status;
-
-            _pedido.Status.Should().Be(StatusPedido.EM_MONTAGEM);
+            _pedido.Status.Should().Be(StatusPedido.ENTREGUE);
         }
     }
 }
