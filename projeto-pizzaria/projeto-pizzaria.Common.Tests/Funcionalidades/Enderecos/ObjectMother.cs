@@ -9,7 +9,7 @@ namespace projeto_pizzaria.Common.Tests.Funcionalidades
 {
     public static partial class ObjectMother
     {
-        public static Endereco PegarEnderecoValido()
+        public static Endereco ObterEnderecoValido()
         {
             return new Endereco()
             {
@@ -22,7 +22,7 @@ namespace projeto_pizzaria.Common.Tests.Funcionalidades
             };
         }
 
-        public static Endereco PegarEnderecoSemCEP()
+        public static Endereco ObterEnderecoSemCEP()
         {
             return new Endereco()
             {
@@ -35,7 +35,7 @@ namespace projeto_pizzaria.Common.Tests.Funcionalidades
             };
         }
 
-        public static Endereco PegarEnderecoSemCidade()
+        public static Endereco ObterEnderecoSemCidade()
         {
             return new Endereco()
             {
@@ -48,7 +48,7 @@ namespace projeto_pizzaria.Common.Tests.Funcionalidades
             };
         }
 
-        public static Endereco PegarEnderecoSemBairro()
+        public static Endereco ObterEnderecoSemBairro()
         {
             return new Endereco()
             {
@@ -61,7 +61,7 @@ namespace projeto_pizzaria.Common.Tests.Funcionalidades
             };
         }
 
-        public static Endereco PegarEnderecoSemRua()
+        public static Endereco ObterEnderecoSemRua()
         {
             return new Endereco()
             {
@@ -74,7 +74,7 @@ namespace projeto_pizzaria.Common.Tests.Funcionalidades
             };
         }
 
-        public static Endereco PegarEnderecoSemNumero()
+        public static Endereco ObterEnderecoSemNumero()
         {
             return new Endereco()
             {
@@ -86,7 +86,7 @@ namespace projeto_pizzaria.Common.Tests.Funcionalidades
             };
         }
 
-        public static Endereco PegarEnderecoSemComplemento()
+        public static Endereco ObterEnderecoSemComplemento()
         {
             return new Endereco()
             {

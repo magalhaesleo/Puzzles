@@ -14,16 +14,10 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Enderecos
     [TestFixture]
     public class EnderecoTeste
     {
-        [SetUp]
-        public void IniciarCenario()
-        {
-
-        }
-
         [Test]
         public void Endereco_Dominio_Validar_Sucesso()
         {
-            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoValido();
+            Endereco enderecoParaValidar = ObjectMother.ObterEnderecoValido();
 
             Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
 
@@ -33,7 +27,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Enderecos
         [Test]
         public void Endereco_Dominio_Validar_EnderecoSemCEPExcecao_Falha()
         {
-            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemCEP();
+            Endereco enderecoParaValidar = ObjectMother.ObterEnderecoSemCEP();
 
             Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
 
@@ -43,7 +37,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Enderecos
         [Test]
         public void Endereco_Dominio_Validar_EnderecoSemCidadeExcecao_Falha()
         {
-            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemCidade();
+            Endereco enderecoParaValidar = ObjectMother.ObterEnderecoSemCidade();
 
             Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
 
@@ -53,7 +47,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Enderecos
         [Test]
         public void Endereco_Dominio_Validar_EnderecoSemBairroExcecao_Falha()
         {
-            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemBairro();
+            Endereco enderecoParaValidar = ObjectMother.ObterEnderecoSemBairro();
 
             Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
 
@@ -63,7 +57,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Enderecos
         [Test]
         public void Endereco_Dominio_Validar_EnderecoSemRuaExcecao_Falha()
         {
-            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemRua();
+            Endereco enderecoParaValidar = ObjectMother.ObterEnderecoSemRua();
 
             Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
 
@@ -73,7 +67,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Enderecos
         [Test]
         public void Endereco_Dominio_Validar_EnderecoSemNumeroExcecao_Falha()
         {
-            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemNumero();
+            Endereco enderecoParaValidar = ObjectMother.ObterEnderecoSemNumero();
 
             Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
 
@@ -83,7 +77,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Enderecos
         [Test]
         public void Endereco_Dominio_Validar_EnderecoSemComplementoExcecao_Falha()
         {
-            Endereco enderecoParaValidar = ObjectMother.PegarEnderecoSemComplemento();
+            Endereco enderecoParaValidar = ObjectMother.ObterEnderecoSemComplemento();
 
             Action resultadoDaValidacao = () => enderecoParaValidar.Validar();
 
