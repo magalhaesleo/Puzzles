@@ -15,6 +15,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Pizzas
             ToTable("TBProdutoPedido");
 
             HasKey(p => p.Id);
+            HasRequired(p => p.Pedido);
             Property(p => p.Tamanho)
                 .HasColumnName("TamanhoPizza")
                 .IsOptional();
@@ -24,6 +25,15 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Pizzas
                 .HasColumnName("ValorSabor")
                 .IsOptional();
             HasRequired(p => p.Adicional);
+            Property(p => p.Quantidade)
+                .HasColumnName("Quantidade")
+                .IsRequired();
+            Property(p => p.Valor);
+            Property(p => p.ObterTipo())
+                .HasColumnName("TipoProduto")
+                .HasColumnType("varchar")
+                .HasMaxLength(50);
+            Property(p => p.Adicional.Valor);
         }
     }
 }
