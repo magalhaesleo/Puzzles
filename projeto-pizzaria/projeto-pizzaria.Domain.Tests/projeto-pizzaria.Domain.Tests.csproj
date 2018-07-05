@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Funcionalidades\Pedidos\PedidoTeste.cs" />
+    <Compile Include="Funcionalidades\ProdutosPedido\ProdutoPedidoTeste.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\PizzaTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

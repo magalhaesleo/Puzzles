@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Funcionalidades\Pedidos\ObjectMother.cs" />
+    <Compile Include="Funcionalidades\ProdutosPedido\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

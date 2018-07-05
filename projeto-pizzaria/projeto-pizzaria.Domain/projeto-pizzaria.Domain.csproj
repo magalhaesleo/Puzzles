@@ -52,6 +52,7 @@
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemClienteExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemProdutosExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\StatusPedido.cs" />
+    <Compile Include="Funcionalidades\ProdutosPedido\ProdutoPedido.cs" />
     <Compile Include="Funcionalidades\Produtos\Bebidas\Bebida.cs" />
     <Compile Include="Funcionalidades\Produtos\Calzones\Calzone.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\Pizza.cs" />
