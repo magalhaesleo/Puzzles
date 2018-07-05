@@ -28,14 +28,12 @@ namespace projeto_pizzaria.WinApp.Base
             _gerenciadorDeFormulario = gerenciadorDeFormularioAtual;
 
             definirPropriedadeVisibleDosBotoes(_gerenciadorDeFormulario.ObterPropriedadeVisibleDosBotoes());
-
         }
 
         private void botaoRealizarPedido_Click(object sender, EventArgs e)
         {
             CarregarGerenciadorDeFormulario(ObterPedidoGerenciadorDeFormulario());
         }
-
         
         private PedidoGerenciadorDeFormulario ObterPedidoGerenciadorDeFormulario()
         {
