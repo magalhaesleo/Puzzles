@@ -12,9 +12,9 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Sabores
     public class Sabor : Entidade
     {
         public string Descricao { get; set; }
-        public double ValorPequena { get; set; }
-        public double ValorMedia { get; set; }
-        public double ValorGrande { get; set; }
+        public virtual double ValorPequena { get; set; }
+        public virtual double ValorMedia { get; set; }
+        public virtual double ValorGrande { get; set; }
         public double ValorCalzone { get; set; }
 
         public double ObterValorDoSabor(Calzone calzone)

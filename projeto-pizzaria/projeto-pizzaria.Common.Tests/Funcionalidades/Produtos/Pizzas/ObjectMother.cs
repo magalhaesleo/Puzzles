@@ -17,5 +17,13 @@ namespace projeto_pizzaria.Common.Tests.Funcionalidades.Produtos.Pizzas
             pizza.Sabor2 = sabor2;
             return pizza;
         }
+
+        public static Pizza ObterPizzaComUmSabor(Sabor sabor)
+        {
+            Pizza pizza = new Pizza();
+            pizza.Sabor1 = sabor;
+            
+            return pizza;
+        }
     }
 }
