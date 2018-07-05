@@ -30,16 +30,16 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Clientes
             1.Should().Be(2);
         }
 
-        [Test]
-        public void Cliente_Dominio_Validar_Sucesso()
-        {
-            1.Should().Be(2);
-        }
+        //[Test]
+        //public void Cliente_Dominio_Validar_Sucesso()
+        //{
+        //    1.Should().Be(2);
+        //}
 
-        [Test]
-        public void Cliente_Dominio_Validar_Sucesso()
-        {
-            1.Should().Be(2);
-        }
+        //[Test]
+        //public void Cliente_Dominio_Validar_Sucesso()
+        //{
+        //    1.Should().Be(2);
+        //}
     }
 }

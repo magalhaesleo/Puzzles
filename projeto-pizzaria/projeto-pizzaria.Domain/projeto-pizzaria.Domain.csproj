@@ -49,6 +49,12 @@
     <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemNomeExcecao.cs" />
     <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemTelefoneExcecao.cs" />
     <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\EnderecoSemBairroExcecao.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\EnderecoSemCEPExcecao.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\EnderecoSemCidadeExcecao.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\EnderecoSemComplementoExcecao.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\EnderecoSemNumeroExcecao.cs" />
+    <Compile Include="Funcionalidades\Enderecos\Excecoes\EnderecoSemRuaExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoComValorTotalZeroOuNegativoExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemFormaDePagamentoExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\FormaPagamentoPedido.cs" />
@@ -68,10 +74,7 @@
     <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Funcionalidades\Enderecos\Excecoes\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\projeto-pizzaria.Infra\projeto-pizzaria.Infra.csproj">
       <Project>{1645a60a-9345-4309-b930-5c67b6f3ff58}</Project>

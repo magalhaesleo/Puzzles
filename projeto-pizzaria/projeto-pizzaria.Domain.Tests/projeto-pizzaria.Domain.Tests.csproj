@@ -64,13 +64,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Funcionalidades\Clientes\ClienteTeste.cs" />
+    <Compile Include="Funcionalidades\Enderecos\EnderecoTeste.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoTeste.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\PizzaTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Funcionalidades\Adicionais\" />
-    <Folder Include="Funcionalidades\Enderecos\" />
     <Folder Include="Funcionalidades\Sabores\" />
   </ItemGroup>
   <ItemGroup>
