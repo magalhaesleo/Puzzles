@@ -98,6 +98,10 @@
       <Project>{0819DC63-67C7-4451-8AC2-BD4C092F8C50}</Project>
       <Name>projeto-pizzaria.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\projeto-pizzaria.Infra.Data\projeto-pizzaria.Infra.Data.csproj">
+      <Project>{56D03F5C-A741-4454-A767-7E771C07E966}</Project>
+      <Name>projeto-pizzaria.Infra.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
