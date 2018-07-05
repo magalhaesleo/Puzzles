@@ -22,19 +22,6 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
             PopularAtributosDaClasse(clienteServico);
         }
-
-        private void botaoFiltrarPorTelefone_Click(object sender, EventArgs e)
-        {
-            // Pegando os valores do campo de busca por telefone e atribuindo em uma váriavel que será passada por parâmetro no método 'BuscarClientePorTelefone'
-            string digitosInformadosNaPesquisa = maskedTextBoxBuscarPorTelefone.Text;
-
-            //Preenchendo a lista de clientes encontrados
-            IEnumerable<Cliente> listaDeClientesBuscados = BuscarClientePorTelefone(digitosInformadosNaPesquisa);
-
-            //Populando comboBoxDeClientes
-            PopularComboboxDeClientes(listaDeClientesBuscados);
-        }
-
         public void PopularAtributosDaClasse(ClienteServico clienteServico)
         {
             _clienteServico = clienteServico;
@@ -56,8 +43,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 comboBoxCliente.Items.Add(cliente);
             }
         }
-
-        private void maskedTextBoxBuscarPorTelefone_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        private void maskedTextBoxBuscarPorTelefone_TextChanged(object sender, EventArgs e)
         {
             // Pegando os valores do campo de busca por telefone e atribuindo em uma váriavel que será passada por parâmetro no método 'BuscarClientePorTelefone'
             string digitosInformadosNaPesquisa = maskedTextBoxBuscarPorTelefone.Text;

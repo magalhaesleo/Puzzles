@@ -68,7 +68,6 @@
             this.botaoAdicionarBorda = new System.Windows.Forms.Button();
             this.comboBoxAdicionais = new System.Windows.Forms.ComboBox();
             this.maskedTextBoxBuscarPorTelefone = new System.Windows.Forms.MaskedTextBox();
-            this.botaoFiltrarPorTelefone = new System.Windows.Forms.Button();
             this.grupoAdicionarItemPedido.SuspendLayout();
             this.grupoAdicionarSabores.SuspendLayout();
             this.grupoPedidoParaEmpresa.SuspendLayout();
@@ -468,25 +467,13 @@
             this.maskedTextBoxBuscarPorTelefone.Name = "maskedTextBoxBuscarPorTelefone";
             this.maskedTextBoxBuscarPorTelefone.Size = new System.Drawing.Size(92, 20);
             this.maskedTextBoxBuscarPorTelefone.TabIndex = 30;
-            this.maskedTextBoxBuscarPorTelefone.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.maskedTextBoxBuscarPorTelefone_MaskInputRejected);
-            // 
-            // botaoFiltrarPorTelefone
-            // 
-            this.botaoFiltrarPorTelefone.Enabled = false;
-            this.botaoFiltrarPorTelefone.Location = new System.Drawing.Point(359, 9);
-            this.botaoFiltrarPorTelefone.Name = "botaoFiltrarPorTelefone";
-            this.botaoFiltrarPorTelefone.Size = new System.Drawing.Size(100, 23);
-            this.botaoFiltrarPorTelefone.TabIndex = 28;
-            this.botaoFiltrarPorTelefone.Text = "Filtrar por telefone";
-            this.botaoFiltrarPorTelefone.UseVisualStyleBackColor = true;
-            this.botaoFiltrarPorTelefone.Click += new System.EventHandler(this.botaoFiltrarPorTelefone_Click);
+            this.maskedTextBoxBuscarPorTelefone.TextChanged += new System.EventHandler(this.maskedTextBoxBuscarPorTelefone_TextChanged);
             // 
             // RealizarPedido_Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 488);
-            this.Controls.Add(this.botaoFiltrarPorTelefone);
             this.Controls.Add(this.maskedTextBoxBuscarPorTelefone);
             this.Controls.Add(this.groupBoxAdicionais);
             this.Controls.Add(this.botaoAdicionarPedido);
@@ -560,6 +547,5 @@
         private System.Windows.Forms.Button botaoAdicionarBorda;
         private System.Windows.Forms.ComboBox comboBoxAdicionais;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxBuscarPorTelefone;
-        private System.Windows.Forms.Button botaoFiltrarPorTelefone;
     }
 }
