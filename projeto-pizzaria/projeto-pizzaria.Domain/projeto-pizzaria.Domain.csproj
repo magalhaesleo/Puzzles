@@ -44,6 +44,10 @@
     <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
     <Compile Include="Funcionalidades\Adicionais\Adicional.cs" />
     <Compile Include="Funcionalidades\Clientes\Cliente.cs" />
+    <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemDocumentoExcecao.cs" />
+    <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemEnderecoExcecao.cs" />
+    <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemNomeExcecao.cs" />
+    <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemTelefoneExcecao.cs" />
     <Compile Include="Funcionalidades\Enderecos\Endereco.cs" />
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoComValorTotalZeroOuNegativoExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemFormaDePagamentoExcecao.cs" />
@@ -63,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Funcionalidades\Enderecos\Excecoes\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
