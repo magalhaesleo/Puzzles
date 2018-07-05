@@ -90,6 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\projeto-pizzaria.Applications\projeto-pizzaria.Applications.csproj">
+      <Project>{ADB6E34E-2C28-4F46-9C90-0F4E1A02D7EE}</Project>
+      <Name>projeto-pizzaria.Applications</Name>
+    </ProjectReference>
     <ProjectReference Include="..\projeto-pizzaria.Domain\projeto-pizzaria.Domain.csproj">
       <Project>{0819DC63-67C7-4451-8AC2-BD4C092F8C50}</Project>
       <Name>projeto-pizzaria.Domain</Name>

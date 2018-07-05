@@ -60,10 +60,10 @@
     <Compile Include="Funcionalidades\Sabores\Sabor.cs" />
     <Compile Include="helpers\EnableBotoes\EnableBotao.cs" />
     <Compile Include="helpers\VisibleBotoes\VisbleBotao.cs" />
+    <Compile Include="Interfaces\Clientes\IClienteRepositorio.cs" />
+    <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

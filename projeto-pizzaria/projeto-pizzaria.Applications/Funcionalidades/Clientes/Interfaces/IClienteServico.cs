@@ -11,6 +11,5 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Clientes.Interfaces
     public interface IClienteServico : IServico<Cliente>
     {
        IEnumerable<Cliente> BuscarClientePorTelefone(string digitosInformados);
-
     }
 }

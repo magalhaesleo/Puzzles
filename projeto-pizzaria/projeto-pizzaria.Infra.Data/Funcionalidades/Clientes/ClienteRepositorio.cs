@@ -1,5 +1,4 @@
-﻿using projeto_pizzaria.Applications.Funcionalidades.Clientes.Interfaces;
-using projeto_pizzaria.Domain.Funcionalidades.Clientes;
+﻿using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Interfaces.Clientes;
 using System;
 using System.Collections.Generic;
@@ -7,16 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto_pizzaria.Applications.Funcionalidades.Clientes
+namespace projeto_pizzaria.Infra.Data.Funcionalidades.Clientes
 {
-    public class ClienteServico : IClienteServico
+    public class ClienteRepositorio : IClienteRepositorio
     {
-        IClienteRepositorio _clienteRepositorio;
-
-        public ClienteServico(IClienteRepositorio clienteRepositorio)
-        {
-            _clienteRepositorio = clienteRepositorio;
-        }
         public int Adicionar(Cliente cliente)
         {
             throw new NotImplementedException();
@@ -24,7 +17,7 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Clientes
 
         public IEnumerable<Cliente> BuscarClientePorTelefone(string digitosInformados)
         {
-            return _clienteRepositorio.BuscarClientePorTelefone(digitosInformados);
+            throw new NotImplementedException();
         }
 
         public void Editar(Cliente cliente)
