@@ -50,9 +50,9 @@
     <Compile Include="Contextos\PizzariaContexto.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteConfiguracao.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSQL.cs" />
-    <Compile Include="Funcionalidades\Clientes\ClienteRepositorio.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoConfiguracao.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoRepositorioSQL.cs" />
+    <Compile Include="Funcionalidades\ProdutosPedido\ProdutoPedidoConfiguracao.cs" />
     <Compile Include="Funcionalidades\Produtos\Calzones\CalzoneConfiguracao.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\PizzaConfiguracao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
