@@ -8,9 +8,12 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Bebidas
 {
     public class Bebida : Produto
     {
-        public override string ObterTipo()
+        public override string Tipo
         {
-            return "Bebida"; 
+            get
+            {
+                return "Bebida";
+            }
         }
     }
 }
