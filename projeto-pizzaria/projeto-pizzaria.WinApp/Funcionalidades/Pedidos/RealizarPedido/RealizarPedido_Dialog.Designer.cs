@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelCliente = new System.Windows.Forms.Label();
             this.comboBoxCliente = new System.Windows.Forms.ComboBox();
             this.labelTipo = new System.Windows.Forms.Label();
@@ -68,11 +69,17 @@
             this.botaoAdicionarBorda = new System.Windows.Forms.Button();
             this.comboBoxAdicionais = new System.Windows.Forms.ComboBox();
             this.maskedTextBoxBuscarPorTelefone = new System.Windows.Forms.MaskedTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.numericUpDownQuantidade = new System.Windows.Forms.NumericUpDown();
+            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.labelQuantidade = new System.Windows.Forms.Label();
             this.grupoAdicionarItemPedido.SuspendLayout();
             this.grupoAdicionarSabores.SuspendLayout();
             this.grupoPedidoParaEmpresa.SuspendLayout();
             this.grupoFormaDePagamento.SuspendLayout();
             this.groupBoxAdicionais.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             this.SuspendLayout();
             // 
             // labelCliente
@@ -111,6 +118,8 @@
             // 
             // grupoAdicionarItemPedido
             // 
+            this.grupoAdicionarItemPedido.Controls.Add(this.labelQuantidade);
+            this.grupoAdicionarItemPedido.Controls.Add(this.numericUpDownQuantidade);
             this.grupoAdicionarItemPedido.Controls.Add(this.botaoRemoverItemPedido);
             this.grupoAdicionarItemPedido.Controls.Add(this.botaoAdicionarItemPedido);
             this.grupoAdicionarItemPedido.Controls.Add(this.radioButtonPizzaGrande);
@@ -469,6 +478,37 @@
             this.maskedTextBoxBuscarPorTelefone.TabIndex = 30;
             this.maskedTextBoxBuscarPorTelefone.TextChanged += new System.EventHandler(this.maskedTextBoxBuscarPorTelefone_TextChanged);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
+            // numericUpDownQuantidade
+            // 
+            this.numericUpDownQuantidade.Location = new System.Drawing.Point(372, 20);
+            this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
+            this.numericUpDownQuantidade.Size = new System.Drawing.Size(59, 20);
+            this.numericUpDownQuantidade.TabIndex = 30;
+            // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.Name = "contextMenuStrip3";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
+            // 
+            // labelQuantidade
+            // 
+            this.labelQuantidade.AutoSize = true;
+            this.labelQuantidade.Location = new System.Drawing.Point(301, 27);
+            this.labelQuantidade.Name = "labelQuantidade";
+            this.labelQuantidade.Size = new System.Drawing.Size(65, 13);
+            this.labelQuantidade.TabIndex = 31;
+            this.labelQuantidade.Text = "Quantidade:";
+            // 
             // RealizarPedido_Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,6 +540,7 @@
             this.grupoPedidoParaEmpresa.PerformLayout();
             this.grupoFormaDePagamento.ResumeLayout(false);
             this.groupBoxAdicionais.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,5 +588,10 @@
         private System.Windows.Forms.Button botaoAdicionarBorda;
         private System.Windows.Forms.ComboBox comboBoxAdicionais;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxBuscarPorTelefone;
+        private System.Windows.Forms.NumericUpDown numericUpDownQuantidade;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.Label labelQuantidade;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
     }
 }
