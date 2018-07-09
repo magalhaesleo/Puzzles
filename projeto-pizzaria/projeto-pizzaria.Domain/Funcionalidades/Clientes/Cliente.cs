@@ -22,6 +22,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Clientes
 
         public virtual IDocumento Documento { get; set; }
 
+        public string TipoDeDocumento { get; set; }
+
+        public string NumeroDocumento { get; set; }
+
         public void Validar()
         {
             if (string.IsNullOrEmpty(Nome))

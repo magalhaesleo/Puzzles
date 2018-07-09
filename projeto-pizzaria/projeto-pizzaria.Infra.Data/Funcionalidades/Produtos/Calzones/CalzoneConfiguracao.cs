@@ -14,16 +14,16 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Calzones
         {
             ToTable("TBProdutoPedido");
 
-            HasKey(p => p.Id);
-            HasRequired(p => p.Pedido);
-            HasRequired(p => p.Sabor);
-            Property(p => p.Valor)
+            HasKey(c => c.Id);
+            HasRequired(c => c.Pedido);
+            HasRequired(c => c.Sabor);
+            Property(c => c.Valor)
                 .HasColumnName("ValorSabor")
                 .IsOptional();
-            Property(p => p.Quantidade)
+            Property(c => c.Quantidade)
                 .HasColumnName("Quantidade")
                 .IsRequired();
-            Property(p => p.Valor)
+            Property(c => c.Valor)
                 .HasColumnName("ValorTotal")
                 .IsRequired();
             Property(p => p.Tipo)
