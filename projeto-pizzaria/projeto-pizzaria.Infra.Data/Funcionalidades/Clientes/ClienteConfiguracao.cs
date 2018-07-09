@@ -17,30 +17,30 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Clientes
             HasKey(cliente => cliente.Id);
             HasRequired(cliente => cliente.Endereco);
             Property(cliente => cliente.Nome)
-                .HasColumnName("NOME")
+                .HasColumnName("Nome")
                 .HasColumnType("varchar")
                 .HasMaxLength(50)
                 .IsRequired();
 
             Property(cliente => cliente.DataNascimento)
-                .HasColumnName("DATANASCIMENTO")
+                .HasColumnName("DataNascimento")
                 .HasColumnType("datetime")
                 .IsRequired();
 
             Property(cliente => cliente.Telefone)
-                .HasColumnName("TELEFONE")
+                .HasColumnName("Telefone")
                 .HasColumnType("varchar")
                 .HasMaxLength(11)
                 .IsRequired();
 
             Property(cliente => cliente.TipoDeDocumento)
-                .HasColumnName("TIPODOCUMENTO")
+                .HasColumnName("TipoDocumento")
                 .HasColumnType("varchar")
                 .HasMaxLength(4)
                 .IsRequired();
 
             Property(cliente => cliente.NumeroDocumento)
-                .HasColumnName("NUMERODOCUMENTO")
+                .HasColumnName("NumeroDocumento")
                 .HasColumnType("varchar")
                 .HasMaxLength(15)
                 .IsRequired();

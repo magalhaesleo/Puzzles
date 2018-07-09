@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Adicionais\ObjectMother.cs" />
     <Compile Include="Base\BaseSQLTeste.cs" />
     <Compile Include="Funcionalidades\Clientes\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Enderecos\ObjectMother.cs" />
@@ -57,9 +58,7 @@
     <Compile Include="Objetos de Valor\CPFs\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Funcionalidades\Adicionais\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\projeto-pizzaria.Domain\projeto-pizzaria.Domain.csproj">
       <Project>{0819DC63-67C7-4451-8AC2-BD4C092F8C50}</Project>

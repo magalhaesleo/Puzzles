@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Contextos\PizzariaContexto.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteConfiguracao.cs" />
+    <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSQL.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteRepositorio.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoConfiguracao.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoRepositorioSQL.cs" />
@@ -61,6 +62,10 @@
     <ProjectReference Include="..\projeto-pizzaria.Domain\projeto-pizzaria.Domain.csproj">
       <Project>{0819DC63-67C7-4451-8AC2-BD4C092F8C50}</Project>
       <Name>projeto-pizzaria.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\projeto-pizzaria.Infra\projeto-pizzaria.Infra.csproj">
+      <Project>{1645A60A-9345-4309-B930-5C67B6F3FF58}</Project>
+      <Name>projeto-pizzaria.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

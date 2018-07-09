@@ -13,6 +13,6 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos
         public Pedido Pedido { get; set; }
         public virtual double Valor { get; set; }
         public int Quantidade { get; set; }
-        public abstract string ObterTipo();
+        public abstract string Tipo { get; }
     }
 }

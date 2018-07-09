@@ -10,9 +10,13 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones
     public class Calzone : Produto
     {
         public Sabor Sabor { get; set; }
-        public override string ObterTipo()
+
+        public override string Tipo
         {
-            return "Calzone";
+            get
+            {
+                return "Calzone";
+            }
         }
     }
 }

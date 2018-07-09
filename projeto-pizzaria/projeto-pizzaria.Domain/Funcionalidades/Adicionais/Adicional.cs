@@ -1,4 +1,6 @@
-﻿using projeto_pizzaria.Domain.Funcionalidades.Produtos;
+﻿using projeto_pizzaria.Domain.Base;
+using projeto_pizzaria.Domain.Funcionalidades.Produtos;
+using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +9,32 @@ using System.Threading.Tasks;
 
 namespace projeto_pizzaria.Domain.Funcionalidades.Adicionais
 {
-    public class Adicional : Produto
+    public class Adicional : Entidade
     {
-        public override string ObterTipo()
+        public string Descricao { get; set; }
+
+        public virtual double ValorPequena { get; set; }
+
+        public virtual double ValorMedia { get; set; }
+
+        public virtual double ValorGrande { get; set; }
+
+        public string ObterTipo()
         {
             return "Adicional";
+        }
+
+        public virtual double ObterValorAdicional(Pizza pizza)
+        {
+            switch (pizza.Tamanho)
+            {
+                case TamanhoPizza.GRANDE:
+                    return ValorGrande;
+                case TamanhoPizza.MEDIA:
+                    return ValorMedia;
+                default:
+                    return ValorPequena;
+            }
         }
     }
 }

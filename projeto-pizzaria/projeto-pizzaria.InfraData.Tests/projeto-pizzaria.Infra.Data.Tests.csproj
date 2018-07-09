@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSQLTeste.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoRepositorioSQLTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
