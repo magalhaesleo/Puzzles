@@ -1,4 +1,6 @@
-﻿using projeto_pizzaria.Domain.helpers.VisibleBotoes;
+﻿using projeto_pizzaria.Applications.Funcionalidades.Clientes;
+using projeto_pizzaria.Domain.helpers.VisibleBotoes;
+using projeto_pizzaria.Infra.Data.Funcionalidades.Clientes;
 using projeto_pizzaria.WinApp.Base;
 using projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido;
 using System;
@@ -14,7 +16,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
     {
         public override void Adicionar()
         {
-            RealizarPedido_Dialog dialogRealizarPedido = new RealizarPedido_Dialog();
+            RealizarPedido_Dialog dialogRealizarPedido = new RealizarPedido_Dialog(new ClienteServico(new ClienteRepositorio()));
 
             DialogResult resultadoDialogRealizarPedido = dialogRealizarPedido.ShowDialog();
         }
