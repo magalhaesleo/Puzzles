@@ -34,6 +34,8 @@
             this.labelTipo = new System.Windows.Forms.Label();
             this.comboBoxTipoProduto = new System.Windows.Forms.ComboBox();
             this.grupoAdicionarItemPedido = new System.Windows.Forms.GroupBox();
+            this.labelQuantidade = new System.Windows.Forms.Label();
+            this.numericUpDownQuantidade = new System.Windows.Forms.NumericUpDown();
             this.botaoRemoverItemPedido = new System.Windows.Forms.Button();
             this.botaoAdicionarItemPedido = new System.Windows.Forms.Button();
             this.radioButtonPizzaGrande = new System.Windows.Forms.RadioButton();
@@ -71,15 +73,13 @@
             this.maskedTextBoxBuscarPorTelefone = new System.Windows.Forms.MaskedTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.numericUpDownQuantidade = new System.Windows.Forms.NumericUpDown();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.labelQuantidade = new System.Windows.Forms.Label();
             this.grupoAdicionarItemPedido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             this.grupoAdicionarSabores.SuspendLayout();
             this.grupoPedidoParaEmpresa.SuspendLayout();
             this.grupoFormaDePagamento.SuspendLayout();
             this.groupBoxAdicionais.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             this.SuspendLayout();
             // 
             // labelCliente
@@ -115,6 +115,7 @@
             this.comboBoxTipoProduto.Name = "comboBoxTipoProduto";
             this.comboBoxTipoProduto.Size = new System.Drawing.Size(188, 21);
             this.comboBoxTipoProduto.TabIndex = 7;
+            this.comboBoxTipoProduto.SelectedIndexChanged += new System.EventHandler(this.comboBoxTipoProduto_SelectedIndexChanged);
             // 
             // grupoAdicionarItemPedido
             // 
@@ -135,6 +136,22 @@
             this.grupoAdicionarItemPedido.TabIndex = 12;
             this.grupoAdicionarItemPedido.TabStop = false;
             this.grupoAdicionarItemPedido.Text = "Item do pedido";
+            // 
+            // labelQuantidade
+            // 
+            this.labelQuantidade.AutoSize = true;
+            this.labelQuantidade.Location = new System.Drawing.Point(301, 27);
+            this.labelQuantidade.Name = "labelQuantidade";
+            this.labelQuantidade.Size = new System.Drawing.Size(65, 13);
+            this.labelQuantidade.TabIndex = 31;
+            this.labelQuantidade.Text = "Quantidade:";
+            // 
+            // numericUpDownQuantidade
+            // 
+            this.numericUpDownQuantidade.Location = new System.Drawing.Point(372, 20);
+            this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
+            this.numericUpDownQuantidade.Size = new System.Drawing.Size(59, 20);
+            this.numericUpDownQuantidade.TabIndex = 30;
             // 
             // botaoRemoverItemPedido
             // 
@@ -488,26 +505,10 @@
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
-            // numericUpDownQuantidade
-            // 
-            this.numericUpDownQuantidade.Location = new System.Drawing.Point(372, 20);
-            this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
-            this.numericUpDownQuantidade.Size = new System.Drawing.Size(59, 20);
-            this.numericUpDownQuantidade.TabIndex = 30;
-            // 
             // contextMenuStrip3
             // 
             this.contextMenuStrip3.Name = "contextMenuStrip3";
             this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
-            // 
-            // labelQuantidade
-            // 
-            this.labelQuantidade.AutoSize = true;
-            this.labelQuantidade.Location = new System.Drawing.Point(301, 27);
-            this.labelQuantidade.Name = "labelQuantidade";
-            this.labelQuantidade.Size = new System.Drawing.Size(65, 13);
-            this.labelQuantidade.TabIndex = 31;
-            this.labelQuantidade.Text = "Quantidade:";
             // 
             // RealizarPedido_Dialog
             // 
@@ -535,12 +536,12 @@
             this.Text = "Realizar Pedido";
             this.grupoAdicionarItemPedido.ResumeLayout(false);
             this.grupoAdicionarItemPedido.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).EndInit();
             this.grupoAdicionarSabores.ResumeLayout(false);
             this.grupoPedidoParaEmpresa.ResumeLayout(false);
             this.grupoPedidoParaEmpresa.PerformLayout();
             this.grupoFormaDePagamento.ResumeLayout(false);
             this.groupBoxAdicionais.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

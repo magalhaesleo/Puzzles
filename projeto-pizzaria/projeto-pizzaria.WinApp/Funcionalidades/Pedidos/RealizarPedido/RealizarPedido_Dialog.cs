@@ -21,6 +21,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             InitializeComponent();
 
             PopularAtributosDaClasse(clienteServico);
+            PopularComboBoxTipoProduto();
         }
         public void PopularAtributosDaClasse(ClienteServico clienteServico)
         {
@@ -56,5 +57,41 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             //Populando comboBoxDeClientes
             PopularComboboxDeClientes(listaDeClientesBuscados);
         }
+
+        private void PopularComboBoxTipoProduto()
+        {
+            comboBoxTipoProduto.Items.Add("Pizza");
+            comboBoxTipoProduto.Items.Add("Calzone");
+            comboBoxTipoProduto.Items.Add("Bebidas");
+        }
+
+        private void comboBoxTipoProduto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReiniciarValoresDeItemPedido();
+
+            if(comboBoxTipoProduto.SelectedItem == "Bebidas")
+            {
+                comboBoxItem.Enabled = true;
+            }
+        }
+
+        private void ReiniciarValoresDeItemPedido()
+        {
+            comboBoxItem.Enabled = false;
+            radioButtonPizzaGrande.Enabled = false;
+            radioButtonPizzaMedia.Enabled = false;
+            radioButtonPizzaPequena.Enabled = false;
+            comboBoxSabores.Enabled = false;
+            comboBoxSabores.Enabled = false;
+            botaoAdicionarSabor.Enabled = false;
+            botaoAdicionarBorda.Enabled = false;
+            botaoRemoverBorda.Enabled = false;
+            botaoRemoverSabor.Enabled = false;
+            comboBoxAdicionais.Enabled = false;
+            comboBoxAdicionais.Enabled = false;
+            botaoAdicionarItemPedido.Enabled = false;
+            botaoRemoverItemPedido.Enabled = false;
+        }
+
     }
 }
