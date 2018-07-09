@@ -1,5 +1,7 @@
 ﻿using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Funcionalidades.Enderecos;
+using projeto_pizzaria.Infra.Data.Funcionalidades.Pedidos;
+using projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Calzones;
 using projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Pizzas;
 using System;
 using System.Collections.Generic;
@@ -25,7 +27,8 @@ namespace projeto_pizzaria.Infra.Data.Contextos
             modelBuilder.Entity<Cliente>().ToTable("TBCLIENTE");
             modelBuilder.Entity<Endereco>().ToTable("TBENDERECO");
             modelBuilder.Configurations.Add(new PizzaConfiguracao());
-            modelBuilder.Configurations.Add(new PizzaConfiguracao());
+            modelBuilder.Configurations.Add(new CalzoneConfiguracao());
+            modelBuilder.Configurations.Add(new PedidoConfiguracao());
         }
     }
 }
