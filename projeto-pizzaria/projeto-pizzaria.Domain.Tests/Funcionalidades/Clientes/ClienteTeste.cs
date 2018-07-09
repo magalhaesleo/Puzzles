@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using NUnit.Framework;
-using projeto_pizzaria.Common.Tests.Funcionalidades;
+using projeto_pizzaria.Common.Tests;
 using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Funcionalidades.Clientes.Excecoes;
 using projeto_pizzaria.Domain.Funcionalidades.Enderecos;

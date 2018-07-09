@@ -55,6 +55,8 @@
     <Compile Include="Funcionalidades\Enderecos\Excecoes\EnderecoSemComplementoExcecao.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\EnderecoSemNumeroExcecao.cs" />
     <Compile Include="Funcionalidades\Enderecos\Excecoes\EnderecoSemRuaExcecao.cs" />
+    <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoComClienteSemDocumentoExcecao.cs" />
+    <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoParaEmpresaEmitindoNotaSemDepartamentoOuResponsavelExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoComValorTotalZeroOuNegativoExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemFormaDePagamentoExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\FormaPagamentoPedido.cs" />

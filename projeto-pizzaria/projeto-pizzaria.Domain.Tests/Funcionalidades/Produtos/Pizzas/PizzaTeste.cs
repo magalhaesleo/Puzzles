@@ -33,6 +33,8 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Produtos.Pizzas
             //_pizzaMoq.Setup()
 
             //_produtoPedidoValido.ValorTotal.Should().Be(40);
+
+            1.Should().Be(2);
         }
     }
 }

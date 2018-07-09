@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using projeto_pizzaria.Common.Tests.Funcionalidades;
+using projeto_pizzaria.Common.Tests;
 using projeto_pizzaria.Domain.Funcionalidades.Enderecos;
 using projeto_pizzaria.Domain.Funcionalidades.Enderecos.Excecoes;
 using System;

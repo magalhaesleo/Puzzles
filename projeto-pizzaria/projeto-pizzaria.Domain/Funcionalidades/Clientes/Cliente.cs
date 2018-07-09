@@ -20,7 +20,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Clientes
 
         public DateTime DataNascimneto { get; set; }
 
-        public IDocumento Documento { get; set; }
+        public virtual IDocumento Documento { get; set; }
 
         public void Validar()
         {

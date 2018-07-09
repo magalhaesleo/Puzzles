@@ -1,12 +1,13 @@
 ﻿using FluentAssertions;
 using Moq;
 using NUnit.Framework;
-using projeto_pizzaria.Common.Tests.Funcionalidades;
+using projeto_pizzaria.Common.Tests;
 using projeto_pizzaria.Domain.Excecoes;
 using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos.Excecoes;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos;
+using projeto_pizzaria.Infra.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +91,63 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Pedidos
             resultado.Should().Throw<PedidoComValorTotalZeroOuNegativoExcecao>();
         }
 
+        [Test]
+        public void Pedido_Dominio_Validar_PedidoComClienteSemDocumentoExcecao_Falha()
+        {
+            _produtoMock.Setup(pm => pm.Valor).Returns(1);
+            _produtos.Add(_produtoMock.Object);
+            _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
+            _pedido.EmitirNota = true;
+
+            _clienteMock.Setup(cm => cm.Documento).Returns(It.IsAny<IDocumento>());
+
+            Action resultado = _pedido.Validar;
+
+            resultado.Should().Throw<PedidoComClienteSemDocumentoExcecao>();
+
+            _clienteMock.Verify(cm => cm.Documento);
+        }
+
+        [Test]
+        public void Pedido_Dominio_Validar_PedidoParaEmpresaEmitindoNotaSemDepartamentoOuResponsavelExcecao_SemDepartamento_Falha()
+        {
+            string nomeResponsavel = "Responsavel";
+
+            _produtoMock.Setup(pm => pm.Valor).Returns(1);
+            _produtos.Add(_produtoMock.Object);
+            _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
+            _pedido.EmitirNota = true;
+            _pedido.Responsavel = nomeResponsavel;
+
+            _clienteMock.Setup(cm => cm.Documento).Returns(ObjectMother.ObterCNPJValido());
+
+            Action resultado = _pedido.Validar;
+
+            resultado.Should().Throw<PedidoParaEmpresaEmitindoNotaSemDepartamentoOuResponsavelExcecao>();
+
+            _clienteMock.Verify(cm => cm.Documento);
+        }
+
+        [Test]
+        public void Pedido_Dominio_Validar_PedidoParaEmpresaEmitindoNotaSemDepartamentoOuResponsavelExcecao_SemResponsavel_Falha()
+        {
+            string departamento = "Departamento";
+
+            _produtoMock.Setup(pm => pm.Valor).Returns(1);
+            _produtos.Add(_produtoMock.Object);
+            _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
+            _pedido.EmitirNota = true;
+            _pedido.Departamento = departamento;
+
+            _clienteMock.Setup(cm => cm.Documento).Returns(ObjectMother.ObterCNPJValido());
+
+            Action resultado = _pedido.Validar;
+
+            resultado.Should().Throw<PedidoParaEmpresaEmitindoNotaSemDepartamentoOuResponsavelExcecao>();
+
+            _clienteMock.Verify(cm => cm.Documento);
+        }
+
 
         [Test]
         public void Pedido_Dominio_AtualizarStatus_Sucesso()
@@ -118,39 +176,49 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Pedidos
         }
 
         [Test]
-        public void Pedido_Dominio_Realizar_EmitindoNotaFiscal_PessoaFisica_Sucesso()
+        public void Pedido_Dominio_Realizar_ParaPessoaJuridica_Sucesso()
         {
-            _produtoMock.Setup(pm => pm.Valor).Returns(1);
+            string nomeResponsavel = "Responsavel";
+            string departamento = "Departamento";
+
+            double valorProduto = 1;
+
+            _clienteMock.Setup(cm => cm.Documento).Returns(ObjectMother.ObterCNPJValido());
+
+
+            _produtoMock.Setup(pm => pm.Valor).Returns(valorProduto);
             _produtos.Add(_produtoMock.Object);
             _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
+            _pedido.EmitirNota = true;
+            _pedido.Responsavel = nomeResponsavel;
+            _pedido.Departamento = departamento;
 
-            //_clienteMock.Setup(mc => mc.)
+            _pedido.Realizar();
+
+            _pedido.ValorTotal.Should().Be(valorProduto);
         }
 
         [Test]
-        public void Pedido_Dominio_EmitindoNotaFiscal_PessoaFisica_SemCPF_Falha()
+        public void Pedido_Dominio_Realizar_ParaPessoaFisica_Sucesso()
         {
-            1.Should().Be(2);
+            string nomeResponsavel = "Responsavel";
+            string departamento = "Departamento";
+
+            double valorProduto = 1;
+
+            _clienteMock.Setup(cm => cm.Documento).Returns(ObjectMother.ObterCPFValido());
+
+
+            _produtoMock.Setup(pm => pm.Valor).Returns(valorProduto);
+            _produtos.Add(_produtoMock.Object);
+            _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
+            _pedido.EmitirNota = true;
+            _pedido.Responsavel = nomeResponsavel;
+            _pedido.Departamento = departamento;
+
+            _pedido.Realizar();
+
+            _pedido.ValorTotal.Should().Be(valorProduto);
         }
-
-        [Test]
-        public void Pedido_Dominio_EmitindoNotaFiscal_PessoaJuridica_Sucesso()
-        {
-            1.Should().Be(2);
-        }
-
-        [Test]
-        public void Pedido_Dominio_EmitindoNotaFiscal_PessoaJuridica_SemDepartamentoOuResponsavel_Falha()
-        {
-            1.Should().Be(2);
-        }
-
-        [Test]
-        public void Pedido_Dominio_EmitindoNotaFiscal_PessoaJuridica_SemCNPJ_Falha()
-        {
-            1.Should().Be(2);
-        }
-
-
     }
 }

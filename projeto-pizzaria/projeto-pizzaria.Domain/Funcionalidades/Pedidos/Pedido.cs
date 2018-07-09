@@ -1,8 +1,10 @@
 ﻿using projeto_pizzaria.Domain.Base;
 using projeto_pizzaria.Domain.Funcionalidades.Clientes;
+using projeto_pizzaria.Domain.Funcionalidades.Clientes.Excecoes;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos.Excecoes;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos;
 using projeto_pizzaria.Infra.Extensao;
+using projeto_pizzaria.Infra.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,11 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
 
         public string Departamento { get; set; }
 
+        public virtual IDocumento DocumentoCliente
+        {
+            get { return Cliente.Documento; }
+        }
+
         public Pedido()
         {
             Status = StatusPedido.AGUARDANDO_MONTAGEM;
@@ -66,7 +73,8 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
         public void Realizar()
         {
             this.Validar();
-            this.CalcularValorTotal();
+
+            this.Status = StatusPedido.AGUARDANDO_MONTAGEM;
         }
 
         public void Validar()
@@ -82,6 +90,20 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
 
             if (ValorTotal <= 0)
                 throw new PedidoComValorTotalZeroOuNegativoExcecao();
+
+            if (EmitirNota)
+                if (DocumentoCliente == null)
+                    throw new PedidoComClienteSemDocumentoExcecao();
+                else
+                {
+                    if (DocumentoCliente.ObterTipo().Equals("CNPJ"))
+                    {
+                        if(string.IsNullOrEmpty(Departamento) || string.IsNullOrEmpty(Responsavel))
+                        {
+                            throw new PedidoParaEmpresaEmitindoNotaSemDepartamentoOuResponsavelExcecao();
+                        }
+                    }
+                }
         }
     }
 }
