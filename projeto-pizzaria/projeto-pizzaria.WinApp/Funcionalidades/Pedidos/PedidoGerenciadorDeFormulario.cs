@@ -17,7 +17,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
     {
         public override void Adicionar()
         {
-            RealizarPedido_Dialog dialogRealizarPedido = new RealizarPedido_Dialog(new ClienteServico(new ClienteRepositorio(new PizzariaContexto())));
+            RealizarPedido_Dialog dialogRealizarPedido = new RealizarPedido_Dialog(new ClienteServico(new ClienteRepositorioSQL(new PizzariaContexto())));
 
             DialogResult resultadoDialogRealizarPedido = dialogRealizarPedido.ShowDialog();
         }

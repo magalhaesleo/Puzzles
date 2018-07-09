@@ -14,11 +14,11 @@ using System.Threading.Tasks;
 
 namespace projeto_pizzaria.Infra.Data.Funcionalidades.Clientes
 {
-    public class ClienteRepositorio : IClienteRepositorio
+    public class ClienteRepositorioSQL : IClienteRepositorio
     {
         PizzariaContexto _pizzariaContexto;
 
-        public ClienteRepositorio(PizzariaContexto pizzariaContexto)
+        public ClienteRepositorioSQL(PizzariaContexto pizzariaContexto)
         {
             _pizzariaContexto = pizzariaContexto;
         }
