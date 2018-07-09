@@ -31,6 +31,8 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
 
         public FormaPagamentoPedido? FormaPagamento { get; set; }
 
+        public bool EmitirNota { get; set; }
+
         public string Responsavel { get; set; }
 
         public string Departamento { get; set; }
@@ -61,6 +63,12 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
                 Status = Status.Next();
         }
 
+        public void Realizar()
+        {
+            this.Validar();
+            this.CalcularValorTotal();
+        }
+
         public void Validar()
         {
             if (Cliente == null)
@@ -74,7 +82,6 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
 
             if (ValorTotal <= 0)
                 throw new PedidoComValorTotalZeroOuNegativoExcecao();
-
         }
     }
 }

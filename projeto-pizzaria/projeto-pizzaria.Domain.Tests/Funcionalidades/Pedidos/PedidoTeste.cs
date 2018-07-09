@@ -116,5 +116,41 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Pedidos
 
             _pedido.Status.Should().Be(StatusPedido.ENTREGUE);
         }
+
+        [Test]
+        public void Pedido_Dominio_Realizar_EmitindoNotaFiscal_PessoaFisica_Sucesso()
+        {
+            _produtoMock.Setup(pm => pm.Valor).Returns(1);
+            _produtos.Add(_produtoMock.Object);
+            _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
+
+            //_clienteMock.Setup(mc => mc.)
+        }
+
+        [Test]
+        public void Pedido_Dominio_EmitindoNotaFiscal_PessoaFisica_SemCPF_Falha()
+        {
+            1.Should().Be(2);
+        }
+
+        [Test]
+        public void Pedido_Dominio_EmitindoNotaFiscal_PessoaJuridica_Sucesso()
+        {
+            1.Should().Be(2);
+        }
+
+        [Test]
+        public void Pedido_Dominio_EmitindoNotaFiscal_PessoaJuridica_SemDepartamentoOuResponsavel_Falha()
+        {
+            1.Should().Be(2);
+        }
+
+        [Test]
+        public void Pedido_Dominio_EmitindoNotaFiscal_PessoaJuridica_SemCNPJ_Falha()
+        {
+            1.Should().Be(2);
+        }
+
+
     }
 }
