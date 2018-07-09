@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSQLTeste.cs" />
+    <Compile Include="Funcionalidades\Pedidos\PedidoRepositorioSQLTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\projeto-pizzaria.Common.Tests\projeto-pizzaria.Common.Tests.csproj">
+      <Project>{0453FF6F-FCFB-4F51-8085-02BA46B8C000}</Project>
+      <Name>projeto-pizzaria.Common.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\projeto-pizzaria.Domain\projeto-pizzaria.Domain.csproj">
       <Project>{0819DC63-67C7-4451-8AC2-BD4C092F8C50}</Project>
       <Name>projeto-pizzaria.Domain</Name>
@@ -78,6 +80,10 @@
     <ProjectReference Include="..\projeto-pizzaria.Infra.Data\projeto-pizzaria.Infra.Data.csproj">
       <Project>{56D03F5C-A741-4454-A767-7E771C07E966}</Project>
       <Name>projeto-pizzaria.Infra.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\projeto-pizzaria.Infra\projeto-pizzaria.Infra.csproj">
+      <Project>{1645A60A-9345-4309-B930-5C67B6F3FF58}</Project>
+      <Name>projeto-pizzaria.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
