@@ -16,7 +16,7 @@ namespace projeto_pizzaria.Common.Tests
             Cliente cliente = new Cliente();
 
             cliente.Nome = "Cliente";
-            cliente.Telefone = "99999-9999";
+            cliente.Telefone = "99999999";
             cliente.Endereco = endereco;
             cliente.DataNascimento = DateTime.Parse("2000-01-01");
             cliente.Documento = documento;
@@ -28,7 +28,7 @@ namespace projeto_pizzaria.Common.Tests
             Cliente cliente = new Cliente();
 
             cliente.Nome = "Cliente";
-            cliente.Telefone = "99999-9999";
+            cliente.Telefone = "99999999";
             cliente.Endereco = endereco;
             cliente.DataNascimento = DateTime.Parse("2000-01-01");
 
@@ -40,7 +40,7 @@ namespace projeto_pizzaria.Common.Tests
             Cliente cliente = new Cliente();
 
             cliente.Nome = "Cliente";
-            cliente.Telefone = "99999-9999";
+            cliente.Telefone = "99999999";
             cliente.DataNascimento = DateTime.Parse("2000-01-01");
 
             return cliente;
@@ -72,7 +72,7 @@ namespace projeto_pizzaria.Common.Tests
         {
             Cliente cliente = new Cliente();
 
-            cliente.Telefone = "99999-9999";
+            cliente.Telefone = "99999999";
             cliente.Endereco = endereco;
             cliente.DataNascimento = DateTime.Parse("2000-01-01");
 
