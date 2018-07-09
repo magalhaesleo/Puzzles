@@ -208,7 +208,6 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Pedidos
 
             _clienteMock.Setup(cm => cm.Documento).Returns(ObjectMother.ObterCPFValido());
 
-
             _produtoMock.Setup(pm => pm.Valor).Returns(valorProduto);
             _produtos.Add(_produtoMock.Object);
             _pedido = ObjectMother.ObterPedidoValido(_clienteMock.Object, _produtos);
@@ -219,6 +218,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Pedidos
             _pedido.Realizar();
 
             _pedido.ValorTotal.Should().Be(valorProduto);
+            _pedido.Status.Should().Be(StatusPedido.AGUARDANDO_MONTAGEM);
         }
     }
 }

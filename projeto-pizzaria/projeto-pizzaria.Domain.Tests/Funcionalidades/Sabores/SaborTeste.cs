@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
 using NUnit.Framework;
-using projeto_pizzaria.Common.Tests.Funcionalidades.Sabores;
+using projeto_pizzaria.Common.Tests;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
