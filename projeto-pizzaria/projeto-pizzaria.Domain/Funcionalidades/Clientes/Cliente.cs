@@ -18,7 +18,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Clientes
 
         public Endereco Endereco { get; set; }
 
-        public DateTime DataNascimneto { get; set; }
+        public DateTime DataNascimento { get; set; }
 
         public virtual IDocumento Documento { get; set; }
 
@@ -32,6 +32,11 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Clientes
 
             if (Endereco == null)
                 throw new ClienteSemEnderecoExcecao();
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0} - {1} - ID: {2}", this.Nome, this.Telefone, this.Id);
         }
     }
 }

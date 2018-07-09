@@ -47,11 +47,17 @@
     <Compile Include="Interfaces\IServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\projeto-pizzaria.Domain\projeto-pizzaria.Domain.csproj">
       <Project>{0819dc63-67c7-4451-8ac2-bd4c092f8c50}</Project>
       <Name>projeto-pizzaria.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\projeto-pizzaria.Infra.Data\projeto-pizzaria.Infra.Data.csproj">
+      <Project>{56D03F5C-A741-4454-A767-7E771C07E966}</Project>
+      <Name>projeto-pizzaria.Infra.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,7 @@
 ﻿using projeto_pizzaria.Applications.Funcionalidades.Clientes.Interfaces;
 using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Interfaces.Clientes;
+using projeto_pizzaria.Infra.Data.Funcionalidades.Clientes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

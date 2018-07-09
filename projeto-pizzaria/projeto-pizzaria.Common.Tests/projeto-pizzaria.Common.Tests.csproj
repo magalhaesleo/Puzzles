@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Funcionalidades\Adicionais\" />
+    <Folder Include="Funcionalidades\Enderecos\" />
     <Folder Include="Funcionalidades\Produtos\" />
     <Folder Include="Funcionalidades\Sabores\" />
   </ItemGroup>
