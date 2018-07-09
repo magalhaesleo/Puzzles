@@ -1,6 +1,5 @@
 ﻿using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Funcionalidades.Enderecos;
-using projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Pizzas;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -22,7 +21,7 @@ namespace projeto_pizzaria.Infra.Data.Contextos
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Cliente>().ToTable("TBCLIENTE");
+            modelBuilder.Configurations.Add(new ClienteConfiguracao());
             modelBuilder.Entity<Endereco>().ToTable("TBENDERECO");
             modelBuilder.Configurations.Add(new PizzaConfiguracao());
             modelBuilder.Configurations.Add(new PizzaConfiguracao());
