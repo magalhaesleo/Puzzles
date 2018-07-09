@@ -21,6 +21,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Clientes
 
         public IDocumento Documento { get; set; }
 
+        public string TipoDeDocumento { get { return Documento.ObterTipo();  } set {} }
+
+        public string NumeroDocumento { get { return Documento.NumeroComPontuacao; } set {} }
+
         public void Validar()
         {
 
