@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Projeto_NFe.Infrastructure.Interfaces
+namespace projeto_pizzaria.Infra.Interfaces
 {
     public interface IDocumento
     {

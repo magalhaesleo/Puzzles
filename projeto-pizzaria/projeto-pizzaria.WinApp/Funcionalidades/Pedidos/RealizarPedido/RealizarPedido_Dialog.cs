@@ -45,6 +45,8 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
         }
         private void maskedTextBoxBuscarPorTelefone_TextChanged(object sender, EventArgs e)
         {
+            maskedTextBoxBuscarPorTelefone.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+
             // Pegando os valores do campo de busca por telefone e atribuindo em uma váriavel que será passada por parâmetro no método 'BuscarClientePorTelefone'
             string digitosInformadosNaPesquisa = maskedTextBoxBuscarPorTelefone.Text;
 
