@@ -25,7 +25,7 @@ namespace projeto_pizzaria.Infra.Data.Contextos
         {
             modelBuilder.Configurations.Add(new ClienteConfiguracao());
             modelBuilder.Entity<Endereco>().ToTable("TBENDERECO");
-            modelBuilder.Configurations.Add(new PizzaConfiguracao());
+            //modelBuilder.Configurations.Add(new PizzaConfiguracao());
             
         }
     }

@@ -1,6 +1,8 @@
 ﻿using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Interfaces.Clientes;
 using projeto_pizzaria.Infra.Data.Contextos;
+using projeto_pizzaria.Infra.Objetos_de_Valor.CNPJs;
+using projeto_pizzaria.Infra.Objetos_de_Valor.CPFs;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -30,6 +32,24 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Clientes
             var ClientesEncontrados = from TBCLIENTES in _pizzariaContexto.Clientes
                                       where TBCLIENTES.Telefone.Contains(digitosInformados)
                                       select TBCLIENTES;
+
+            foreach (Cliente cliente in ClientesEncontrados)
+            {
+                if (cliente.TipoDeDocumento == "CNPJ")
+                {
+                    cliente.Documento = new CNPJ()
+                    {
+                        NumeroComPontuacao = cliente.NumeroDocumento
+                    };
+                }
+                else if (cliente.TipoDeDocumento == "CPF")
+                {
+                    cliente.Documento = new CPF()
+                    {
+                        NumeroComPontuacao = cliente.NumeroDocumento
+                    };
+                }
+            }
 
             return ClientesEncontrados;
         }
