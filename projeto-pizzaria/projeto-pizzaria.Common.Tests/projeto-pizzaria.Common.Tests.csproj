@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\BaseSQLTeste.cs" />
     <Compile Include="Funcionalidades\Clientes\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Enderecos\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Pedidos\ObjectMother.cs" />
@@ -57,10 +65,18 @@
       <Project>{0819DC63-67C7-4451-8AC2-BD4C092F8C50}</Project>
       <Name>projeto-pizzaria.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\projeto-pizzaria.Infra.Data\projeto-pizzaria.Infra.Data.csproj">
+      <Project>{56D03F5C-A741-4454-A767-7E771C07E966}</Project>
+      <Name>projeto-pizzaria.Infra.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\projeto-pizzaria.Infra\projeto-pizzaria.Infra.csproj">
       <Project>{1645A60A-9345-4309-B930-5C67B6F3FF58}</Project>
       <Name>projeto-pizzaria.Infra</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

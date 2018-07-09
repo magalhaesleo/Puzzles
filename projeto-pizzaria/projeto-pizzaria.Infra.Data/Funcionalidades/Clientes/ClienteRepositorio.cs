@@ -20,7 +20,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Clientes
         {
             _pizzariaContexto = pizzariaContexto;
         }
-        public int Adicionar(Cliente cliente)
+        public long Adicionar(Cliente cliente)
         {
             throw new NotImplementedException();
         }

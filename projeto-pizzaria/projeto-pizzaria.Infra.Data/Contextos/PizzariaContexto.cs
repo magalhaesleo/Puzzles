@@ -10,6 +10,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
 
 namespace projeto_pizzaria.Infra.Data.Contextos
 {
@@ -22,6 +23,7 @@ namespace projeto_pizzaria.Infra.Data.Contextos
 
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

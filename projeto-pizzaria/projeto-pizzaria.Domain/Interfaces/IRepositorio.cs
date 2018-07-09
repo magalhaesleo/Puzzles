@@ -9,7 +9,7 @@ namespace projeto_pizzaria.Domain.Interfaces
 {
     public interface IRepositorio<T> where T : Entidade
     {
-        int Adicionar(T entidade);
+        long Adicionar(T entidade);
         void Editar(T entidade);
         void Excluir(T entidade);
         List<T> GetAll();
