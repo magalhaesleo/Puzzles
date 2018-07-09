@@ -27,10 +27,14 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Clientes
 
         public IEnumerable<Cliente> BuscarClientePorTelefone(string digitosInformados)
         {
-            throw new NotImplementedException();
+            var ClientesEncontrados = from TBCLIENTES in _pizzariaContexto.Clientes
+                                      where TBCLIENTES.Telefone.Contains(digitosInformados)
+                                      select TBCLIENTES;
+
+            return ClientesEncontrados;
         }
 
-;
+
 
         public void Editar(Cliente cliente)
         {

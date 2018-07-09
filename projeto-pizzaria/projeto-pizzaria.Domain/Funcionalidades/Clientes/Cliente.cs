@@ -25,5 +25,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Clientes
         {
 
         }
+
+        public override string ToString()
+        {
+            return String.Format("{0} - {1} - ID: {2}", this.Nome, this.Telefone, this.Id);
+        }
     }
 }
