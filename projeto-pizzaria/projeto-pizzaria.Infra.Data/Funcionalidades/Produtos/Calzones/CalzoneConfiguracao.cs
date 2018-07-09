@@ -26,7 +26,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Calzones
             Property(p => p.Valor)
                 .HasColumnName("ValorTotal")
                 .IsRequired();
-            Property(p => p.ObterTipo())
+            Property(p => p.Tipo)
             .HasColumnName("TipoProduto")
             .HasColumnType("varchar")
             .HasMaxLength(50);

@@ -2,6 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using projeto_pizzaria.Common.Tests;
+using projeto_pizzaria.Domain.Funcionalidades.Adicionais;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using System;
@@ -15,38 +16,159 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Produtos.Pizzas
     [TestFixture]
     public class PizzaTeste
     {
+        #region Casos Levantados
+        /*
+        Pizza_Dominio_Valor_PizzaPequena_Sucesso
+        Pizza_Dominio_Valor_PizzaPequenaComBordaCatupiry_Sucesso
+        Pizza_Dominio_Valor_PizzaPequenaComBordaCheddar_Sucesso
+        Pizza_Dominio_Valor_PizzaMedia_Sucesso
+        Pizza_Dominio_Valor_PizzaMediaComBordaCatupiry_Sucesso
+        Pizza_Dominio_Valor_PizzaMediaComBordaCheddar_Sucesso
+        Pizza_Dominio_Valor_PizzaGrande_Sucesso
+        Pizza_Dominio_Valor_PizzaGrandeComBordaCatupiry_Sucesso
+        Pizza_Dominio_Valor_PizzaGrandeComBordaCheddar_Sucesso
+        Pizza_Dominio_Valor_PizzaPequenaComDoisSaboresValorIgual_Sucesso
+        Pizza_Dominio_Valor_PizzaPequenaComDoisSaboresValoresDiferentes_Sucesso
+        Pizza_Dominio_Valor_PizzaMediaComDoisSaboresValorIgual_Sucesso
+        Pizza_Dominio_Valor_PizzaMediaComDoisSaboresValoresDiferentes_Sucesso
+        Pizza_Dominio_Valor_PizzaGrandeComDoisSaboresValorIgual_Sucesso
+        Pizza_Dominio_Valor_PizzaGrandeComDoisSaboresValoresDiferentes_Sucesso
+        */
+        #endregion
+
         private Pizza _pizza;
         private Mock<Sabor> _sabor1Mock;
         private Mock<Sabor> _sabor2Mock;
+        private Mock<Adicional> _adicionalMock;
+
         [SetUp]
         public void IniciarCenario()
         {
             _pizza = new Pizza();
             _sabor1Mock = new Mock<Sabor>();
             _sabor2Mock = new Mock<Sabor>();
+            _adicionalMock = new Mock<Adicional>();
         }
+
         [Test]
-        public void Pizza_Dominio_ObterValorSemAdicional_SaboresComValorDiferentes_Sucesso()
+        public void Pizza_Dominio_Valor_PizzaPequena_Sucesso()
         {
-            _sabor1Mock.Setup(s => s.ValorMedia).Returns(50);
-            _sabor2Mock.Setup(s => s.ValorMedia).Returns(40);
-            _pizza = ObjectMother.ObterPizzaComMaisDeUmSabor(_sabor1Mock.Object, _sabor2Mock.Object);
-            _pizza.Tamanho = TamanhoPizza.MEDIA;
+            _pizza = ObjectMother.ObterPizzaComTamanhoEUmSabor(TamanhoPizza.PEQUENA, _sabor1Mock.Object);
 
-            double valorPizza = _pizza.ObterValorSemAdicional();
+            double valorSabor1PizzaPequena = 25;
+            _sabor1Mock.Setup(s1 => s1.ObterValorDoSabor(_pizza)).Returns(valorSabor1PizzaPequena);
 
-            valorPizza.Should().Be(50);
+            _pizza.Valor.Should().Be(valorSabor1PizzaPequena);
+            _sabor1Mock.Verify(s1 => s1.ObterValorDoSabor(_pizza));
         }
+
         [Test]
-        public void Pizza_Dominio_ObterValorSemAdicional_SomenteUmSabor_Sucesso()
+        public void Pizza_Dominio_Valor_PizzaPequenaComBordaCatupiry_Sucesso()
         {
-            _sabor1Mock.Setup(s => s.ValorMedia).Returns(50);
-            _pizza = ObjectMother.ObterPizzaComUmSabor(_sabor1Mock.Object);
-            _pizza.Tamanho = TamanhoPizza.MEDIA;
+            _pizza = ObjectMother.ObterPizzaComTamanhoEUmSabor(TamanhoPizza.PEQUENA, _sabor1Mock.Object);
 
-            double valorPizza = _pizza.ObterValorSemAdicional();
+            double valorSabor1PizzaPequena = 25;
+            _sabor1Mock.Setup(s1 => s1.ObterValorDoSabor(_pizza)).Returns(valorSabor1PizzaPequena);
 
-            valorPizza.Should().Be(50);
+            double valorBordaCatupiryPizzaPequena = 1.25;
+            _adicionalMock.Setup(am => am.ObterValorAdicional(_pizza)).Returns(valorBordaCatupiryPizzaPequena);
+
+            _pizza.Adicional = _adicionalMock.Object;
+
+            _pizza.Valor.Should().Be(valorSabor1PizzaPequena + valorBordaCatupiryPizzaPequena);
+            _sabor1Mock.Verify(s1 => s1.ObterValorDoSabor(_pizza));
+            _adicionalMock.Verify(am => am.ValorPequena);
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaPequenaComBordaCheddar_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaMedia_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaMediaComBordaCatupiry_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaMediaComBordaCheddar_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaGrande_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaGrandeComBordaCatupiry_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaGrandeComBordaCheddar_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaPequenaComDoisSaboresValorIgual_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaPequenaComDoisSaboresValoresDiferentes_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaMediaComDoisSaboresValorIgual_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaMediaComDoisSaboresValoresDiferentes_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaGrandeComDoisSaboresValorIgual_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pizza_Dominio_Valor_PizzaGrandeComDoisSaboresValoresDiferentes_Sucesso()
+        {
+            1.Should().Be(2);
+
         }
     }
 }

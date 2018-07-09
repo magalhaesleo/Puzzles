@@ -22,7 +22,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Sabores
             return ValorCalzone;
         }
 
-        public double ObterValorDoSabor(Pizza pizza)
+        public virtual double ObterValorDoSabor(Pizza pizza)
         {
             switch (pizza.Tamanho)
             {
