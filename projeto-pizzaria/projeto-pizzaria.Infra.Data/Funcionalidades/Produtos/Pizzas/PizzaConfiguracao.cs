@@ -28,7 +28,9 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Pizzas
             Property(p => p.Quantidade)
                 .HasColumnName("Quantidade")
                 .IsRequired();
-            Property(p => p.Valor);
+            Property(p => p.Valor)
+                .HasColumnName("ValorTotal")
+                .IsRequired();
             Property(p => p.ObterTipo())
                 .HasColumnName("TipoProduto")
                 .HasColumnType("varchar")
