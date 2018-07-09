@@ -1,4 +1,5 @@
 ﻿using projeto_pizzaria.Domain.Base;
+using projeto_pizzaria.Domain.Funcionalidades.Clientes.Excecoes;
 using projeto_pizzaria.Domain.Funcionalidades.Enderecos;
 using projeto_pizzaria.Infra.Interfaces;
 using System;
@@ -19,11 +20,18 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Clientes
 
         public DateTime DataNascimento { get; set; }
 
-        public IDocumento Documento { get; set; }
+        public virtual IDocumento Documento { get; set; }
 
         public void Validar()
         {
+            if (string.IsNullOrEmpty(Nome))
+                throw new ClienteSemNomeExcecao();
 
+            if (string.IsNullOrEmpty(Telefone))
+                throw new ClienteSemTelefoneExcecao();
+
+            if (Endereco == null)
+                throw new ClienteSemEnderecoExcecao();
         }
 
         public override string ToString()

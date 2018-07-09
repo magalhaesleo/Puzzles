@@ -1,4 +1,5 @@
 ﻿using projeto_pizzaria.Domain.Base;
+using projeto_pizzaria.Domain.Funcionalidades.Enderecos.Excecoes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,25 +19,23 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Enderecos
 
         public virtual void Validar()
         {
-            //if (String.IsNullOrEmpty(CEP))
-            //    throw new EnderecoSemCEPExcecao();
+            if (String.IsNullOrEmpty(CEP))
+                throw new EnderecoSemCEPExcecao();
 
-            //if (String.IsNullOrEmpty(Cidade))
-            //    throw new EnderecoSemCidadeExcecao();
+            if (String.IsNullOrEmpty(Cidade))
+                throw new EnderecoSemCidadeExcecao();
 
-            //if (String.IsNullOrEmpty(Bairro))
-            //    throw new EnderecoSemBairroExcecao();
+            if (String.IsNullOrEmpty(Bairro))
+                throw new EnderecoSemBairroExcecao();
 
-            //if (String.IsNullOrEmpty(Rua))
-            //    throw new EnderecoSemRuaExcecao();
+            if (String.IsNullOrEmpty(Rua))
+                throw new EnderecoSemRuaExcecao();
 
-            //if (Numero == 0)
-            //    throw new EnderecoSemNumeroExcecao();
+            if (Numero == 0)
+                throw new EnderecoSemNumeroExcecao();
 
-            //if (String.IsNullOrEmpty(Complemento))
-            //    throw new EnderecoSemComplementoExcecao();
-
-
+            if (String.IsNullOrEmpty(Complemento))
+                throw new EnderecoSemComplementoExcecao();
         }
     }
 }
