@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto_pizzaria.Common.Tests.Funcionalidades
+namespace projeto_pizzaria.Common.Tests.Funcionalidades.Clientes
 {
     public static partial class ObjectMother
     {
