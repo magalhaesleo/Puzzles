@@ -27,7 +27,9 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Pizzas
             Property(p => p.ValorSaboresSemAdicional)
                 .HasColumnName("ValorSabor")
                 .IsOptional();
-            HasRequired(p => p.Adicional);
+            HasRequired(p => p.Adicional)
+                .WithMany()
+                .WillCascadeOnDelete(false);
             Property(p => p.Quantidade)
                 .HasColumnName("Quantidade")
                 .IsRequired();
