@@ -14,6 +14,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Bebidas
             {
                 return "Bebida";
             }
+            set
+            {
+                Tipo = value;
+            }
         }
     }
 }

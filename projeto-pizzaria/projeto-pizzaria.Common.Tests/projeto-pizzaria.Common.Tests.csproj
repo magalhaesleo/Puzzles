@@ -52,6 +52,7 @@
     <Compile Include="Funcionalidades\Clientes\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Enderecos\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Pedidos\ObjectMother.cs" />
+    <Compile Include="Funcionalidades\Produtos\Calzones\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Sabores\ObjectMother.cs" />
     <Compile Include="Objetos de Valor\CNPJs\ObjectMother.cs" />

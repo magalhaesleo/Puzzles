@@ -42,6 +42,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
             {
                 return "Pizza";
             }
+            set
+            {
+                Tipo = value;
+            }
         }
 
         public double ObterValorSaboresSemAdicional()

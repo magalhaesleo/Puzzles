@@ -44,7 +44,6 @@
     <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
     <Compile Include="Funcionalidades\Adicionais\Adicional.cs" />
     <Compile Include="Funcionalidades\Clientes\Cliente.cs" />
-    <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemDocumentoExcecao.cs" />
     <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemEnderecoExcecao.cs" />
     <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemNomeExcecao.cs" />
     <Compile Include="Funcionalidades\Clientes\Excecoes\ClienteSemTelefoneExcecao.cs" />

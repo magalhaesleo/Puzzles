@@ -30,21 +30,40 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Sabores
         [Test]
         public void Sabor_Dominio_ObterValor_Calzone_Sucesso()
         {
-            _sabor.ValorCalzone = 10;
+            _sabor = ObjectMother.ObterSaborValido();
 
             double valor =_sabor.ObterValorDoSabor(_calzoneMock.Object);
-            valor.Should().Be(10);
+            valor.Should().Be(_sabor.ValorCalzone);
         }
 
         [Test]
-        public void Sabor_Dominio_ObterValor_Pizza_Sucesso()
+        public void Sabor_Dominio_ObterValor_PizzaGrande_Sucesso()
         {
             _pizzaMock.Setup(p => p.Tamanho).Returns(TamanhoPizza.GRANDE);
             _sabor = ObjectMother.ObterSaborValido();
-            _sabor.ValorGrande = 74;
 
             double valor = _sabor.ObterValorDoSabor(_pizzaMock.Object);
-            valor.Should().Be(74);
+            valor.Should().Be(_sabor.ValorGrande);
+        }
+
+        [Test]
+        public void Sabor_Dominio_ObterValor_PizzaMedia_Sucesso()
+        {
+            _pizzaMock.Setup(p => p.Tamanho).Returns(TamanhoPizza.MEDIA);
+            _sabor = ObjectMother.ObterSaborValido();
+
+            double valor = _sabor.ObterValorDoSabor(_pizzaMock.Object);
+            valor.Should().Be(_sabor.ValorMedia);
+        }
+
+        [Test]
+        public void Sabor_Dominio_ObterValor_PizzaPequena_Sucesso()
+        {
+            _pizzaMock.Setup(p => p.Tamanho).Returns(TamanhoPizza.PEQUENA);
+            _sabor = ObjectMother.ObterSaborValido();
+
+            double valor = _sabor.ObterValorDoSabor(_pizzaMock.Object);
+            valor.Should().Be(_sabor.ValorPequena);
         }
     }
 }

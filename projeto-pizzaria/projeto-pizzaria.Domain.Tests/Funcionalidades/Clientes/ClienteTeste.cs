@@ -29,6 +29,15 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Clientes
         }
 
         [Test]
+        public void Cliente_Dominio_ToString_Sucesso()
+        {
+            Cliente cliente = ObjectMother.ObterClienteSemDocumento(_mockEndereco.Object);
+            cliente.ToString().Should().Be(
+                String.Format("{0} - {1} - ID: {2}", cliente.Nome, cliente.Telefone, cliente.Id)
+                );
+        }
+
+        [Test]
         public void Cliente_Dominio_Validar_Sucesso()
         {
             Cliente clienteParaValidar = ObjectMother.ObterClienteValidoSemDocumento(_mockEndereco.Object);
