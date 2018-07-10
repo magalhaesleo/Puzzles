@@ -24,7 +24,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Pedidos
                 .IsRequired();
             Property(p => p.ValorTotal)
                     .HasColumnName("ValorTotal")
-                    .IsOptional();
+                    .IsRequired();
             Property(p => p.FormaPagamento)
                     .HasColumnName("FormaPagamento")
                     .IsRequired();
