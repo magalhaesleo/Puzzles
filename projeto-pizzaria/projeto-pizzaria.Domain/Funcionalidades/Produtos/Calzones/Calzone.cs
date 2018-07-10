@@ -17,8 +17,6 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones
             }
         }
 
-        public Sabor Sabor { get; set; }
-
         public override string Tipo
         {
             get

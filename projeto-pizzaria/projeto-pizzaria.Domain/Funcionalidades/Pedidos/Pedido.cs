@@ -29,6 +29,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
             {
                 return CalcularValorTotal();
             }
+            set
+            {
+                ValorTotal = value;
+            }
         }
 
         public FormaPagamentoPedido? FormaPagamento { get; set; }
