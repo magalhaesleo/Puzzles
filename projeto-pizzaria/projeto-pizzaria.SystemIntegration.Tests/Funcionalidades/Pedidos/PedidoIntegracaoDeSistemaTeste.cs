@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos;
@@ -24,7 +25,9 @@ namespace projeto_pizzaria.SystemIntegration.Tests.Funcionalidades.Pedidos
         Pedido_IntegracaoDeSistema_Realizar_DuasPizzas_DoisSabores_Sucesso
         Pedido_IntegracaoDeSistema_Realizar_Calzone_Sucesso
         Pedido_IntegracaoDeSistema_Realizar_Bebida_Sucesso
-
+        Pedido_IntegracaoDeSistema_Realizar_UmaPizza_UmaBebida_Sucesso
+        Pedido_IntegracaoDeSistema_Realizar_UmaPizza_ComBorda_Sucesso
+        Pedido_IntegracaoDeSistema_Realizar_UmaPizzaComDoisSaboresEBorda_UmCalzone_UmaBebida_Sucesso
         */
         #endregion
 
@@ -48,6 +51,68 @@ namespace projeto_pizzaria.SystemIntegration.Tests.Funcionalidades.Pedidos
             _pizza = new Pizza();
             _calzone = new Calzone();
             _produtoGenerico = new ProdutoGenerico();
+        }
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_UmaPizza_UmSabor_Sucesso()
+        {
+            1.Should().Be(2);
+        }
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_UmaPizza_DoisSabores_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_DuasPizzas_UmSabor_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_DuasPizzas_DoisSabores_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_Calzone_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_Bebida_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_UmaPizza_UmaBebida_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_UmaPizza_ComBorda_Sucesso()
+        {
+            1.Should().Be(2);
+
+        }
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_UmaPizzaComDoisSaboresEBorda_UmCalzone_UmaBebida_Sucesso()
+        {
+            1.Should().Be(2);
+
         }
     }
 }
