@@ -37,13 +37,13 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Clientes
                 .HasColumnName("TipoDocumento")
                 .HasColumnType("varchar")
                 .HasMaxLength(4)
-                .IsRequired();
+                .IsOptional();
 
             Property(cliente => cliente.NumeroDocumento)
                 .HasColumnName("NumeroDocumento")
                 .HasColumnType("varchar")
                 .HasMaxLength(15)
-                .IsRequired();
+                .IsOptional();
         }
     }
 }

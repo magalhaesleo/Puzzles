@@ -24,7 +24,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Pedidos
                 .IsRequired();
             Property(p => p.ValorTotal)
                     .HasColumnName("ValorTotal")
-                    .IsOptional();
+                    .IsRequired();
             Property(p => p.FormaPagamento)
                     .HasColumnName("FormaPagamento")
                     .IsRequired();
@@ -32,11 +32,12 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Pedidos
                     .HasColumnName("Responsavel")
                     .HasColumnType("varchar")
                     .HasMaxLength(50)
-                    .IsRequired();
+                    .IsOptional();
             Property(p => p.Departamento)
                     .HasColumnName("Departamento")
                     .HasColumnType("varchar")
-                    .HasMaxLength(50);
+                    .HasMaxLength(50)
+                    .IsOptional();
         }
     }
 }
