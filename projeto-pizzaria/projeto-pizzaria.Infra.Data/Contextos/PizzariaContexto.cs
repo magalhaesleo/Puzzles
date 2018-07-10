@@ -14,9 +14,9 @@ using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos;
 using projeto_pizzaria.Domain.Funcionalidades.Adicionais;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
-using projeto_pizzaria.Domain.Funcionalidades.Bebidas;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Validation;
+using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
 
 namespace projeto_pizzaria.Infra.Data.Contextos
 {
@@ -33,7 +33,7 @@ namespace projeto_pizzaria.Infra.Data.Contextos
         public DbSet<Produto> ProdutoPedidos { get; set; }
         public DbSet<Adicional> Adicionais { get; set; }
         public DbSet<Sabor> Sabores { get; set; }
-        public DbSet<Bebida> Bebidas { get; set; }
+        public DbSet<ProdutoGenerico> ProdutosGenericos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -45,6 +45,29 @@ namespace projeto_pizzaria.Infra.Data.Contextos
             modelBuilder.Configurations.Add(new CalzoneConfiguracao());
             modelBuilder.Configurations.Add(new PedidoConfiguracao());
 
+        }
+
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                string msg = "";
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    msg = string.Format("Entidade do tipo \"{0}\" no estado \"{1}\" tem os seguintes erros de validação:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        msg += string.Format("- Property: \"{0}\", Erro: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw new Exception(msg);
+            }
         }
     }
 }

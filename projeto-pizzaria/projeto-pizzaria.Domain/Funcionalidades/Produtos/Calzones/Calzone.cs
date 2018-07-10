@@ -13,7 +13,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones
         {
             get
             {
-                return Sabor.ValorCalzone;
+                return Sabor1.ValorCalzone;
             }
         }
 
