@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "projeto-pizzaria.Infra.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "projeto-pizzaria.Common.Tests", "projeto-pizzaria.Common.Tests\projeto-pizzaria.Common.Tests.csproj", "{0453FF6F-FCFB-4F51-8085-02BA46B8C000}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "projeto-pizzaria.SystemIntegration.Tests", "projeto-pizzaria.SystemIntegration.Tests\projeto-pizzaria.SystemIntegration.Tests.csproj", "{2A4D1F33-F7E6-4A4D-ADDA-8FE7E0F5E9A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{0453FF6F-FCFB-4F51-8085-02BA46B8C000}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0453FF6F-FCFB-4F51-8085-02BA46B8C000}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0453FF6F-FCFB-4F51-8085-02BA46B8C000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A4D1F33-F7E6-4A4D-ADDA-8FE7E0F5E9A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A4D1F33-F7E6-4A4D-ADDA-8FE7E0F5E9A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A4D1F33-F7E6-4A4D-ADDA-8FE7E0F5E9A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A4D1F33-F7E6-4A4D-ADDA-8FE7E0F5E9A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{F33A41AB-FF8A-4E47-8870-2B12AF442683} = {37EB09F3-2808-4B8C-AAD3-AB96209F27D6}
 		{BF8503BF-9A0D-44BF-B1C1-8C55C7ED3A1E} = {37EB09F3-2808-4B8C-AAD3-AB96209F27D6}
 		{0453FF6F-FCFB-4F51-8085-02BA46B8C000} = {37EB09F3-2808-4B8C-AAD3-AB96209F27D6}
+		{2A4D1F33-F7E6-4A4D-ADDA-8FE7E0F5E9A6} = {37EB09F3-2808-4B8C-AAD3-AB96209F27D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {30076EC7-064F-4A91-BFB4-BBB07C8EC021}

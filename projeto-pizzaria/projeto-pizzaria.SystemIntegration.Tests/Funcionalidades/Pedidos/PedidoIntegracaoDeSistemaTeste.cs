@@ -1,0 +1,41 @@
+﻿using NUnit.Framework;
+using projeto_pizzaria.Domain.Funcionalidades.Clientes;
+using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
+using projeto_pizzaria.Domain.Funcionalidades.Produtos;
+using projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones;
+using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
+using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace projeto_pizzaria.SystemIntegration.Tests.Funcionalidades.Pedidos
+{
+    [TestFixture]
+    public class PedidoIntegracaoDeSistemaTeste
+    {
+        private Pedido _pedido;
+
+        private Cliente _cliente;
+        private List<Produto> _produtos;
+
+        private Pizza _pizza;
+        private Calzone _calzone;
+        private ProdutoGenerico _produtoGenerico;
+
+        [SetUp]
+        public void IniciarCenario()
+        {
+            _pedido = new Pedido();
+
+            _cliente = new Cliente();
+            _produtos = new List<Produto>();
+
+            _pizza = new Pizza();
+            _calzone = new Calzone();
+            _produtoGenerico = new ProdutoGenerico();
+        }
+    }
+}

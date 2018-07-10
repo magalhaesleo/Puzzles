@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,14 +14,16 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Pizzas
         public PizzaConfiguracao()
         {
             ToTable("TBProdutoPedido");
-
+            
             HasKey(p => p.Id);
             HasRequired(p => p.Pedido);
             Property(p => p.Tamanho)
                 .HasColumnName("TamanhoPizza")
                 .IsOptional();
             HasRequired(p => p.Sabor1);
-            HasRequired(p => p.Sabor2);
+            HasRequired(p => p.Sabor2)
+                .WithMany()
+                .WillCascadeOnDelete(false);
             Property(p => p.ValorSaboresSemAdicional)
                 .HasColumnName("ValorSabor")
                 .IsOptional();
@@ -31,11 +34,9 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Pizzas
             Property(p => p.Valor)
                 .HasColumnName("ValorTotal")
                 .IsRequired();
-            Property(p => p.Tipo)
-                .HasColumnName("TipoProduto")
-                .HasColumnType("varchar")
-                .HasMaxLength(50);
-            Property(p => p.ValorAdicional);
+            Property(p => p.ValorAdicional)
+                .HasColumnName("ValorAdicional")
+                .IsOptional();
         }
     }
 }

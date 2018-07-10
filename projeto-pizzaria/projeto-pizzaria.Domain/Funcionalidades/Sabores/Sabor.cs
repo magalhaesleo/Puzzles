@@ -15,7 +15,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Sabores
         public virtual double ValorPequena { get; set; }
         public virtual double ValorMedia { get; set; }
         public virtual double ValorGrande { get; set; }
-        public double ValorCalzone { get; set; }
+        public virtual double ValorCalzone { get; set; }
 
         public double ObterValorDoSabor(Calzone calzone)
         {

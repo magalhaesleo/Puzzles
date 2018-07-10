@@ -16,7 +16,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Calzones
 
             HasKey(c => c.Id);
             HasRequired(c => c.Pedido);
-            HasRequired(c => c.Sabor);
+            HasRequired(c => c.Sabor1);
             Property(c => c.Valor)
                 .HasColumnName("ValorSabor")
                 .IsOptional();
@@ -26,10 +26,6 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Produtos.Calzones
             Property(c => c.Valor)
                 .HasColumnName("ValorTotal")
                 .IsRequired();
-            Property(c => c.Tipo)
-            .HasColumnName("TipoProduto")
-            .HasColumnType("varchar")
-            .HasMaxLength(50);
         }
     }
 }

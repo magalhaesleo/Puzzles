@@ -336,7 +336,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void botaoAdicionarItemPedido_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void ValidarDisponibilidadeDoBotaoAdicionarItemPedido()
