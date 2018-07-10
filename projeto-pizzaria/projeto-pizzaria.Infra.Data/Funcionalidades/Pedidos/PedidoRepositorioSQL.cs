@@ -16,9 +16,12 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Pedidos
         {
             _pizzariaContexto = pizzariaContexto;
         }
-        public long Adicionar(Pedido entidade)
+        public long Adicionar(Pedido pedido)
         {
-            throw new NotImplementedException();
+            _pizzariaContexto.Pedidos.Add(pedido);
+            _pizzariaContexto.SaveChanges();
+
+            return pedido.Id;
         }
 
         public void AtualizarStatus(Pedido pedido)
