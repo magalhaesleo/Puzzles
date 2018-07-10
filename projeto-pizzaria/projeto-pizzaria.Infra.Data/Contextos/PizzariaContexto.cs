@@ -22,7 +22,7 @@ namespace projeto_pizzaria.Infra.Data.Contextos
 {
     public class PizzariaContexto : DbContext
     {
-        public PizzariaContexto() : base("PizzariaBD")
+        public PizzariaContexto() : base("PizzariaBD_Puzzles")
         {
             Configuration.LazyLoadingEnabled = true;
         }
