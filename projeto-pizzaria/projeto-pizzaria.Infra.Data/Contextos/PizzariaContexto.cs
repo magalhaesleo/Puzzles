@@ -39,35 +39,12 @@ namespace projeto_pizzaria.Infra.Data.Contextos
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Configurations.Add(new ClienteConfiguracao());
-            //modelBuilder.Entity<Endereco>().ToTable("TBENDERECO");
-            //modelBuilder.Entity<Produto>().ToTable("TBProdutoPedido");
-            //modelBuilder.Configurations.Add(new PizzaConfiguracao());
-            //modelBuilder.Configurations.Add(new CalzoneConfiguracao());
-            //modelBuilder.Configurations.Add(new PedidoConfiguracao());
-            
-        }
+            modelBuilder.Entity<Endereco>().ToTable("TBENDERECO");
+            modelBuilder.Entity<Produto>().ToTable("TBProdutoPedido");
+            modelBuilder.Configurations.Add(new PizzaConfiguracao());
+            modelBuilder.Configurations.Add(new CalzoneConfiguracao());
+            modelBuilder.Configurations.Add(new PedidoConfiguracao());
 
-        public override int SaveChanges()
-        {
-            try
-            {
-                return base.SaveChanges();
-            }
-            catch (DbEntityValidationException e)
-            {
-                string msg = "";
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    msg = string.Format("Entidade do tipo \"{0}\" no estado \"{1}\" tem os seguintes erros de validação:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        msg += string.Format("- Property: \"{0}\", Erro: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                throw new Exception(msg);
-            }
         }
     }
 }
