@@ -152,6 +152,7 @@
             this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
             this.numericUpDownQuantidade.Size = new System.Drawing.Size(59, 20);
             this.numericUpDownQuantidade.TabIndex = 30;
+            this.numericUpDownQuantidade.ValueChanged += new System.EventHandler(this.numericUpDownQuantidade_ValueChanged);
             // 
             // botaoRemoverItemPedido
             // 
@@ -172,6 +173,7 @@
             this.botaoAdicionarItemPedido.TabIndex = 28;
             this.botaoAdicionarItemPedido.Text = "Adicionar Item no pedido";
             this.botaoAdicionarItemPedido.UseVisualStyleBackColor = true;
+            this.botaoAdicionarItemPedido.Click += new System.EventHandler(this.botaoAdicionarItemPedido_Click);
             // 
             // radioButtonPizzaGrande
             // 
@@ -240,6 +242,7 @@
             this.botaoRemoverSabor.TabIndex = 27;
             this.botaoRemoverSabor.Text = "Remover Sabor";
             this.botaoRemoverSabor.UseVisualStyleBackColor = true;
+            this.botaoRemoverSabor.Click += new System.EventHandler(this.botaoRemoverSabor_Click);
             // 
             // listBoxSabores
             // 
@@ -249,6 +252,7 @@
             this.listBoxSabores.Name = "listBoxSabores";
             this.listBoxSabores.Size = new System.Drawing.Size(416, 43);
             this.listBoxSabores.TabIndex = 26;
+            this.listBoxSabores.SelectedIndexChanged += new System.EventHandler(this.listBoxSabores_SelectedIndexChanged);
             // 
             // botaoAdicionarSabor
             // 
@@ -259,6 +263,7 @@
             this.botaoAdicionarSabor.TabIndex = 25;
             this.botaoAdicionarSabor.Text = "Adicionar Sabor";
             this.botaoAdicionarSabor.UseVisualStyleBackColor = true;
+            this.botaoAdicionarSabor.Click += new System.EventHandler(this.botaoAdicionarSabor_Click);
             // 
             // comboBoxSabores
             // 
@@ -268,6 +273,7 @@
             this.comboBoxSabores.Name = "comboBoxSabores";
             this.comboBoxSabores.Size = new System.Drawing.Size(204, 21);
             this.comboBoxSabores.TabIndex = 3;
+            this.comboBoxSabores.SelectedIndexChanged += new System.EventHandler(this.comboBoxSabores_SelectedIndexChanged);
             // 
             // labelItem
             // 
@@ -457,6 +463,7 @@
             this.botaoRemoverBorda.TabIndex = 27;
             this.botaoRemoverBorda.Text = "Remover Borda";
             this.botaoRemoverBorda.UseVisualStyleBackColor = true;
+            this.botaoRemoverBorda.Click += new System.EventHandler(this.botaoRemoverBorda_Click);
             // 
             // listBoxAdicionais
             // 
@@ -466,6 +473,7 @@
             this.listBoxAdicionais.Name = "listBoxAdicionais";
             this.listBoxAdicionais.Size = new System.Drawing.Size(416, 43);
             this.listBoxAdicionais.TabIndex = 26;
+            this.listBoxAdicionais.SelectedIndexChanged += new System.EventHandler(this.listBoxAdicionais_SelectedIndexChanged);
             // 
             // botaoAdicionarBorda
             // 
@@ -476,6 +484,7 @@
             this.botaoAdicionarBorda.TabIndex = 25;
             this.botaoAdicionarBorda.Text = "Adicionar Borda";
             this.botaoAdicionarBorda.UseVisualStyleBackColor = true;
+            this.botaoAdicionarBorda.Click += new System.EventHandler(this.botaoAdicionarBorda_Click);
             // 
             // comboBoxAdicionais
             // 
@@ -485,6 +494,7 @@
             this.comboBoxAdicionais.Name = "comboBoxAdicionais";
             this.comboBoxAdicionais.Size = new System.Drawing.Size(204, 21);
             this.comboBoxAdicionais.TabIndex = 3;
+            this.comboBoxAdicionais.SelectedIndexChanged += new System.EventHandler(this.comboBoxAdicionais_SelectedIndexChanged);
             // 
             // maskedTextBoxBuscarPorTelefone
             // 
