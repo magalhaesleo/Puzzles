@@ -66,7 +66,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
         public void AtualizarStatus()
         {
             //Utilizando Método de Extensão
-            if(!Status.Equals(StatusPedido.ENTREGUE))
+            if (!Status.Equals(StatusPedido.ENTREGUE))
                 Status = Status.Next();
         }
 
@@ -92,18 +92,20 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
                 throw new PedidoComValorTotalZeroOuNegativoExcecao();
 
             if (EmitirNota)
+            {
                 if (DocumentoCliente == null)
                     throw new PedidoComClienteSemDocumentoExcecao();
                 else
                 {
                     if (DocumentoCliente.ObterTipo().Equals("CNPJ"))
                     {
-                        if(string.IsNullOrEmpty(Departamento) || string.IsNullOrEmpty(Responsavel))
+                        if (string.IsNullOrEmpty(Departamento) || string.IsNullOrEmpty(Responsavel))
                         {
                             throw new PedidoParaEmpresaEmitindoNotaSemDepartamentoOuResponsavelExcecao();
                         }
                     }
                 }
+            }
         }
     }
 }

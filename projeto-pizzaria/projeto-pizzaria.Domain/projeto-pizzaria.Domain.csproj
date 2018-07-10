@@ -63,7 +63,8 @@
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemClienteExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\Excecoes\PedidoSemProdutosExcecao.cs" />
     <Compile Include="Funcionalidades\Pedidos\StatusPedido.cs" />
-    <Compile Include="Funcionalidades\Produtos\Bebidas\Bebida.cs" />
+    <Compile Include="Funcionalidades\ProdutosGenericos\ProdutoGenerico.cs" />
+    <Compile Include="Funcionalidades\Produtos\ProdutosPedido\ProdutoPedido.cs" />
     <Compile Include="Funcionalidades\Produtos\Calzones\Calzone.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\Pizza.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\TamanhoPizza.cs" />
