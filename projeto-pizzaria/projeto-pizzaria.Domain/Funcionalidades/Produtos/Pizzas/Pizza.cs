@@ -42,6 +42,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
             {
                 return "Pizza";
             }
+            set
+            {
+                Tipo = value;
+            }
         }
 
         public double ObterValorSaboresSemAdicional()
@@ -69,7 +73,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
             if (Adicional == null)
                 return ObterValorSaboresSemAdicional();
             else
-                return ObterValorSaboresSemAdicional() + Adicional.ObterValorAdicional(this);
+                return (ObterValorSaboresSemAdicional() + Adicional.ObterValorAdicional(this));
         }
     }
 }

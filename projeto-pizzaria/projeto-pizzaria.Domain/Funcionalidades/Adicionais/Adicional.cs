@@ -19,9 +19,16 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Adicionais
 
         public virtual double ValorGrande { get; set; }
 
-        public string ObterTipo()
+        public string Tipo
         {
-            return "Adicional";
+            get
+            {
+                return "Adicional";
+            }
+            set
+            {
+                Tipo = value;
+            }
         }
 
         public virtual double ObterValorAdicional(Pizza pizza)
