@@ -16,6 +16,18 @@ namespace projeto_pizzaria.SystemIntegration.Tests.Funcionalidades.Pedidos
     [TestFixture]
     public class PedidoIntegracaoDeSistemaTeste
     {
+        #region Casos Levantados
+        /*
+        Pedido_IntegracaoDeSistema_Realizar_UmaPizza_UmSabor_Sucesso
+        Pedido_IntegracaoDeSistema_Realizar_UmaPizza_DoisSabores_Sucesso
+        Pedido_IntegracaoDeSistema_Realizar_DuasPizzas_UmSabor_Sucesso
+        Pedido_IntegracaoDeSistema_Realizar_DuasPizzas_DoisSabores_Sucesso
+        Pedido_IntegracaoDeSistema_Realizar_Calzone_Sucesso
+        Pedido_IntegracaoDeSistema_Realizar_Bebida_Sucesso
+
+        */
+        #endregion
+
         private Pedido _pedido;
 
         private Cliente _cliente;
