@@ -300,6 +300,7 @@
             this.listBoxItensPedido.Name = "listBoxItensPedido";
             this.listBoxItensPedido.Size = new System.Drawing.Size(453, 95);
             this.listBoxItensPedido.TabIndex = 13;
+            this.listBoxItensPedido.SelectedIndexChanged += new System.EventHandler(this.listBoxItensPedido_SelectedIndexChanged);
             // 
             // textBoxDocumentoNotaFiscal
             // 

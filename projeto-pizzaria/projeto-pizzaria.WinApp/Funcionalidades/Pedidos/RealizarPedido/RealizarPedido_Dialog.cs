@@ -1,5 +1,9 @@
 ﻿using projeto_pizzaria.Applications.Funcionalidades.Clientes;
+using projeto_pizzaria.Domain.Funcionalidades.Adicionais;
 using projeto_pizzaria.Domain.Funcionalidades.Clientes;
+using projeto_pizzaria.Domain.Funcionalidades.Produtos;
+using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
+using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -336,7 +340,15 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void botaoAdicionarItemPedido_Click(object sender, EventArgs e)
         {
-            
+            if(comboBoxTipoProduto.SelectedItem == "Pizza")
+            {
+                Pizza novaPizza = new Pizza()
+                {
+                    Quantidade = Convert.ToInt32(numericUpDownQuantidade.Value),
+                    Adicional = (Adicional)listBoxAdicionais.Items[0],
+                    Sabor1 = (Sabor)listBoxSabores.Items[0],
+                };
+            }
         }
 
         private void ValidarDisponibilidadeDoBotaoAdicionarItemPedido()
@@ -358,6 +370,11 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
         private void numericUpDownQuantidade_ValueChanged(object sender, EventArgs e)
         {
             ValidarDisponibilidadeDoBotaoAdicionarItemPedido();
+        }
+
+        private void listBoxItensPedido_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
