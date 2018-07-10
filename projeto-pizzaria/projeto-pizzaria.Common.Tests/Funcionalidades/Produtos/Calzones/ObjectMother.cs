@@ -13,7 +13,7 @@ namespace projeto_pizzaria.Common.Tests
         public static Calzone ObterCalzoneComSabor(Sabor sabor)
         {
             Calzone calzone = new Calzone();
-            calzone.Sabor = sabor;
+            calzone.Sabor1 = sabor;
 
             return calzone;
         }
