@@ -34,7 +34,6 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Sabores
 
             double valor =_sabor.ObterValorDoSabor(_calzoneMock.Object);
             valor.Should().Be(10);
-
         }
 
         [Test]
@@ -46,7 +45,6 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Sabores
 
             double valor = _sabor.ObterValorDoSabor(_pizzaMock.Object);
             valor.Should().Be(74);
-
         }
     }
 }

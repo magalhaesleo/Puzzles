@@ -35,7 +35,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Produtos.Pizzas
         Pizza_Dominio_Valor_PizzaGrandeComDoisSaboresValoresDiferentes_Sucesso
         
              Observação:
-                Casos de teste que não aparecem abaixo é porque, ao usar mocks,
+                Vários casos de teste não aparecem abaixo porque, ao usar mocks,
                 são criadas situações de equivalência. Esses deverão ser contemplados
                 nos testes de integração de sistema.
              */
