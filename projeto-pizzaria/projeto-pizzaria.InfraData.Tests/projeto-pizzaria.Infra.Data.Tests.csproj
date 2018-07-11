@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSQLTeste.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoRepositorioSQLTeste.cs" />
+    <Compile Include="Funcionalidades\Sabores\SaborRepositorioSQLTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

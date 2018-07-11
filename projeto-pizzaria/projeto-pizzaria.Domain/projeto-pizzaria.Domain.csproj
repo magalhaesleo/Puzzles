@@ -75,6 +75,7 @@
     <Compile Include="Interfaces\Clientes\IClienteRepositorio.cs" />
     <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Interfaces\Pedidos\IPedidoRepositorio.cs" />
+    <Compile Include="Interfaces\Sabores\ISaborRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

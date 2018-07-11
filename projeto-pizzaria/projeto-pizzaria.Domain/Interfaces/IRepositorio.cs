@@ -12,6 +12,6 @@ namespace projeto_pizzaria.Domain.Interfaces
         long Adicionar(T entidade);
         void Editar(T entidade);
         void Excluir(T entidade);
-        List<T> GetAll();
+        List<T> BuscarTodos();
     }
 }

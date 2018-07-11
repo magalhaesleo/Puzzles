@@ -37,6 +37,8 @@ namespace projeto_pizzaria.Infra.Data.Contextos
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Configurations.Add(new ClienteConfiguracao());
             modelBuilder.Entity<Endereco>().ToTable("TBENDERECO");
