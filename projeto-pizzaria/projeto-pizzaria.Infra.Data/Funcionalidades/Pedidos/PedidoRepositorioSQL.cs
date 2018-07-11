@@ -39,7 +39,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Pedidos
             throw new NotImplementedException();
         }
 
-        public List<Pedido> GetAll()
+        public List<Pedido> BuscarTodos()
         {
             throw new NotImplementedException();
         }
