@@ -30,7 +30,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Sabores
         [Test]
         public void Sabor_Dominio_ObterValor_Calzone_Sucesso()
         {
-            _sabor = ObjectMother.ObterSaborValido();
+            _sabor = ObjectMother.ObterSaborValido_Calabresa();
 
             double valor =_sabor.ObterValorDoSabor(_calzoneMock.Object);
             valor.Should().Be(_sabor.ValorCalzone);
@@ -40,7 +40,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Sabores
         public void Sabor_Dominio_ObterValor_PizzaGrande_Sucesso()
         {
             _pizzaMock.Setup(p => p.Tamanho).Returns(TamanhoPizza.GRANDE);
-            _sabor = ObjectMother.ObterSaborValido();
+            _sabor = ObjectMother.ObterSaborValido_Calabresa();
 
             double valor = _sabor.ObterValorDoSabor(_pizzaMock.Object);
             valor.Should().Be(_sabor.ValorGrande);
@@ -50,7 +50,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Sabores
         public void Sabor_Dominio_ObterValor_PizzaMedia_Sucesso()
         {
             _pizzaMock.Setup(p => p.Tamanho).Returns(TamanhoPizza.MEDIA);
-            _sabor = ObjectMother.ObterSaborValido();
+            _sabor = ObjectMother.ObterSaborValido_Calabresa();
 
             double valor = _sabor.ObterValorDoSabor(_pizzaMock.Object);
             valor.Should().Be(_sabor.ValorMedia);
@@ -60,7 +60,7 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Sabores
         public void Sabor_Dominio_ObterValor_PizzaPequena_Sucesso()
         {
             _pizzaMock.Setup(p => p.Tamanho).Returns(TamanhoPizza.PEQUENA);
-            _sabor = ObjectMother.ObterSaborValido();
+            _sabor = ObjectMother.ObterSaborValido_Calabresa();
 
             double valor = _sabor.ObterValorDoSabor(_pizzaMock.Object);
             valor.Should().Be(_sabor.ValorPequena);
