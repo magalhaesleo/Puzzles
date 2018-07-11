@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contextos\PizzariaContexto.cs" />
+    <Compile Include="Funcionalidades\Adicionais\AdicionalConfiguracao.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteConfiguracao.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSQL.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoConfiguracao.cs" />

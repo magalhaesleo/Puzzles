@@ -40,8 +40,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
             }
 
         }
-        public Sabor Sabor2 { get; set; }
-        public Adicional Adicional { get; set; }
+        public long? Sabor2Id { get; set; }
+        public virtual Sabor Sabor2 { get; set; }
+        public long? AdicionalId { get; set; }
+        public virtual Adicional Adicional { get; set; }
         public virtual TamanhoPizza Tamanho { get; set; }
         public override string Tipo
         {

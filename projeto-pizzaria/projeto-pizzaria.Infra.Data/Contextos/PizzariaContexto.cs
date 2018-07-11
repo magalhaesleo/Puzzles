@@ -17,6 +17,7 @@ using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Validation;
 using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
+using projeto_pizzaria.Infra.Data.Funcionalidades.Adicionais;
 
 namespace projeto_pizzaria.Infra.Data.Contextos
 {
@@ -28,8 +29,9 @@ namespace projeto_pizzaria.Infra.Data.Contextos
         }
 
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Endereco> Enderecos { get; set; }
+        
         public DbSet<Pedido> Pedidos { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Produto> ProdutoPedidos { get; set; }
         public DbSet<Adicional> Adicionais { get; set; }
         public DbSet<Sabor> Sabores { get; set; }
@@ -41,12 +43,14 @@ namespace projeto_pizzaria.Infra.Data.Contextos
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Configurations.Add(new ClienteConfiguracao());
-            modelBuilder.Entity<Endereco>().ToTable("TBENDERECO");
+            modelBuilder.Entity<Endereco>().ToTable("TBEndereco");
             modelBuilder.Entity<Produto>().ToTable("TBProdutoPedido");
             modelBuilder.Configurations.Add(new PizzaConfiguracao());
             modelBuilder.Configurations.Add(new CalzoneConfiguracao());
             modelBuilder.Configurations.Add(new PedidoConfiguracao());
-
+            modelBuilder.Configurations.Add(new AdicionalConfiguracao());
+            modelBuilder.Entity<ProdutoGenerico>().ToTable("TBProduto");
+            modelBuilder.Entity<Sabor>().ToTable("TBSabor");
         }
 
         public override int SaveChanges()
