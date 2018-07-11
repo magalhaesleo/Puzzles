@@ -9,6 +9,14 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.ProdutosPedido
 {
     public class ProdutoPedido : Produto
     {
+        public override double Valor
+        {
+            get
+            {
+                return Produto.Valor;
+            }
+        }
+
         public ProdutoGenerico Produto { get; set; }
 
         public override string Tipo
