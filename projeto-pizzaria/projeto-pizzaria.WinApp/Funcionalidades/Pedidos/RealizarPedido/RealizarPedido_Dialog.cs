@@ -1,8 +1,11 @@
 ﻿using projeto_pizzaria.Applications.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Funcionalidades.Adicionais;
 using projeto_pizzaria.Domain.Funcionalidades.Clientes;
+using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos;
+using projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
+using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using System;
 using System.Collections.Generic;
@@ -19,7 +22,8 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
     public partial class RealizarPedido_Dialog : Form
     {
         ClienteServico _clienteServico;
-        bool _pedidoEmAndamento = false;
+        bool _itemPedidoEmAndamento = false;
+        Pedido Pedido { get; set; }
 
         public RealizarPedido_Dialog(ClienteServico clienteServico)
         {
@@ -27,9 +31,11 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
             PopularAtributosDaClasse(clienteServico);
             PopularComboBoxTipoProduto();
-            PopularComboBoxSabores();
-            PopularComboBoxAdicionais();
+            
+
+            Pedido = new Pedido();
         }
+
         public void PopularAtributosDaClasse(ClienteServico clienteServico)
         {
             _clienteServico = clienteServico;
@@ -51,6 +57,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 comboBoxCliente.Items.Add(cliente);
             }
         }
+
         private void maskedTextBoxBuscarPorTelefone_TextChanged(object sender, EventArgs e)
         {
             maskedTextBoxBuscarPorTelefone.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
@@ -67,9 +74,9 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void PopularComboBoxTipoProduto()
         {
-            comboBoxTipoProduto.Items.Add("Pizza");
-            comboBoxTipoProduto.Items.Add("Calzone");
-            comboBoxTipoProduto.Items.Add("Bebidas");
+            comboBoxTipoProduto.Items.Add(typeof(Pizza).Name);
+            comboBoxTipoProduto.Items.Add(typeof(Calzone).Name);
+            comboBoxTipoProduto.Items.Add(typeof(ProdutoGenerico).Name);
         }
 
         private void PopularComboBoxSabores()
@@ -90,88 +97,91 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             comboBoxAdicionais.Items.Add("Cheddar");
             comboBoxAdicionais.Items.Add("Catupiry");
         }
+
         private void comboBoxTipoProduto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ReiniciarValoresDeItemPedido();
-
-
-            if (_pedidoEmAndamento)
+            
+            if (_itemPedidoEmAndamento)
             {
-
                 DialogResult resultado = MessageBox.Show("Tem certeze que deseja mudar o contexto de produto? você perderá todo o progresso até aqui", "Atenção!", MessageBoxButtons.YesNo);
 
                 if (DialogResult.Yes == resultado)
                 {
-                    if (comboBoxTipoProduto.SelectedItem == "Bebidas")
+                    LimparComboBoxSabores();
+                    ReiniciarValoresDeItemPedido();
+                    LimparValoresDeItemPedido();
+
+                    numericUpDownQuantidade.Enabled = true;
+
+                    if (comboBoxTipoProduto.SelectedItem == typeof(ProdutoGenerico).Name)
                     {
-                        LimparValoresDeItemPedido();
                         PopularComboBoxTipoBebida();
                         comboBoxItem.Enabled = true;
-                        _pedidoEmAndamento = true;
+                        _itemPedidoEmAndamento = true;
                     }
 
-                    if (comboBoxTipoProduto.SelectedItem == "Calzone")
+                    if (comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name)
                     {
-                        LimparValoresDeItemPedido();
+                  
                         PopularComboBoxSabores();
                         comboBoxSabores.Enabled = true;
                         listBoxSabores.Enabled = true;
-                        botaoAdicionarSabor.Enabled = true;
-                        _pedidoEmAndamento = true;
+
+                        _itemPedidoEmAndamento = true;
                     }
 
-                    if (comboBoxTipoProduto.SelectedItem == "Pizza")
+                    if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name)
                     {
-                        LimparValoresDeItemPedido();
                         PopularComboBoxSabores();
                         PopularComboBoxAdicionais();
                         comboBoxSabores.Enabled = true;
                         listBoxSabores.Enabled = true;
-                        botaoAdicionarSabor.Enabled = true;
-                        _pedidoEmAndamento = true;
+                        HabilitarRadioButtonsTamanhos();
+
+                        _itemPedidoEmAndamento = true;
                     }
                 }
             }
             else
             {
-                if (comboBoxTipoProduto.SelectedItem == "Bebidas")
+               
+                LimparComboBoxSabores();
+                ReiniciarValoresDeItemPedido();
+                LimparValoresDeItemPedido();
+
+                numericUpDownQuantidade.Enabled = true;
+
+
+                if (comboBoxTipoProduto.SelectedItem == typeof(ProdutoGenerico).Name)
                 {
-                    LimparValoresDeItemPedido();
                     PopularComboBoxTipoBebida();
                     comboBoxItem.Enabled = true;
-                    _pedidoEmAndamento = true;
+                    _itemPedidoEmAndamento = true;
                 }
 
-                if (comboBoxTipoProduto.SelectedItem == "Calzone")
+                if (comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name)
                 {
-                    LimparValoresDeItemPedido();
                     PopularComboBoxSabores();
                     comboBoxSabores.Enabled = true;
                     listBoxSabores.Enabled = true;
-                    botaoAdicionarSabor.Enabled = true;
-                    _pedidoEmAndamento = true;
+                    _itemPedidoEmAndamento = true;
                 }
 
-                if (comboBoxTipoProduto.SelectedItem == "Pizza")
+                if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name)
                 {
-                    LimparValoresDeItemPedido();
                     PopularComboBoxSabores();
                     PopularComboBoxAdicionais();
                     comboBoxSabores.Enabled = true;
                     listBoxSabores.Enabled = true;
-                    botaoAdicionarSabor.Enabled = true;
-                    _pedidoEmAndamento = true;
+                    _itemPedidoEmAndamento = true;
+                    HabilitarRadioButtonsTamanhos();
                 }
             }
-               
         }
 
         private void ReiniciarValoresDeItemPedido()
         {
             comboBoxItem.Enabled = false;
-            radioButtonPizzaGrande.Enabled = false;
-            radioButtonPizzaMedia.Enabled = false;
-            radioButtonPizzaPequena.Enabled = false;
             comboBoxSabores.Enabled = false;
             comboBoxSabores.Enabled = false;
             botaoAdicionarSabor.Enabled = false;
@@ -182,18 +192,20 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             comboBoxAdicionais.Enabled = false;
             botaoAdicionarItemPedido.Enabled = false;
             botaoRemoverItemPedido.Enabled = false;
+            DesabilitarRadioButtonsTamanhos();
+            numericUpDownQuantidade.Enabled = false;
+            _itemPedidoEmAndamento = false;
         }
 
         private void LimparValoresDeItemPedido()
         {
             comboBoxItem.Items.Clear();
-            comboBoxSabores.Items.Clear();
-            comboBoxSabores.Items.Clear();
             comboBoxAdicionais.Items.Clear();
-            comboBoxAdicionais.Items.Clear();
+            LimparComboBoxSabores();
             listBoxAdicionais.Items.Clear();
             listBoxSabores.Items.Clear();
-            listBoxItensPedido.Items.Clear();
+            DesabilitarRadioButtonsTamanhos();
+            numericUpDownQuantidade.Value = 0;
         }
 
         private void botaoAdicionarSabor_Click(object sender, EventArgs e)
@@ -202,16 +214,18 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             listBoxSabores.Items.Add(comboBoxSabores.SelectedItem);
 
             // Habilitando comboBox e adição de adicionais
-            if (comboBoxTipoProduto.SelectedItem == "Pizza")
+            if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name)
             {
-                habilitarAdicaoDeAdicionais();
+                HabilitarAdicaoDeAdicionais();
             }
 
             //Removendo item adicionado no listBox de sabores do comboBox de sabores
             comboBoxSabores.Items.RemoveAt(comboBoxSabores.SelectedIndex);
 
             // Deixando disable caso o tipo de item seja pizza e ja hajam dois sabores selecionados ou calzone e já tenha um sabor
-            validarEnabledDeAdicionarSabor();
+            ValidarEnabledDeAdicionarSabor();
+
+            VerificarGrupoDeAdicaoDeAdicional();
 
             ValidarDisponibilidadeDoBotaoAdicionarItemPedido();
 
@@ -241,21 +255,26 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             //Desabilitando grupo de adicionais caso não hajam mais sabores no listBox de sabores e o tipo de item não seja pizza
             if(comboBoxTipoProduto.SelectedItem == "Pizza" && listBoxSabores.Items.Count < 1)
             {
-                desabilitarGrupoDeAdicionais();
+                DesabilitarGrupoDeAdicionais();
             }
 
             botaoRemoverSabor.Enabled = false;
             botaoAdicionarSabor.Enabled = false;
         }
 
-        public void habilitarAdicaoDeAdicionais()
+        public void HabilitarAdicaoDeAdicionais()
         {
                 comboBoxAdicionais.Enabled = true;
-                botaoAdicionarBorda.Enabled = true;
                 listBoxAdicionais.Enabled = true;
         }
+
+        public void DesabilitarAdicaoDeAdicionais()
+        {
+            comboBoxAdicionais.Enabled = false;
+            botaoAdicionarBorda.Enabled = false;
+        }
         
-        public void desabilitarGrupoDeAdicionais()
+        public void DesabilitarGrupoDeAdicionais()
         {
             // Limpando valores do listBox
             listBoxAdicionais.Items.Clear();
@@ -277,10 +296,13 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             comboBoxAdicionais.Items.RemoveAt(comboBoxAdicionais.SelectedIndex);
 
             //Não permite adicionar mais de um adicional
-            desabilitarBotaoAdicionarAdicional();
+            DesabilitarBotaoAdicionarAdicional();
+
+            //Validar se ja é possível adicionar um novo itemPedido
+            ValidarDisponibilidadeDoBotaoAdicionarItemPedido();
         }
 
-        private void desabilitarBotaoAdicionarAdicional()
+        private void DesabilitarBotaoAdicionarAdicional()
         {
             if (listBoxAdicionais.Items.Count == 1)
             {
@@ -310,54 +332,126 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             listBoxAdicionais.Items.RemoveAt(listBoxAdicionais.SelectedIndex);
 
             botaoRemoverBorda.Enabled = false;
+
+            VerificarGrupoDeAdicaoDeAdicional();
         }
 
         private void comboBoxSabores_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             botaoAdicionarSabor.Enabled = true;
-            validarEnabledDeAdicionarSabor();
+
+            ValidarEnabledDeAdicionarSabor();
         }
 
         private void comboBoxAdicionais_SelectedIndexChanged(object sender, EventArgs e)
         {
             botaoAdicionarBorda.Enabled = true;
-            desabilitarBotaoAdicionarAdicional();
+            DesabilitarBotaoAdicionarAdicional();
         }
 
-        private void validarEnabledDeAdicionarSabor()
+        private void ValidarEnabledDeAdicionarSabor()
         {
-            if (comboBoxTipoProduto.SelectedItem == "Pizza" && listBoxSabores.Items.Count == 2)
+            if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name && listBoxSabores.Items.Count == 2)
             {
                 botaoAdicionarSabor.Enabled = false;
             }
 
-            if (comboBoxTipoProduto.SelectedItem == "Calzone" && listBoxSabores.Items.Count == 1)
+            if (comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name && listBoxSabores.Items.Count == 1)
             {
                 botaoAdicionarSabor.Enabled = false;
             }
         }
 
         private void botaoAdicionarItemPedido_Click(object sender, EventArgs e)
-        {
-            if(comboBoxTipoProduto.SelectedItem == "Pizza")
+        {       
+            if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name)
             {
-                Pizza novaPizza = new Pizza()
+                Pizza novaPizza = new Pizza();
+
+                novaPizza.Quantidade = Convert.ToInt32(numericUpDownQuantidade.Value);
+
+                //Adicionando adicional na pizza, caso exista
+                if (listBoxAdicionais.Items.Count != 0) {
+                  novaPizza.Adicional = listBoxAdicionais.Items[0] as Adicional;
+                }
+
+                //Adicionando sabor obrigatório na pizza
+                novaPizza.Sabor1 = listBoxSabores.Items[0] as Sabor;
+                novaPizza.Pedido = this.Pedido;
+
+                //Adicionando segundo sabor a pizza, caso exista
+                if (listBoxSabores.Items.Count == 2)
                 {
-                    Quantidade = Convert.ToInt32(numericUpDownQuantidade.Value),
-                    Adicional = (Adicional)listBoxAdicionais.Items[0],
-                    Sabor1 = (Sabor)listBoxSabores.Items[0],
-                };
+                    novaPizza.Sabor2 = listBoxSabores.Items[1] as Sabor;
+                }
+
+                //Setando tamanhã de pizza de acordo com o radio button marcado
+                if (radioButtonPizzaPequena.Checked)
+                {
+                    novaPizza.Tamanho = TamanhoPizza.PEQUENA;
+                }
+                else if (radioButtonPizzaMedia.Checked)
+                {
+                    novaPizza.Tamanho = TamanhoPizza.MEDIA;
+                }
+                else if(radioButtonPizzaGrande.Checked)
+                {
+                    novaPizza.Tamanho = TamanhoPizza.GRANDE;
+                }
+
+                //Adicionando Pizza no Item Produto
+                listBoxItensPedido.Items.Add(novaPizza);
+
             }
+
+            if(comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name)
+            {
+                Calzone calzone = new Calzone()
+                {
+                    Pedido = this.Pedido,
+                    Quantidade = Convert.ToInt32(numericUpDownQuantidade.Value),
+                    Sabor1 = listBoxSabores.Items[0] as Sabor
+                };
+
+                listBoxItensPedido.Items.Add(calzone);
+            }
+
+            if(comboBoxTipoProduto.SelectedItem == typeof(ProdutoGenerico).Name)
+            {
+                ProdutoGenerico itemSelecionadoNoComboBoxDeItens = comboBoxItem.SelectedItem as ProdutoGenerico;
+
+                ProdutoGenerico bebida = new ProdutoGenerico()
+                {
+                    Descricao = itemSelecionadoNoComboBoxDeItens.Descricao,
+                    Tipo = itemSelecionadoNoComboBoxDeItens.Tipo,
+                    Valor = itemSelecionadoNoComboBoxDeItens.Valor
+                };
+
+                listBoxItensPedido.Items.Add(bebida);
+            }
+
+            LimparValoresDeItemPedido();
+            ReiniciarValoresDeItemPedido();
+
+            
+
         }
 
         private void ValidarDisponibilidadeDoBotaoAdicionarItemPedido()
         {
-            if(comboBoxTipoProduto.SelectedItem == "Calzone" || comboBoxTipoProduto.SelectedItem == "Pizza" && listBoxSabores.Items.Count > 0 && numericUpDownQuantidade.Value > 0)
+            if(comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name && listBoxSabores.Items.Count > 0 && numericUpDownQuantidade.Value > 0)
             {
                 botaoAdicionarItemPedido.Enabled = true;
             }
-            else if(comboBoxTipoProduto.SelectedItem == "Bebidas" && comboBoxItem.SelectedIndex >= 0 && numericUpDownQuantidade.Value > 0)
+
+            else if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name && listBoxSabores.Items.Count > 0 && numericUpDownQuantidade.Value > 0)
+            {
+                if (radioButtonPizzaGrande.Checked || radioButtonPizzaMedia.Checked || radioButtonPizzaPequena.Checked) { 
+                    botaoAdicionarItemPedido.Enabled = true;
+                }
+            }
+
+            else if(comboBoxTipoProduto.SelectedItem == typeof(ProdutoGenerico).Name && comboBoxItem.SelectedIndex >= 0 && numericUpDownQuantidade.Value > 0)
             {
                 botaoAdicionarItemPedido.Enabled = true;
             }
@@ -375,6 +469,61 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
         private void listBoxItensPedido_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void HabilitarRadioButtonsTamanhos()
+        {
+            radioButtonPizzaPequena.Enabled = true;
+            radioButtonPizzaMedia.Enabled = true;
+            radioButtonPizzaGrande.Enabled = true;
+        }
+
+        private void DesabilitarRadioButtonsTamanhos()
+        {
+            radioButtonPizzaPequena.Enabled = false;
+            radioButtonPizzaPequena.Checked = false;
+            radioButtonPizzaMedia.Enabled = false;
+            radioButtonPizzaMedia.Checked = false;
+            radioButtonPizzaGrande.Enabled = false;
+            radioButtonPizzaGrande.Checked = false;
+        }
+
+        private void radioButtonPizzaMedia_CheckedChanged(object sender, EventArgs e)
+        {
+            ValidarDisponibilidadeDoBotaoAdicionarItemPedido();
+        }
+
+        public void LimparComboBoxSabores()
+        {
+            comboBoxSabores.Items.Clear();
+            comboBoxSabores.SelectedItem = null;
+        }
+
+        private void botaoCancelarPedido_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void radioButtonPizzaGrande_CheckedChanged(object sender, EventArgs e)
+        {
+            ValidarDisponibilidadeDoBotaoAdicionarItemPedido();
+        }
+
+        private void radioButtonPizzaPequena_CheckedChanged(object sender, EventArgs e)
+        {
+            ValidarDisponibilidadeDoBotaoAdicionarItemPedido();
+        }
+
+        private void VerificarGrupoDeAdicaoDeAdicional()
+        {
+            if(listBoxAdicionais.Items.Count > 0)
+            {
+                DesabilitarAdicaoDeAdicionais();
+            }
+            else
+            {
+                HabilitarAdicaoDeAdicionais();
+            }
         }
     }
 }
