@@ -29,9 +29,13 @@ namespace projeto_pizzaria.Applications.Tests.Funcionalidades.Pedidos
         [Test]
         public void Pedido_Aplicacao_Adicionar_Sucesso()
         {
-           long idInserido = _pedidoServico.Adicionar(_pedido);
+            _pedidoRepositorioMoq.Setup(pr => pr.Adicionar(_pedido.Object)).Returns(2);
+
+            long idInserido = _pedidoServico.Adicionar(_pedido.Object);
 
             idInserido.Should().BeGreaterOrEqualTo(1);
+            _pedidoRepositorioMoq.Verify(pr => pr.Adicionar(_pedido.Object));
+            _pedidoRepositorioMoq.VerifyNoOtherCalls();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using projeto_pizzaria.Applications.Funcionalidades.Pedidos.Interfaces;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
+using projeto_pizzaria.Domain.Interfaces.Pedidos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Pedidos
         }
         public long Adicionar(Pedido pedido)
         {
-            throw new NotImplementedException();
+            return _pedidoRepositorio.Adicionar(pedido);
         }
 
         public void Editar(Pedido pedido)
