@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos
 {
-    public class ProdutoGenerico : Entidade
+    public abstract class ProdutoGenerico : Entidade
     {
         public virtual string Descricao { get; set; }
 
         public virtual double Valor { get; set; }
 
-        public virtual string Tipo { get; set; }
+        public abstract string Tipo { get; set; }
     }
 }

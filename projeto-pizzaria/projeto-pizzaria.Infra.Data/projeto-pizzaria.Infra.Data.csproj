@@ -53,7 +53,8 @@
     <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSQL.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoConfiguracao.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoRepositorioSQL.cs" />
-    <Compile Include="Funcionalidades\ProdutosPedido\ProdutoPedidoConfiguracao.cs" />
+    <Compile Include="Funcionalidades\ProdutosGenericos\ProdutoGenericoConfiguracao.cs" />
+    <Compile Include="Funcionalidades\ProdutosGenericos\ProdutoGenericoRepositorioSQL.cs" />
     <Compile Include="Funcionalidades\Produtos\Calzones\CalzoneConfiguracao.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\PizzaConfiguracao.cs" />
     <Compile Include="Funcionalidades\Sabores\SaborRepositorioSQL.cs" />
