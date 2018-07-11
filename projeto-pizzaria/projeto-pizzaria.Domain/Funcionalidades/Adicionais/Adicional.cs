@@ -18,7 +18,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Adicionais
         public virtual double ValorMedia { get; set; }
 
         public virtual double ValorGrande { get; set; }
-
+        public virtual Produto Produto { get; set; }
         public virtual double ObterValorAdicional(Pizza pizza)
         {
             switch (pizza.Tamanho)

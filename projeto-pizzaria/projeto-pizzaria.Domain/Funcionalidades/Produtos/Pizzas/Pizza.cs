@@ -41,7 +41,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
 
         }
         public Sabor Sabor2 { get; set; }
-        public Adicional Adicional { get; set; }
+
         public virtual TamanhoPizza Tamanho { get; set; }
         public override string Tipo
         {
