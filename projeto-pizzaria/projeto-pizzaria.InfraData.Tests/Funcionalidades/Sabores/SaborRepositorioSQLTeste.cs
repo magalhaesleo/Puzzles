@@ -26,6 +26,8 @@ namespace projeto_pizzaria.InfraData.Tests.Funcionalidades.Sabores
             _saborRepositorio = new SaborRepositorioSQL(_pizzariaContexto);
 
             Database.SetInitializer(new BaseSQLTeste());
+
+            _pizzariaContexto.Database.Initialize(true);
         }
 
         [Test]
