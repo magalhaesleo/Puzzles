@@ -72,6 +72,7 @@
     <Compile Include="Funcionalidades\Sabores\Sabor.cs" />
     <Compile Include="helpers\EnableBotoes\EnableBotao.cs" />
     <Compile Include="helpers\VisibleBotoes\VisbleBotao.cs" />
+    <Compile Include="Interfaces\Adicionais\IAdicionalRepositorio.cs" />
     <Compile Include="Interfaces\Clientes\IClienteRepositorio.cs" />
     <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Interfaces\Pedidos\IPedidoRepositorio.cs" />

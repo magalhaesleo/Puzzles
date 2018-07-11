@@ -24,6 +24,8 @@ namespace projeto_pizzaria.Common.Tests.Base
 
             AdicionarSabores(pizzariaContexto);
 
+            AdicionarBordas(pizzariaContexto);
+
             base.Seed(pizzariaContexto);
         }
 
@@ -31,6 +33,14 @@ namespace projeto_pizzaria.Common.Tests.Base
         {
             pizzariaContexto.Sabores.Add(ObjectMother.ObterSaborValido_Calabresa());
             pizzariaContexto.Sabores.Add(ObjectMother.ObterSaborValidoMaisCaro_Coracao());
+
+            pizzariaContexto.SaveChanges();
+        }
+
+        private void AdicionarBordas(PizzariaContexto pizzariaContexto)
+        {
+            pizzariaContexto.Adicionais.Add(ObjectMother.ObterAdicional_BordaCatupiry());
+            pizzariaContexto.Adicionais.Add(ObjectMother.ObterAdicional_BordaCheddar());
 
             pizzariaContexto.SaveChanges();
         }
