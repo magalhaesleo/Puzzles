@@ -47,6 +47,8 @@ namespace projeto_pizzaria.Infra.Data.Contextos
             modelBuilder.Configurations.Add(new CalzoneConfiguracao());
             modelBuilder.Configurations.Add(new PedidoConfiguracao());
             modelBuilder.Configurations.Add(new AdicionalConfiguracao());
+            modelBuilder.Entity<ProdutoGenerico>().ToTable("TBProduto");
+            modelBuilder.Entity<Sabor>().ToTable("TBSabor");
         }
 
         public override int SaveChanges()
