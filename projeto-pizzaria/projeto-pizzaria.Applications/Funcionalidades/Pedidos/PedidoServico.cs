@@ -10,7 +10,12 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Pedidos
 {
     public class PedidoServico : IPedidoServico
     {
-        public int Adicionar(Pedido pedido)
+        private IPedidoRepositorio _pedidoRepositorio;
+        public PedidoServico(IPedidoRepositorio pedidoRepositorio)
+        {
+            _pedidoRepositorio = pedidoRepositorio;
+        }
+        public long Adicionar(Pedido pedido)
         {
             throw new NotImplementedException();
         }
