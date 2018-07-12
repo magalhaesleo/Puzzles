@@ -37,5 +37,19 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Sabores
         {
             return _pizzariaContexto.Sabores.ToList();
         }
+
+        public IEnumerable<Sabor> BuscarTodosSaboresCalzone()
+        {
+            IEnumerable<Sabor> saboresCalzone = BuscarTodos().Where(b => b.ValorCalzone != 0);
+
+            return saboresCalzone;
+        }
+
+        public IEnumerable<Sabor> BuscarTodosSaboresPizza()
+        {
+            IEnumerable<Sabor> saboresPizza = BuscarTodos().Where(b => b.ValorPequena != 0);
+
+            return saboresPizza;
+        }
     }
 }

@@ -38,6 +38,8 @@ namespace projeto_pizzaria.Common.Tests.Base
         {
             pizzariaContexto.Sabores.Add(ObjectMother.ObterSaborValido_Calabresa());
             pizzariaContexto.Sabores.Add(ObjectMother.ObterSaborValidoMaisCaro_Coracao());
+            pizzariaContexto.Sabores.Add(ObjectMother.ObterSaborSomente_Pizza());
+            pizzariaContexto.Sabores.Add(ObjectMother.ObterSaborSomente_Calzone());
 
             pizzariaContexto.SaveChanges();
         }

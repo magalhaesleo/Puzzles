@@ -58,6 +58,7 @@
     <Compile Include="Funcionalidades\ProdutosGenericos\ProdutoGenericoRepositorioSQL.cs" />
     <Compile Include="Funcionalidades\Produtos\Calzones\CalzoneConfiguracao.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\PizzaConfiguracao.cs" />
+    <Compile Include="Funcionalidades\Sabores\SaborConfiguracao.cs" />
     <Compile Include="Funcionalidades\Sabores\SaborRepositorioSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
