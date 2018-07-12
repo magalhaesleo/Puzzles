@@ -455,6 +455,7 @@
             // 
             // botaoAdicionarPedido
             // 
+            this.botaoAdicionarPedido.Enabled = false;
             this.botaoAdicionarPedido.Location = new System.Drawing.Point(866, 460);
             this.botaoAdicionarPedido.Name = "botaoAdicionarPedido";
             this.botaoAdicionarPedido.Size = new System.Drawing.Size(75, 23);

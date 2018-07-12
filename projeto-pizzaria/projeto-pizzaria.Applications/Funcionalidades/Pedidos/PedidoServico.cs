@@ -64,5 +64,10 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Pedidos
         {
             return _produtoGenericoRepositorio.BuscarTodos();
         }
+
+        public IEnumerable<Bebida> ObterTodasBebidas()
+        {
+            return _produtoGenericoRepositorio.BuscarTodos<Bebida>().Cast<Bebida>();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using projeto_pizzaria.Domain.Funcionalidades.Adicionais;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
 using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
+using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos.Bebidas;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,6 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Pedidos.Interfaces
         IEnumerable<Adicional> ObterAdicionais();
 
         IEnumerable<ProdutoGenerico> ObterProdutosGenericos();
+        IEnumerable<Bebida> ObterTodasBebidas();
     }
 }

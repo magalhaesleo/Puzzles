@@ -90,7 +90,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
         {
             comboBoxTipoProduto.Items.Add(typeof(Pizza).Name);
             comboBoxTipoProduto.Items.Add(typeof(Calzone).Name);
-            comboBoxTipoProduto.Items.Add(typeof(ProdutoGenerico).Name);
+            comboBoxTipoProduto.Items.Add(typeof(Bebida).Name);
            
         }
 
@@ -110,15 +110,12 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void PopularComboBoxTipoBebida()
         {
-            IEnumerable<ProdutoGenerico> listaDeProdutosGenericosEncontradosNoBancoDeDados = new List<ProdutoGenerico>();
-
-            //buscando a lista de sabores
-            listaDeProdutosGenericosEncontradosNoBancoDeDados = _pedidoServico.ObterProdutosGenericos();
+            IEnumerable<Bebida> listaDeBebidasEncontradosNoBancoDeDados = _pedidoServico.ObterTodasBebidas();
 
             //Populando o comboBox
-            foreach (ProdutoGenerico produtoGenerico in listaDeProdutosGenericosEncontradosNoBancoDeDados)
+            foreach (Bebida bebida in listaDeBebidasEncontradosNoBancoDeDados)
             {
-                comboBoxItem.Items.Add(produtoGenerico);
+                comboBoxItem.Items.Add(bebida);
             }
         }
 
@@ -151,7 +148,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
                     numericUpDownQuantidade.Enabled = true;
 
-                    if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name)
+                    if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Bebida).Name)
                     {
                         PopularComboBoxTipoBebida();
                         comboBoxItem.Enabled = true;
@@ -190,7 +187,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 numericUpDownQuantidade.Enabled = true;
 
 
-                if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name)
+                if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Bebida).Name)
                 {
                     PopularComboBoxTipoBebida();
                     comboBoxItem.Enabled = true;
@@ -462,11 +459,11 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 AdicionarProdutoNoPedido(calzone);
             }
 
-            if(comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name)
+            if(comboBoxTipoProduto.SelectedItem.ToString() == typeof(Bebida).Name)
             {
-                ProdutoGenerico itemSelecionadoNoListBoxItensPedido = comboBoxItem.SelectedItem as ProdutoGenerico;
+                Bebida itemSelecionadoNoListBoxItensPedido = comboBoxItem.SelectedItem as Bebida;
 
-                ProdutoGenerico bebida = new Bebida();
+                Bebida bebida = new Bebida();
 
                 bebida.Id = itemSelecionadoNoListBoxItensPedido.Id;
                 bebida.Descricao = itemSelecionadoNoListBoxItensPedido.Descricao;
@@ -503,7 +500,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 }
             }
 
-            else if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name && comboBoxItem.SelectedIndex >= 0 && numericUpDownQuantidade.Value > 0)
+            else if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Bebida).Name && comboBoxItem.SelectedIndex >= 0 && numericUpDownQuantidade.Value > 0)
             {
                 botaoAdicionarItemPedido.Enabled = true;
             }
