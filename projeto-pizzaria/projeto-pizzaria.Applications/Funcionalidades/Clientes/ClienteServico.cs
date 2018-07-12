@@ -38,7 +38,7 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Clientes
             throw new NotImplementedException();
         }
 
-        public List<Cliente> GetAll()
+        public List<Cliente> BuscarTodos()
         {
             throw new NotImplementedException();
         }
