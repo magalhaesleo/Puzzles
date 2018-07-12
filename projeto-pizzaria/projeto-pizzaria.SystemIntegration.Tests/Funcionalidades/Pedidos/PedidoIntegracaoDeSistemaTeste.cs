@@ -9,6 +9,7 @@ using projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos.ProdutosPedido;
 using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
+using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos.Bebidas;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using System;
 using System.Collections.Generic;
@@ -58,7 +59,7 @@ namespace projeto_pizzaria.SystemIntegration.Tests.Funcionalidades.Pedidos
             _pizza = new Pizza();
             _calzone = new Calzone();
             _produtoPedido = new ProdutoPedido();
-            _produtoGenerico = new ProdutoGenerico();
+            _produtoGenerico = new Bebida();
 
             _saborQueijo = new Sabor();
             _saborQueijo.ValorPequena = 30;
@@ -283,7 +284,6 @@ namespace projeto_pizzaria.SystemIntegration.Tests.Funcionalidades.Pedidos
         {
             _produtoGenerico.Descricao = "Coca-cola 2L";
             _produtoGenerico.Valor = 10;
-            _produtoGenerico.Tipo = "Bebida";
 
             _produtoPedido.Produto = _produtoGenerico;
 
@@ -309,7 +309,6 @@ namespace projeto_pizzaria.SystemIntegration.Tests.Funcionalidades.Pedidos
 
             _produtoGenerico.Descricao = "Coca-cola 2L";
             _produtoGenerico.Valor = 10;
-            _produtoGenerico.Tipo = "Bebida";
 
             _produtoPedido.Produto = _produtoGenerico;
 
@@ -343,7 +342,6 @@ namespace projeto_pizzaria.SystemIntegration.Tests.Funcionalidades.Pedidos
 
             _produtoGenerico.Descricao = "Coca-cola 2L";
             _produtoGenerico.Valor = 10;
-            _produtoGenerico.Tipo = "Bebida";
 
             _produtoPedido.Produto = _produtoGenerico;
 

@@ -8,6 +8,7 @@ using projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos.ProdutosPedido;
 using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
+using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos.Bebidas;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using projeto_pizzaria.Infra.Objetos_de_Valor.CNPJs;
 using projeto_pizzaria.Infra.Objetos_de_Valor.CPFs;
@@ -455,11 +456,11 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 AdicionarProdutoNoPedido(calzone);
             }
 
-            if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name)
+            if(comboBoxTipoProduto.SelectedItem.GetType() == typeof(ProdutoGenerico))
             {
                 ProdutoGenerico itemSelecionadoNoListBoxItensPedido = comboBoxItem.SelectedItem as ProdutoGenerico;
 
-                ProdutoGenerico bebida = new ProdutoGenerico();
+                ProdutoGenerico bebida = new Bebida();
 
                 bebida.Id = itemSelecionadoNoListBoxItensPedido.Id;
                 bebida.Descricao = itemSelecionadoNoListBoxItensPedido.Descricao;

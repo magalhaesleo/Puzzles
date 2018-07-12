@@ -44,6 +44,8 @@
     <Compile Include="Funcionalidades\Clientes\Interfaces\IClienteServico.cs" />
     <Compile Include="Funcionalidades\Pedidos\Interfaces\IPedidoServico.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoServico.cs" />
+    <Compile Include="Funcionalidades\ProdutosGenericos\Interfaces\IProdutoGenericoServico.cs" />
+    <Compile Include="Funcionalidades\ProdutosGenericos\ProdutoGenericoServico.cs" />
     <Compile Include="Interfaces\IServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
