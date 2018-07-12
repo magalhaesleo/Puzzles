@@ -165,6 +165,7 @@
             this.botaoRemoverItemPedido.TabIndex = 29;
             this.botaoRemoverItemPedido.Text = "Remover Item do pedido";
             this.botaoRemoverItemPedido.UseVisualStyleBackColor = true;
+            this.botaoRemoverItemPedido.Click += new System.EventHandler(this.botaoRemoverItemPedido_Click);
             // 
             // botaoAdicionarItemPedido
             // 

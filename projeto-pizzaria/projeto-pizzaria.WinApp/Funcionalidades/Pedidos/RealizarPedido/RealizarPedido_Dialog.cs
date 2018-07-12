@@ -113,14 +113,14 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
                     numericUpDownQuantidade.Enabled = true;
 
-                    if (comboBoxTipoProduto.SelectedItem == typeof(ProdutoGenerico).Name)
+                    if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name)
                     {
                         PopularComboBoxTipoBebida();
                         comboBoxItem.Enabled = true;
                         _itemPedidoEmAndamento = true;
                     }
 
-                    if (comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name)
+                    if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Calzone).Name)
                     {
                   
                         PopularComboBoxSabores();
@@ -130,7 +130,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                         _itemPedidoEmAndamento = true;
                     }
 
-                    if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name)
+                    if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Pizza).Name)
                     {
                         PopularComboBoxSabores();
                         PopularComboBoxAdicionais();
@@ -152,14 +152,14 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 numericUpDownQuantidade.Enabled = true;
 
 
-                if (comboBoxTipoProduto.SelectedItem == typeof(ProdutoGenerico).Name)
+                if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name)
                 {
                     PopularComboBoxTipoBebida();
                     comboBoxItem.Enabled = true;
                     _itemPedidoEmAndamento = true;
                 }
 
-                if (comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name)
+                if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Calzone).Name)
                 {
                     PopularComboBoxSabores();
                     comboBoxSabores.Enabled = true;
@@ -167,7 +167,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                     _itemPedidoEmAndamento = true;
                 }
 
-                if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name)
+                if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Pizza).Name)
                 {
                     PopularComboBoxSabores();
                     PopularComboBoxAdicionais();
@@ -214,7 +214,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             listBoxSabores.Items.Add(comboBoxSabores.SelectedItem);
 
             // Habilitando comboBox e adição de adicionais
-            if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name)
+            if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Pizza).Name)
             {
                 HabilitarAdicaoDeAdicionais();
             }
@@ -241,19 +241,19 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             listBoxSabores.Items.RemoveAt(listBoxSabores.SelectedIndex);
 
             // Deixando o botão de adicionar sabor Enable caso a quantidade de sabores adicionados no listBox de sabor é menor que 2 e o tipo de item é pizza 
-            if (comboBoxTipoProduto.SelectedItem == "Pizza" && listBoxSabores.Items.Count < 2)
+            if (comboBoxTipoProduto.SelectedItem.ToString() == "Pizza" && listBoxSabores.Items.Count < 2)
             {
                 botaoAdicionarSabor.Enabled = true;
             }
 
             // Deixando o botão de adicionar sabor Enable caso a quantidade de sabores adicionados no listBox de sabor é menor que 1 e o tipo de item é Calzone 
-            if (comboBoxTipoProduto.SelectedItem == "Calzone" && listBoxSabores.Items.Count < 1)
+            if (comboBoxTipoProduto.SelectedItem.ToString() == "Calzone" && listBoxSabores.Items.Count < 1)
             {
                 botaoAdicionarSabor.Enabled = true;
             } 
 
             //Desabilitando grupo de adicionais caso não hajam mais sabores no listBox de sabores e o tipo de item não seja pizza
-            if(comboBoxTipoProduto.SelectedItem == "Pizza" && listBoxSabores.Items.Count < 1)
+            if(comboBoxTipoProduto.SelectedItem.ToString() == "Pizza" && listBoxSabores.Items.Count < 1)
             {
                 DesabilitarGrupoDeAdicionais();
             }
@@ -351,12 +351,12 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void ValidarEnabledDeAdicionarSabor()
         {
-            if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name && listBoxSabores.Items.Count == 2)
+            if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Pizza).Name && listBoxSabores.Items.Count == 2)
             {
                 botaoAdicionarSabor.Enabled = false;
             }
 
-            if (comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name && listBoxSabores.Items.Count == 1)
+            if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Calzone).Name && listBoxSabores.Items.Count == 1)
             {
                 botaoAdicionarSabor.Enabled = false;
             }
@@ -364,7 +364,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void botaoAdicionarItemPedido_Click(object sender, EventArgs e)
         {       
-            if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name)
+            if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Pizza).Name)
             {
                 Pizza novaPizza = new Pizza();
 
@@ -377,6 +377,8 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
                 //Adicionando sabor obrigatório na pizza
                 novaPizza.Sabor1 = listBoxSabores.Items[0] as Sabor;
+
+                //A qual pedido a pizza pertence
                 novaPizza.Pedido = this.Pedido;
 
                 //Adicionando segundo sabor a pizza, caso exista
@@ -404,7 +406,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
             }
 
-            if(comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name)
+            if(comboBoxTipoProduto.SelectedItem.ToString() == typeof(Calzone).Name)
             {
                 Calzone calzone = new Calzone()
                 {
@@ -416,16 +418,16 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 listBoxItensPedido.Items.Add(calzone);
             }
 
-            if(comboBoxTipoProduto.SelectedItem == typeof(ProdutoGenerico).Name)
+            if(comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name)
             {
-                ProdutoGenerico itemSelecionadoNoComboBoxDeItens = comboBoxItem.SelectedItem as ProdutoGenerico;
+                ProdutoGenerico itemSelecionadoNoListBoxItensPedido = comboBoxItem.SelectedItem as ProdutoGenerico;
 
-                ProdutoGenerico bebida = new ProdutoGenerico()
-                {
-                    Descricao = itemSelecionadoNoComboBoxDeItens.Descricao,
-                    Tipo = itemSelecionadoNoComboBoxDeItens.Tipo,
-                    Valor = itemSelecionadoNoComboBoxDeItens.Valor
-                };
+                ProdutoGenerico bebida = new ProdutoGenerico();
+
+                bebida.Id = itemSelecionadoNoListBoxItensPedido.Id;
+                bebida.Descricao = itemSelecionadoNoListBoxItensPedido.Descricao;
+                bebida.Valor = itemSelecionadoNoListBoxItensPedido.Valor;
+                
 
                 listBoxItensPedido.Items.Add(bebida);
             }
@@ -439,19 +441,19 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void ValidarDisponibilidadeDoBotaoAdicionarItemPedido()
         {
-            if(comboBoxTipoProduto.SelectedItem == typeof(Calzone).Name && listBoxSabores.Items.Count > 0 && numericUpDownQuantidade.Value > 0)
+            if(comboBoxTipoProduto.SelectedItem.ToString() == typeof(Calzone).Name && listBoxSabores.Items.Count > 0 && numericUpDownQuantidade.Value > 0)
             {
                 botaoAdicionarItemPedido.Enabled = true;
             }
 
-            else if (comboBoxTipoProduto.SelectedItem == typeof(Pizza).Name && listBoxSabores.Items.Count > 0 && numericUpDownQuantidade.Value > 0)
+            else if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Pizza).Name && listBoxSabores.Items.Count > 0 && numericUpDownQuantidade.Value > 0)
             {
                 if (radioButtonPizzaGrande.Checked || radioButtonPizzaMedia.Checked || radioButtonPizzaPequena.Checked) { 
                     botaoAdicionarItemPedido.Enabled = true;
                 }
             }
 
-            else if(comboBoxTipoProduto.SelectedItem == typeof(ProdutoGenerico).Name && comboBoxItem.SelectedIndex >= 0 && numericUpDownQuantidade.Value > 0)
+            else if(comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name && comboBoxItem.SelectedIndex >= 0 && numericUpDownQuantidade.Value > 0)
             {
                 botaoAdicionarItemPedido.Enabled = true;
             }
@@ -468,7 +470,8 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void listBoxItensPedido_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (listBoxItensPedido.SelectedIndex >= 0)
+                botaoRemoverItemPedido.Enabled = true;
         }
 
         private void HabilitarRadioButtonsTamanhos()
@@ -516,14 +519,26 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void VerificarGrupoDeAdicaoDeAdicional()
         {
-            if(listBoxAdicionais.Items.Count > 0)
+            if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Pizza).Name)
             {
-                DesabilitarAdicaoDeAdicionais();
+                if (listBoxAdicionais.Items.Count > 0)
+                {
+                    DesabilitarAdicaoDeAdicionais();
+                }
+                else
+                {
+                    HabilitarAdicaoDeAdicionais();
+                }
+
             }
-            else
-            {
-                HabilitarAdicaoDeAdicionais();
-            }
+        }
+
+        private void botaoRemoverItemPedido_Click(object sender, EventArgs e)
+        {
+            listBoxItensPedido.Items.RemoveAt(listBoxItensPedido.SelectedIndex);
+
+            LimparValoresDeItemPedido();
+            ReiniciarValoresDeItemPedido();
         }
     }
 }
