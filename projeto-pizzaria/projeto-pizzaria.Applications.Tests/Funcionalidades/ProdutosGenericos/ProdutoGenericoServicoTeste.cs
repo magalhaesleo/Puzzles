@@ -17,15 +17,15 @@ namespace projeto_pizzaria.Applications.Tests.Funcionalidades.ProdutosGenericos
 
         private Mock<ProdutoGenerico> _mockProdutoGenerico;
 
-        private Mock<ProdutoGenericoRepositorio> _mockProdutoGenericoRepositorio;
+        //private Mock<ProdutoGenericoRepositorio> _mockProdutoGenericoRepositorio;
 
         [SetUp]
         public void IniciarCenario()
         {
-            _mockProdutoGenericoRepositorio = new Mock<IPedidoRepositorio>();
-            _produtoGenericoServico = new ProdutoGenericoServico(_mockProdutoGenericoRepositorio.Object);
+            //_mockProdutoGenericoRepositorio = new Mock<IPedidoRepositorio>();
+            //_produtoGenericoServico = new ProdutoGenericoServico(_mockProdutoGenericoRepositorio.Object);
 
-            _produtoGenerico = new Mock<ProdutoGenerico>();
+            _mockProdutoGenerico = new Mock<ProdutoGenerico>();
         }
     }
 }
