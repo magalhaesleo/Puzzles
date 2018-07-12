@@ -93,6 +93,7 @@
             // 
             // comboBoxCliente
             // 
+            this.comboBoxCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCliente.FormattingEnabled = true;
             this.comboBoxCliente.Location = new System.Drawing.Point(62, 10);
             this.comboBoxCliente.Name = "comboBoxCliente";
@@ -110,6 +111,7 @@
             // 
             // comboBoxTipoProduto
             // 
+            this.comboBoxTipoProduto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoProduto.FormattingEnabled = true;
             this.comboBoxTipoProduto.Location = new System.Drawing.Point(62, 42);
             this.comboBoxTipoProduto.Name = "comboBoxTipoProduto";
@@ -163,6 +165,7 @@
             this.botaoRemoverItemPedido.TabIndex = 29;
             this.botaoRemoverItemPedido.Text = "Remover Item do pedido";
             this.botaoRemoverItemPedido.UseVisualStyleBackColor = true;
+            this.botaoRemoverItemPedido.Click += new System.EventHandler(this.botaoRemoverItemPedido_Click);
             // 
             // botaoAdicionarItemPedido
             // 
@@ -186,6 +189,7 @@
             this.radioButtonPizzaGrande.TabStop = true;
             this.radioButtonPizzaGrande.Text = "Grande";
             this.radioButtonPizzaGrande.UseVisualStyleBackColor = true;
+            this.radioButtonPizzaGrande.CheckedChanged += new System.EventHandler(this.radioButtonPizzaGrande_CheckedChanged);
             // 
             // radioButtonPizzaMedia
             // 
@@ -198,6 +202,7 @@
             this.radioButtonPizzaMedia.TabStop = true;
             this.radioButtonPizzaMedia.Text = "Média";
             this.radioButtonPizzaMedia.UseVisualStyleBackColor = true;
+            this.radioButtonPizzaMedia.CheckedChanged += new System.EventHandler(this.radioButtonPizzaMedia_CheckedChanged);
             // 
             // radioButtonPizzaPequena
             // 
@@ -210,6 +215,7 @@
             this.radioButtonPizzaPequena.TabStop = true;
             this.radioButtonPizzaPequena.Text = "Pequena";
             this.radioButtonPizzaPequena.UseVisualStyleBackColor = true;
+            this.radioButtonPizzaPequena.CheckedChanged += new System.EventHandler(this.radioButtonPizzaPequena_CheckedChanged);
             // 
             // labelTamanho
             // 
@@ -267,6 +273,7 @@
             // 
             // comboBoxSabores
             // 
+            this.comboBoxSabores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSabores.Enabled = false;
             this.comboBoxSabores.FormattingEnabled = true;
             this.comboBoxSabores.Location = new System.Drawing.Point(5, 19);
@@ -286,6 +293,7 @@
             // 
             // comboBoxItem
             // 
+            this.comboBoxItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxItem.Enabled = false;
             this.comboBoxItem.FormattingEnabled = true;
             this.comboBoxItem.Location = new System.Drawing.Point(38, 19);
@@ -300,6 +308,7 @@
             this.listBoxItensPedido.Name = "listBoxItensPedido";
             this.listBoxItensPedido.Size = new System.Drawing.Size(453, 95);
             this.listBoxItensPedido.TabIndex = 13;
+            this.listBoxItensPedido.SelectedIndexChanged += new System.EventHandler(this.listBoxItensPedido_SelectedIndexChanged);
             // 
             // textBoxDocumentoNotaFiscal
             // 
@@ -319,6 +328,7 @@
             // 
             // comboBoxFormaDePagamento
             // 
+            this.comboBoxFormaDePagamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFormaDePagamento.FormattingEnabled = true;
             this.comboBoxFormaDePagamento.Location = new System.Drawing.Point(7, 19);
             this.comboBoxFormaDePagamento.Name = "comboBoxFormaDePagamento";
@@ -421,6 +431,7 @@
             this.botaoCancelarPedido.TabIndex = 22;
             this.botaoCancelarPedido.Text = "Cancelar";
             this.botaoCancelarPedido.UseVisualStyleBackColor = true;
+            this.botaoCancelarPedido.Click += new System.EventHandler(this.botaoCancelarPedido_Click);
             // 
             // labelValorTotalExibido
             // 
@@ -488,6 +499,7 @@
             // 
             // comboBoxAdicionais
             // 
+            this.comboBoxAdicionais.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAdicionais.Enabled = false;
             this.comboBoxAdicionais.FormattingEnabled = true;
             this.comboBoxAdicionais.Location = new System.Drawing.Point(5, 19);
@@ -543,6 +555,7 @@
             this.Controls.Add(this.comboBoxCliente);
             this.Controls.Add(this.labelCliente);
             this.Name = "RealizarPedido_Dialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Realizar Pedido";
             this.grupoAdicionarItemPedido.ResumeLayout(false);
             this.grupoAdicionarItemPedido.PerformLayout();

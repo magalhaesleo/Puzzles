@@ -69,7 +69,6 @@
     <Compile Include="Funcionalidades\Pedidos\PedidoTeste.cs" />
     <Compile Include="Funcionalidades\Produtos\Calzones\CalzoneTeste.cs" />
     <Compile Include="Funcionalidades\Produtos\Pizzas\PizzaTeste.cs" />
-    <Compile Include="Funcionalidades\Produtos\ProdutosPedido\ProdutoPedidoTeste.cs" />
     <Compile Include="Funcionalidades\Sabores\SaborTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

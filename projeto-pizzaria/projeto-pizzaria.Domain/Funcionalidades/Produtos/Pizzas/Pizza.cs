@@ -45,17 +45,6 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
         public long? AdicionalId { get; set; }
         public virtual Adicional Adicional { get; set; }
         public virtual TamanhoPizza Tamanho { get; set; }
-        public override string Tipo
-        {
-            get
-            {
-                return "Pizza";
-            }
-            set
-            {
-                Tipo = value;
-            }
-        }
        
         public double ObterValorSaboresSemAdicional()
         {
