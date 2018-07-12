@@ -17,14 +17,18 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
     public class PedidoGerenciadorDeFormulario : GerenciadorDeFormulario
     {
         private readonly PedidoServico _pedidoServico;
+        private readonly ClienteServico _clienteServico;
 
-        //public PedidoGerenciadorDeFormulario(PedidoServico pedidoServico)
-        //{
-        //    _pedidoServico = pedidoServico;
-        //}
+
+        public PedidoGerenciadorDeFormulario(PedidoServico pedidoServico, ClienteServico clienteServico)
+        {
+            _pedidoServico = pedidoServico;
+            _clienteServico = clienteServico;
+
+        }
         public override void Adicionar()
         {
-            RealizarPedido_Dialog dialogRealizarPedido = new RealizarPedido_Dialog(new ClienteServico(new ClienteRepositorioSQL(new PizzariaContexto())));
+            RealizarPedido_Dialog dialogRealizarPedido = new RealizarPedido_Dialog(_clienteServico, _pedidoServico);
 
             DialogResult resultadoDialogRealizarPedido = dialogRealizarPedido.ShowDialog();
 
