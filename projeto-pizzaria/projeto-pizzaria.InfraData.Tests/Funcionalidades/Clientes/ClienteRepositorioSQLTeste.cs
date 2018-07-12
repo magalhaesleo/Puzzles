@@ -1,10 +1,12 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
+using projeto_pizzaria.Common.Tests.Base;
 using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Infra.Data.Contextos;
 using projeto_pizzaria.Infra.Data.Funcionalidades.Clientes;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;

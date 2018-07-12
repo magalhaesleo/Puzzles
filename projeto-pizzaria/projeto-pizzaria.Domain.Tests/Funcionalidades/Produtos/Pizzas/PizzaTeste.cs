@@ -138,15 +138,5 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Produtos.Pizzas
             _sabor1Mock.Verify(s1 => s1.ObterValorDoSabor(_pizza));
             _pizza.ValorAdicional.Should().Be(0);
         }
-
-        [Test]
-        public void Pizza_Dominio_Tipo_Sucesso()
-        {
-            _pizza = ObjectMother.ObterPizzaComTamanhoEUmSabor(TamanhoPizza.PEQUENA, _sabor1Mock.Object);
-
-            string tipoDesejado = "Pizza";
-
-            _pizza.Tipo.Should().Be(tipoDesejado);
-        }
     }
 }

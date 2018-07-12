@@ -63,6 +63,7 @@
     <Compile Include="Funcionalidades\Adicionais\AdicionalRepositorioSQLTeste.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSQLTeste.cs" />
     <Compile Include="Funcionalidades\Pedidos\PedidoRepositorioSQLTeste.cs" />
+    <Compile Include="Funcionalidades\ProdutosGenericos\ProdutoGenericoRepositorioSQLTeste.cs" />
     <Compile Include="Funcionalidades\Sabores\SaborRepositorioSQLTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

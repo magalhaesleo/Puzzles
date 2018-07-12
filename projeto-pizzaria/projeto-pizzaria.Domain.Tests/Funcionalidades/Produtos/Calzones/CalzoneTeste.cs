@@ -26,13 +26,6 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Produtos.Calzones
         }
 
         [Test]
-        public static void Bebida_Dominio_Tipo_Sucesso()
-        {
-            Calzone calzone = new Calzone();
-            calzone.Tipo.Should().Be("Calzone");
-        }
-
-        [Test]
         public void Calzone_Dominio_Valor_Sucesso()
         {
             double valorSaborParaCalzone = 50;

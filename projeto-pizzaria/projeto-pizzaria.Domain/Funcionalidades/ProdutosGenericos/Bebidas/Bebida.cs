@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projeto_pizzaria.Infra.Data.Funcionalidades.ProdutosPedido
+namespace projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos.Bebidas
 {
-    public class ProdutoPedidoConfiguracao
+    public class Bebida : ProdutoGenerico
     {
     }
 }
