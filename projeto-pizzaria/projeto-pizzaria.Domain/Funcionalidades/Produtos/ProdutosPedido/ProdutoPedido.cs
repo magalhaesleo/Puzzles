@@ -18,17 +18,5 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.ProdutosPedido
         }
 
         public ProdutoGenerico Produto { get; set; }
-
-        public override string Tipo
-        {
-            get
-            {
-                return Produto.Tipo;
-            }
-            set
-            {
-                Tipo = value;
-            }
-        }
     }
 }

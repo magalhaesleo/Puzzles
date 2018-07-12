@@ -10,5 +10,5 @@ namespace projeto_pizzaria.Domain.Interfaces.ProdutosGenericos
     public interface IProdutoGenericoRepositorio : IRepositorio<ProdutoGenerico>
     {
         IEnumerable<ProdutoGenerico> BuscarTodos<T>() where T : ProdutoGenerico;
- }
+    }
 }

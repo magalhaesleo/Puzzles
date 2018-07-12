@@ -16,6 +16,5 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos
         public virtual Sabor Sabor1 { get; set; }
         public virtual double Valor { get; set; }
         public int Quantidade { get; set; } = 1;
-        public abstract string Tipo { get; set; }
     }
 }

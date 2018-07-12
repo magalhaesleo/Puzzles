@@ -16,17 +16,5 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones
                 return Sabor1.ValorCalzone;
             }
         }
-
-        public override string Tipo
-        {
-            get
-            {
-                return "Calzone";
-            }
-            set
-            {
-                Tipo = value;
-            }
-        }
     }
 }

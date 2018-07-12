@@ -13,6 +13,5 @@ namespace projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos
 
         public virtual double Valor { get; set; }
 
-        public abstract string Tipo { get; set; }
     }
 }

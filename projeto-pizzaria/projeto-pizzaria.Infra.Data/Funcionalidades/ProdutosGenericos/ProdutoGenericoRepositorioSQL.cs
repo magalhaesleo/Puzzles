@@ -1,5 +1,6 @@
 ﻿using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
 using projeto_pizzaria.Domain.Interfaces.ProdutosGenericos;
+using projeto_pizzaria.Infra.Data.Contextos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,11 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.ProdutosGenericos
 {
     public class ProdutoGenericoRepositorioSQL : IProdutoGenericoRepositorio
     {
+        private PizzariaContexto _pizzariaContexto;
+        public ProdutoGenericoRepositorioSQL(PizzariaContexto pizzariaContexto)
+        {
+            _pizzariaContexto = pizzariaContexto;
+        }
         public long Adicionar(ProdutoGenerico entidade)
         {
             throw new NotImplementedException();
@@ -17,7 +23,9 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.ProdutosGenericos
 
         public IEnumerable<ProdutoGenerico> BuscarTodos<T>() where T : ProdutoGenerico
         {
-            throw new NotImplementedException();
+            IEnumerable<ProdutoGenerico> produtosGenericos = _pizzariaContexto.ProdutosGenericos.OfType<T>();
+
+            return produtosGenericos;
         }
 
         public List<ProdutoGenerico> BuscarTodos()
