@@ -18,10 +18,14 @@ namespace projeto_pizzaria.InfraData.Tests.Funcionalidades.Clientes
         private PizzariaContexto _pizzariaContexto;
 
         [SetUp]
-        public void IniIniciarCenario()
+        public void IniciarCenario()
         {
             _pizzariaContexto = new PizzariaContexto();
             _clienteRepositorio = new ClienteRepositorioSQL(_pizzariaContexto);
+
+            Database.SetInitializer(new BaseSQLTeste());
+
+            _pizzariaContexto.Database.Initialize(true);
         }
 
         [Test]

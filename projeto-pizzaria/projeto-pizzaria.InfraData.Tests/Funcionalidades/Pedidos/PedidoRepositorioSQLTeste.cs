@@ -6,6 +6,7 @@ using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Funcionalidades.Enderecos;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos;
+using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using projeto_pizzaria.Infra.Data.Contextos;
 using projeto_pizzaria.Infra.Data.Funcionalidades.Pedidos;
@@ -45,9 +46,12 @@ namespace projeto_pizzaria.InfraData.Tests.Funcionalidades.Pedidos
             _cpf = ObjectMother.ObterCPFValido();
             _cliente = ObjectMother.ObterClienteValido(_endereco, _cpf);
             _produtos = new List<Produto>();
-            Sabor sabor = new Sabor();
-            Produto produto = ObjectMother.ObterPizzaComUmSabor(sabor);
-            _produtos.Add(produto);
+            Sabor calabresa = ObjectMother.ObterSaborValido_Calabresa();
+            long idSaborInseridoPorBaseSQL = 1;
+            calabresa.Id = idSaborInseridoPorBaseSQL;
+            Pizza pizza = ObjectMother.ObterPizzaComUmSabor(calabresa);
+            pizza.Tamanho = TamanhoPizza.GRANDE;
+            _produtos.Add(pizza);
 
             _pedido = new Pedido();
             
