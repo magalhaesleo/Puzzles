@@ -110,10 +110,16 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void PopularComboBoxTipoBebida()
         {
-            comboBoxItem.Items.Add("Coca cola");
-            comboBoxItem.Items.Add("Sprite");
+            IEnumerable<ProdutoGenerico> listaDeProdutosGenericosEncontradosNoBancoDeDados = new List<ProdutoGenerico>();
 
-           
+            //buscando a lista de sabores
+            listaDeProdutosGenericosEncontradosNoBancoDeDados = _pedidoServico.ObterProdutosGenericos();
+
+            //Populando o comboBox
+            foreach (ProdutoGenerico produtoGenerico in listaDeProdutosGenericosEncontradosNoBancoDeDados)
+            {
+                comboBoxItem.Items.Add(produtoGenerico);
+            }
         }
 
         private void PopularComboBoxAdicionais()

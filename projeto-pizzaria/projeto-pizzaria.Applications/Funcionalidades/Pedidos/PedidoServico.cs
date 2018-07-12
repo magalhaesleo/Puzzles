@@ -1,9 +1,12 @@
 ﻿using projeto_pizzaria.Applications.Funcionalidades.Pedidos.Interfaces;
 using projeto_pizzaria.Domain.Funcionalidades.Adicionais;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
+using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
+using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos.Bebidas;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using projeto_pizzaria.Domain.Interfaces.Adicionais;
 using projeto_pizzaria.Domain.Interfaces.Pedidos;
+using projeto_pizzaria.Domain.Interfaces.ProdutosGenericos;
 using projeto_pizzaria.Domain.Interfaces.Sabores;
 using System;
 using System.Collections.Generic;
@@ -18,12 +21,14 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Pedidos
         private IPedidoRepositorio _pedidoRepositorio;
         private ISaborRepositorio _saborRepositorio;
         private IAdicionalRepositorio _adicionalRepositorio;
+        private IProdutoGenericoRepositorio _produtoGenericoRepositorio;
 
-        public PedidoServico(IPedidoRepositorio pedidoRepositorio, ISaborRepositorio saborRepositorio, IAdicionalRepositorio adicionalRepositorio)
+        public PedidoServico(IPedidoRepositorio pedidoRepositorio, ISaborRepositorio saborRepositorio, IAdicionalRepositorio adicionalRepositorio, IProdutoGenericoRepositorio produtoGenericoRepositorio)
         {
             _pedidoRepositorio = pedidoRepositorio;
             _saborRepositorio = saborRepositorio;
             _adicionalRepositorio = adicionalRepositorio;
+            _produtoGenericoRepositorio = produtoGenericoRepositorio;
         }
         public long Adicionar(Pedido pedido)
         {
@@ -53,6 +58,11 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Pedidos
         public IEnumerable<Sabor> ObterSabores()
         {
             return _saborRepositorio.BuscarTodos();
+        }
+
+        public IEnumerable<ProdutoGenerico> ObterProdutosGenericos()
+        {
+            return _produtoGenericoRepositorio.BuscarTodos();
         }
     }
 }

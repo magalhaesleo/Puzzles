@@ -6,6 +6,7 @@ using projeto_pizzaria.Infra.Data.Contextos;
 using projeto_pizzaria.Infra.Data.Funcionalidades.Adicionais;
 using projeto_pizzaria.Infra.Data.Funcionalidades.Clientes;
 using projeto_pizzaria.Infra.Data.Funcionalidades.Pedidos;
+using projeto_pizzaria.Infra.Data.Funcionalidades.ProdutosGenericos;
 using projeto_pizzaria.Infra.Data.Funcionalidades.Sabores;
 using projeto_pizzaria.WinApp.Funcionalidades.Pedidos;
 using System;
@@ -32,6 +33,7 @@ namespace projeto_pizzaria.WinApp.Base
         PedidoRepositorioSQL _pedidoRepositorioSQL;
         SaborRepositorioSQL _saborRepositorioSQL;
         AdicionalRepositorioSQL _adicionalRepositorioSQL;
+        ProdutoGenericoRepositorioSQL _produtoGenericoRepositorioSQL;
         //
 
         //Instancias de repositórios
@@ -83,7 +85,7 @@ namespace projeto_pizzaria.WinApp.Base
         {
             if(_pedidoServico == null)
             {
-                return new PedidoServico(ObterInstaciaDePedidoRepositorio(), ObterInstanciaDeSaborRepositorio(), ObterInstanciaDeAdicionalRepositorio());
+                return new PedidoServico(ObterInstaciaDePedidoRepositorio(), ObterInstanciaDeSaborRepositorio(), ObterInstanciaDeAdicionalRepositorio(), ObterInstanciaDeProdutoGenericoRepositorioSQL());
             }
             else
             {
@@ -138,6 +140,17 @@ namespace projeto_pizzaria.WinApp.Base
             }
         }
 
+        private ProdutoGenericoRepositorioSQL ObterInstanciaDeProdutoGenericoRepositorioSQL()
+        {
+            if (_produtoGenericoRepositorioSQL == null)
+            {
+                return new ProdutoGenericoRepositorioSQL(ObterInstaciaDoContextoSQL());
+            }
+            else
+            {
+                return _produtoGenericoRepositorioSQL;
+            }
+        }
         private AdicionalRepositorioSQL ObterInstanciaDeAdicionalRepositorio()
         {
             if (_adicionalRepositorioSQL == null)
