@@ -34,5 +34,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Sabores
                     return ValorPequena;
             }
         }
+
+        public override string ToString()
+        {
+            return "Sabor " + Descricao;
+        }
     }
 }

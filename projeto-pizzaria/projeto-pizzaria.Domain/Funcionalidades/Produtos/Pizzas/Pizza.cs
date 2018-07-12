@@ -45,7 +45,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
         public long? AdicionalId { get; set; }
         public virtual Adicional Adicional { get; set; }
         public virtual TamanhoPizza Tamanho { get; set; }
-       
+
         public double ObterValorSaboresSemAdicional()
         {
             double valorSabor1 = Sabor1.ObterValorDoSabor(this);
@@ -72,6 +72,14 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
                 return ObterValorSaboresSemAdicional();
             else
                 return (ObterValorSaboresSemAdicional() + Adicional.ObterValorAdicional(this));
+        }
+
+        public override string ToString()
+        {
+            if (Sabor2 == null)
+                return "Pizza de " + Sabor1.Descricao;
+
+            return "Pizza de " + Sabor1.Descricao + " e " + Sabor2.Descricao;
         }
     }
 }

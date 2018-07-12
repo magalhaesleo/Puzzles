@@ -30,5 +30,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Adicionais
                     return ValorPequena;
             }
         }
+
+        public override string ToString()
+        {
+            return "Adicional " + Descricao;
+        }
     }
 }
