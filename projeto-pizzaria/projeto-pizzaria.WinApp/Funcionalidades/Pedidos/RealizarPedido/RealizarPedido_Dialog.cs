@@ -7,6 +7,8 @@ using projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones;
 using projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas;
 using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
 using projeto_pizzaria.Domain.Funcionalidades.Sabores;
+using projeto_pizzaria.Infra.Objetos_de_Valor.CNPJs;
+using projeto_pizzaria.Infra.Objetos_de_Valor.CPFs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +25,9 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
     {
         ClienteServico _clienteServico;
         bool _itemPedidoEmAndamento = false;
-        Pedido Pedido { get; set; }
+        Pedido _pedido;
+
+        public Pedido Pedido { get {return _pedido; } set {; } }
 
         public RealizarPedido_Dialog(ClienteServico clienteServico)
         {
@@ -31,9 +35,9 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
             PopularAtributosDaClasse(clienteServico);
             PopularComboBoxTipoProduto();
-            
 
-            Pedido = new Pedido();
+
+            _pedido = new Pedido();
         }
 
         public void PopularAtributosDaClasse(ClienteServico clienteServico)
@@ -539,6 +543,57 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
             LimparValoresDeItemPedido();
             ReiniciarValoresDeItemPedido();
+        }
+
+        private void botaoAdicionarPedido_Click(object sender, EventArgs e)
+        {
+           
+            _pedido.Cliente = (Cliente)comboBoxCliente.SelectedItem;
+            _pedido.Data = DateTime.Now;
+            _pedido.FormaPagamento = (FormaPagamentoPedido)comboBoxFormaDePagamento.SelectedItem;
+            _pedido.EmitirNota = checkBoxNotaFiscal.Checked;
+
+            foreach (Produto produto in listBoxItensPedido.Items)
+            {
+                _pedido.Produtos.Add(produto);
+            }
+            if (checkBoxPedidoParaEmpresa.Checked)
+            {
+                _pedido.Departamento = textBoxDepartamento.Text;
+                _pedido.Responsavel = textBoxReponsavel.Text;
+            }
+            if (_pedido.EmitirNota)
+            {
+                if (checkBoxPedidoParaEmpresa.Checked)
+                {
+                    if (_pedido.Cliente.Documento == null)
+                    {
+                        CNPJ cnpj = new CNPJ();
+                        cnpj.NumeroComPontuacao = textBoxCnpjEmpresa.Text;
+                        _pedido.Cliente.Documento = cnpj;
+                    }
+                }
+                else
+                {
+                    if (_pedido.Cliente.Documento == null)
+                    {
+                        CPF cpf = new CPF();
+                        cpf.NumeroComPontuacao = textBoxCnpjEmpresa.Text;
+                        _pedido.Cliente.Documento = cpf;
+                    }
+                }
+            }
+            try
+            {
+                //ValidarPreenchimentoDosCampos();
+                //Contém método de validação e também adiciona status
+                _pedido.Realizar();
+            }
+            catch (Exception ex)
+            {
+                DialogResult = DialogResult.None;
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

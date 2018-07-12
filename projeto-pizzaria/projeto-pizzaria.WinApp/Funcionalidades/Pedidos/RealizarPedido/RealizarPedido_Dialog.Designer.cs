@@ -451,6 +451,7 @@
             this.botaoAdicionarPedido.TabIndex = 24;
             this.botaoAdicionarPedido.Text = "Adicionar";
             this.botaoAdicionarPedido.UseVisualStyleBackColor = true;
+            this.botaoAdicionarPedido.Click += new System.EventHandler(this.botaoAdicionarPedido_Click);
             // 
             // groupBoxAdicionais
             // 
