@@ -30,7 +30,9 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.ProdutosGenericos
 
         public List<ProdutoGenerico> BuscarTodos()
         {
-            throw new NotImplementedException();
+            List<ProdutoGenerico> produtosGenericos = _pizzariaContexto.ProdutosGenericos.ToList();
+
+            return produtosGenericos;
         }
 
         public void Editar(ProdutoGenerico entidade)

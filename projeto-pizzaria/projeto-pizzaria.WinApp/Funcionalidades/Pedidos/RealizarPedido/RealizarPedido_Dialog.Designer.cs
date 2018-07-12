@@ -151,9 +151,19 @@
             // numericUpDownQuantidade
             // 
             this.numericUpDownQuantidade.Location = new System.Drawing.Point(372, 20);
+            this.numericUpDownQuantidade.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
             this.numericUpDownQuantidade.Size = new System.Drawing.Size(59, 20);
             this.numericUpDownQuantidade.TabIndex = 30;
+            this.numericUpDownQuantidade.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownQuantidade.ValueChanged += new System.EventHandler(this.numericUpDownQuantidade_ValueChanged);
             // 
             // botaoRemoverItemPedido
@@ -300,6 +310,7 @@
             this.comboBoxItem.Name = "comboBoxItem";
             this.comboBoxItem.Size = new System.Drawing.Size(121, 21);
             this.comboBoxItem.TabIndex = 0;
+            this.comboBoxItem.SelectedIndexChanged += new System.EventHandler(this.comboBoxItem_SelectedIndexChanged);
             // 
             // listBoxItensPedido
             // 

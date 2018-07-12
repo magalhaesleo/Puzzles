@@ -19,7 +19,10 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Calzones
 
         public override string ToString()
         {
-            return "Calzone de " + Sabor1.Descricao;
+            if(Quantidade == 1)
+                return "Calzone de " + Sabor1.Descricao;
+
+            return Quantidade + " Calzones de " + Sabor1.Descricao;
         }
     }
 }

@@ -76,10 +76,20 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.Pizzas
 
         public override string ToString()
         {
-            if (Sabor2 == null)
-                return "Pizza de " + Sabor1.Descricao;
+            if (Quantidade == 1)
+            {
+                if (Sabor2 == null)
+                    return "Pizza de " + Sabor1.Descricao;
 
-            return "Pizza de " + Sabor1.Descricao + " e " + Sabor2.Descricao;
+                return "Pizza de " + Sabor1.Descricao + " e " + Sabor2.Descricao;
+            }
+            else
+            {
+                if (Sabor2 == null)
+                    return Quantidade + " Pizzas de " + Sabor1.Descricao;
+
+                return Quantidade + " Pizzas de " + Sabor1.Descricao + " e " + Sabor2.Descricao;
+            }
         }
     }
 }

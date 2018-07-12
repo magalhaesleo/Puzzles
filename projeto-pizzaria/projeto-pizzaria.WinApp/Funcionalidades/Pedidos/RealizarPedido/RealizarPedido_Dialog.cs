@@ -243,7 +243,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             listBoxAdicionais.Items.Clear();
             listBoxSabores.Items.Clear();
             DesabilitarRadioButtonsTamanhos();
-            numericUpDownQuantidade.Value = 0;
+            numericUpDownQuantidade.Value = 1;
         }
 
         private void botaoAdicionarSabor_Click(object sender, EventArgs e)
@@ -462,7 +462,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 AdicionarProdutoNoPedido(calzone);
             }
 
-            if(comboBoxTipoProduto.SelectedItem.GetType() == typeof(ProdutoGenerico))
+            if(comboBoxTipoProduto.SelectedItem.ToString() == typeof(ProdutoGenerico).Name)
             {
                 ProdutoGenerico itemSelecionadoNoListBoxItensPedido = comboBoxItem.SelectedItem as ProdutoGenerico;
 
@@ -585,8 +585,9 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void botaoRemoverItemPedido_Click(object sender, EventArgs e)
         {
+            RemoverProdutoDoPedido(listBoxItensPedido.SelectedItem as Produto);
             listBoxItensPedido.Items.RemoveAt(listBoxItensPedido.SelectedIndex);
-
+            
             LimparValoresDeItemPedido();
             ReiniciarValoresDeItemPedido();
 
@@ -652,11 +653,18 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
         private void AdicionarProdutoNoPedido(Produto novoProduto)
         {
             Pedido.Produtos.Add(novoProduto);
+            ExibirValorTotalDoPedido();
         }
 
         private void RemoverProdutoDoPedido(Produto produtoParaSerRemovido)
         {
             Pedido.Produtos.Remove(produtoParaSerRemovido);
+            ExibirValorTotalDoPedido();
+        }
+
+        private void comboBoxItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ValidarDisponibilidadeDoBotaoAdicionarItemPedido();
         }
     }
 }
