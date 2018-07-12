@@ -61,7 +61,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
 
             foreach (Produto produto in Produtos)
             {
-                valorTotal += produto.Valor;
+                valorTotal += produto.Valor * produto.Quantidade;
             }
 
             return valorTotal;
