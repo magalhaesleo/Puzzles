@@ -356,5 +356,32 @@ namespace projeto_pizzaria.SystemIntegration.Tests.Funcionalidades.Pedidos
 
             _pedido.ValorTotal.Should().Be(valorTotalEsperado);
         }
+
+
+
+        [Test]
+        public void Pedido_IntegracaoDeSistema_Realizar_TresPizzasIguais_Sucesso()
+        {
+            int numeroPizzasIguais = 3;
+
+            _pizza.Tamanho = TamanhoPizza.GRANDE;
+            _pizza.Sabor1 = _saborQueijo;
+            _pizza.Sabor2 = _saborCoracao;
+            _pizza.Adicional = _bordaCatupiry;
+
+            _pizza.Quantidade = numeroPizzasIguais;
+
+            _pedido.Produtos.Add(_pizza);
+
+
+            double valorTotalEsperado = numeroPizzasIguais * (_saborCoracao.ValorGrande + _bordaCatupiry.ValorGrande);
+
+            Action realizarPedido = _pedido.Realizar;
+
+            realizarPedido.Should().NotThrow();
+            _pedido.Status.Should().Be(StatusPedido.AGUARDANDO_MONTAGEM);
+
+            _pedido.ValorTotal.Should().Be(valorTotalEsperado);
+        }
     }
 }
