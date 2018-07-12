@@ -35,12 +35,12 @@ namespace projeto_pizzaria.Applications.Funcionalidades.ProdutosGenericos
 
         public List<ProdutoGenerico> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return _produtoGenericoRepositorio.BuscarTodos();
         }
 
-        public IEnumerable<T> BuscarTodos<T>() where T : ProdutoGenerico
+        public IEnumerable<ProdutoGenerico> BuscarTodos<T>() where T : ProdutoGenerico
         {
-            throw new NotImplementedException();
+            return _produtoGenericoRepositorio.BuscarTodos<T>();
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using Moq;
+﻿using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 using projeto_pizzaria.Applications.Funcionalidades.ProdutosGenericos;
 using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
+using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos.Bebidas;
 using projeto_pizzaria.Domain.Interfaces.ProdutosGenericos;
 using System;
 using System.Collections.Generic;
@@ -32,7 +34,29 @@ namespace projeto_pizzaria.Applications.Tests.Funcionalidades.ProdutosGenericos
         [Test]
         public void ProdutoGenerico_Aplicacao_BuscarTodos_Bebidas_Sucesso()
         {
-            //_produtoGenericoServico.BuscarTodos<Bebida>
+            Mock<List<Bebida>> mockListaBebidas = new Mock<List<Bebida>>();
+
+            _mockProdutoGenericoRepositorio.Setup(mpgr => mpgr.BuscarTodos<Bebida>()).Returns(mockListaBebidas.Object);
+
+            List<ProdutoGenerico> produtosBuscados = _produtoGenericoServico.BuscarTodos<Bebida>().ToList();
+
+            produtosBuscados.Should().NotBeNull();
+
+            _mockProdutoGenericoRepositorio.Verify(mpgr => mpgr.BuscarTodos<Bebida>());
+        }
+
+        [Test]
+        public void ProdutoGenerico_Aplicacao_BuscarTodos_Sucesso()
+        {
+            Mock<List<ProdutoGenerico>> mockListaBebidas = new Mock<List<ProdutoGenerico>>();
+
+            _mockProdutoGenericoRepositorio.Setup(mpgr => mpgr.BuscarTodos()).Returns(mockListaBebidas.Object);
+
+            List<ProdutoGenerico> produtosBuscados = _produtoGenericoServico.BuscarTodos().ToList();
+
+            produtosBuscados.Should().NotBeNull();
+
+            _mockProdutoGenericoRepositorio.Verify(mpgr => mpgr.BuscarTodos());
         }
     }
 }
