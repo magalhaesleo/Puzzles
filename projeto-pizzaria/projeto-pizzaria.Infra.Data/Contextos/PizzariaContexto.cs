@@ -19,6 +19,7 @@ using System.Data.Entity.Validation;
 using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
 using projeto_pizzaria.Infra.Data.Funcionalidades.Adicionais;
 using projeto_pizzaria.Infra.Data.Funcionalidades.ProdutosGenericos;
+using projeto_pizzaria.Infra.Data.Funcionalidades.Sabores;
 
 namespace projeto_pizzaria.Infra.Data.Contextos
 {
@@ -51,7 +52,7 @@ namespace projeto_pizzaria.Infra.Data.Contextos
             modelBuilder.Configurations.Add(new PedidoConfiguracao());
             modelBuilder.Configurations.Add(new AdicionalConfiguracao());
             modelBuilder.Entity<ProdutoGenerico>().ToTable("TBProduto");
-            modelBuilder.Entity<Sabor>().ToTable("TBSabor");
+            modelBuilder.Configurations.Add(new SaborConfiguracao());
             modelBuilder.Configurations.Add(new ProdutoGenericoConfiguracao());
         }
 

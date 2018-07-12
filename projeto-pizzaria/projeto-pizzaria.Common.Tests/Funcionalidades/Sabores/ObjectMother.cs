@@ -31,5 +31,25 @@ namespace projeto_pizzaria.Common.Tests
 
             return sabor;
         }
+
+        public static Sabor ObterSaborSomente_Calzone()
+        {
+            Sabor sabor = new Sabor();
+            sabor.Descricao = "Coração";
+            sabor.ValorCalzone = 55;
+
+            return sabor;
+        }
+
+        public static Sabor ObterSaborSomente_Pizza()
+        {
+            Sabor sabor = new Sabor();
+            sabor.Descricao = "Coração";
+            sabor.ValorPequena = 55;
+            sabor.ValorPequena = 65;
+            sabor.ValorPequena = 75;
+
+            return sabor;
+        }
     }
 }

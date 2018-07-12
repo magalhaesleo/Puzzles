@@ -39,8 +39,32 @@ namespace projeto_pizzaria.InfraData.Tests.Funcionalidades.Sabores
 
             saboresBuscados = _saborRepositorio.BuscarTodos();
 
-            saboresBuscados.Count().Should().Be(quantidadeSaboresCadastradosPorBaseSQL);
+            saboresBuscados.Should().HaveCountGreaterOrEqualTo(quantidadeSaboresCadastradosPorBaseSQL);
 
+        }
+
+        [Test]
+        public void Sabor_InfraDados_BuscarTodosSaboresPizza_Sucesso()
+        {
+            int quantidadeSaboresCadastradosPorBaseSQL = 3;
+
+            IEnumerable<Sabor> saboresBuscados = new List<Sabor>();
+
+            saboresBuscados = _saborRepositorio.BuscarTodosSaboresPizza();
+
+            saboresBuscados.Should().HaveCount(quantidadeSaboresCadastradosPorBaseSQL);
+        }
+
+        [Test]
+        public void Sabor_InfraDados_BuscarTodosSaboresCalzone_Sucesso()
+        {
+            int quantidadeSaboresCadastradosPorBaseSQL = 3;
+
+            IEnumerable<Sabor> saboresBuscados = new List<Sabor>();
+
+            saboresBuscados = _saborRepositorio.BuscarTodosSaboresCalzone();
+
+            saboresBuscados.Should().HaveCount(quantidadeSaboresCadastradosPorBaseSQL);
         }
     }
 }
