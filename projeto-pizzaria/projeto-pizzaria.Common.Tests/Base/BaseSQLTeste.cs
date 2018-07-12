@@ -1,5 +1,6 @@
 ﻿using projeto_pizzaria.Domain.Funcionalidades.Clientes;
 using projeto_pizzaria.Domain.Funcionalidades.Enderecos;
+using projeto_pizzaria.Domain.Funcionalidades.Sabores;
 using projeto_pizzaria.Infra.Data.Contextos;
 using projeto_pizzaria.Infra.Objetos_de_Valor.CPFs;
 using System;
@@ -21,7 +22,27 @@ namespace projeto_pizzaria.Common.Tests.Base
 
             pizzariaContexto.Clientes.Add(cliente);
 
+            AdicionarSabores(pizzariaContexto);
+
+            AdicionarBordas(pizzariaContexto);
+
             base.Seed(pizzariaContexto);
+        }
+
+        private void AdicionarSabores(PizzariaContexto pizzariaContexto)
+        {
+            pizzariaContexto.Sabores.Add(ObjectMother.ObterSaborValido_Calabresa());
+            pizzariaContexto.Sabores.Add(ObjectMother.ObterSaborValidoMaisCaro_Coracao());
+
+            pizzariaContexto.SaveChanges();
+        }
+
+        private void AdicionarBordas(PizzariaContexto pizzariaContexto)
+        {
+            pizzariaContexto.Adicionais.Add(ObjectMother.ObterAdicional_BordaCatupiry());
+            pizzariaContexto.Adicionais.Add(ObjectMother.ObterAdicional_BordaCheddar());
+
+            pizzariaContexto.SaveChanges();
+        }
     }
-}
 }

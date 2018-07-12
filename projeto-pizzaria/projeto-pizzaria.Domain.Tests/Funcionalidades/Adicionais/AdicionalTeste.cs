@@ -26,13 +26,6 @@ namespace projeto_pizzaria.Domain.Tests.Funcionalidades.Adicionais
         }
 
         [Test]
-        public void Adicional_Dominio_Tipo_Sucesso()
-        {
-            _adicional = ObjectMother.ObterAdicional_BordaCatupiry();
-            _adicional.Tipo.Should().Be("Adicional");
-        }
-
-        [Test]
         public void Adicional_Dominio_ObterValor_PizzaPequena_Sucesso()
         {
             _pizzaMock.Setup(p => p.Tamanho).Returns(TamanhoPizza.PEQUENA);

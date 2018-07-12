@@ -18,7 +18,7 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Clientes
         {
             _clienteRepositorio = clienteRepositorio;
         }
-        public int Adicionar(Cliente cliente)
+        public long Adicionar(Cliente cliente)
         {
             throw new NotImplementedException();
         }
