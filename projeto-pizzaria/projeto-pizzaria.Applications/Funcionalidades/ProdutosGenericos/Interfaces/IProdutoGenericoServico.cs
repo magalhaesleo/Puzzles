@@ -10,5 +10,6 @@ namespace projeto_pizzaria.Applications.Funcionalidades.ProdutosGenericos.Interf
 {
     public interface IProdutoGenericoServico : IServico<ProdutoGenerico>
     {
+        IEnumerable<T> BuscarTodos<T>() where T : ProdutoGenerico;
     }
 }

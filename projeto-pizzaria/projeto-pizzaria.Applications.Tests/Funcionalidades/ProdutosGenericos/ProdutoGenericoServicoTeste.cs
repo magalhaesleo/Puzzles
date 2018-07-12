@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using projeto_pizzaria.Applications.Funcionalidades.ProdutosGenericos;
 using projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos;
+using projeto_pizzaria.Domain.Interfaces.ProdutosGenericos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,21 @@ namespace projeto_pizzaria.Applications.Tests.Funcionalidades.ProdutosGenericos
 
         private Mock<ProdutoGenerico> _mockProdutoGenerico;
 
-        //private Mock<ProdutoGenericoRepositorio> _mockProdutoGenericoRepositorio;
+        private Mock<IProdutoGenericoRepositorio> _mockProdutoGenericoRepositorio;
 
         [SetUp]
         public void IniciarCenario()
         {
-            //_mockProdutoGenericoRepositorio = new Mock<IPedidoRepositorio>();
-            //_produtoGenericoServico = new ProdutoGenericoServico(_mockProdutoGenericoRepositorio.Object);
+            _mockProdutoGenericoRepositorio = new Mock<IProdutoGenericoRepositorio>();
+            _produtoGenericoServico = new ProdutoGenericoServico(_mockProdutoGenericoRepositorio.Object);
 
             _mockProdutoGenerico = new Mock<ProdutoGenerico>();
+        }
+
+        [Test]
+        public void ProdutoGenerico_Aplicacao_BuscarTodos_Bebidas_Sucesso()
+        {
+            //_produtoGenericoServico.BuscarTodos<Bebida>
         }
     }
 }
