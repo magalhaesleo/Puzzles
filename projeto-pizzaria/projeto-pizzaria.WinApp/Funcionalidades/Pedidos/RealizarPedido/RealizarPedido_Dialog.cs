@@ -468,9 +468,11 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 bebida.Id = itemSelecionadoNoListBoxItensPedido.Id;
                 bebida.Descricao = itemSelecionadoNoListBoxItensPedido.Descricao;
                 bebida.Valor = itemSelecionadoNoListBoxItensPedido.Valor;
+                bebida.Quantidade = Convert.ToInt32(numericUpDownQuantidade.Value);
 
                 ProdutoPedido produtoPedido = new ProdutoPedido();
                 produtoPedido.Produto = bebida;
+                produtoPedido.Quantidade = bebida.Quantidade;
 
                 listBoxItensPedido.Items.Add(produtoPedido);
                 AdicionarProdutoNoPedido(produtoPedido);

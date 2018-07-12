@@ -8,5 +8,6 @@ namespace projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos.Bebidas
 {
     public class Bebida : ProdutoGenerico
     {
+        
     }
 }
