@@ -9,5 +9,6 @@ namespace projeto_pizzaria.Domain.Interfaces.Adicionais
 {
     public interface IAdicionalRepositorio : IRepositorio<Adicional>
     {
+
     }
 }

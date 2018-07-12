@@ -1,4 +1,5 @@
 ﻿using projeto_pizzaria.Applications.Funcionalidades.Clientes;
+using projeto_pizzaria.Applications.Funcionalidades.Pedidos;
 using projeto_pizzaria.Domain.helpers.VisibleBotoes;
 using projeto_pizzaria.Infra.Data.Contextos;
 using projeto_pizzaria.Infra.Data.Funcionalidades.Clientes;
@@ -15,11 +16,35 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
 {
     public class PedidoGerenciadorDeFormulario : GerenciadorDeFormulario
     {
+        private readonly PedidoServico _pedidoServico;
+        private readonly ClienteServico _clienteServico;
+
+
+        public PedidoGerenciadorDeFormulario(PedidoServico pedidoServico, ClienteServico clienteServico)
+        {
+            _pedidoServico = pedidoServico;
+            _clienteServico = clienteServico;
+
+        }
         public override void Adicionar()
         {
-            RealizarPedido_Dialog dialogRealizarPedido = new RealizarPedido_Dialog(new ClienteServico(new ClienteRepositorioSQL(new PizzariaContexto())));
+            RealizarPedido_Dialog dialogRealizarPedido = new RealizarPedido_Dialog(_clienteServico, _pedidoServico);
 
             DialogResult resultadoDialogRealizarPedido = dialogRealizarPedido.ShowDialog();
+
+            if (resultadoDialogRealizarPedido == DialogResult.OK)
+            {
+                try
+                {
+                    _pedidoServico.Adicionar(dialogRealizarPedido.Pedido);
+                    MessageBox.Show("Pedido realizado com sucesso");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+
+            }
         }
 
         public override void AtualizarListagem()

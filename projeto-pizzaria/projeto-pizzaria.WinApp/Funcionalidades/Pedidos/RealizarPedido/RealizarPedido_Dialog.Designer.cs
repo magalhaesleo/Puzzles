@@ -151,9 +151,19 @@
             // numericUpDownQuantidade
             // 
             this.numericUpDownQuantidade.Location = new System.Drawing.Point(372, 20);
+            this.numericUpDownQuantidade.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownQuantidade.Name = "numericUpDownQuantidade";
             this.numericUpDownQuantidade.Size = new System.Drawing.Size(59, 20);
             this.numericUpDownQuantidade.TabIndex = 30;
+            this.numericUpDownQuantidade.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownQuantidade.ValueChanged += new System.EventHandler(this.numericUpDownQuantidade_ValueChanged);
             // 
             // botaoRemoverItemPedido
@@ -300,6 +310,7 @@
             this.comboBoxItem.Name = "comboBoxItem";
             this.comboBoxItem.Size = new System.Drawing.Size(121, 21);
             this.comboBoxItem.TabIndex = 0;
+            this.comboBoxItem.SelectedIndexChanged += new System.EventHandler(this.comboBoxItem_SelectedIndexChanged);
             // 
             // listBoxItensPedido
             // 
@@ -439,18 +450,19 @@
             this.labelValorTotalExibido.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelValorTotalExibido.Location = new System.Drawing.Point(638, 444);
             this.labelValorTotalExibido.Name = "labelValorTotalExibido";
-            this.labelValorTotalExibido.Size = new System.Drawing.Size(55, 24);
+            this.labelValorTotalExibido.Size = new System.Drawing.Size(0, 24);
             this.labelValorTotalExibido.TabIndex = 23;
-            this.labelValorTotalExibido.Text = "22.50";
             // 
             // botaoAdicionarPedido
             // 
+            this.botaoAdicionarPedido.Enabled = false;
             this.botaoAdicionarPedido.Location = new System.Drawing.Point(866, 460);
             this.botaoAdicionarPedido.Name = "botaoAdicionarPedido";
             this.botaoAdicionarPedido.Size = new System.Drawing.Size(75, 23);
             this.botaoAdicionarPedido.TabIndex = 24;
             this.botaoAdicionarPedido.Text = "Adicionar";
             this.botaoAdicionarPedido.UseVisualStyleBackColor = true;
+            this.botaoAdicionarPedido.Click += new System.EventHandler(this.botaoAdicionarPedido_Click);
             // 
             // groupBoxAdicionais
             // 

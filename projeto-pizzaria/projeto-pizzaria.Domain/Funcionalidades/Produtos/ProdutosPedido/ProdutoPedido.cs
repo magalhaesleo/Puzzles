@@ -13,10 +13,18 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.ProdutosPedido
         {
             get
             {
-                return Produto.Valor;
+                return Produto.Valor * Quantidade;
             }
         }
 
         public ProdutoGenerico Produto { get; set; }
+
+        public override string ToString()
+        {
+            string descricao;
+            descricao = Quantidade + "x " + Produto.Descricao;
+            descricao += "; Valor: R$" + Valor;
+            return descricao;
+        }
     }
 }

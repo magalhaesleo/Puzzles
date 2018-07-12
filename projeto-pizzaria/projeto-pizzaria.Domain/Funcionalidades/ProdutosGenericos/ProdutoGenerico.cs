@@ -12,6 +12,12 @@ namespace projeto_pizzaria.Domain.Funcionalidades.ProdutosGenericos
         public virtual string Descricao { get; set; }
 
         public virtual double Valor { get; set; }
+        public int Quantidade { get; set; } = 1;
+        public override string ToString()
+        {
+            return Descricao;
+        }
+
 
     }
 }

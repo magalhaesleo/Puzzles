@@ -3,7 +3,10 @@ using Moq;
 using NUnit.Framework;
 using projeto_pizzaria.Applications.Funcionalidades.Pedidos;
 using projeto_pizzaria.Domain.Funcionalidades.Pedidos;
+using projeto_pizzaria.Domain.Interfaces.Adicionais;
 using projeto_pizzaria.Domain.Interfaces.Pedidos;
+using projeto_pizzaria.Domain.Interfaces.ProdutosGenericos;
+using projeto_pizzaria.Domain.Interfaces.Sabores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +19,10 @@ namespace projeto_pizzaria.Applications.Tests.Funcionalidades.Pedidos
     public class PedidoServicoTeste
     {
         Mock<IPedidoRepositorio> _pedidoRepositorioMoq;
+        Mock<ISaborRepositorio> _saborRepositorioMoq;
+        Mock<IAdicionalRepositorio> _adicionalRepositorioMoq;
+        Mock<IProdutoGenericoRepositorio> _produtoGenericoRepositorioMoq;
+       
         Mock<Pedido> _pedido;
         PedidoServico _pedidoServico;
 
@@ -23,7 +30,7 @@ namespace projeto_pizzaria.Applications.Tests.Funcionalidades.Pedidos
         public void IniciarCenario()
         {
             _pedidoRepositorioMoq = new Mock<IPedidoRepositorio>();
-            _pedidoServico = new PedidoServico(_pedidoRepositorioMoq.Object);
+            _pedidoServico = new PedidoServico(_pedidoRepositorioMoq.Object, _saborRepositorioMoq.Object, _adicionalRepositorioMoq.Object, _produtoGenericoRepositorioMoq.Object);
             _pedido = new Mock<Pedido>();
         }
         [Test]
