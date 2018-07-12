@@ -74,6 +74,7 @@
             this.Controls.Add(this.botaoAdicionar);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
