@@ -45,9 +45,10 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Pedidos
             throw new NotImplementedException();
         }
 
-        public List<Pedido> BuscarTodos()
+        public IEnumerable<Pedido> BuscarTodos()
         {
-            throw new NotImplementedException();
+           
+            return _pedidoRepositorio.BuscarTodos();
         }
 
         public IEnumerable<Adicional> ObterAdicionais()
@@ -58,6 +59,16 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Pedidos
         public IEnumerable<Sabor> ObterSabores()
         {
             return _saborRepositorio.BuscarTodos();
+        }
+
+        public IEnumerable<Sabor> ObterSaboresDePizza()
+        {
+            return _saborRepositorio.BuscarTodosSaboresPizza();
+        }
+
+        public IEnumerable<Sabor> ObterSaboresDeCalzone()
+        {
+            return _saborRepositorio.BuscarTodosSaboresCalzone();
         }
 
         public IEnumerable<ProdutoGenerico> ObterProdutosGenericos()

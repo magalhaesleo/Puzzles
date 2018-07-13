@@ -28,7 +28,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.ProdutosGenericos
             return produtosGenericos;
         }
 
-        public List<ProdutoGenerico> BuscarTodos()
+        public IEnumerable<ProdutoGenerico> BuscarTodos()
         {
             List<ProdutoGenerico> produtosGenericos = _pizzariaContexto.ProdutosGenericos.ToList();
 

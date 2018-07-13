@@ -33,7 +33,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Sabores
             throw new NotImplementedException();
         }
 
-        public List<Sabor> BuscarTodos()
+        public IEnumerable<Sabor> BuscarTodos()
         {
             return _pizzariaContexto.Sabores.ToList();
         }

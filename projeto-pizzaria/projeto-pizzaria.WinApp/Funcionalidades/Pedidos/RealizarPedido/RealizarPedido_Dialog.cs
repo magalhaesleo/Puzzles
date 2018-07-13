@@ -44,7 +44,9 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
             PopularAtributosDaClasse(clienteServico, pedidoServico);
             PopularComboBoxTipoProduto();
-
+            PopularComboboxDeClientes(BuscarTodosOsClientes());
+            PopularComboBoxDeFormaDePagamento();
+            numericUpDownQuantidade.Enabled = false;
 
             _pedido = new Pedido();
         }
@@ -55,9 +57,23 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             _pedidoServico = pedidoServico;
         }
 
+        private IEnumerable<Cliente> BuscarTodosOsClientes()
+        {
+            return _clienteServico.BuscarTodos();
+        }
+
         private IEnumerable<Cliente> BuscarClientePorTelefone(string digitosInformadosNaPesquisa)
         {
             return _clienteServico.BuscarClientePorTelefone(digitosInformadosNaPesquisa);
+        }
+
+        private void PopularComboBoxDeFormaDePagamento()
+        {
+            comboBoxFormaDePagamento.Items.Clear();
+
+            comboBoxFormaDePagamento.DataSource = Enum.GetNames(typeof(FormaPagamentoPedido));
+
+            comboBoxFormaDePagamento.SelectedItem = null;
         }
 
         private void PopularComboboxDeClientes(IEnumerable<Cliente> listaDeClientesBuscados)
@@ -99,7 +115,14 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             IEnumerable<Sabor> listaDeSaboresEncontradosNoBancoDeDados = new List<Sabor>();
 
             //buscando a lista de sabores
-            listaDeSaboresEncontradosNoBancoDeDados = _pedidoServico.ObterSabores();
+            if (comboBoxTipoProduto.Text == (typeof(Pizza).Name))
+            {
+                listaDeSaboresEncontradosNoBancoDeDados = _pedidoServico.ObterSaboresDePizza();
+            } else if (comboBoxTipoProduto.Text == (typeof(Calzone).Name))
+            {
+                listaDeSaboresEncontradosNoBancoDeDados = _pedidoServico.ObterSaboresDeCalzone();
+            } else
+                listaDeSaboresEncontradosNoBancoDeDados = _pedidoServico.ObterSabores();
 
             //Populando o comboBox
             foreach (Sabor sabor in listaDeSaboresEncontradosNoBancoDeDados)
@@ -212,6 +235,9 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                     HabilitarRadioButtonsTamanhos();
                 }
             }
+
+            lblAvisoEscolherTipoDeItem.Visible = false;
+
         }
 
         private void ReiniciarValoresDeItemPedido()
@@ -440,9 +466,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 //Adicionando Pizza no Item Produto
                 listBoxItensPedido.Items.Add(novaPizza);
 
-                //
                 AdicionarProdutoNoPedido(novaPizza);
-
             }
 
             if (comboBoxTipoProduto.SelectedItem.ToString() == typeof(Calzone).Name)
@@ -468,11 +492,11 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                 bebida.Id = itemSelecionadoNoListBoxItensPedido.Id;
                 bebida.Descricao = itemSelecionadoNoListBoxItensPedido.Descricao;
                 bebida.Valor = itemSelecionadoNoListBoxItensPedido.Valor;
-                bebida.Quantidade = Convert.ToInt32(numericUpDownQuantidade.Value);
+                //bebida.Quantidade = Convert.ToInt32(numericUpDownQuantidade.Value);
 
                 ProdutoPedido produtoPedido = new ProdutoPedido();
                 produtoPedido.Produto = bebida;
-                produtoPedido.Quantidade = bebida.Quantidade;
+                produtoPedido.Quantidade = Convert.ToInt32(numericUpDownQuantidade.Value);
 
                 listBoxItensPedido.Items.Add(produtoPedido);
                 AdicionarProdutoNoPedido(produtoPedido);
@@ -482,9 +506,11 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             LimparValoresDeItemPedido();
             ReiniciarValoresDeItemPedido();
 
-
+            lblAvisoEscolherTipoDeItem.Visible = true;
 
             ExibirValorTotalDoPedido();
+
+            VerificarDisponibilidadeDoBotaoAdicionarPedido();
         }
 
         private void ValidarDisponibilidadeDoBotaoAdicionarItemPedido()
@@ -553,7 +579,12 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
 
         private void botaoCancelarPedido_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult cancelar = MessageBox.Show("Tem certeza que deseja cancelar o pedido?", "Atenção!", MessageBoxButtons.YesNo);
+
+            if (DialogResult.Yes == cancelar)
+            {
+                this.Close();
+            }
         }
 
         private void radioButtonPizzaGrande_CheckedChanged(object sender, EventArgs e)
@@ -591,20 +622,18 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
             ReiniciarValoresDeItemPedido();
 
             ExibirValorTotalDoPedido();
+
+            VerificarDisponibilidadeDoBotaoAdicionarPedido();
         }
 
         private void botaoAdicionarPedido_Click(object sender, EventArgs e)
         {
 
-            _pedido.Cliente = (Cliente)comboBoxCliente.SelectedItem;
+            _pedido.Cliente = comboBoxCliente.SelectedItem as Cliente;
             _pedido.Data = DateTime.Now;
-            _pedido.FormaPagamento = (FormaPagamentoPedido)comboBoxFormaDePagamento.SelectedItem;
+            _pedido.FormaPagamento = (FormaPagamentoPedido)Enum.Parse(typeof(FormaPagamentoPedido), comboBoxFormaDePagamento.Text);
             _pedido.EmitirNota = checkBoxNotaFiscal.Checked;
 
-            foreach (Produto produto in listBoxItensPedido.Items)
-            {
-                _pedido.Produtos.Add(produto);
-            }
             if (checkBoxPedidoParaEmpresa.Checked)
             {
                 _pedido.Departamento = textBoxDepartamento.Text;
@@ -617,7 +646,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                     if (_pedido.Cliente.Documento == null)
                     {
                         CNPJ cnpj = new CNPJ();
-                        cnpj.NumeroComPontuacao = textBoxCnpjEmpresa.Text;
+                        cnpj.NumeroComPontuacao = textBoxDocumentoCliente.Text;
                         _pedido.Cliente.Documento = cnpj;
                     }
                 }
@@ -626,16 +655,17 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
                     if (_pedido.Cliente.Documento == null)
                     {
                         CPF cpf = new CPF();
-                        cpf.NumeroComPontuacao = textBoxCnpjEmpresa.Text;
+                        cpf.NumeroComPontuacao = textBoxDocumentoCliente.Text;
                         _pedido.Cliente.Documento = cpf;
                     }
                 }
             }
+
             try
             {
-                //ValidarPreenchimentoDosCampos();
                 //Contém método de validação e também adiciona status
                 _pedido.Realizar();
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -664,6 +694,95 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos.RealizarPedido
         private void comboBoxItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValidarDisponibilidadeDoBotaoAdicionarItemPedido();
+        }
+
+        private void checkBoxPedidoParaEmpresa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxPedidoParaEmpresa.Checked)
+            {
+                textBoxDepartamento.Enabled = true;
+                textBoxReponsavel.Enabled = true;
+            }
+            else
+            {
+                textBoxDepartamento.Enabled = false;
+                textBoxReponsavel.Enabled = false;
+            }
+        }
+
+        private void VerificarDisponibilidadeDoBotaoAdicionarPedido()
+        {
+
+            if (comboBoxCliente.SelectedItem != null && comboBoxFormaDePagamento.SelectedItem != null && listBoxItensPedido.Items.Count > 0)
+            {
+                if (checkBoxNotaFiscal.Checked)
+                {
+                    if (textBoxDocumentoCliente.Text.Length == 11 || textBoxDocumentoCliente.Text.Length == 14)
+                    {
+                        botaoAdicionarPedido.Enabled = true;
+                    }
+                    else
+                    {
+                        botaoAdicionarPedido.Enabled = false;
+                    }
+                }else
+                {
+                    botaoAdicionarPedido.Enabled = true;
+                }
+            }
+            else
+            {
+                botaoAdicionarPedido.Enabled = false;
+            }
+        }
+
+        private void comboBoxCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            VerificarDisponibilidadeDoBotaoAdicionarPedido();
+
+        }
+
+        private void comboBoxFormaDePagamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            VerificarDisponibilidadeDoBotaoAdicionarPedido();
+        }
+
+        private void PreencherTextBoxDocumentoNotaFiscal()
+        {
+            //Transformando o item selecionado no combobox de cliente em um cliente para utilizar no texto 
+            Cliente clienteSelecionadoNoComboBoxDeCliente = comboBoxCliente.SelectedItem as Cliente;
+
+            if(clienteSelecionadoNoComboBoxDeCliente.Documento !=null)
+                textBoxDocumentoCliente.Text = clienteSelecionadoNoComboBoxDeCliente.NumeroDocumento;
+        }
+
+        private void checkBoxNotaFiscal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxNotaFiscal.Checked == true) {
+                PreencherTextBoxDocumentoNotaFiscal();
+            }
+            else
+            {
+                textBoxDocumentoCliente.Clear();
+            }
+        }
+
+        private void textBoxDocumentoCliente_TextChanged(object sender, EventArgs e)
+        {
+            VerificarDisponibilidadeDoBotaoAdicionarPedido();
+        }
+
+        private bool verificarSeDocumentoInformadoValido()
+        {
+            if(textBoxDocumentoCliente.Text.Length != 11 || textBoxDocumentoCliente.Text.Length != 14)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
     }
 }

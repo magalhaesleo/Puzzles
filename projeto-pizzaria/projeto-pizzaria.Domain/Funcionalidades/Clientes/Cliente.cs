@@ -16,7 +16,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Clientes
 
         public string Telefone { get; set; }
 
-        public Endereco Endereco { get; set; }
+        public virtual Endereco Endereco { get; set; }
 
         public DateTime DataNascimento { get; set; }
 

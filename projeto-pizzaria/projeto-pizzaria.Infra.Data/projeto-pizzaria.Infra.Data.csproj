@@ -62,7 +62,9 @@
     <Compile Include="Funcionalidades\Sabores\SaborRepositorioSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="MassaDeDados.sql" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\projeto-pizzaria.Domain\projeto-pizzaria.Domain.csproj">
       <Project>{0819DC63-67C7-4451-8AC2-BD4C092F8C50}</Project>

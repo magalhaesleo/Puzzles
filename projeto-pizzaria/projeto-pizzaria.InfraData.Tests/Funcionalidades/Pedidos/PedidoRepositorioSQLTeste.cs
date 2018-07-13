@@ -34,7 +34,7 @@ namespace projeto_pizzaria.InfraData.Tests.Funcionalidades.Pedidos
         [SetUp]
         public void IniciarCenario()
         {
-            _pizzariaContexto = new PizzariaContexto();
+            _pizzariaContexto = new PizzariaContexto("PizzariaBD_Puzzles_Teste");
 
             Database.SetInitializer(new BaseSQLTeste());
 

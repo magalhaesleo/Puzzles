@@ -32,6 +32,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.botaoRealizarPedido = new System.Windows.Forms.ToolStripButton();
             this.botaoAdicionar = new System.Windows.Forms.Button();
+            this.painelFormularioPrincipal = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,11 +67,19 @@
             this.botaoAdicionar.Visible = false;
             this.botaoAdicionar.Click += new System.EventHandler(this.botaoAdicionar_Click);
             // 
+            // painelFormularioPrincipal
+            // 
+            this.painelFormularioPrincipal.Location = new System.Drawing.Point(4, 52);
+            this.painelFormularioPrincipal.Name = "painelFormularioPrincipal";
+            this.painelFormularioPrincipal.Size = new System.Drawing.Size(796, 396);
+            this.painelFormularioPrincipal.TabIndex = 2;
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.painelFormularioPrincipal);
             this.Controls.Add(this.botaoAdicionar);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Principal";
@@ -88,5 +97,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton botaoRealizarPedido;
         private System.Windows.Forms.Button botaoAdicionar;
+        private System.Windows.Forms.Panel painelFormularioPrincipal;
     }
 }

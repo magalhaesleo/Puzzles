@@ -15,10 +15,13 @@ namespace projeto_pizzaria.Applications.Funcionalidades.Pedidos.Interfaces
     public interface IPedidoServico : IServico<Pedido>
     {
         IEnumerable<Sabor> ObterSabores();
+        IEnumerable<Sabor> ObterSaboresDePizza();
+        IEnumerable<Sabor> ObterSaboresDeCalzone();
 
         IEnumerable<Adicional> ObterAdicionais();
 
         IEnumerable<ProdutoGenerico> ObterProdutosGenericos();
+
         IEnumerable<Bebida> ObterTodasBebidas();
     }
 }

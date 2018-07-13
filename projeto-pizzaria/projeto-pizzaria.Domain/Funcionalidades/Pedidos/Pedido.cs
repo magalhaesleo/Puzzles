@@ -31,7 +31,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Pedidos
             }
             set
             {
-                ValorTotal = value;
+                
             }
         }
 

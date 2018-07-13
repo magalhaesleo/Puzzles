@@ -8,6 +8,6 @@ namespace projeto_pizzaria.Domain.Base
 {
     public abstract class Entidade
     {
-        public long Id { get; set; }
+        public virtual long Id { get; set; }
     }
 }

@@ -29,6 +29,8 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Clientes
 
         public IEnumerable<Cliente> BuscarClientePorTelefone(string digitosInformados)
         {
+            _pizzariaContexto.Clientes.Include("TBEndereco");
+
             var ClientesEncontrados = from TBCLIENTES in _pizzariaContexto.Clientes
                                       where TBCLIENTES.Telefone.Contains(digitosInformados)
                                       select TBCLIENTES;
@@ -66,9 +68,29 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Clientes
             throw new NotImplementedException();
         }
 
-        public List<Cliente> BuscarTodos()
+        public IEnumerable<Cliente> BuscarTodos()
         {
-            throw new NotImplementedException();
+            var ClientesEncontrados = _pizzariaContexto.Clientes.ToList();
+
+            foreach (Cliente cliente in ClientesEncontrados)
+            {
+                if (cliente.TipoDeDocumento == "CNPJ")
+                {
+                    cliente.Documento = new CNPJ()
+                    {
+                        NumeroComPontuacao = cliente.NumeroDocumento
+                    };
+                }
+                else if (cliente.TipoDeDocumento == "CPF")
+                {
+                    cliente.Documento = new CPF()
+                    {
+                        NumeroComPontuacao = cliente.NumeroDocumento
+                    };
+                }
+            }
+
+            return ClientesEncontrados;
         }
     }
 }

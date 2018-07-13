@@ -13,7 +13,7 @@ namespace projeto_pizzaria.Domain.Funcionalidades.Produtos.ProdutosPedido
         {
             get
             {
-                return Produto.Valor * Quantidade;
+                return Produto.Valor;
             }
         }
 

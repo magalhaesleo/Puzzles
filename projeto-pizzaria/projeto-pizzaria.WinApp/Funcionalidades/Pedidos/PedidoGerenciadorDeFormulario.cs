@@ -18,7 +18,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
     {
         private readonly PedidoServico _pedidoServico;
         private readonly ClienteServico _clienteServico;
-
+        private  UserControlPedido _userControlPedido;
 
         public PedidoGerenciadorDeFormulario(PedidoServico pedidoServico, ClienteServico clienteServico)
         {
@@ -45,11 +45,13 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
                 }
 
             }
+
+            AtualizarListagem();
         }
 
         public override void AtualizarListagem()
         {
-            throw new NotImplementedException();
+            _userControlPedido.AtualizarListaDePedidos(_pedidoServico.BuscarTodos());
         }
 
         public override void Editar()
@@ -64,7 +66,7 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
 
         public override string ObtemTipo()
         {
-            throw new NotImplementedException();
+            return "Você esta no gerenciamento de pedidos";
         }
 
         public override VisibleBotao ObterPropriedadeVisibleDosBotoes()
@@ -74,5 +76,22 @@ namespace projeto_pizzaria.WinApp.Funcionalidades.Pedidos
                 Adicionar = true
             };
         }
+
+        public override UserControl ObterUserControl()
+        {
+            if(_userControlPedido == null)
+            {
+                 _userControlPedido = new UserControlPedido();
+                AtualizarListagem();
+                return _userControlPedido;
+            }
+            else
+            {
+                AtualizarListagem();
+                return _userControlPedido;
+            }
+        }
+
+      
     }
 }

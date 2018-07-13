@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace projeto_pizzaria.WinApp.Base
 {
@@ -21,6 +22,7 @@ namespace projeto_pizzaria.WinApp.Base
 
         public abstract VisibleBotao ObterPropriedadeVisibleDosBotoes();
 
+        public abstract UserControl ObterUserControl();
 
 
     }

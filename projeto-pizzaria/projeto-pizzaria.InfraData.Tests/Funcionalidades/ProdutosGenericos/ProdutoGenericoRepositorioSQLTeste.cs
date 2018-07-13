@@ -23,7 +23,7 @@ namespace projeto_pizzaria.InfraData.Tests.Funcionalidades.ProdutosGenericos
         [SetUp]
         public void IniciarCenario()
         {
-            _pizzariaContexto = new PizzariaContexto();
+            _pizzariaContexto = new PizzariaContexto("PizzariaBD_Puzzles_Teste");
             _produtoGenericoRepositorioSQL = new ProdutoGenericoRepositorioSQL(_pizzariaContexto);
 
             Database.SetInitializer(new BaseSQLTeste());
