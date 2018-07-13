@@ -30,6 +30,9 @@ namespace projeto_pizzaria.Applications.Tests.Funcionalidades.Pedidos
         public void IniciarCenario()
         {
             _pedidoRepositorioMoq = new Mock<IPedidoRepositorio>();
+            _saborRepositorioMoq = new Mock<ISaborRepositorio>();
+            _adicionalRepositorioMoq = new Mock<IAdicionalRepositorio>();
+            _produtoGenericoRepositorioMoq = new Mock<IProdutoGenericoRepositorio>();
             _pedidoServico = new PedidoServico(_pedidoRepositorioMoq.Object, _saborRepositorioMoq.Object, _adicionalRepositorioMoq.Object, _produtoGenericoRepositorioMoq.Object);
             _pedido = new Mock<Pedido>();
         }

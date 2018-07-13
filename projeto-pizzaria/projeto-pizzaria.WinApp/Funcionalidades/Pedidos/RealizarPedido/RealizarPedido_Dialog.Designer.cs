@@ -51,7 +51,7 @@
             this.comboBoxItem = new System.Windows.Forms.ComboBox();
             this.listBoxItensPedido = new System.Windows.Forms.ListBox();
             this.textBoxDocumentoNotaFiscal = new System.Windows.Forms.Label();
-            this.textBoxCnpjEmpresa = new System.Windows.Forms.TextBox();
+            this.textBoxDocumentoCliente = new System.Windows.Forms.TextBox();
             this.comboBoxFormaDePagamento = new System.Windows.Forms.ComboBox();
             this.checkBoxNotaFiscal = new System.Windows.Forms.CheckBox();
             this.grupoPedidoParaEmpresa = new System.Windows.Forms.GroupBox();
@@ -74,6 +74,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lblAvisoEscolherTipoDeItem = new System.Windows.Forms.Label();
             this.grupoAdicionarItemPedido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownQuantidade)).BeginInit();
             this.grupoAdicionarSabores.SuspendLayout();
@@ -99,11 +100,12 @@
             this.comboBoxCliente.Name = "comboBoxCliente";
             this.comboBoxCliente.Size = new System.Drawing.Size(193, 21);
             this.comboBoxCliente.TabIndex = 1;
+            this.comboBoxCliente.SelectedIndexChanged += new System.EventHandler(this.comboBoxCliente_SelectedIndexChanged);
             // 
             // labelTipo
             // 
             this.labelTipo.AutoSize = true;
-            this.labelTipo.Location = new System.Drawing.Point(16, 50);
+            this.labelTipo.Location = new System.Drawing.Point(3, 28);
             this.labelTipo.Name = "labelTipo";
             this.labelTipo.Size = new System.Drawing.Size(31, 13);
             this.labelTipo.TabIndex = 6;
@@ -113,7 +115,7 @@
             // 
             this.comboBoxTipoProduto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoProduto.FormattingEnabled = true;
-            this.comboBoxTipoProduto.Location = new System.Drawing.Point(62, 42);
+            this.comboBoxTipoProduto.Location = new System.Drawing.Point(40, 20);
             this.comboBoxTipoProduto.Name = "comboBoxTipoProduto";
             this.comboBoxTipoProduto.Size = new System.Drawing.Size(188, 21);
             this.comboBoxTipoProduto.TabIndex = 7;
@@ -132,9 +134,11 @@
             this.grupoAdicionarItemPedido.Controls.Add(this.grupoAdicionarSabores);
             this.grupoAdicionarItemPedido.Controls.Add(this.labelItem);
             this.grupoAdicionarItemPedido.Controls.Add(this.comboBoxItem);
-            this.grupoAdicionarItemPedido.Location = new System.Drawing.Point(569, 13);
+            this.grupoAdicionarItemPedido.Controls.Add(this.comboBoxTipoProduto);
+            this.grupoAdicionarItemPedido.Controls.Add(this.labelTipo);
+            this.grupoAdicionarItemPedido.Location = new System.Drawing.Point(569, 7);
             this.grupoAdicionarItemPedido.Name = "grupoAdicionarItemPedido";
-            this.grupoAdicionarItemPedido.Size = new System.Drawing.Size(453, 312);
+            this.grupoAdicionarItemPedido.Size = new System.Drawing.Size(453, 347);
             this.grupoAdicionarItemPedido.TabIndex = 12;
             this.grupoAdicionarItemPedido.TabStop = false;
             this.grupoAdicionarItemPedido.Text = "Item do pedido";
@@ -142,7 +146,7 @@
             // labelQuantidade
             // 
             this.labelQuantidade.AutoSize = true;
-            this.labelQuantidade.Location = new System.Drawing.Point(301, 27);
+            this.labelQuantidade.Location = new System.Drawing.Point(301, 28);
             this.labelQuantidade.Name = "labelQuantidade";
             this.labelQuantidade.Size = new System.Drawing.Size(65, 13);
             this.labelQuantidade.TabIndex = 31;
@@ -150,7 +154,7 @@
             // 
             // numericUpDownQuantidade
             // 
-            this.numericUpDownQuantidade.Location = new System.Drawing.Point(372, 20);
+            this.numericUpDownQuantidade.Location = new System.Drawing.Point(372, 21);
             this.numericUpDownQuantidade.Minimum = new decimal(new int[] {
             1,
             0,
@@ -169,7 +173,7 @@
             // botaoRemoverItemPedido
             // 
             this.botaoRemoverItemPedido.Enabled = false;
-            this.botaoRemoverItemPedido.Location = new System.Drawing.Point(283, 285);
+            this.botaoRemoverItemPedido.Location = new System.Drawing.Point(283, 317);
             this.botaoRemoverItemPedido.Name = "botaoRemoverItemPedido";
             this.botaoRemoverItemPedido.Size = new System.Drawing.Size(148, 23);
             this.botaoRemoverItemPedido.TabIndex = 29;
@@ -180,7 +184,7 @@
             // botaoAdicionarItemPedido
             // 
             this.botaoAdicionarItemPedido.Enabled = false;
-            this.botaoAdicionarItemPedido.Location = new System.Drawing.Point(137, 285);
+            this.botaoAdicionarItemPedido.Location = new System.Drawing.Point(137, 317);
             this.botaoAdicionarItemPedido.Name = "botaoAdicionarItemPedido";
             this.botaoAdicionarItemPedido.Size = new System.Drawing.Size(143, 23);
             this.botaoAdicionarItemPedido.TabIndex = 28;
@@ -295,18 +299,18 @@
             // labelItem
             // 
             this.labelItem.AutoSize = true;
-            this.labelItem.Location = new System.Drawing.Point(4, 27);
+            this.labelItem.Location = new System.Drawing.Point(4, 295);
             this.labelItem.Name = "labelItem";
-            this.labelItem.Size = new System.Drawing.Size(30, 13);
+            this.labelItem.Size = new System.Drawing.Size(81, 13);
             this.labelItem.TabIndex = 1;
-            this.labelItem.Text = "Item:";
+            this.labelItem.Text = "Tipo de bebida:";
             // 
             // comboBoxItem
             // 
             this.comboBoxItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxItem.Enabled = false;
             this.comboBoxItem.FormattingEnabled = true;
-            this.comboBoxItem.Location = new System.Drawing.Point(38, 19);
+            this.comboBoxItem.Location = new System.Drawing.Point(91, 287);
             this.comboBoxItem.Name = "comboBoxItem";
             this.comboBoxItem.Size = new System.Drawing.Size(121, 21);
             this.comboBoxItem.TabIndex = 0;
@@ -315,7 +319,7 @@
             // listBoxItensPedido
             // 
             this.listBoxItensPedido.FormattingEnabled = true;
-            this.listBoxItensPedido.Location = new System.Drawing.Point(569, 340);
+            this.listBoxItensPedido.Location = new System.Drawing.Point(569, 358);
             this.listBoxItensPedido.Name = "listBoxItensPedido";
             this.listBoxItensPedido.Size = new System.Drawing.Size(453, 95);
             this.listBoxItensPedido.TabIndex = 13;
@@ -324,18 +328,19 @@
             // textBoxDocumentoNotaFiscal
             // 
             this.textBoxDocumentoNotaFiscal.AutoSize = true;
-            this.textBoxDocumentoNotaFiscal.Location = new System.Drawing.Point(135, 245);
+            this.textBoxDocumentoNotaFiscal.Location = new System.Drawing.Point(135, 208);
             this.textBoxDocumentoNotaFiscal.Name = "textBoxDocumentoNotaFiscal";
             this.textBoxDocumentoNotaFiscal.Size = new System.Drawing.Size(68, 13);
             this.textBoxDocumentoNotaFiscal.TabIndex = 18;
             this.textBoxDocumentoNotaFiscal.Text = "Documento: ";
             // 
-            // textBoxCnpjEmpresa
+            // textBoxDocumentoCliente
             // 
-            this.textBoxCnpjEmpresa.Location = new System.Drawing.Point(203, 240);
-            this.textBoxCnpjEmpresa.Name = "textBoxCnpjEmpresa";
-            this.textBoxCnpjEmpresa.Size = new System.Drawing.Size(158, 20);
-            this.textBoxCnpjEmpresa.TabIndex = 19;
+            this.textBoxDocumentoCliente.Location = new System.Drawing.Point(203, 203);
+            this.textBoxDocumentoCliente.Name = "textBoxDocumentoCliente";
+            this.textBoxDocumentoCliente.Size = new System.Drawing.Size(158, 20);
+            this.textBoxDocumentoCliente.TabIndex = 19;
+            this.textBoxDocumentoCliente.TextChanged += new System.EventHandler(this.textBoxDocumentoCliente_TextChanged);
             // 
             // comboBoxFormaDePagamento
             // 
@@ -345,16 +350,18 @@
             this.comboBoxFormaDePagamento.Name = "comboBoxFormaDePagamento";
             this.comboBoxFormaDePagamento.Size = new System.Drawing.Size(186, 21);
             this.comboBoxFormaDePagamento.TabIndex = 16;
+            this.comboBoxFormaDePagamento.SelectedIndexChanged += new System.EventHandler(this.comboBoxFormaDePagamento_SelectedIndexChanged);
             // 
             // checkBoxNotaFiscal
             // 
             this.checkBoxNotaFiscal.AutoSize = true;
-            this.checkBoxNotaFiscal.Location = new System.Drawing.Point(21, 243);
+            this.checkBoxNotaFiscal.Location = new System.Drawing.Point(21, 206);
             this.checkBoxNotaFiscal.Name = "checkBoxNotaFiscal";
             this.checkBoxNotaFiscal.Size = new System.Drawing.Size(113, 17);
             this.checkBoxNotaFiscal.TabIndex = 17;
             this.checkBoxNotaFiscal.Text = "Emitir Nota Fiscal?";
             this.checkBoxNotaFiscal.UseVisualStyleBackColor = true;
+            this.checkBoxNotaFiscal.CheckedChanged += new System.EventHandler(this.checkBoxNotaFiscal_CheckedChanged);
             // 
             // grupoPedidoParaEmpresa
             // 
@@ -363,7 +370,7 @@
             this.grupoPedidoParaEmpresa.Controls.Add(this.labelResponsavel);
             this.grupoPedidoParaEmpresa.Controls.Add(this.textBoxDepartamento);
             this.grupoPedidoParaEmpresa.Controls.Add(this.labelDepartamento);
-            this.grupoPedidoParaEmpresa.Location = new System.Drawing.Point(20, 85);
+            this.grupoPedidoParaEmpresa.Location = new System.Drawing.Point(20, 48);
             this.grupoPedidoParaEmpresa.Name = "grupoPedidoParaEmpresa";
             this.grupoPedidoParaEmpresa.Size = new System.Drawing.Size(453, 92);
             this.grupoPedidoParaEmpresa.TabIndex = 18;
@@ -379,6 +386,7 @@
             this.checkBoxPedidoParaEmpresa.TabIndex = 19;
             this.checkBoxPedidoParaEmpresa.Text = "É para Empresa?";
             this.checkBoxPedidoParaEmpresa.UseVisualStyleBackColor = true;
+            this.checkBoxPedidoParaEmpresa.CheckedChanged += new System.EventHandler(this.checkBoxPedidoParaEmpresa_CheckedChanged);
             // 
             // textBoxReponsavel
             // 
@@ -417,7 +425,7 @@
             // grupoFormaDePagamento
             // 
             this.grupoFormaDePagamento.Controls.Add(this.comboBoxFormaDePagamento);
-            this.grupoFormaDePagamento.Location = new System.Drawing.Point(21, 183);
+            this.grupoFormaDePagamento.Location = new System.Drawing.Point(21, 146);
             this.grupoFormaDePagamento.Name = "grupoFormaDePagamento";
             this.grupoFormaDePagamento.Size = new System.Drawing.Size(199, 47);
             this.grupoFormaDePagamento.TabIndex = 19;
@@ -428,7 +436,7 @@
             // 
             this.labelValorTotal.AutoSize = true;
             this.labelValorTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelValorTotal.Location = new System.Drawing.Point(571, 449);
+            this.labelValorTotal.Location = new System.Drawing.Point(571, 471);
             this.labelValorTotal.Name = "labelValorTotal";
             this.labelValorTotal.Size = new System.Drawing.Size(68, 15);
             this.labelValorTotal.TabIndex = 20;
@@ -436,7 +444,7 @@
             // 
             // botaoCancelarPedido
             // 
-            this.botaoCancelarPedido.Location = new System.Drawing.Point(947, 460);
+            this.botaoCancelarPedido.Location = new System.Drawing.Point(947, 484);
             this.botaoCancelarPedido.Name = "botaoCancelarPedido";
             this.botaoCancelarPedido.Size = new System.Drawing.Size(75, 23);
             this.botaoCancelarPedido.TabIndex = 22;
@@ -448,19 +456,20 @@
             // 
             this.labelValorTotalExibido.AutoSize = true;
             this.labelValorTotalExibido.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelValorTotalExibido.Location = new System.Drawing.Point(638, 444);
+            this.labelValorTotalExibido.Location = new System.Drawing.Point(642, 469);
             this.labelValorTotalExibido.Name = "labelValorTotalExibido";
             this.labelValorTotalExibido.Size = new System.Drawing.Size(0, 24);
             this.labelValorTotalExibido.TabIndex = 23;
             // 
             // botaoAdicionarPedido
             // 
+            this.botaoAdicionarPedido.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.botaoAdicionarPedido.Enabled = false;
-            this.botaoAdicionarPedido.Location = new System.Drawing.Point(866, 460);
+            this.botaoAdicionarPedido.Location = new System.Drawing.Point(852, 484);
             this.botaoAdicionarPedido.Name = "botaoAdicionarPedido";
-            this.botaoAdicionarPedido.Size = new System.Drawing.Size(75, 23);
+            this.botaoAdicionarPedido.Size = new System.Drawing.Size(89, 23);
             this.botaoAdicionarPedido.TabIndex = 24;
-            this.botaoAdicionarPedido.Text = "Adicionar";
+            this.botaoAdicionarPedido.Text = "Realizar Pedido";
             this.botaoAdicionarPedido.UseVisualStyleBackColor = true;
             this.botaoAdicionarPedido.Click += new System.EventHandler(this.botaoAdicionarPedido_Click);
             // 
@@ -470,7 +479,7 @@
             this.groupBoxAdicionais.Controls.Add(this.listBoxAdicionais);
             this.groupBoxAdicionais.Controls.Add(this.botaoAdicionarBorda);
             this.groupBoxAdicionais.Controls.Add(this.comboBoxAdicionais);
-            this.groupBoxAdicionais.Location = new System.Drawing.Point(573, 197);
+            this.groupBoxAdicionais.Location = new System.Drawing.Point(573, 191);
             this.groupBoxAdicionais.Name = "groupBoxAdicionais";
             this.groupBoxAdicionais.Size = new System.Drawing.Size(427, 95);
             this.groupBoxAdicionais.TabIndex = 28;
@@ -544,11 +553,22 @@
             this.contextMenuStrip3.Name = "contextMenuStrip3";
             this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
             // 
+            // lblAvisoEscolherTipoDeItem
+            // 
+            this.lblAvisoEscolherTipoDeItem.AutoSize = true;
+            this.lblAvisoEscolherTipoDeItem.Location = new System.Drawing.Point(13, 493);
+            this.lblAvisoEscolherTipoDeItem.Name = "lblAvisoEscolherTipoDeItem";
+            this.lblAvisoEscolherTipoDeItem.Size = new System.Drawing.Size(265, 13);
+            this.lblAvisoEscolherTipoDeItem.TabIndex = 31;
+            this.lblAvisoEscolherTipoDeItem.Text = "Escolha o tipo de item que deseja adicionar no pedido.";
+            this.lblAvisoEscolherTipoDeItem.Visible = false;
+            // 
             // RealizarPedido_Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 488);
+            this.ClientSize = new System.Drawing.Size(1047, 517);
+            this.Controls.Add(this.lblAvisoEscolherTipoDeItem);
             this.Controls.Add(this.maskedTextBoxBuscarPorTelefone);
             this.Controls.Add(this.groupBoxAdicionais);
             this.Controls.Add(this.botaoAdicionarPedido);
@@ -557,13 +577,11 @@
             this.Controls.Add(this.labelValorTotal);
             this.Controls.Add(this.textBoxDocumentoNotaFiscal);
             this.Controls.Add(this.grupoFormaDePagamento);
-            this.Controls.Add(this.textBoxCnpjEmpresa);
+            this.Controls.Add(this.textBoxDocumentoCliente);
             this.Controls.Add(this.grupoPedidoParaEmpresa);
             this.Controls.Add(this.checkBoxNotaFiscal);
             this.Controls.Add(this.listBoxItensPedido);
             this.Controls.Add(this.grupoAdicionarItemPedido);
-            this.Controls.Add(this.comboBoxTipoProduto);
-            this.Controls.Add(this.labelTipo);
             this.Controls.Add(this.comboBoxCliente);
             this.Controls.Add(this.labelCliente);
             this.Name = "RealizarPedido_Dialog";
@@ -598,7 +616,7 @@
         private System.Windows.Forms.Label labelItem;
         private System.Windows.Forms.ComboBox comboBoxItem;
         private System.Windows.Forms.Label textBoxDocumentoNotaFiscal;
-        private System.Windows.Forms.TextBox textBoxCnpjEmpresa;
+        private System.Windows.Forms.TextBox textBoxDocumentoCliente;
         private System.Windows.Forms.ComboBox comboBoxFormaDePagamento;
         private System.Windows.Forms.CheckBox checkBoxNotaFiscal;
         private System.Windows.Forms.GroupBox grupoPedidoParaEmpresa;
@@ -629,5 +647,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.Label labelQuantidade;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
+        private System.Windows.Forms.Label lblAvisoEscolherTipoDeItem;
     }
 }

@@ -39,9 +39,19 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Pedidos
             throw new NotImplementedException();
         }
 
-        public List<Pedido> BuscarTodos()
+        public IEnumerable<Pedido> BuscarTodos()
         {
-            throw new NotImplementedException();
+            _pizzariaContexto.Pedidos.Include("TBSabor");
+            _pizzariaContexto.Pedidos.Include("TBProdutoGenerico");
+            _pizzariaContexto.Pedidos.Include("TBProdutoPedido");
+            _pizzariaContexto.Pedidos.Include("TBCliente");
+            _pizzariaContexto.Pedidos.Include("TBEndereco");
+            _pizzariaContexto.Pedidos.Include("TBAdicional");
+
+            var PedidosEncontrados = from TBPEDIDO in _pizzariaContexto.Pedidos
+                                     select TBPEDIDO;
+
+            return PedidosEncontrados;
         }
     }
 }

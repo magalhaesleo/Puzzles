@@ -24,7 +24,7 @@ namespace projeto_pizzaria.Infra.Data.Funcionalidades.Adicionais
             throw new NotImplementedException();
         }
 
-        public List<Adicional> BuscarTodos()
+        public IEnumerable<Adicional> BuscarTodos()
         {
             return _pizzariaContexto.Adicionais.ToList();
         }

@@ -33,7 +33,7 @@ namespace projeto_pizzaria.Applications.Funcionalidades.ProdutosGenericos
             throw new NotImplementedException();
         }
 
-        public List<ProdutoGenerico> BuscarTodos()
+        public IEnumerable<ProdutoGenerico> BuscarTodos()
         {
             return _produtoGenericoRepositorio.BuscarTodos();
         }

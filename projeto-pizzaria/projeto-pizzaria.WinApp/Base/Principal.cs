@@ -53,6 +53,9 @@ namespace projeto_pizzaria.WinApp.Base
             _gerenciadorDeFormulario = gerenciadorDeFormularioAtual;
 
             definirPropriedadeVisibleDosBotoes(_gerenciadorDeFormulario.ObterPropriedadeVisibleDosBotoes());
+
+            //Obtendo o UserControl do Gerenciador de formulário
+            painelFormularioPrincipal.Controls.Add(_gerenciadorDeFormulario.ObterUserControl());
         }
 
         private void botaoRealizarPedido_Click(object sender, EventArgs e)
@@ -80,12 +83,13 @@ namespace projeto_pizzaria.WinApp.Base
             _gerenciadorDeFormulario.Adicionar();
         }
 
-       
+
         private PedidoServico ObterInstanciaDePedidoServico()
         {
-            if(_pedidoServico == null)
+            if (_pedidoServico == null)
             {
-                return new PedidoServico(ObterInstaciaDePedidoRepositorio(), ObterInstanciaDeSaborRepositorio(), ObterInstanciaDeAdicionalRepositorio(), ObterInstanciaDeProdutoGenericoRepositorioSQL());
+                _pedidoServico = new PedidoServico(ObterInstaciaDePedidoRepositorio(), ObterInstanciaDeSaborRepositorio(), ObterInstanciaDeAdicionalRepositorio(), ObterInstanciaDeProdutoGenericoRepositorioSQL());
+                return _pedidoServico;
             }
             else
             {
@@ -96,9 +100,10 @@ namespace projeto_pizzaria.WinApp.Base
 
         private ClienteServico ObterInstanciaDeClienteServico()
         {
-            if (_pedidoServico == null)
+            if (_clienteServico == null)
             {
-                return new ClienteServico(ObterInstaciaDeClienteRepositorio());
+                _clienteServico = new ClienteServico(ObterInstaciaDeClienteRepositorio());
+                return _clienteServico;
             }
             else
             {
@@ -108,9 +113,10 @@ namespace projeto_pizzaria.WinApp.Base
 
         private ClienteRepositorioSQL ObterInstaciaDeClienteRepositorio()
         {
-            if (_pedidoRepositorioSQL == null)
+            if (_clienteRepositorioSQL == null)
             {
-                return new ClienteRepositorioSQL(ObterInstaciaDoContextoSQL());
+                _clienteRepositorioSQL = new ClienteRepositorioSQL(ObterInstaciaDoContextoSQL());
+                return _clienteRepositorioSQL;
             }
             else
             {
@@ -119,10 +125,12 @@ namespace projeto_pizzaria.WinApp.Base
         }
         private PedidoRepositorioSQL ObterInstaciaDePedidoRepositorio()
         {
-            if(_pedidoRepositorioSQL == null)
+            if (_pedidoRepositorioSQL == null)
             {
-                return new PedidoRepositorioSQL(ObterInstaciaDoContextoSQL());
-            }else
+                _pedidoRepositorioSQL = new PedidoRepositorioSQL(ObterInstaciaDoContextoSQL());
+                return _pedidoRepositorioSQL;
+            }
+            else
             {
                 return _pedidoRepositorioSQL;
             }
@@ -132,7 +140,8 @@ namespace projeto_pizzaria.WinApp.Base
         {
             if (_saborRepositorioSQL == null)
             {
-                return new SaborRepositorioSQL(ObterInstaciaDoContextoSQL());
+                _saborRepositorioSQL = new SaborRepositorioSQL(ObterInstaciaDoContextoSQL());
+                return _saborRepositorioSQL;
             }
             else
             {
@@ -144,7 +153,8 @@ namespace projeto_pizzaria.WinApp.Base
         {
             if (_produtoGenericoRepositorioSQL == null)
             {
-                return new ProdutoGenericoRepositorioSQL(ObterInstaciaDoContextoSQL());
+                _produtoGenericoRepositorioSQL = new ProdutoGenericoRepositorioSQL(ObterInstaciaDoContextoSQL());
+                return _produtoGenericoRepositorioSQL;
             }
             else
             {
@@ -155,7 +165,8 @@ namespace projeto_pizzaria.WinApp.Base
         {
             if (_adicionalRepositorioSQL == null)
             {
-                return new AdicionalRepositorioSQL(ObterInstaciaDoContextoSQL());
+                _adicionalRepositorioSQL = new AdicionalRepositorioSQL(ObterInstaciaDoContextoSQL());
+                return _adicionalRepositorioSQL;
             }
             else
             {
@@ -166,7 +177,8 @@ namespace projeto_pizzaria.WinApp.Base
         {
             if (_pizzariaContexto == null)
             {
-                return new PizzariaContexto();
+                _pizzariaContexto = new PizzariaContexto();
+                return _pizzariaContexto;
             }
             else
             {

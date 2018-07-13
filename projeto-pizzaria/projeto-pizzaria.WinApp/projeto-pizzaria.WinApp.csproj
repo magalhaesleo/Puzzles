@@ -59,6 +59,11 @@
     <Compile Include="Base\Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Base\Principal1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Principal.resx</DependentUpon>
+    </Compile>
     <Compile Include="Funcionalidades\Pedidos\PedidoGerenciadorDeFormulario.cs" />
     <Compile Include="Funcionalidades\Pedidos\RealizarPedido\RealizarPedido_Dialog.cs">
       <SubType>Form</SubType>
@@ -66,13 +71,24 @@
     <Compile Include="Funcionalidades\Pedidos\RealizarPedido\RealizarPedido_Dialog.Designer.cs">
       <DependentUpon>RealizarPedido_Dialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Funcionalidades\Pedidos\RealizarPedido\UserControlPedido.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Funcionalidades\Pedidos\RealizarPedido\UserControlPedido.Designer.cs">
+      <DependentUpon>UserControlPedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Base\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Principal1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Funcionalidades\Pedidos\RealizarPedido\RealizarPedido_Dialog.resx">
       <DependentUpon>RealizarPedido_Dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Funcionalidades\Pedidos\RealizarPedido\UserControlPedido.resx">
+      <DependentUpon>UserControlPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

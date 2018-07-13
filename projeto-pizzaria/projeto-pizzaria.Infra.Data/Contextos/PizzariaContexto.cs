@@ -27,7 +27,9 @@ namespace projeto_pizzaria.Infra.Data.Contextos
     {
         public PizzariaContexto() : base("PizzariaBD_Puzzles")
         {
-            Configuration.LazyLoadingEnabled = true;
+        }
+        public PizzariaContexto(string nomeDoBanco) : base(nomeDoBanco)
+        {
         }
 
         public DbSet<Cliente> Clientes { get; set; }
