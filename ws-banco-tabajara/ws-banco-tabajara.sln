@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ws-banco-tabajara.Domain", "ws-banco-tabajara.Domain\ws-banco-tabajara.Domain.csproj", "{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{9593F9D3-A4CA-4EAE-BC80-60C1C3C3A34A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Distributed Services", "1. Distributed Services", "{CD612511-B6EE-423A-B2DA-6D1273FA4637}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{3D61A6C6-2EF9-453C-AA2B-46C1C7073E9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{78D00260-0380-415E-9409-43BC1D683E52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ws-banco-tabajara.Infra.ORM", "ws-banco-tabajara.Infra.ORM\ws-banco-tabajara.Infra.ORM.csproj", "{8245A6C7-4D7F-4E02-900D-2F1C6F247988}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1889B540-A9AD-4141-AC48-4272DD25CEC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ws-banco-tabajara.Application", "ws-banco-tabajara.Application\ws-banco-tabajara.Application.csproj", "{56345671-095A-4C76-AF7D-FA9528F1E54F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ws-banco-tabajara.Domain.Tests", "ws-banco-tabajara.Domain.Tests\ws-banco-tabajara.Domain.Tests.csproj", "{E53EF6E2-F82C-4485-8177-C7AD78868ED4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ws-banco-tabajara.Application.Tests", "ws-banco-tabajara.Application.Tests\ws-banco-tabajara.Application.Tests.csproj", "{C7FB197D-ABC9-462F-873D-4673BBFF150F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ws-banco-tabajara.Infra.ORM.Tests", "ws-banco-tabajara.Infra.ORM.Tests\ws-banco-tabajara.Infra.ORM.Tests.csproj", "{B3237261-7736-4324-9E87-72531C7E8361}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ws-banco-tabajara.Controller.Tests", "ws-banco-tabajara.Controller.Tests\ws-banco-tabajara.Controller.Tests.csproj", "{CC28FDEC-E8B0-436C-A000-AD0384980E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ws-banco-tabajara.Common.Tests", "ws-banco-tabajara.Common.Tests\ws-banco-tabajara.Common.Tests.csproj", "{4C6A3FE6-48FB-4691-B6B0-15E6507BBA68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8245A6C7-4D7F-4E02-900D-2F1C6F247988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8245A6C7-4D7F-4E02-900D-2F1C6F247988}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8245A6C7-4D7F-4E02-900D-2F1C6F247988}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8245A6C7-4D7F-4E02-900D-2F1C6F247988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56345671-095A-4C76-AF7D-FA9528F1E54F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56345671-095A-4C76-AF7D-FA9528F1E54F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56345671-095A-4C76-AF7D-FA9528F1E54F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56345671-095A-4C76-AF7D-FA9528F1E54F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E53EF6E2-F82C-4485-8177-C7AD78868ED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53EF6E2-F82C-4485-8177-C7AD78868ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53EF6E2-F82C-4485-8177-C7AD78868ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53EF6E2-F82C-4485-8177-C7AD78868ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7FB197D-ABC9-462F-873D-4673BBFF150F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7FB197D-ABC9-462F-873D-4673BBFF150F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7FB197D-ABC9-462F-873D-4673BBFF150F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7FB197D-ABC9-462F-873D-4673BBFF150F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3237261-7736-4324-9E87-72531C7E8361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3237261-7736-4324-9E87-72531C7E8361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3237261-7736-4324-9E87-72531C7E8361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3237261-7736-4324-9E87-72531C7E8361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC28FDEC-E8B0-436C-A000-AD0384980E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC28FDEC-E8B0-436C-A000-AD0384980E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC28FDEC-E8B0-436C-A000-AD0384980E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC28FDEC-E8B0-436C-A000-AD0384980E95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C6A3FE6-48FB-4691-B6B0-15E6507BBA68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C6A3FE6-48FB-4691-B6B0-15E6507BBA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C6A3FE6-48FB-4691-B6B0-15E6507BBA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C6A3FE6-48FB-4691-B6B0-15E6507BBA68}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E50E7472-9DC4-4102-8B42-FED4A52AF6DD} = {9593F9D3-A4CA-4EAE-BC80-60C1C3C3A34A}
+		{8245A6C7-4D7F-4E02-900D-2F1C6F247988} = {78D00260-0380-415E-9409-43BC1D683E52}
+		{56345671-095A-4C76-AF7D-FA9528F1E54F} = {3D61A6C6-2EF9-453C-AA2B-46C1C7073E9E}
+		{E53EF6E2-F82C-4485-8177-C7AD78868ED4} = {1889B540-A9AD-4141-AC48-4272DD25CEC1}
+		{C7FB197D-ABC9-462F-873D-4673BBFF150F} = {1889B540-A9AD-4141-AC48-4272DD25CEC1}
+		{B3237261-7736-4324-9E87-72531C7E8361} = {1889B540-A9AD-4141-AC48-4272DD25CEC1}
+		{CC28FDEC-E8B0-436C-A000-AD0384980E95} = {1889B540-A9AD-4141-AC48-4272DD25CEC1}
+		{4C6A3FE6-48FB-4691-B6B0-15E6507BBA68} = {1889B540-A9AD-4141-AC48-4272DD25CEC1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9821FBFC-18C3-46DC-A4FF-723E6090A168}
+	EndGlobalSection
+EndGlobal
