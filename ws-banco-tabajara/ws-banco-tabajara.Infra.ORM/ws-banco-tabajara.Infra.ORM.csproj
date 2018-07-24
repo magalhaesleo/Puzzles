@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Contextos\ContextoBancoTabajara.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteMapaEF\ClienteMapaEF.cs" />
+    <Compile Include="Funcionalidades\Clientes\RepositorioSqlEF\ClienteRepositorioSqlEF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
