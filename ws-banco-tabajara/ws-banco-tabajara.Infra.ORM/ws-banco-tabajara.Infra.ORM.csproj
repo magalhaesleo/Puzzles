@@ -54,10 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contextos\ContextoBancoTabajara.cs" />
+    <Compile Include="Funcionalidades\Clientes\ClienteMapaEF\ClienteMapaEF.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Funcionalidades\Clientes\" />
     <Folder Include="Funcionalidades\Contas\" />
     <Folder Include="Funcionalidades\Extratos\" />
     <Folder Include="Funcionalidades\Movimentacoes\" />
