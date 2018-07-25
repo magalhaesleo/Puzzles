@@ -47,7 +47,7 @@
     <Compile Include="Funcionalidades\Extratos\Extrato.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\Movimentacao.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\TipoOperacaoMovimentacao.cs" />
-    <Compile Include="Funcionalidades\Movimentacoes\Transferencia.cs" />
+    <Compile Include="Funcionalidades\Movimentacoes\IMovimentacaoRepositorio.cs" />
     <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

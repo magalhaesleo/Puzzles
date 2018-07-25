@@ -10,7 +10,7 @@
   <Class Name="ws_banco_tabajara.Domain.Funcionalidades.Clientes.Cliente" Collapsed="true">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAACAAAIAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAgAAAAAAACAAAIAAAAAAAAAAAEAgAA=</HashCode>
       <FileName>Funcionalidades\Clientes\Cliente.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,35 +31,26 @@
       <FileName>Funcionalidades\Extratos\Extrato.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Cliente" />
       <Property Name="Conta" />
+      <Property Name="Cliente" />
     </ShowAsAssociation>
   </Class>
   <Class Name="ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes.Movimentacao" Collapsed="true">
     <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAEAAAAEAAAAABAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAAAABAAAEAAEAAAAEAAAAABAAAAAAAAAAgAA=</HashCode>
       <FileName>Funcionalidades\Movimentacoes\Movimentacao.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="TipoOperacao" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes.Transferencia" Collapsed="true">
-    <Position X="2.75" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Funcionalidades\Movimentacoes\Transferencia.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="ContaDestino" />
-      <Property Name="ContaOrigem" />
+      <Property Name="Conta" />
+      <Property Name="ContaMovimentada" />
     </ShowAsAssociation>
   </Class>
   <Enum Name="ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes.TipoOperacaoMovimentacao" Collapsed="true">
     <Position X="0.5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAEEAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAgAAAAEAAAAAAAAAAAAAAAAAAACAAAAABAAAA=</HashCode>
       <FileName>Funcionalidades\Movimentacoes\TipoOperacaoMovimentacao.cs</FileName>
     </TypeIdentifier>
   </Enum>

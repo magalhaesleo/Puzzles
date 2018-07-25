@@ -13,7 +13,6 @@ namespace ws_banco_tabajara.Application.Interfaces
         void Editar(T entidade);
         void Excluir(T entidade);
         IQueryable<T> BuscarTodos();
-
         T Buscar(long id);
     }
 }
