@@ -30,6 +30,9 @@ namespace ws_banco_tabajara.Common.Tests.Base
             contexto.Movimentacoes.Add(movimentacao);
             contexto.SaveChanges();
 
+            conta.Movimentacoes.Add(movimentacao);
+            contexto.SaveChanges();
+
             base.Seed(contexto);
         }
     }

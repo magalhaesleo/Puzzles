@@ -9,14 +9,23 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Movimentacoes
 {
     public class MovimentacaoServico : IMovimentacaoServico
     {
-        public Movimentacao Adicionar(Movimentacao entidade)
+        IMovimentacaoRepositorio _repositorio;
+
+        public MovimentacaoServico(IMovimentacaoRepositorio repositorio)
         {
-            throw new NotImplementedException();
+            _repositorio = repositorio;
+        }
+
+        public Movimentacao Adicionar(Movimentacao movimentacao)
+        {
+            movimentacao = _repositorio.Adicionar(movimentacao);
+
+            return movimentacao;
         }
 
         public IQueryable<Movimentacao> BuscarPorConta(long id)
         {
-            throw new NotImplementedException();
+            return _repositorio.BuscarPorConta(id);
         }
     }
 }

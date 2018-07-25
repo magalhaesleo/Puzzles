@@ -19,12 +19,15 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Movimentacoes
 
         public Movimentacao Adicionar(Movimentacao movimentacao)
         {
-            throw new NotImplementedException();
+            _contextoBancoTabajara.Movimentacoes.Add(movimentacao);
+            _contextoBancoTabajara.SaveChanges();
+
+            return movimentacao;
         }
 
         public IQueryable<Movimentacao> BuscarPorConta(long id)
         {
-            throw new NotImplementedException();
+            return this._contextoBancoTabajara.Movimentacoes.Where(m => m.Conta.Id == id);
         }
     }
 }

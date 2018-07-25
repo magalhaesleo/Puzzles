@@ -22,6 +22,7 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
                 ContaMovimentada = contaMovimentada
             };
         }
+
         public static Movimentacao ObterMovimentacaoValida(Conta conta)
         {
             return new Movimentacao()
