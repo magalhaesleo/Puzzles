@@ -6,24 +6,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
+using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 using ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.ClienteMapaEF;
+using ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas;
 
 namespace ws_banco_tabajara.Infra.ORM.Contextos
 {
     public class ContextoBancoTabajara : DbContext
     {
-        public ContextoBancoTabajara() : base("Puzzles_BancoTabajaraBD")
+        public ContextoBancoTabajara(string nomeBanco) : base(nomeBanco)
         {
+            Configuration.LazyLoadingEnabled = true;
+        }
 
+        public ContextoBancoTabajara() : this("Puzzles_BancoTabajaraBD")
+        {
         }
 
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Conta> Contas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             modelBuilder.Configurations.Add(new ClienteMapaEF());
+            modelBuilder.Configurations.Add(new ContaMapaEF());
         }
     }
 }
