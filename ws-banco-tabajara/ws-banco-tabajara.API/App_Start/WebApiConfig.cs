@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Web.Http;
+using ws_banco_tabajara.API.Filtros;
 
 namespace ws_banco_tabajara.API
 {

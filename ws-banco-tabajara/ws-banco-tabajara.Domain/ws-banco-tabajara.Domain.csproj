@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Entidade.cs" />
+    <Compile Include="Excecoes\CodigosDeErro.cs" />
+    <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
     <Compile Include="Funcionalidades\Clientes\Cliente.cs" />
     <Compile Include="Funcionalidades\Clientes\IClienteRepositorio.cs" />
     <Compile Include="Funcionalidades\Contas\Conta.cs" />
@@ -52,9 +54,7 @@
     <Compile Include="Interfaces\IRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Excecoes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="DiagramaDeClasses.cd" />
   </ItemGroup>
