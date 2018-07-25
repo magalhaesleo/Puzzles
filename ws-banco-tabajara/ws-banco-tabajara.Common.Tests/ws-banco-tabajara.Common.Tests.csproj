@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseSqlTeste.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\ObjectMother.cs" />
+    <Compile Include="Funcionalidades\Contas\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Funcionalidades\Clientes\" />
-    <Folder Include="Funcionalidades\Contas\" />
     <Folder Include="Funcionalidades\Extratos\" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +76,12 @@
     <ProjectReference Include="..\ws-banco-tabajara.Infra.ORM\ws-banco-tabajara.Infra.ORM.csproj">
       <Project>{8245A6C7-4D7F-4E02-900D-2F1C6F247988}</Project>
       <Name>ws-banco-tabajara.Infra.ORM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ws-banco-tabajara.Domain\ws-banco-tabajara.Domain.csproj">
+      <Project>{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}</Project>
+      <Name>ws-banco-tabajara.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

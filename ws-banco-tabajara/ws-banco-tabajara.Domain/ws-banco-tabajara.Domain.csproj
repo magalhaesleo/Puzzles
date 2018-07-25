@@ -44,6 +44,7 @@
     <Compile Include="Funcionalidades\Clientes\Cliente.cs" />
     <Compile Include="Funcionalidades\Clientes\Interface\IClienteRepositorio.cs" />
     <Compile Include="Funcionalidades\Contas\Conta.cs" />
+    <Compile Include="Funcionalidades\Contas\IContaRepositorio.cs" />
     <Compile Include="Funcionalidades\Extratos\Extrato.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\Movimentacao.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\TipoOperacaoMovimentacao.cs" />
