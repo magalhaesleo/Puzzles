@@ -54,17 +54,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contextos\ContextoBancoTabajara.cs" />
+    <Compile Include="Funcionalidades\Clientes\ClienteMapaEF\ClienteMapaEF.cs" />
+    <Compile Include="Funcionalidades\Clientes\RepositorioSqlEF\ClienteRepositorioSqlEF.cs" />
+    <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoConfiguracao.cs" />
+    <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoRepositorioSQL.cs" />
+    <Compile Include="Funcionalidades\Contas\ContaRepositorioSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Funcionalidades\Clientes\" />
-    <Folder Include="Funcionalidades\Contas\" />
     <Folder Include="Funcionalidades\Extratos\" />
-    <Folder Include="Funcionalidades\Movimentacoes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ws-banco-tabajara.Domain\ws-banco-tabajara.Domain.csproj">
+      <Project>{e50e7472-9dc4-4102-8b42-fed4a52af6dd}</Project>
+      <Name>ws-banco-tabajara.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
