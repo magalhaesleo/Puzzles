@@ -14,9 +14,6 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes
 
         public TipoOperacaoMovimentacao TipoOperacao { get; set; }
 
-        //Deve dizer se foi transferência, saque ou depósito
-        public string Descricao { get; set; }
-
         public double Valor { get; set; }
 
         public virtual Conta Conta { get; set; }
