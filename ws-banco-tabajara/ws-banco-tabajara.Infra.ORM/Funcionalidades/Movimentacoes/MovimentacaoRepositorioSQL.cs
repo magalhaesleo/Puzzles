@@ -22,27 +22,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Movimentacoes
             throw new NotImplementedException();
         }
 
-        public Movimentacao Buscar(long id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IQueryable<Movimentacao> BuscarPorConta(long id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Movimentacao> BuscarTodos()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Editar(Movimentacao entidade)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Excluir(Movimentacao entidade)
         {
             throw new NotImplementedException();
         }

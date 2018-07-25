@@ -15,12 +15,18 @@ namespace ws_banco_tabajara.Common.Tests.Base
     {
         protected override void Seed(ContextoBancoTabajara contexto)
         {
+            Conta conta = ObjectMother.ObterContaValida();
+            Conta contaMovimentada = ObjectMother.ObterContaValida();
 
-            //Conta conta = ObjectMother
-            //Movimentacao movimentacao = ObjectMother.ObterMovimentacaoValida(conta, conta);
+            contexto.Contas.Add(conta);
+            contexto.Contas.Add(contaMovimentada);
+            contexto.SaveChanges();
 
+            Movimentacao movimentacao = ObjectMother.ObterMovimentacaoValida(conta, contaMovimentada);
             contexto.Movimentacoes.Add(movimentacao);
+            contexto.SaveChanges();
 
+            base.Seed(contexto);
         }
     }
 }

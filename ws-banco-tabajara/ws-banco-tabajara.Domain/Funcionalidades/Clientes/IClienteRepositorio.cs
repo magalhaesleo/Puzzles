@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Domain.Interfaces;
 
-namespace ws_banco_tabajara.Domain.Funcionalidades.Clientes.Interface
+namespace ws_banco_tabajara.Domain.Funcionalidades.Clientes
 {
     
     public interface IClienteRepositorio : IRepositorio<Cliente>

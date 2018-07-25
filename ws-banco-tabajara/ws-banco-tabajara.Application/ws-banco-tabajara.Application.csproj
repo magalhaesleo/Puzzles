@@ -43,7 +43,6 @@
     <Compile Include="Funcionalidades\Contas\ContaServico.cs" />
     <Compile Include="Funcionalidades\Contas\IContaServico.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteServico.cs" />
-    <Compile Include="Funcionalidades\Clientes\Interfaces\IClienteServico.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\IMovimentacaoServico.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoServico.cs" />
     <Compile Include="Funcionalidades\Clientes\IClienteServico.cs" />

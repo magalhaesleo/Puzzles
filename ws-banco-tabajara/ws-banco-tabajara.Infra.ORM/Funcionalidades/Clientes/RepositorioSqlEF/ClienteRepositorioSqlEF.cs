@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
-using ws_banco_tabajara.Domain.Funcionalidades.Clientes.Interface;
 using ws_banco_tabajara.Infra.ORM.Contextos;
 
 namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.RepositorioSqlEF

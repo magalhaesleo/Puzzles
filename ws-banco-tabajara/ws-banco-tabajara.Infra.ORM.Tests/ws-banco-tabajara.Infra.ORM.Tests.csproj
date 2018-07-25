@@ -81,6 +81,10 @@
     <Folder Include="Funcionalidades\Extratos\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ws-banco-tabajara.Common.Tests\ws-banco-tabajara.Common.Tests.csproj">
+      <Project>{4C6A3FE6-48FB-4691-B6B0-15E6507BBA68}</Project>
+      <Name>ws-banco-tabajara.Common.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ws-banco-tabajara.Domain\ws-banco-tabajara.Domain.csproj">
       <Project>{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}</Project>
       <Name>ws-banco-tabajara.Domain</Name>
