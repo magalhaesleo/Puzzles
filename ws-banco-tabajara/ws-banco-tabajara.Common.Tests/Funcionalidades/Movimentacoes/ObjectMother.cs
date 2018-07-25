@@ -19,7 +19,7 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
                 Valor = 4.50,
                 TipoOperacao = TipoOperacaoMovimentacao.TRANSFERENCIA_ENVIADA,
                 Conta = conta,
-                ContaMovimentada = contaMovimentada
+               ContaMovimentada = contaMovimentada
             };
         }
 

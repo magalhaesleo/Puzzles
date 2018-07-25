@@ -16,7 +16,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             Movimentacoes = new List<Movimentacao>();
         }
 
-        public Cliente Titular { get; set; }
+        public virtual Cliente Titular { get; set; }
 
         public string Numero { get; set; }
 

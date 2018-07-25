@@ -20,9 +20,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes
         public double Valor { get; set; }
 
         public virtual Conta Conta { get; set; }
-
         public virtual Conta ContaMovimentada { get; set; }
-
         public override string ToString()
         {
             string descricao = "";

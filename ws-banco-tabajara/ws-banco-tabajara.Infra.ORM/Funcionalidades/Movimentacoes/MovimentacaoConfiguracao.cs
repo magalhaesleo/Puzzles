@@ -16,30 +16,29 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Movimentacoes
 
             HasKey(m => m.Id);
 
-            //Property(m => m.Data)
-            //    .HasColumnName("Data")
-            //    .HasColumnType("datetime")
-            //    .IsRequired();
+            Property(m => m.Data)
+                .HasColumnName("Data")
+                .HasColumnType("datetime")
+                .IsRequired();
 
-            //Property(m => m.TipoOperacao.ToString())
-            //    .HasColumnName("TipoOperacao")
-            //    .IsRequired();
+            Property(m => m.TipoOperacao)
+                .HasColumnName("TipoOperacao")
+                .IsRequired();
 
-            //Property(m => m.Descricao)
-            //    .HasColumnName("Descricao")
-            //    .HasColumnType("varchar")
-            //    .HasMaxLength(100)
-            //    .IsRequired();
+            Property(m => m.Descricao)
+                .HasColumnName("Descricao")
+                .HasColumnType("varchar")
+                .HasMaxLength(100)
+                .IsRequired();
 
-            //Property(m => m.Valor)
-            //    .HasColumnName("Valor")
-            //    .HasColumnType("float")
-            //    .IsRequired();
+            Property(m => m.Valor)
+                .HasColumnName("Valor")
+                .HasColumnType("float")
+                .IsRequired();
 
-            //HasRequired(m => m.Conta);
+            // HasRequired(m => m.Conta);
 
-            //HasOptional(m => m.ContaMovimentada);
-
+            HasOptional(m => m.ContaMovimentada);
         }
     }
 }
