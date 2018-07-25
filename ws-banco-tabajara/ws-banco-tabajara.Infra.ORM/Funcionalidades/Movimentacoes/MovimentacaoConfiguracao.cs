@@ -21,7 +21,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Movimentacoes
                 .HasColumnType("datetime")
                 .IsRequired();
 
-            Property(m => m.TipoOperacao.ToString())
+            Property(m => m.TipoOperacao)
                 .HasColumnName("TipoOperacao")
                 .IsRequired();
 

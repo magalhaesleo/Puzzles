@@ -11,6 +11,11 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
 {
     public class Conta : Entidade
     {
+        public Conta()
+        {
+            Movimentacoes = new List<Movimentacao>();
+        }
+
         public Cliente Titular { get; set; }
 
         public string Numero { get; set; }

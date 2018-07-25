@@ -22,6 +22,7 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
                 ContaMovimentada = contaMovimentada
             };
         }
+
         public static Movimentacao ObterMovimentacaoValida(Conta conta)
         {
             return new Movimentacao()
@@ -29,7 +30,7 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
                 Data = DateTime.Now,
                 Descricao = "Descricao",
                 Valor = 4.50,
-                TipoOperacao = TipoOperacaoMovimentacao.TRANSFERENCIA_ENVIADA,
+                TipoOperacao = TipoOperacaoMovimentacao.CREDITO,
                 Conta = conta
             };
         }

@@ -11,6 +11,7 @@ using ws_banco_tabajara.Common.Tests.Funcionalidades;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 using ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes;
 using ws_banco_tabajara.Infra.ORM.Contextos;
+using ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas;
 using ws_banco_tabajara.Infra.ORM.Funcionalidades.Movimentacoes;
 
 namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Movimentacoes
@@ -19,7 +20,7 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Movimentacoes
     public class MovimentacaoRepositorioSQLTeste
     {
         private MovimentacaoRepositorioSQL _repositorio;
-
+        private ContaRepositorioSQL _contaRepositorioSQL;
         private ContextoBancoTabajara _contexto;
 
         private Movimentacao _movimentacao;
@@ -35,6 +36,7 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Movimentacoes
             _contexto.Database.Initialize(true);
 
             _repositorio = new MovimentacaoRepositorioSQL(_contexto);
+            _contaRepositorioSQL = new ContaRepositorioSQL(_contexto);
 
             _conta = ObjectMother.ObterContaValida();
             _contaMovimentada = ObjectMother.ObterContaValida();
@@ -44,11 +46,29 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Movimentacoes
         [Test]
         public void Movimentacao_InfraData_Adicionar_Sucesso()
         {
-            _repositorio.Adicionar(_movimentacao);
+            int numeroMovimentacoesAdicionadasPorEsteTeste = 1;
+
+            _movimentacao = _repositorio.Adicionar(_movimentacao);
 
             _movimentacao.Id.Should().BeGreaterThan(0);
 
-           // _repositorio.BuscarPorConta(_movimentacao.Id).Should().Be(_movimentacao);
+            var movimentacoesDaConta = _repositorio.BuscarPorConta(_movimentacao.Conta.Id).ToList();
+
+            movimentacoesDaConta.Should().NotBeNull();
+            movimentacoesDaConta.Count().Should().Be(numeroMovimentacoesAdicionadasPorEsteTeste);
+            movimentacoesDaConta.Last().Should().Be(_movimentacao);
+        }
+
+        [Test]
+        public void Movimentacao_InfraData_BuscarPorConta_Sucesso()
+        {
+            long idDaContaInseridaPorBaseSql = 1;
+            int numeroMovimentacoesDaContaDeId1 = 1;
+
+            var movimentacoesDaConta = _repositorio.BuscarPorConta(idDaContaInseridaPorBaseSql).ToList();
+
+            movimentacoesDaConta.Should().NotBeNull();
+            movimentacoesDaConta.Should().HaveCount(numeroMovimentacoesDaContaDeId1);
         }
     }
 }
