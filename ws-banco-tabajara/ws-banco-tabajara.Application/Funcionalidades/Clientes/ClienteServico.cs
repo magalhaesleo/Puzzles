@@ -1,4 +1,7 @@
 ﻿using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ws_banco_tabajara.Application.Funcionalidades.Clientes.Interfaces;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes.Interface;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;

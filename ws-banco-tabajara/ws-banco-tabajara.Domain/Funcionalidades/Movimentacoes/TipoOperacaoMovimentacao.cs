@@ -10,6 +10,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes
     {
         CREDITO,
         DEBITO,
-        TRANSFERENCIA
+        TRANSFERENCIA_ENVIADA,
+        TRANSFERENCIA_RECEBIDA
     }
 }
