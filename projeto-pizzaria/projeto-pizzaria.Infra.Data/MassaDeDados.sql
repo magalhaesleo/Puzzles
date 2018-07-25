@@ -9,12 +9,15 @@ GO
 INSERT INTO TBEndereco
            (CEP, Cidade, Bairro, Rua, Numero, Complemento)
      VALUES
-           ('88503-590', 'Lages', 'Centro', 'Rua', 1, 'Casa')
+           ('88503-590', 'Lages', 'Centro', 'Rua', 1, 'Casa'),
+           ('88503-590', 'Lages', 'Centro', 'Rua', 2, 'Casa')
 GO
 INSERT INTO TBCliente
            (Nome, Telefone, DataNascimento, TipoDocumento, NumeroDocumento, Endereco_Id)
      VALUES
-           ('Cliente', '999999999', '2000-01-01', null, null, 1)
+           ('Cliente', '999999999', '2000-01-01', null, null, 1),
+		   ('Cliente', '899999999', '2000-01-01', 'CPF', '123.456.789.00', 2)
+
 GO
 INSERT INTO TBProdutoGenerico
            (Descricao, Valor)

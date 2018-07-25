@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseSqlTeste.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\ObjectMother.cs" />
+    <Compile Include="Funcionalidades\Clientes\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Contas\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,7 +66,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Funcionalidades\Clientes\" />
     <Folder Include="Funcionalidades\Extratos\" />
   </ItemGroup>
   <ItemGroup>

@@ -10,16 +10,20 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
 {
     public static partial class ObjectMother
     {
-        public static Conta ObterContaValida()
+       
+        public static Cliente obterClienteValido()
         {
-            Conta conta = new Conta();
-
-            conta.Saldo = 10;
-            conta.Limite = 1000;
-
-            return conta;
+            return new Cliente()
+            {
+                Id = 1,
+                CPF = "085.544.649-82",
+                Nome = "Joana",
+                RG = "5.201-777",
+                DataNascimento = DateTime.Now.AddDays(-6000)
+            };
         }
-
         
+        
+
     }
 }
