@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ws_banco_tabajara.Application.Funcionalidades.Clientes.Interfaces;
+﻿using System.Linq;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes.Interface;
+using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 
 namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
 {
     public class ClienteServico : IClienteServico
     {
         IClienteRepositorio _clienteRepositorio;
+        IContaRepositorio _contaRepositorio;
 
-        public ClienteServico(IClienteRepositorio clienteRepositorio)
+        public ClienteServico(IClienteRepositorio clienteRepositorio, IContaRepositorio contaRepositorio)
         {
             _clienteRepositorio = clienteRepositorio;
+            _contaRepositorio = contaRepositorio;
         }
         public Cliente Adicionar(Cliente cliente)
         {
@@ -35,22 +33,38 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
             return _clienteRepositorio.BuscarTodos();
         }
 
-        public void Editar(Cliente cliente)
+        public void Editar(Cliente clienteReferencia)
         {
             // Obtém a entidade Indexada pelo EF e valida
-            var clienteBuscadoNoBanco = _clienteRepositorio.Buscar(cliente.Id);
+            Cliente clienteBuscadoNoBanco = _clienteRepositorio.Buscar(clienteReferencia.Id);
 
-            if(cliente.ContaId != clienteBuscadoNoBanco.ContaId)
-            
-            // Mapeia para o objeto do banco
-            clienteBuscadoNoBanco.Nome = cliente.Nome;
-            clienteBuscadoNoBanco.RG = cliente.RG;
-            clienteBuscadoNoBanco.DataNascimento = cliente.DataNascimento;
-            clienteBuscadoNoBanco.CPF = cliente.CPF;
+            Conta contaVinculadaAoCliente = _contaRepositorio.Buscar(clienteBuscadoNoBanco.ContaId);
+
+            clienteBuscadoNoBanco.Conta = contaVinculadaAoCliente;
+
+            if (clienteReferencia.Conta != null)
+            {
+                if (clienteReferencia.ContaId != clienteBuscadoNoBanco.ContaId)
+                {
+                    clienteBuscadoNoBanco.ContaId = clienteReferencia.Conta.Id;
+                    clienteBuscadoNoBanco.Conta = clienteReferencia.Conta;
+                }
+               
+               
+            }else if(clienteReferencia.ContaId != 0 && clienteReferencia.ContaId > 0)
+            {
+                if(clienteReferencia.ContaId != clienteBuscadoNoBanco.ContaId)
+                {
+                    clienteBuscadoNoBanco.ContaId = clienteReferencia.ContaId;
+                }
+             }
+
+             // Mapeia para o objeto do banco
+            clienteBuscadoNoBanco.Nome = clienteReferencia.Nome;
+            clienteBuscadoNoBanco.RG = clienteReferencia.RG;
+            clienteBuscadoNoBanco.DataNascimento = clienteReferencia.DataNascimento;
+            clienteBuscadoNoBanco.CPF = clienteReferencia.CPF;
            
-            if(cliente.Conta !=null)
-            clienteBuscadoNoBanco.Conta = cliente.Conta;
-
             // Realiza o update no objeto do banco
             _clienteRepositorio.Editar(clienteBuscadoNoBanco);
         }

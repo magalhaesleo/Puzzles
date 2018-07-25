@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Clientes\ObjectMother.cs" />
     <Compile Include="Funcionalidades\Contas\ObjectMother.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -55,7 +56,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Funcionalidades\Clientes\" />
     <Folder Include="Funcionalidades\Extratos\" />
     <Folder Include="Funcionalidades\Movimentacoes\" />
   </ItemGroup>
