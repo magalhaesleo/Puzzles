@@ -38,28 +38,7 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
             // Obtém a entidade Indexada pelo EF e valida
             Cliente clienteBuscadoNoBanco = _clienteRepositorio.Buscar(clienteReferencia.Id);
 
-            Conta contaVinculadaAoCliente = _contaRepositorio.Buscar(clienteBuscadoNoBanco.ContaId);
-
-            clienteBuscadoNoBanco.Conta = contaVinculadaAoCliente;
-
-            if (clienteReferencia.Conta != null)
-            {
-                if (clienteReferencia.ContaId != clienteBuscadoNoBanco.ContaId)
-                {
-                    clienteBuscadoNoBanco.ContaId = clienteReferencia.Conta.Id;
-                    clienteBuscadoNoBanco.Conta = clienteReferencia.Conta;
-                }
-               
-               
-            }else if(clienteReferencia.ContaId != 0 && clienteReferencia.ContaId > 0)
-            {
-                if(clienteReferencia.ContaId != clienteBuscadoNoBanco.ContaId)
-                {
-                    clienteBuscadoNoBanco.ContaId = clienteReferencia.ContaId;
-                }
-             }
-
-             // Mapeia para o objeto do banco
+            // Mapeia para o objeto do banco
             clienteBuscadoNoBanco.Nome = clienteReferencia.Nome;
             clienteBuscadoNoBanco.RG = clienteReferencia.RG;
             clienteBuscadoNoBanco.DataNascimento = clienteReferencia.DataNascimento;
