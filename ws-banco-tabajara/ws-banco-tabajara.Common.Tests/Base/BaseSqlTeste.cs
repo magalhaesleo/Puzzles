@@ -16,8 +16,7 @@ namespace ws_banco_tabajara.Common.Tests.Base
     {
         protected override void Seed(ContextoBancoTabajara contexto)
         {
-            Cliente cliente = new Cliente();
-            cliente.DataNascimento = DateTime.Now.AddYears(-20);
+            Cliente cliente = ObjectMother.ObterClienteValido();
 
             contexto.Clientes.Add(cliente);
             contexto.SaveChanges();

@@ -40,7 +40,7 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Contas
         [Test]
         public void Conta_InfraData_Adicionar_Sucesso()
         {
-            _cliente.DataNascimento = DateTime.Now.AddYears(-10);
+            _cliente = ObjectMother.ObterClienteValido();
             _movimentacao = ObjectMother.ObterMovimentacaoSemDependencia();
             _movimentacoes.Add(_movimentacao);
             _conta = ObjectMother.ObterContaValidaComTodosOsDados(_cliente, _movimentacoes);

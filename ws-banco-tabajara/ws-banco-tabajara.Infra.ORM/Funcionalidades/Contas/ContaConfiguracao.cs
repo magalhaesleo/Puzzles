@@ -28,7 +28,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
 
             HasRequired(conta => conta.Titular);
 
-            //HasMany(conta => conta.Movimentacoes);
+           // HasMany(conta => conta.Movimentacoes);
         }
     }
 }
