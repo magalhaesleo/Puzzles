@@ -22,7 +22,17 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
         public double Limite { get; set; }
 
         //SaldoTotal é composto por Saldo + Limite
-        public double SaldoTotal { get; set; }
+        public double SaldoTotal
+        {
+            get
+            {
+                return Limite + Saldo;
+            }
+            set
+            {
+                SaldoTotal = value;
+            }
+        }
 
         public List<Movimentacao> Movimentacoes { get; set; }
     }
