@@ -39,6 +39,6 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             }
         }
 
-        public List<Movimentacao> Movimentacoes { get; set; }
+        public virtual ICollection<Movimentacao> Movimentacoes { get; set; }
     }
 }

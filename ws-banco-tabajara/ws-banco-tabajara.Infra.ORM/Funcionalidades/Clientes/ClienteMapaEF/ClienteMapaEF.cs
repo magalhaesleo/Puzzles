@@ -20,10 +20,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.ClienteMapaEF
 
             Property(cliente => cliente.RG).HasColumnName("RG");
 
-            Property(cliente => cliente.Nome).HasColumnName("NOME").IsRequired();
-
-
-
+            Property(cliente => cliente.Nome).HasColumnName("NOME").IsRequired();            
         }
     }
 }

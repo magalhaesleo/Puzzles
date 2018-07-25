@@ -14,7 +14,14 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
         {
             _contaRepositorio = contaRepositorio;
         }
-        public Conta Adicionar(Conta entidade)
+        public Conta Adicionar(Conta conta)
+        {
+            Conta contaAdicionada = _contaRepositorio.Adicionar(conta);
+
+            return contaAdicionada;
+        }
+
+        public void AlterarStatusConta(bool status)
         {
             throw new NotImplementedException();
         }

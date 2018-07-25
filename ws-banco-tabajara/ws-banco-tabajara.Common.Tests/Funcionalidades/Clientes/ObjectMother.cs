@@ -11,7 +11,7 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
     public static partial class ObjectMother
     {
        
-        public static Cliente obterClienteValido()
+        public static Cliente ObterClienteValido()
         {
             return new Cliente()
             {
