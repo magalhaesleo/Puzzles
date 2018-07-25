@@ -8,9 +8,9 @@ using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 
 namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
 {
-    public class ContaMapaEF: EntityTypeConfiguration<Conta>
+    public class ContaConfiguracao : EntityTypeConfiguration<Conta>
     {
-        public ContaMapaEF()
+        public ContaConfiguracao()
         {
             ToTable("TBCONTA");
 
@@ -28,7 +28,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
 
             HasRequired(conta => conta.Titular);
 
-            HasRequired(conta => conta.Movimentacoes);
+            //HasMany(conta => conta.Movimentacoes);
         }
     }
 }

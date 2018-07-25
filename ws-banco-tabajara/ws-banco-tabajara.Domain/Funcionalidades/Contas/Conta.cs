@@ -11,7 +11,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
 {
     public class Conta : Entidade
     {
-        public Cliente Titular { get; set; }
+        public virtual Cliente Titular { get; set; }
 
         public string Numero { get; set; }
 
@@ -34,6 +34,6 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             }
         }
 
-        public virtual List<Movimentacao> Movimentacoes { get; set; }
+        public virtual ICollection<Movimentacao> Movimentacoes { get; set; }
     }
 }

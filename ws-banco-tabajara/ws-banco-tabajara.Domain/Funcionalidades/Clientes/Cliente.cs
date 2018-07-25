@@ -14,7 +14,5 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Clientes
         public string CPF { get; set; }
         public DateTime DataNascimento { get; set; }
         public string RG { get; set; }
-        public int ContaId { get; set; }
-        public virtual Conta Conta { get; set; }
     }
 }

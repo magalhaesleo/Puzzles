@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Common.Tests.Funcionalidades;
+using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 using ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes;
 using ws_banco_tabajara.Infra.ORM.Contextos;
@@ -15,14 +16,17 @@ namespace ws_banco_tabajara.Common.Tests.Base
     {
         protected override void Seed(ContextoBancoTabajara contexto)
         {
-            Conta conta = ObjectMother.ObterContaValida();
-            Conta contaMovimentada = ObjectMother.ObterContaValida();
+            Cliente cliente = new Cliente();
+            cliente.DataNascimento = DateTime.Now.AddYears(-20);
 
-            contexto.Contas.Add(conta);
-            contexto.Contas.Add(contaMovimentada);
+            contexto.Clientes.Add(cliente);
             contexto.SaveChanges();
 
-            Movimentacao movimentacao = ObjectMother.ObterMovimentacaoValida(conta, contaMovimentada);
+            Conta conta = ObjectMother.ObterContaComCliente(cliente);
+            contexto.Contas.Add(conta);
+            contexto.SaveChanges();
+
+            Movimentacao movimentacao = ObjectMother.ObterMovimentacaoValida(conta);
             contexto.Movimentacoes.Add(movimentacao);
             contexto.SaveChanges();
 

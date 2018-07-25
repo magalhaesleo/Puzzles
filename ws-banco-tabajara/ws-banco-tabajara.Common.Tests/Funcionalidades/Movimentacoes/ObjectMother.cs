@@ -29,24 +29,20 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
                 Data = DateTime.Now,
                 Descricao = "Descricao",
                 Valor = 4.50,
-                TipoOperacao = TipoOperacaoMovimentacao.TRANSFERENCIA_ENVIADA,
+                TipoOperacao = TipoOperacaoMovimentacao.CREDITO,
                 Conta = conta
             };
         }
 
-        //public static Movimentacao ObterMovimentacaoValidaSemDependencias()
-        //{
-        //    return new Movimentacao()
-        //    {
-        //        Data = DateTime.Now,
-        //        Descricao = "Descricao",
-        //        Valor = 4.50,
-        //        TipoOperacao = TipoOperacaoMovimentacao.CREDITO,
-        //        Conta = new Conta
-        //        {
-
-        //        },
-        //    };
-        //}
+        public static Movimentacao ObterMovimentacaoSemDependencia()
+        {
+            return new Movimentacao()
+            {
+                Data = DateTime.Now,
+                Descricao = "Descricao",
+                Valor = 4.50,
+                TipoOperacao = TipoOperacaoMovimentacao.CREDITO,             
+            };
+        }
     }
 }
