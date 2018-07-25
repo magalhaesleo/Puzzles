@@ -43,13 +43,14 @@
     <Compile Include="Funcionalidades\Contas\ContaServico.cs" />
     <Compile Include="Funcionalidades\Contas\IContaServico.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteServico.cs" />
+    <Compile Include="Funcionalidades\Movimentacoes\IMovimentacaoServico.cs" />
+    <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoServico.cs" />
     <Compile Include="Funcionalidades\Clientes\IClienteServico.cs" />
     <Compile Include="Interfaces\IServico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Funcionalidades\Extratos\" />
-    <Folder Include="Funcionalidades\Movimentacoes\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ws-banco-tabajara.Domain\ws-banco-tabajara.Domain.csproj">

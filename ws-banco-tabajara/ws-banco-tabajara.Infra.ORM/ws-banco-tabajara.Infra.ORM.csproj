@@ -56,13 +56,14 @@
     <Compile Include="Contextos\ContextoBancoTabajara.cs" />
     <Compile Include="Funcionalidades\Clientes\ClienteMapaEF\ClienteMapaEF.cs" />
     <Compile Include="Funcionalidades\Clientes\RepositorioSqlEF\ClienteRepositorioSqlEF.cs" />
+    <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoConfiguracao.cs" />
+    <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoRepositorioSQL.cs" />
     <Compile Include="Funcionalidades\Contas\ContaMapaEF.cs" />
     <Compile Include="Funcionalidades\Contas\ContaRepositorioSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Funcionalidades\Extratos\" />
-    <Folder Include="Funcionalidades\Movimentacoes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
