@@ -10,5 +10,6 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
 {
     public interface IContaServico : IServico<Conta>
     {
+        void AlterarStatusConta(long idConta);
     }
 }

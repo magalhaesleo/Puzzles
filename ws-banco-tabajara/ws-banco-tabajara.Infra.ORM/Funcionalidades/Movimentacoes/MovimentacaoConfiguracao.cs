@@ -33,7 +33,6 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Movimentacoes
             HasRequired(m => m.Conta);
 
             HasOptional(m => m.ContaMovimentada);
-
         }
     }
 }

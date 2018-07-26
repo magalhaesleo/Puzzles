@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ws_banco_tabajara.Domain.Excecoes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 
 namespace ws_banco_tabajara.Application.Funcionalidades.Contas
@@ -14,29 +15,50 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
         {
             _contaRepositorio = contaRepositorio;
         }
-        public Conta Adicionar(Conta entidade)
+        public Conta Adicionar(Conta conta)
         {
-            throw new NotImplementedException();
+            Conta contaAdicionada = _contaRepositorio.Adicionar(conta);
+
+            return contaAdicionada;
+        }
+
+        public void AlterarStatusConta(long contaId)
+        {
+            Conta contaBuscadaDoBanco = _contaRepositorio.Buscar(contaId);
+
+            contaBuscadaDoBanco.Ativa = !contaBuscadaDoBanco.Ativa;
+
+            _contaRepositorio.Editar(contaBuscadaDoBanco);
         }
 
         public Conta Buscar(long id)
         {
-            throw new NotImplementedException();
+            return _contaRepositorio.Buscar(id);
         }
 
         public IQueryable<Conta> BuscarTodos()
         {
-            throw new NotImplementedException();
+            return _contaRepositorio.BuscarTodos();
         }
 
-        public void Editar(Conta entidade)
+        public void Editar(Conta contaReferencia)
         {
-            throw new NotImplementedException();
+            Conta contaBuscadaNoBanco = _contaRepositorio.Buscar(contaReferencia.Id) ?? throw new ExcecaoRegistroNaoEncontrado();
+
+            if(contaReferencia.Titular!=null)
+            contaBuscadaNoBanco.Titular = contaReferencia.Titular;
+
+            contaBuscadaNoBanco.Limite = contaReferencia.Limite;
+            contaBuscadaNoBanco.Numero = contaReferencia.Numero;
+            contaBuscadaNoBanco.Saldo = contaReferencia.Saldo;
+                    
+            _contaRepositorio.Editar(contaBuscadaNoBanco);
+           
         }
 
-        public void Excluir(Conta entidade)
+        public void Excluir(Conta conta)
         {
-            throw new NotImplementedException();
+            _contaRepositorio.Excluir(conta);
         }
     }
 }

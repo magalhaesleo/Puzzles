@@ -68,6 +68,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSqlTeste.cs" />
     <Compile Include="Funcionalidades\Contas\ContaRepositorioSQLTeste.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoRepositorioSQLTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,7 +96,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ws-banco-tabajara.Infra.ORM\ws-banco-tabajara.Infra.ORM.csproj">
+      <Project>{8245A6C7-4D7F-4E02-900D-2F1C6F247988}</Project>
+      <Name>ws-banco-tabajara.Infra.ORM</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

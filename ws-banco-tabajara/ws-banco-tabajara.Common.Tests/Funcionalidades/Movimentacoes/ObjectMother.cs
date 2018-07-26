@@ -32,5 +32,16 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
                 Conta = conta
             };
         }
+
+        public static Movimentacao ObterMovimentacaoSemDependencia()
+        {
+            return new Movimentacao()
+            {
+                Data = DateTime.Now,
+                Descricao = "Descricao",
+                Valor = 4.50,
+                TipoOperacao = TipoOperacaoMovimentacao.CREDITO,             
+            };
+        }
     }
 }
