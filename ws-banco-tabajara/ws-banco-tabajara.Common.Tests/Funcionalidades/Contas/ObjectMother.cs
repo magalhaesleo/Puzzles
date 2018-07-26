@@ -16,7 +16,7 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
             Conta conta = new Conta();
 
             conta.Numero = "32432443";
-            conta.Saldo = 10;
+            conta.Saldo = 500;
             conta.Limite = 1000;
 
             return conta;
@@ -30,6 +30,7 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
             conta.Saldo = 10;
             conta.Limite = 1000;
             conta.Titular = cliente;
+            conta.Ativa = true;
 
             return conta;
         }

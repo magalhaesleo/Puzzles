@@ -36,7 +36,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Movimentacoes
                 .HasColumnType("float")
                 .IsRequired();
 
-            // HasRequired(m => m.Conta);
+            HasRequired(m => m.Conta);
 
             HasOptional(m => m.ContaMovimentada);
         }

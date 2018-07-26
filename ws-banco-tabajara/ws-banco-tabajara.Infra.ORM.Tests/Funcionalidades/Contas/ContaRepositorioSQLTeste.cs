@@ -66,6 +66,12 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Contas
         [Test]
         public void Conta_InfraData_Buscar_Sucesso()
         {
+            long idContaAdicionadaBaseSql = 1;
+
+            Conta contaBuscada =_contaRepositorio.Buscar(idContaAdicionadaBaseSql);
+
+            contaBuscada.Should().NotBeNull();
+            contaBuscada.Id.Should().Be(idContaAdicionadaBaseSql);
 
         }
 

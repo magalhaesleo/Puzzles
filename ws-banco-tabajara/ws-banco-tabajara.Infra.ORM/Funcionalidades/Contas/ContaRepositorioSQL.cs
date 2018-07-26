@@ -25,7 +25,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
 
         public Conta Buscar(long id)
         {
-            throw new NotImplementedException();
+            return _contextoBancoTabajara.Contas.Find(id);
         }
 
         public IQueryable<Conta> BuscarTodos()

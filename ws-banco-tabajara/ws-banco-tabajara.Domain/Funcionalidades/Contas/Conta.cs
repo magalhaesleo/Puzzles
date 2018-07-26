@@ -33,10 +33,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             {
                 return Limite + Saldo;
             }
-            set
-            {
-                SaldoTotal = value;
-            }
+            set { }
         }
 
         public virtual ICollection<Movimentacao> Movimentacoes { get; set; }

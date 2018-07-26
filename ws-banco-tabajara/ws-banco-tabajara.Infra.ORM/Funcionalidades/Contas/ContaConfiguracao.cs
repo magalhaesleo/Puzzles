@@ -12,20 +12,20 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
     {
         public ContaConfiguracao()
         {
-            ToTable("TBCONTA");
+            ToTable("TBConta");
 
             HasKey(conta => conta.Id);
 
-            Property(conta => conta.Numero).HasColumnName("NUMERO").IsRequired();
+            Property(conta => conta.Numero).HasColumnName("Numero").IsRequired();
 
-            Property(conta => conta.Saldo).HasColumnName("SALDO").IsRequired();
+            Property(conta => conta.Saldo).HasColumnName("Saldo").IsRequired();
 
-            Property(conta => conta.Ativa).HasColumnName("ATIVA").IsRequired();
+            Property(conta => conta.Ativa).HasColumnName("Ativa").IsRequired();
 
-            Property(conta => conta.Limite).HasColumnName("LIMITE").IsRequired();
+            Property(conta => conta.Limite).HasColumnName("Limite").IsRequired();
 
-            Property(conta => conta.SaldoTotal).HasColumnName("SALDOTOTAL").IsRequired();
-
+            Property(conta => conta.SaldoTotal).HasColumnName("SaldoTotal").IsRequired();
+            
             HasRequired(conta => conta.Titular);
 
             HasMany(conta => conta.Movimentacoes).WithRequired(movimentacao => movimentacao.Conta);

@@ -32,7 +32,7 @@ namespace ws_banco_tabajara.Infra.ORM.Contextos
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           // modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             modelBuilder.Configurations.Add(new ClienteMapaEF());
             modelBuilder.Configurations.Add(new ContaConfiguracao());
