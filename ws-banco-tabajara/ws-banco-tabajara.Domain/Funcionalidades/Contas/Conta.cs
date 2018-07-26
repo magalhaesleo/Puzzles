@@ -37,5 +37,52 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
         }
 
         public virtual ICollection<Movimentacao> Movimentacoes { get; set; }
+
+        public void Sacar(double valorSaque)
+        {
+            Movimentacao saque = new Movimentacao
+            {
+                Conta = this,
+                Data = DateTime.Now,
+                TipoOperacao = TipoOperacaoMovimentacao.DEBITO,
+                Valor = valorSaque
+            };
+            this.Movimentacoes.Add(saque);
+        }
+
+        public void Depositar(double valorDeposito)
+        {
+            Movimentacao deposito = new Movimentacao
+            {
+                Conta = this,
+                Data = DateTime.Now,
+                TipoOperacao = TipoOperacaoMovimentacao.CREDITO,
+                Valor = valorDeposito
+            };
+            this.Movimentacoes.Add(deposito);
+        }
+
+        public void Transferir(Conta contaMovimentada, double valorTransferencia)
+        {
+            Movimentacao transferenciaEnviada = new Movimentacao
+            {
+                Conta = this,
+                ContaMovimentada = contaMovimentada,
+                Data = DateTime.Now,
+                TipoOperacao = TipoOperacaoMovimentacao.TRANSFERENCIA_ENVIADA,
+                Valor = valorTransferencia
+            };
+            this.Movimentacoes.Add(transferenciaEnviada);
+
+            Movimentacao transferenciaRecebida = new Movimentacao
+            {
+                Conta = contaMovimentada,
+                ContaMovimentada = this,
+                Data = DateTime.Now,
+                TipoOperacao = TipoOperacaoMovimentacao.TRANSFERENCIA_RECEBIDA,
+                Valor = valorTransferencia
+            };
+            contaMovimentada.Movimentacoes.Add(transferenciaRecebida);
+        }
     }
 }

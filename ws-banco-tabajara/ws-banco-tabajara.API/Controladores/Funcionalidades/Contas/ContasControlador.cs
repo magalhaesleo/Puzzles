@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ws_banco_tabajara.Application.Funcionalidades.Contas;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
+using ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes;
 using ws_banco_tabajara.Infra.ORM.Contextos;
 using ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas;
 
@@ -29,105 +30,58 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
             _contaServico = new ContaServico(_contaRepositorio);
         }
 
-        #region Buscar
-        
-        [HttpGet]
-        public IQueryable<Conta> BuscatrTodos()
+        [Route("{id}")]
+        public Conta Depositar(long id, double valorDeposito)
         {
-            return _contaServico.BuscarTodos();
+            Conta conta = _contaServico.Buscar(id);
+
+            Movimentacao deposito = new Movimentacao
+            {
+                Conta = conta,
+                Data = DateTime.Now,
+                TipoOperacao = TipoOperacaoMovimentacao.CREDITO,
+                Valor = valorDeposito
+            };
+
+            conta.Movimentacoes.Add(deposito);
+
+            return conta;
         }
 
-        // GET: api/ContasControlador/5
-        [ResponseType(typeof(Conta))]
-        public IHttpActionResult GetConta(long id)
+        [Route("{id}")]
+        public Conta Sacar(long id, double valorSaque)
         {
-            Conta conta = db.Contas.Find(id);
-            if (conta == null)
-            {
-                return NotFound();
-            }
+            Conta conta = _contaServico.Buscar(id);
 
-            return Ok(conta);
+            Movimentacao saque = new Movimentacao
+            {
+                Conta = conta,
+                Data = DateTime.Now,
+                TipoOperacao = TipoOperacaoMovimentacao.DEBITO,
+                Valor = valorSaque
+            };
+
+            conta.Movimentacoes.Add(saque);
+
+            return conta;
         }
 
-        // PUT: api/ContasControlador/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutConta(long id, Conta conta)
+        [Route("{id}")]
+        public Conta Transferir(long id, long idContaDestino, double valorTransferencia)
         {
-            if (!ModelState.IsValid)
+            Conta conta = _contaServico.Buscar(id);
+
+            Movimentacao saque = new Movimentacao
             {
-                return BadRequest(ModelState);
-            }
+                Conta = conta,
+                Data = DateTime.Now,
+                TipoOperacao = TipoOperacaoMovimentacao.DEBITO,
+                Valor = valorSaque
+            };
 
-            if (id != conta.Id)
-            {
-                return BadRequest();
-            }
+            conta.Movimentacoes.Add(saque);
 
-            db.Entry(conta).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ContaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/ContasControlador
-        [ResponseType(typeof(Conta))]
-        public IHttpActionResult PostConta(Conta conta)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Contas.Add(conta);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = conta.Id }, conta);
-        }
-
-        // DELETE: api/ContasControlador/5
-        [ResponseType(typeof(Conta))]
-        public IHttpActionResult DeleteConta(long id)
-        {
-            Conta conta = db.Contas.Find(id);
-            if (conta == null)
-            {
-                return NotFound();
-            }
-
-            db.Contas.Remove(conta);
-            db.SaveChanges();
-
-            return Ok(conta);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool ContaExists(long id)
-        {
-            return db.Contas.Count(e => e.Id == id) > 0;
+            return conta;
         }
     }
 }
