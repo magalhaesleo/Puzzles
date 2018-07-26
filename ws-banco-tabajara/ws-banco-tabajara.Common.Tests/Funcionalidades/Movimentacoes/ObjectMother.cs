@@ -38,7 +38,6 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
             return new Movimentacao()
             {
                 Data = DateTime.Now,
-                Descricao = "Descricao",
                 Valor = 4.50,
                 TipoOperacao = TipoOperacaoMovimentacao.CREDITO,             
             };
