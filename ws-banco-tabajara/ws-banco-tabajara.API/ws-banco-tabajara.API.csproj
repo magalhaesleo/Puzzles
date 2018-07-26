@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidation, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.7.6.104\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
@@ -193,6 +199,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controladores\Base\ControladorBaseAPI.cs" />
     <Compile Include="Controladores\Base\ControladorPublico.cs" />
+    <Compile Include="Controladores\Funcionalidades\Clientes\ClientesControlador.cs" />
+    <Compile Include="Controladores\Funcionalidades\Contas\ContasControlador.cs" />
     <Compile Include="Excecoes\ExceptionPayload.cs" />
     <Compile Include="Extensoes\ExceptionHandlingExtensions.cs" />
     <Compile Include="Filtros\ExceptionHandlerAttribute.cs" />
@@ -214,8 +222,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controladores\Funcionalidades\Clientes\" />
-    <Folder Include="Controladores\Funcionalidades\Contas\" />
     <Folder Include="Controladores\Funcionalidades\Extratos\" />
     <Folder Include="Controladores\Funcionalidades\Movimentacoes\" />
   </ItemGroup>
@@ -226,6 +232,10 @@
     <ProjectReference Include="..\ws-banco-tabajara.Domain\ws-banco-tabajara.Domain.csproj">
       <Project>{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}</Project>
       <Name>ws-banco-tabajara.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ws-banco-tabajara.Infra.ORM\ws-banco-tabajara.Infra.ORM.csproj">
+      <Project>{8245a6c7-4d7f-4e02-900d-2f1c6f247988}</Project>
+      <Name>ws-banco-tabajara.Infra.ORM</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
