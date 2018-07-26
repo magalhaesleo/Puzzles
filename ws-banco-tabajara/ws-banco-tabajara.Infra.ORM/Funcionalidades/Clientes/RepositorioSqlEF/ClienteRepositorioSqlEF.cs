@@ -18,18 +18,22 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.RepositorioSqlEF
         }
         public Cliente Adicionar(Cliente cliente)
         {
-            return _contextoBancoTabajara.Clientes.Add(cliente);
+             var clienteAdicionado = _contextoBancoTabajara.Clientes.Add(cliente);
+
+            _contextoBancoTabajara.SaveChanges();
+
+            return clienteAdicionado;
         }
 
         public Cliente Buscar(long id)
         {
-            return _contextoBancoTabajara.Clientes.Include("Conta").Where(cliente => cliente.Id == id).FirstOrDefault(); 
+            return _contextoBancoTabajara.Clientes.Where(cliente => cliente.Id == id).FirstOrDefault(); 
                                           
         }
 
         public IQueryable<Cliente> BuscarTodos()
         {
-            var clientesEncontrados = from TBCLIENTE in _contextoBancoTabajara.Clientes.Include("Conta")
+            var clientesEncontrados = from TBCLIENTE in _contextoBancoTabajara.Clientes
                                     select TBCLIENTE;
 
             return clientesEncontrados;

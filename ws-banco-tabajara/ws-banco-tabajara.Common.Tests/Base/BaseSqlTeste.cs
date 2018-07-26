@@ -16,20 +16,26 @@ namespace ws_banco_tabajara.Common.Tests.Base
     {
         protected override void Seed(ContextoBancoTabajara contexto)
         {
+            ///////////////////////CLIENTES///////////////////////
             Cliente cliente = ObjectMother.ObterClienteValido();
 
             contexto.Clientes.Add(cliente);
             contexto.SaveChanges();
 
+            ///////////////////////CONTAS///////////////////////
             Conta conta = ObjectMother.ObterContaComCliente(cliente);
             contexto.Contas.Add(conta);
             contexto.SaveChanges();
 
+
+            ///////////////////////MOVIMENTACAO///////////////////////
             Movimentacao movimentacao = ObjectMother.ObterMovimentacaoValida(conta);
             contexto.Movimentacoes.Add(movimentacao);
             contexto.SaveChanges();
 
             conta.Movimentacoes.Add(movimentacao);
+
+            ///////////////////////INDEXANDO E SALVANDO ALTERACOES///////////////////////
             contexto.SaveChanges();
 
             base.Seed(contexto);
