@@ -30,17 +30,19 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
 
         public IQueryable<Conta> BuscarTodos()
         {
-            throw new NotImplementedException();
+           return _contextoBancoTabajara.Contas;
         }
 
-        public void Editar(Conta entidade)
+        public void Editar(Conta conta)
         {
-            throw new NotImplementedException();
+            _contextoBancoTabajara.SaveChanges();
         }
 
-        public void Excluir(Conta entidade)
+        public void Excluir(Conta conta)
         {
-            throw new NotImplementedException();
+            _contextoBancoTabajara.Contas.Remove(conta);
+
+            _contextoBancoTabajara.SaveChanges();
         }
     }
 }
