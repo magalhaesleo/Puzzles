@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Common.Tests.Base;
 using ws_banco_tabajara.Common.Tests.Funcionalidades;
+using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 using ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes;
 using ws_banco_tabajara.Infra.ORM.Contextos;
@@ -26,6 +27,7 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Movimentacoes
         private Movimentacao _movimentacao;
         private Conta _conta;
         private Conta _contaMovimentada;
+        private Cliente _cliente;
 
         [SetUp]
         public void IniciarCenario()
@@ -38,8 +40,13 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Movimentacoes
             _repositorio = new MovimentacaoRepositorioSQL(_contexto);
             _contaRepositorioSQL = new ContaRepositorioSQL(_contexto);
 
-            _conta = ObjectMother.ObterContaValida();
-            _contaMovimentada = ObjectMother.ObterContaValida();
+
+            _cliente = ObjectMother.ObterClienteValido();
+
+            _conta = ObjectMother.ObterContaComCliente(_cliente);
+
+            _contaMovimentada = ObjectMother.ObterContaComCliente(_cliente);
+
             _movimentacao = ObjectMother.ObterMovimentacaoTransferenciaEnviada(_conta, _contaMovimentada);
         }
 
