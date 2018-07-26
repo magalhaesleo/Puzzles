@@ -40,7 +40,7 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Movimentacoes
 
             _conta = ObjectMother.ObterContaValida();
             _contaMovimentada = ObjectMother.ObterContaValida();
-            _movimentacao = ObjectMother.ObterMovimentacaoValida(_conta, _contaMovimentada);
+            _movimentacao = ObjectMother.ObterMovimentacaoTransferenciaEnviada(_conta, _contaMovimentada);
         }
 
         [Test]
