@@ -114,5 +114,22 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Clientes
             //Verificacao
             clienteBuscadoAposExclusao.Should().BeNull();
         }
+
+        [Test]
+        public void Cliente_InfraDadosORM_ExcluirClienteComContaVinculada_Sucesso()
+        {
+            //Cenario
+            long idClienteComContaAdicionadoBaseSQL = 1;
+            Cliente clienteComConta = _clienteRepositorioSQL.Buscar(idClienteComContaAdicionadoBaseSQL);
+
+            //Acao
+
+            _clienteRepositorioSQL.Excluir(clienteComConta);
+
+            Cliente clienteBuscadoAposExclusao = _clienteRepositorioSQL.Buscar(idClienteComContaAdicionadoBaseSQL);
+
+            //Verificacao
+            clienteBuscadoAposExclusao.Should().BeNull();
+        }
     }
 }
