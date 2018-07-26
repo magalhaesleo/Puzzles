@@ -18,7 +18,7 @@ namespace ws_banco_tabajara.Domain.Tests.Funcionalidades.Contas
         {
             Conta conta = ObjectMother.ObterContaValida();
 
-            int valorSaldoTotalObjectMother = 1010;
+            int valorSaldoTotalObjectMother = 1500;
 
             conta.SaldoTotal.Should().Be(valorSaldoTotalObjectMother);
         }
