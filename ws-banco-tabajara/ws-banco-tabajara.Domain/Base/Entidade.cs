@@ -8,6 +8,6 @@ namespace ws_banco_tabajara.Domain.Base
 {
     public abstract class Entidade
     {
-        public virtual int Id { get; set; } 
+        public virtual long Id { get; set; } 
     }
 }

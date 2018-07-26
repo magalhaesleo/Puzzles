@@ -19,7 +19,7 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
                 Valor = 4.50,
                 TipoOperacao = TipoOperacaoMovimentacao.TRANSFERENCIA_ENVIADA,
                 Conta = conta,
-                ContaMovimentada = contaMovimentada
+               ContaMovimentada = contaMovimentada
             };
         }
 
@@ -35,19 +35,15 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
             };
         }
 
-        //public static Movimentacao ObterMovimentacaoValidaSemDependencias()
-        //{
-        //    return new Movimentacao()
-        //    {
-        //        Data = DateTime.Now,
-        //        Descricao = "Descricao",
-        //        Valor = 4.50,
-        //        TipoOperacao = TipoOperacaoMovimentacao.CREDITO,
-        //        Conta = new Conta
-        //        {
-
-        //        },
-        //    };
-        //}
+        public static Movimentacao ObterMovimentacaoSemDependencia()
+        {
+            return new Movimentacao()
+            {
+                Data = DateTime.Now,
+                Descricao = "Descricao",
+                Valor = 4.50,
+                TipoOperacao = TipoOperacaoMovimentacao.CREDITO,             
+            };
+        }
     }
 }
