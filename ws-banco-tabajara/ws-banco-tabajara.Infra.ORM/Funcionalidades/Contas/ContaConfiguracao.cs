@@ -26,7 +26,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
 
             Property(conta => conta.SaldoTotal).HasColumnName("SaldoTotal").IsRequired();
             
-            HasRequired(conta => conta.Titular);
+            HasRequired(conta => conta.Titular).WithMany().WillCascadeOnDelete(true);
 
             HasMany(conta => conta.Movimentacoes).WithRequired(movimentacao => movimentacao.Conta).WillCascadeOnDelete(true);
         }
