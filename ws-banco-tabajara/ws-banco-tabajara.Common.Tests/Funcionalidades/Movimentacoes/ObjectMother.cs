@@ -10,16 +10,27 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
 {
     public static partial class ObjectMother
     {
-        public static Movimentacao ObterMovimentacaoValida(Conta conta, Conta contaMovimentada)
+        public static Movimentacao ObterMovimentacaoTransferenciaEnviada(Conta conta, Conta contaMovimentada)
         {
             return new Movimentacao()
             {
                 Data = DateTime.Now,
-                Descricao = "Descricao",
                 Valor = 4.50,
                 TipoOperacao = TipoOperacaoMovimentacao.TRANSFERENCIA_ENVIADA,
                 Conta = conta,
-               ContaMovimentada = contaMovimentada
+                ContaMovimentada = contaMovimentada
+            };
+        }
+
+        public static Movimentacao ObterMovimentacaoTransferenciaRecebida(Conta conta, Conta contaMovimentada)
+        {
+            return new Movimentacao()
+            {
+                Data = DateTime.Now,
+                Valor = 4.50,
+                TipoOperacao = TipoOperacaoMovimentacao.TRANSFERENCIA_RECEBIDA,
+                Conta = conta,
+                ContaMovimentada = contaMovimentada
             };
         }
 
@@ -28,7 +39,6 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
             return new Movimentacao()
             {
                 Data = DateTime.Now,
-                Descricao = "Descricao",
                 Valor = 4.50,
                 TipoOperacao = TipoOperacaoMovimentacao.CREDITO,
                 Conta = conta
@@ -40,7 +50,6 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
             return new Movimentacao()
             {
                 Data = DateTime.Now,
-                Descricao = "Descricao",
                 Valor = 4.50,
                 TipoOperacao = TipoOperacaoMovimentacao.CREDITO,             
             };

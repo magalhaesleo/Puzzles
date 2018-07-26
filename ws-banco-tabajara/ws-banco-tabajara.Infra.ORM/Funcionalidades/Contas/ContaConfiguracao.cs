@@ -12,7 +12,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
     {
         public ContaConfiguracao()
         {
-            ToTable("TBConta");
+            ToTable("TBCONTA");
 
             HasKey(conta => conta.Id);
 
@@ -28,7 +28,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
             
             HasRequired(conta => conta.Titular);
 
-            HasMany(conta => conta.Movimentacoes).WithRequired(movimentacao => movimentacao.Conta);
+            HasMany(conta => conta.Movimentacoes).WithRequired(movimentacao => movimentacao.Conta).WillCascadeOnDelete(true);
         }
     }
 }
