@@ -40,9 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\CodigosDeErro.cs" />
     <Compile Include="Base\Entidade.cs" />
-    <Compile Include="Base\ExcecaoDeNegocio.cs" />
+    <Compile Include="Excecoes\CodigosDeErro.cs" />
+    <Compile Include="Excecoes\ExcecaoDeNegocio.cs" />
     <Compile Include="Excecoes\ExcecaoRegistroNaoEncontrado.cs" />
     <Compile Include="Funcionalidades\Clientes\Cliente.cs" />
     <Compile Include="Funcionalidades\Clientes\IClienteRepositorio.cs" />

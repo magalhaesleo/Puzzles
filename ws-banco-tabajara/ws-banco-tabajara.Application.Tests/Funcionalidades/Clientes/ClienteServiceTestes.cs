@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using ws_banco_tabajara.Application.Funcionalidades.Clientes;
 using ws_banco_tabajara.Common.Tests.Funcionalidades;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
-using ws_banco_tabajara.Domain.Funcionalidades.Clientes.Interface;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 
 namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
@@ -36,7 +35,7 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
         public void Cliente_Application_Adicionar_Sucesso()
         {
             //Cenario
-            Cliente clienteParaSerAdicionado = ObjectMother.obterClienteValido();
+            Cliente clienteParaSerAdicionado = ObjectMother.ObterClienteValido();
 
             _moqClienteRepositorio.Setup(mcr => mcr.Adicionar(clienteParaSerAdicionado)).Returns(clienteParaSerAdicionado);
 
@@ -69,7 +68,7 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
         public void Cliente_Application_Excluir_Sucesso()
         {
             //Cenario
-            Cliente clienteParaRemover = ObjectMother.obterClienteValido();
+            Cliente clienteParaRemover = ObjectMother.ObterClienteValido();
 
             _moqClienteRepositorio.Setup(mcr => mcr.Excluir(clienteParaRemover));
 
@@ -103,8 +102,8 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
             //Cenario
             
             
-            Cliente clienteBuscadoNoBanco = ObjectMother.obterClienteValido();
-            Cliente clienteEditado = ObjectMother.obterClienteValido();
+            Cliente clienteBuscadoNoBanco = ObjectMother.ObterClienteValido();
+            Cliente clienteEditado = ObjectMother.ObterClienteValido();
             clienteEditado.Nome = "Edicao";
 
             _moqClienteRepositorio.Setup(mcr => mcr.Buscar(clienteBuscadoNoBanco.Id)).Returns(clienteBuscadoNoBanco);
