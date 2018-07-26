@@ -25,7 +25,7 @@ namespace ws_banco_tabajara.Domain.Tests.Funcionalidades.Movimentacoes
         {
             _conta = new Mock<Conta>();
             _contaMovimentada = new Mock<Conta>();
-            _movimentacao = ObjectMother.ObterMovimentacaoValida(_conta.Object, _contaMovimentada.Object);
+            _movimentacao = ObjectMother.ObterMovimentacaoTransferenciaEnviada(_conta.Object, _contaMovimentada.Object);
             _contaMovimentada.Setup(cm => cm.Numero).Returns("12345");
         }
 
