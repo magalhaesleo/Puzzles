@@ -16,17 +16,14 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
     {
 
         private Mock<IClienteRepositorio> _moqClienteRepositorio;
-        private Mock<IContaRepositorio> _moqContaRepositorio;
+        
         private ClienteServico _clienteServico;
 
         [SetUp]
         public void Inicializar()
         {
-
             _moqClienteRepositorio = new Mock<IClienteRepositorio>();
-            _moqContaRepositorio = new Mock<IContaRepositorio>();
-
-            _clienteServico = new ClienteServico(_moqClienteRepositorio.Object, _moqContaRepositorio.Object);
+            _clienteServico = new ClienteServico(_moqClienteRepositorio.Object);
         }
 
         [Test]

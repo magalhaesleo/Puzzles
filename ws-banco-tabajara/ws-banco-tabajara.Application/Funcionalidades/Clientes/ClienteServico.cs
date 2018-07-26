@@ -9,12 +9,11 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
     public class ClienteServico : IClienteServico
     {
         IClienteRepositorio _clienteRepositorio;
-        IContaRepositorio _contaRepositorio;
+        
 
-        public ClienteServico(IClienteRepositorio clienteRepositorio, IContaRepositorio contaRepositorio)
+        public ClienteServico(IClienteRepositorio clienteRepositorio)
         {
             _clienteRepositorio = clienteRepositorio;
-            _contaRepositorio = contaRepositorio;
         }
         public Cliente Adicionar(Cliente cliente)
         {
