@@ -45,17 +45,11 @@ namespace ws_banco_tabajara.API.Controladores.Base
         /// <returns>IHttpActionResult(TResult) com o resultado da operação</returns>
         protected IHttpActionResult HandleQuery<TResult>(IQueryable<TResult> query)
         {
-            if (Request.Headers.Accept.Contains(MediaTypeWithQualityHeaderValue.Parse(TiposDeMidia.Csv)))
-                return ResponseMessage(HandleCSVFile(query));
-
             return Ok(query.ToList());
         }
 
         protected IHttpActionResult HandleQueryable<TSource>(IQueryable<TSource> query)
         {
-            if (Request.Headers.Accept.Contains(MediaTypeWithQualityHeaderValue.Parse(MediaTypes.Csv)))
-                return ResponseMessage(HandleCSVFile(query));
-
             return Ok(query.ToList());
         }
 

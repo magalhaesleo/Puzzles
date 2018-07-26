@@ -193,8 +193,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controladores\Base\ControladorBaseAPI.cs" />
     <Compile Include="Controladores\Base\ControladorPublico.cs" />
-    <Compile Include="Controladores\HomeController.cs" />
-    <Compile Include="Controladores\ValuesController.cs" />
     <Compile Include="Excecoes\ExceptionPayload.cs" />
     <Compile Include="Extensoes\ExceptionHandlingExtensions.cs" />
     <Compile Include="Filtros\ExceptionHandlerAttribute.cs" />

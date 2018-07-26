@@ -25,12 +25,6 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Movimentacoes
                 .HasColumnName("TipoOperacao")
                 .IsRequired();
 
-            Property(m => m.Descricao)
-                .HasColumnName("Descricao")
-                .HasColumnType("varchar")
-                .HasMaxLength(100)
-                .IsRequired();
-
             Property(m => m.Valor)
                 .HasColumnName("Valor")
                 .HasColumnType("float")
