@@ -109,5 +109,17 @@ namespace ws_banco_tabajara.Domain.Tests.Funcionalidades.Contas
 
             acaoResultado.Should().Throw<SaldoInsuficienteExcecao>();
         }
+
+        [Test]
+        public void Conta_Dominio_AlterarStatus_Sucesso()
+        {
+            Conta conta = ObjectMother.ObterContaValida();
+
+            bool statusAntigo = conta.Ativa;
+
+            conta.AlterarStatus();
+
+            conta.Ativa.Should().Be(!statusAntigo);
+        }
     }
 }
