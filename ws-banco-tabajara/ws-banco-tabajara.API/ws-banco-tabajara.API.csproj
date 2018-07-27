@@ -200,7 +200,7 @@
     <Compile Include="Controladores\Base\ControladorBaseAPI.cs" />
     <Compile Include="Controladores\Base\ControladorPublico.cs" />
     <Compile Include="Controladores\Funcionalidades\Clientes\ClientesControlador.cs" />
-    <Compile Include="Controladores\Funcionalidades\Contas\ContasControlador.cs" />
+    <Compile Include="Controladores\Funcionalidades\Contas\ContasController.cs" />
     <Compile Include="Excecoes\ExceptionPayload.cs" />
     <Compile Include="Extensoes\ExceptionHandlingExtensions.cs" />
     <Compile Include="Filtros\ExceptionHandlerAttribute.cs" />
