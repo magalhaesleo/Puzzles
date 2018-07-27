@@ -20,6 +20,7 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
         private Mock<Conta> _contaBuscadaNoBancoMoq;
         private Mock<IContaRepositorio> _contaRepositorioMoq;
         private Mock<IClienteRepositorio> _clienteRepositorioMoq;
+        private Mock<Cliente> _cliente;
 
         [SetUp]
         public void IniciarCenario()
@@ -27,9 +28,10 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
             _contaRepositorioMoq = new Mock<IContaRepositorio>();
             _clienteRepositorioMoq = new Mock<IClienteRepositorio>();
             _contaServico = new ContaServico(_contaRepositorioMoq.Object, _clienteRepositorioMoq.Object);
+            _cliente = new Mock<Cliente>();
             _contaMoq = new Mock<Conta>();
-            _contaBuscadaNoBancoMoq = new Mock<Conta>();
-        }
+            _contaMoq.Setup(c => c.Titular).Returns(_cliente.Object);
+            _contaBuscadaNoBancoMoq = new Mock<Conta>();        }
 
         [Test]
         public void Conta_Aplicacao_Adicionar_Sucesso()
@@ -68,8 +70,10 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
         public void Conta_Aplicacao_Excluir_Sucesso()
         {
             //Cenario
+            long idConta = 1;
+            _contaMoq.Setup(c => c.Id).Returns(idConta);
             _contaRepositorioMoq.Setup(crm => crm.Excluir(_contaMoq.Object));
-
+            _contaRepositorioMoq.Setup(crm => crm.Buscar(_contaMoq.Object.Id)).Returns(_contaMoq.Object);
 
             //Acao
             _contaServico.Excluir(_contaMoq.Object);
@@ -106,6 +110,8 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
 
             _contaRepositorioMoq.Setup(crm => crm.Editar(_contaBuscadaNoBancoMoq.Object));
 
+            _clienteRepositorioMoq.Setup(cr => cr.Buscar(_contaMoq.Object.Titular.Id)).Returns(_cliente.Object);
+
             //Acao
             _contaServico.Editar(_contaMoq.Object);
 
@@ -116,28 +122,19 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
         }
 
         [Test]
-        public void Conta_Aplicacao_EditarComTitularNulo_Sucesso()
+        public void Conta_Aplicacao_EditarComTitularNulo_Falha()
         {
             //Cenario
-            byte idContaReferencia = 1;
-
-            _contaMoq.Setup(cbb => cbb.Id).Returns(idContaReferencia);
-
-            _contaRepositorioMoq.Setup(crm => crm.Buscar(_contaMoq.Object.Id)).Returns(_contaBuscadaNoBancoMoq.Object);
-
-            _contaMoq.Object.Titular = null;
-
-            _contaRepositorioMoq.Setup(crm => crm.Editar(_contaBuscadaNoBancoMoq.Object));
+            Cliente titularNulo = null;
+            _contaMoq.Setup(c => c.Titular).Returns(titularNulo);
 
             //Acao
-            _contaServico.Editar(_contaMoq.Object);
+            Action resultado = () => _contaServico.Editar(_contaMoq.Object);
 
             //Verificao
-            _contaRepositorioMoq.Verify(crm => crm.Buscar(_contaMoq.Object.Id));
-            _contaRepositorioMoq.Verify(crm => crm.Editar(_contaBuscadaNoBancoMoq.Object));
-            _contaMoq.Verify(cm => cm.Id);
-
-
+            resultado.Should().Throw<ContaSemTitularExcecao>();
+            _contaRepositorioMoq.VerifyNoOtherCalls();
+            _clienteRepositorioMoq.VerifyNoOtherCalls();
         }
 
         
