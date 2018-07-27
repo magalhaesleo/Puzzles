@@ -54,9 +54,11 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
             _contaRepositorio.Editar(contaBuscadaNoBanco);
         }
 
-        public void Excluir(Conta conta)
+        public void Excluir(long idConta)
         {
-            _contaRepositorio.Excluir(conta);
+            Conta contaBuscadaNoBanco = _contaRepositorio.Buscar(idConta);
+            
+            _contaRepositorio.Excluir(contaBuscadaNoBanco);
         }
 
         public void AlterarStatusConta(long contaId)

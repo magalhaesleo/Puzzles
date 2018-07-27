@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ws_banco_tabajara.Domain.Excecoes;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 
@@ -25,7 +26,12 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
 
         public Cliente Buscar(long id)
         {
-            return _clienteRepositorio.Buscar(id);
+            return _clienteRepositorio.Buscar(id) ?? throw new ExcecaoRegistroNaoEncontrado();
+        }
+
+        public IQueryable<Cliente> BuscarListaPorQuantidadeDefinida(int quantidadeDesejada)
+        {
+            return _clienteRepositorio.BuscarListaPorQuantidadeDefinida(quantidadeDesejada);
         }
 
         public IQueryable<Cliente> BuscarTodos()
@@ -48,9 +54,10 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
             _clienteRepositorio.Editar(clienteBuscadoNoBanco);
         }
 
-        public void Excluir(Cliente cliente)
+        public void Excluir(long idCliente)
         {
-            _clienteRepositorio.Excluir(cliente);
+            Cliente clienteBuscadoParaExclusao = _clienteRepositorio.Buscar(idCliente) ?? throw new ExcecaoRegistroNaoEncontrado();
+            _clienteRepositorio.Excluir(clienteBuscadoParaExclusao);
         }
     }
 }

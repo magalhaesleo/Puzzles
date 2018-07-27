@@ -31,6 +31,14 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.RepositorioSqlEF
                                           
         }
 
+        public IQueryable<Cliente> BuscarListaPorQuantidadeDefinida(int quantidadeDesejada)
+        {
+            var clientesEncontrados = from TBCLIENTE in _contextoBancoTabajara.Clientes.Take(quantidadeDesejada)
+                                      select TBCLIENTE;
+
+            return clientesEncontrados;
+        }
+
         public IQueryable<Cliente> BuscarTodos()
         {
             var clientesEncontrados = from TBCLIENTE in _contextoBancoTabajara.Clientes

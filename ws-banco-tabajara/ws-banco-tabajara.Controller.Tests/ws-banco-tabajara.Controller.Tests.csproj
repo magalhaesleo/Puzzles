@@ -93,6 +93,7 @@
     <Compile Include="Base\ControladorBaseAPIMock.cs" />
     <Compile Include="Base\ControladorBaseAPITeste.cs" />
     <Compile Include="Base\ControladorPublicoTeste.cs" />
+    <Compile Include="Funcionalidades\Clientes\ClientesControllerTests.cs" />
     <Compile Include="Funcionalidades\Contas\ContasControllerTeste.cs" />
     <Compile Include="Inicializador\ControladorBaseTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,6 +103,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Funcionalidades\Contas\" />
     <Folder Include="Funcionalidades\Clientes\" />
     <Folder Include="Funcionalidades\Extratos\" />
     <Folder Include="Funcionalidades\Movimentacoes\" />
