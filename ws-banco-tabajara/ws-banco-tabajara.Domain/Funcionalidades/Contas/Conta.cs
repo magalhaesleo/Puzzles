@@ -38,6 +38,11 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
 
         public virtual ICollection<Movimentacao> Movimentacoes { get; set; }
 
+        public void AlterarStatus()
+        {
+            this.Ativa = !this.Ativa;
+        }
+
         public void Sacar(double valorSaque)
         {
             Movimentacao saque = new Movimentacao
