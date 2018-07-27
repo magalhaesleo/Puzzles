@@ -7,9 +7,9 @@ using ws_banco_tabajara.Domain.Excecoes;
 
 namespace ws_banco_tabajara.Application.Funcionalidades.Contas
 {
-    public class ContaSemTitularExcecao : ExcecaoDeNegocio
+   public class ContaNumeroAlteradoExcecao : ExcecaoDeNegocio
     {
-        public ContaSemTitularExcecao() : base(CodigosDeErro.InvalidObject, "A conta deve possuir um titular")
+        public ContaNumeroAlteradoExcecao() : base(CodigosDeErro.NotAllowed, "Não é possivel alterar o numero de uma conta")
         {
         }
     }

@@ -34,17 +34,41 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
             _contaServico = new ContaServico(_contaRepositorio, _clienteRepositorio);
         }
 
+        #region Adicionar
+
+        [HttpPost]
+        public IHttpActionResult PostConta(Conta conta)
+        {
+            return HandleCallback(() => _contaServico.Adicionar(conta));
+        }
+
+        #endregion Adicionar
+
         #region Buscar
 
         [HttpGet]
         public IHttpActionResult BuscarTodos()
         {
-            IQueryable<Conta> contas = _contaServico.BuscarTodos();
+           IQueryable<Conta> contas = _contaServico.BuscarTodos();
 
-            return HandleQueryable<Conta>(contas);
+            KeyValuePair<string,string> queryString = Request.GetQueryNameValuePairs()
+                                  .Where(x => x.Key.Equals("quantidade"))
+                                  .FirstOrDefault();
+
+            IQueryable<Conta> contasBuscadas;
+            if (queryString.Key != null)
+            {
+                int quantidade = int.Parse(queryString.Value);
+                contasBuscadas = _contaServico.BuscarListaPorQuantidadeDefinida(quantidade);
+            }
+            else
+            {
+                contasBuscadas = _contaServico.BuscarTodos();
+            } 
+
+            return HandleQueryable<Conta>(contasBuscadas);
         }
 
-        // GET: api/ContasControlador/id
         [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult Buscar(long id)
@@ -53,62 +77,40 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         }
 
         #endregion Buscar
-        //// PUT: api/ContasControlador/5
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PutConta(long id, Conta conta)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
 
-        //    if (id != conta.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(conta).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!ContaExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-        #region Adicionar
-        // POST: api/Contas
-        [HttpPost]
-        public IHttpActionResult PostConta(Conta conta)
+        #region Atualizar
+  
+        [HttpPut]
+        public IHttpActionResult Editar(Conta conta)
         {
-            return HandleCallback(() => _contaServico.Adicionar(conta));
+            _contaServico.Editar(conta);
+
+            return Ok();
         }
 
-        #endregion Adicionar
-        //// DELETE: api/ContasControlador/5
-        //[ResponseType(typeof(Conta))]
-        //public IHttpActionResult DeleteConta(long id)
-        //{
-        //    Conta conta = db.Contas.Find(id);
-        //    if (conta == null)
-        //    {
-        //        return NotFound();
-        //    }
+        #endregion Atualizar
 
-        //    db.Contas.Remove(conta);
-        //    db.SaveChanges();
+        #region Excluir
+        [HttpDelete]
+        [Route("{id:int}")]
+        public IHttpActionResult Excluir(long id)
+        {
+            Conta contaExcluir = new Conta();
+            contaExcluir.Id = id;
+
+             _contaServico.Excluir(contaExcluir);
+
+            return Ok();
+        }
+
+        #endregion Excluir
+
+        #region AlterarStatus
+        [HttpPatch]
+        [Route("{id:int}/{alterarStatus}")]
+        public IHttpActionResult AtualizarStatus(long id)
+        { 
+            _contaServico.AlterarStatusConta(id);
 
         //    return Ok(conta);
         //}
