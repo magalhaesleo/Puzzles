@@ -116,6 +116,22 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
             
         }
 
-       
+        [Test]
+        public void Cliente_Application_BuscarListaPorQuantidadeDefinida_Sucesso()
+        {
+            //Cenario
+            int quantidadeDefinida = 1;
+            _moqClienteRepositorio.Setup(mcr => mcr.BuscarListaPorQuantidadeDefinida(quantidadeDefinida)).Returns((new List<Cliente>()).AsQueryable());
+
+            //Acao
+            IQueryable<Cliente> clientesBuscados = _clienteServico.BuscarTodos();
+
+            //Verificacao
+
+            _moqClienteRepositorio.Verify(mcr => mcr.BuscarListaPorQuantidadeDefinida(quantidadeDefinida));
+            clientesBuscados.Should().NotBeNull();
+
+        }
+
     }
 }

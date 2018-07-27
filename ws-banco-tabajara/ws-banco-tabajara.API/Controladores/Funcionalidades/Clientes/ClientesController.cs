@@ -9,6 +9,9 @@ using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Infra.ORM.Contextos;
 using ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.RepositorioSqlEF;
 using ws_banco_tabajara.API.Controladores.Base;
+using ws_banco_tabajara.Domain.Excecoes;
+using System;
+using System.Net.Http;
 
 namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Clientes
 {
@@ -30,21 +33,39 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Clientes
         [HttpGet]
         public IHttpActionResult BuscarTodos()
         {
-            var clientesEncontrados = _clienteRepositorio.BuscarTodos();
-            return HandleQueryable<Cliente>(clientesEncontrados);
+            var queryString = Request.GetQueryNameValuePairs()
+                                .Where(x => x.Key.Equals("quantidade"))
+                                .FirstOrDefault();
+
+            int? quantidade = null;
+
+            IQueryable<Cliente> clientesEncontrados = null;
+
+            if (queryString.Key != null)
+            {
+                quantidade = int.Parse(queryString.Value);
+                clientesEncontrados = _clienteServico.BuscarListaPorQuantidadeDefinida((int)quantidade);
+            }
+            else
+            {
+                clientesEncontrados = _clienteRepositorio.BuscarTodos();
+            }
+   
+           return HandleQueryable<Cliente>(clientesEncontrados);
         }
 
         [HttpGet]
-        [Route("{id:int}")]
+        [Route("{clienteId:int}")]
         public IHttpActionResult Buscar(long clienteId)
         {
             return HandleCallback(() => _clienteServico.Buscar(clienteId));
         }
 
+
+
         #endregion
 
         #region PUT
-        // PUT: api/ClientesControlador/5
         [HttpPut]
         public IHttpActionResult Editar(Cliente cliente)
         {
@@ -67,10 +88,12 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Clientes
         #region DELETE
        
         [HttpDelete]
-        [Route("{id:int}")]
+        [Route("{idCliente:long}")]
         public IHttpActionResult Excluir(long idCliente)
         {
-            _clienteServico.Excluir(idCliente);
+            Action acaoDeExcluir = () => _clienteServico.Excluir(idCliente);
+
+            acaoDeExcluir.Invoke();
 
             return Ok(true);
         }

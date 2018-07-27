@@ -114,5 +114,35 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Clientes
             //Verificacao
             clienteBuscadoAposExclusao.Should().BeNull();
         }
+
+        [Test]
+        public void Cliente_InfraDadosORM_BuscarListaPorQuantidadeDefinida_Sucesso()
+        {
+            //Cenario
+            int quantidadeDefinida = 2;
+            
+            int quantidadeClientesAdicionadosPorEsteTeste = 0;
+
+            for (int i = 0; i < 5; i++)
+            {
+                Cliente clienteParaAdicionar = ObjectMother.ObterClienteValido();
+
+                clienteParaAdicionar.Nome = "Cliente" + i;
+
+                _clienteRepositorioSQL.Adicionar(clienteParaAdicionar);
+
+                quantidadeClientesAdicionadosPorEsteTeste++;
+            }
+
+            //Acao
+            IQueryable<Cliente> clientesBuscados = _clienteRepositorioSQL.BuscarListaPorQuantidadeDefinida(quantidadeDefinida);
+
+            //Verificacao
+
+            clientesBuscados.Count().Should().Be(quantidadeDefinida);
+            
+
+        }
+
     }
 }

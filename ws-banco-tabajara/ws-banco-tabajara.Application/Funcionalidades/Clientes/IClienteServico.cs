@@ -10,5 +10,6 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
 {
     public interface IClienteServico : IServico<Cliente>
     {
+        IQueryable<Cliente> BuscarListaPorQuantidadeDefinida(int quantidadeDesejada);
     }
 }
