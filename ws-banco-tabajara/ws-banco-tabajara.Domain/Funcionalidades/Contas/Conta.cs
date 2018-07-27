@@ -18,7 +18,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
 
         public virtual Cliente Titular { get; set; }
 
-        public string Numero { get; set; }
+        public virtual string Numero { get; set; }
 
         public bool Ativa { get; set; }
 

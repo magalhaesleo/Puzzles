@@ -87,7 +87,7 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
            
         }
 
-        public void Excluir(Conta conta)
+        public void Excluir(long idConta)
         {
             Conta contaParaExcluir = _contaRepositorio.Buscar(conta.Id);
 

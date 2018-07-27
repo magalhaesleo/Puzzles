@@ -76,10 +76,11 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
             _contaRepositorioMoq.Setup(crm => crm.Buscar(_contaMoq.Object.Id)).Returns(_contaMoq.Object);
 
             //Acao
-            _contaServico.Excluir(_contaMoq.Object);
+            _contaServico.Excluir(_contaMoq.Object.Id);
 
             //Verificao
             _contaRepositorioMoq.Verify(crm => crm.Excluir(_contaMoq.Object));
+            _contaRepositorioMoq.Verify(crm => crm.Buscar(_contaMoq.Object.Id));
         }
 
 
