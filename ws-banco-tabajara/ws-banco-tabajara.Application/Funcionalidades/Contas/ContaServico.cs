@@ -23,7 +23,12 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
             if (conta.Titular == null)
                 throw new ContaSemTitularExcecao();
 
-            conta.Titular = _clienteRepositorio.Buscar(conta.Titular.Id);
+            Cliente clienteAdicionadoBanco = _clienteRepositorio.Buscar(conta.Titular.Id);
+
+            //Se a conta ja existir na base de dados, utiliza a mesma referencia
+            //Senão o EF fará a adição da conta
+            if (clienteAdicionadoBanco != null)
+                conta.Titular = clienteAdicionadoBanco;
 
             Conta contaAdicionada = _contaRepositorio.Adicionar(conta);
 
@@ -44,31 +49,49 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
             return _contaRepositorio.Buscar(id);
         }
 
+        public IQueryable<Conta> BuscarListaPorQuantidadeDefinida(int quantidade)
+        {
+            return _contaRepositorio.BuscarListaPorQuantidadeDefinida(quantidade);
+        }
+
         public IQueryable<Conta> BuscarTodos()
         {
             return _contaRepositorio.BuscarTodos();
         }
 
-        public void Editar(Conta contaReferencia)
+        public void Editar(Conta conta)
         {
-            Conta contaBuscadaNoBanco = _contaRepositorio.Buscar(contaReferencia.Id) ?? throw new ExcecaoRegistroNaoEncontrado();
+            //Verifica se conta possui um titular para continuar
+            if (conta.Titular == null)
+                throw new ContaSemTitularExcecao();
 
-            if(contaReferencia.Titular!=null)
-            contaBuscadaNoBanco.Titular = contaReferencia.Titular;
+            //Se possuir verifica se ja existe no banco
+            Cliente clienteAdicionadoBanco = _clienteRepositorio.Buscar(conta.Titular.Id);
 
-            contaBuscadaNoBanco.Limite = contaReferencia.Limite;
-            contaBuscadaNoBanco.Numero = contaReferencia.Numero;
-            contaBuscadaNoBanco.Saldo = contaReferencia.Saldo;
-                    
-            _contaRepositorio.Editar(contaBuscadaNoBanco);
+            if (clienteAdicionadoBanco == null)
+                throw new ExcecaoRegistroNaoEncontrado();
+
+            //Busca no banco para pegar a conta referencia
+            Conta contaReferencia = _contaRepositorio.Buscar(conta.Id);
+
+            if (conta.Numero != contaReferencia.Numero)
+                throw new ContaNumeroAlteradoExcecao();
+
+            //atualiza as informações da conta
+            contaReferencia.Limite = conta.Limite;
+            contaReferencia.Saldo = conta.Saldo;
+            contaReferencia.Ativa = conta.Ativa;
+
+            //Salva no banco
+            _contaRepositorio.Editar(contaReferencia);
            
         }
 
         public void Excluir(long idConta)
         {
-            Conta contaBuscadaNoBanco = _contaRepositorio.Buscar(idConta);
-            
-            _contaRepositorio.Excluir(contaBuscadaNoBanco);
+            Conta contaParaExcluir = _contaRepositorio.Buscar(conta.Id);
+
+            _contaRepositorio.Excluir(contaParaExcluir);
         }
     }
 }

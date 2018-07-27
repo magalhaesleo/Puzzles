@@ -9,5 +9,6 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
 {
     public interface IContaRepositorio : IRepositorio<Conta>
     {
+        IQueryable<Conta> BuscarListaPorQuantidadeDefinida(int quantidade);
     }
 }

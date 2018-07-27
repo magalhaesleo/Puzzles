@@ -28,6 +28,11 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
             return _contextoBancoTabajara.Contas.Find(id);
         }
 
+        public IQueryable<Conta> BuscarListaPorQuantidadeDefinida(int quantidade)
+        {
+            return _contextoBancoTabajara.Contas.Take(quantidade);
+        }
+
         public IQueryable<Conta> BuscarTodos()
         {
            return _contextoBancoTabajara.Contas;
