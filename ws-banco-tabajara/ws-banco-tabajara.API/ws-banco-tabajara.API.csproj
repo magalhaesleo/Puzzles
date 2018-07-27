@@ -200,7 +200,7 @@
     <Compile Include="Controladores\Base\ControladorBaseAPI.cs" />
     <Compile Include="Controladores\Base\ControladorPublico.cs" />
     <Compile Include="Controladores\Funcionalidades\Clientes\ClientesControlador.cs" />
-    <Compile Include="Controladores\Funcionalidades\Contas\ContasControlador.cs" />
+    <Compile Include="Controladores\Funcionalidades\Contas\ContasController.cs" />
     <Compile Include="Excecoes\ExceptionPayload.cs" />
     <Compile Include="Extensoes\ExceptionHandlingExtensions.cs" />
     <Compile Include="Filtros\ExceptionHandlerAttribute.cs" />
@@ -229,6 +229,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ws-banco-tabajara.Application\ws-banco-tabajara.Application.csproj">
+      <Project>{56345671-095A-4C76-AF7D-FA9528F1E54F}</Project>
+      <Name>ws-banco-tabajara.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ws-banco-tabajara.Domain\ws-banco-tabajara.Domain.csproj">
       <Project>{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}</Project>
       <Name>ws-banco-tabajara.Domain</Name>

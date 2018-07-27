@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Application.Funcionalidades.Contas;
+using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 
 namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
@@ -18,12 +19,14 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
         private Mock<Conta> _contaMoq;
         private Mock<Conta> _contaBuscadaNoBancoMoq;
         private Mock<IContaRepositorio> _contaRepositorioMoq;
+        private Mock<IClienteRepositorio> _clienteRepositorioMoq;
 
         [SetUp]
         public void IniciarCenario()
         {
             _contaRepositorioMoq = new Mock<IContaRepositorio>();
-            _contaServico = new ContaServico(_contaRepositorioMoq.Object);
+            _clienteRepositorioMoq = new Mock<IClienteRepositorio>();
+            _contaServico = new ContaServico(_contaRepositorioMoq.Object, _clienteRepositorioMoq.Object);
             _contaMoq = new Mock<Conta>();
             _contaBuscadaNoBancoMoq = new Mock<Conta>();
         }
