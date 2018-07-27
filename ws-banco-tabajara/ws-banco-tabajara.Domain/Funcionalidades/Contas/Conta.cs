@@ -43,7 +43,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             this.Ativa = !this.Ativa;
         }
 
-        public void Sacar(double valorSaque)
+        public virtual void Sacar(double valorSaque)
         {
             Movimentacao saque = new Movimentacao
             {
@@ -55,7 +55,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             this.Movimentacoes.Add(saque);
         }
 
-        public void Depositar(double valorDeposito)
+        public virtual void Depositar(double valorDeposito)
         {
             Movimentacao deposito = new Movimentacao
             {
@@ -67,7 +67,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             this.Movimentacoes.Add(deposito);
         }
 
-        public void Transferir(Conta contaMovimentada, double valorTransferencia)
+        public virtual void Transferir(Conta contaMovimentada, double valorTransferencia)
         {
             Movimentacao transferenciaEnviada = new Movimentacao
             {

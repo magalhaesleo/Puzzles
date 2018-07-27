@@ -23,7 +23,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
     {
         private ContextoBancoTabajara bancoTabajaraContexto = new ContextoBancoTabajara();
 
-        private IContaServico _contaServico;
+        public IContaServico _contaServico;
         private IContaRepositorio _contaRepositorio;
         private IClienteRepositorio _clienteRepositorio;
 
@@ -129,9 +129,9 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
 
         [HttpPut]
         [Route("{id:long}/transferir/{idContaDestino:long}")]
-        public Conta Transferir(long id, long idContaDestino, [FromBody]double valorTransferencia)
+        public IHttpActionResult Transferir(long id, long idContaDestino, [FromBody]double valorTransferencia)
         {
-            return _contaServico.Transferir(id, idContaDestino, valorTransferencia);
+            return HandleCallback(() => _contaServico.Transferir(id, idContaDestino, valorTransferencia));
         }
     }
 }

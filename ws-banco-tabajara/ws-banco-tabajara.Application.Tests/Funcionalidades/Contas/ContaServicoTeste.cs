@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Application.Funcionalidades.Contas;
+using ws_banco_tabajara.Common.Tests.Funcionalidades;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
+using ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes;
 
 namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
 {
@@ -136,10 +138,7 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
             _contaRepositorioMoq.Verify(crm => crm.Buscar(_contaMoq.Object.Id));
             _contaRepositorioMoq.Verify(crm => crm.Editar(_contaBuscadaNoBancoMoq.Object));
             _contaMoq.Verify(cm => cm.Id);
-
-
         }
-
         
         [Test]
         public void Conta_Aplicacao_BuscarTodos_Sucesso()
@@ -154,6 +153,71 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
             //Verificao
             _contaRepositorioMoq.Verify(crm => crm.BuscarTodos());
             contasBuscadas.Should().NotBeNull();
+        }
+
+        [Test]
+        public void Conta_Aplicacao_Sacar_Sucesso()
+        {
+            long idParaBuscar = 1;
+            double valor = 10;
+
+            _contaRepositorioMoq.Setup(crm => crm.Buscar(idParaBuscar)).Returns(_contaMoq.Object);
+            _contaRepositorioMoq.Setup(crm => crm.Editar(_contaMoq.Object));
+
+            _contaMoq.Setup(c => c.Sacar(valor));
+
+            var contaResposta = _contaServico.Sacar(idParaBuscar, valor);
+
+            contaResposta.Should().NotBeNull();
+            contaResposta.Should().Be(_contaMoq.Object);
+            _contaRepositorioMoq.Verify(crm => crm.Buscar(idParaBuscar));
+            _contaRepositorioMoq.Verify(crm => crm.Editar(_contaMoq.Object));
+        }
+
+        [Test]
+        public void Conta_Aplicacao_Depositar_Sucesso()
+        {
+            long idParaBuscar = 1;
+            double valor = 10;
+
+            _contaRepositorioMoq.Setup(crm => crm.Buscar(idParaBuscar)).Returns(_contaMoq.Object);
+            _contaRepositorioMoq.Setup(crm => crm.Editar(_contaMoq.Object));
+
+            _contaMoq.Setup(c => c.Depositar(valor));
+
+            var contaResposta = _contaServico.Depositar(idParaBuscar, valor);
+
+            contaResposta.Should().NotBeNull();
+            contaResposta.Should().Be(_contaMoq.Object);
+            _contaRepositorioMoq.Verify(crm => crm.Buscar(idParaBuscar));
+            _contaRepositorioMoq.Verify(crm => crm.Editar(_contaMoq.Object));
+        }
+
+        [Test]
+        public void Conta_Aplicacao_Transferir_Sucesso()
+        {
+            Mock<Conta> contaMovimentadaMock = new Mock<Conta>();
+
+            long idParaBuscarConta = 1;
+            long idParaBuscarContaMovimentada = 2;
+            double valor = 10;
+
+            _contaRepositorioMoq.Setup(crm => crm.Buscar(idParaBuscarConta)).Returns(_contaMoq.Object);
+            _contaRepositorioMoq.Setup(crm => crm.Buscar(idParaBuscarContaMovimentada)).Returns(contaMovimentadaMock.Object);
+
+            _contaRepositorioMoq.Setup(crm => crm.Editar(_contaMoq.Object));
+            _contaRepositorioMoq.Setup(crm => crm.Editar(contaMovimentadaMock.Object));
+
+            _contaMoq.Setup(c => c.Transferir(contaMovimentadaMock.Object, valor));
+
+            var contaResposta = _contaServico.Transferir(idParaBuscarConta, idParaBuscarContaMovimentada, valor);
+
+            contaResposta.Should().NotBeNull();
+            contaResposta.Should().Be(_contaMoq.Object);
+            _contaRepositorioMoq.Verify(crm => crm.Buscar(idParaBuscarConta));
+            _contaRepositorioMoq.Verify(crm => crm.Buscar(idParaBuscarContaMovimentada));
+            _contaRepositorioMoq.Verify(crm => crm.Editar(_contaMoq.Object));
+            _contaRepositorioMoq.Verify(crm => crm.Editar(contaMovimentadaMock.Object));
         }
     }
 }

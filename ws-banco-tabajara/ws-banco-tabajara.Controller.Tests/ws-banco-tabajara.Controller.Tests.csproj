@@ -93,6 +93,7 @@
     <Compile Include="Base\ControladorBaseAPIMock.cs" />
     <Compile Include="Base\ControladorBaseAPITeste.cs" />
     <Compile Include="Base\ControladorPublicoTeste.cs" />
+    <Compile Include="Funcionalidades\Contas\ContasControllerTeste.cs" />
     <Compile Include="Inicializador\ControladorBaseTeste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,7 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Funcionalidades\Clientes\" />
-    <Folder Include="Funcionalidades\Contas\" />
     <Folder Include="Funcionalidades\Extratos\" />
     <Folder Include="Funcionalidades\Movimentacoes\" />
   </ItemGroup>
@@ -110,6 +110,14 @@
     <ProjectReference Include="..\ws-banco-tabajara.API\ws-banco-tabajara.API.csproj">
       <Project>{AF595527-36AD-462C-9133-F9483A7C6FA6}</Project>
       <Name>ws-banco-tabajara.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ws-banco-tabajara.Application\ws-banco-tabajara.Application.csproj">
+      <Project>{56345671-095A-4C76-AF7D-FA9528F1E54F}</Project>
+      <Name>ws-banco-tabajara.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ws-banco-tabajara.Common.Tests\ws-banco-tabajara.Common.Tests.csproj">
+      <Project>{4C6A3FE6-48FB-4691-B6B0-15E6507BBA68}</Project>
+      <Name>ws-banco-tabajara.Common.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\ws-banco-tabajara.Domain\ws-banco-tabajara.Domain.csproj">
       <Project>{E50E7472-9DC4-4102-8B42-FED4A52AF6DD}</Project>
