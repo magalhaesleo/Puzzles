@@ -26,7 +26,7 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
         {
             Conta contaBuscadaDoBanco = _contaRepositorio.Buscar(contaId);
 
-            contaBuscadaDoBanco.Ativa = !contaBuscadaDoBanco.Ativa;
+            contaBuscadaDoBanco.AlterarStatus();
 
             _contaRepositorio.Editar(contaBuscadaDoBanco);
         }
