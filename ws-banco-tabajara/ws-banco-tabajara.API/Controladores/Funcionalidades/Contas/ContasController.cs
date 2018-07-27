@@ -23,7 +23,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
     {
         private ContextoBancoTabajara bancoTabajaraContexto = new ContextoBancoTabajara();
 
-        private IContaServico _contaServico;
+        public IContaServico _contaServico;
         private IContaRepositorio _contaRepositorio;
         private IClienteRepositorio _clienteRepositorio;
 
@@ -49,6 +49,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         [HttpGet]
         public IHttpActionResult BuscarTodos()
         {
+           IQueryable<Conta> contas = _contaServico.BuscarTodos();
 
             KeyValuePair<string,string> queryString = Request.GetQueryNameValuePairs()
                                   .Where(x => x.Key.Equals("quantidade"))
@@ -111,8 +112,28 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         { 
             _contaServico.AlterarStatusConta(id);
 
-            return Ok();
+        //    return Ok(conta);
+        //}
+
+        [HttpPut]
+        [Route("{id:long}/depositar")]
+        public IHttpActionResult Depositar(long id, [FromBody]double valorDeposito)
+        {
+            return HandleCallback(() => _contaServico.Depositar(id, valorDeposito));
         }
-        #endregion AlterarStatus
+
+        [HttpPut]
+        [Route("{id:long}/sacar")]
+        public IHttpActionResult Sacar(long id, [FromBody]double valorSaque)
+        {
+            return HandleCallback(() => _contaServico.Sacar(id, valorSaque));
+        }
+
+        [HttpPut]
+        [Route("{id:long}/transferir/{idContaDestino:long}")]
+        public IHttpActionResult Transferir(long id, long idContaDestino, [FromBody]double valorTransferencia)
+        {
+            return HandleCallback(() => _contaServico.Transferir(id, idContaDestino, valorTransferencia));
+        }
     }
 }

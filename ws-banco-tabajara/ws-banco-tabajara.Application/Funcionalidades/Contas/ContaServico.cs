@@ -35,15 +35,6 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
             return contaAdicionada;
         }
 
-        public void AlterarStatusConta(long contaId)
-        {
-            Conta contaBuscadaDoBanco = _contaRepositorio.Buscar(contaId);
-
-            contaBuscadaDoBanco.Ativa = !contaBuscadaDoBanco.Ativa;
-
-            _contaRepositorio.Editar(contaBuscadaDoBanco);
-        }
-
         public Conta Buscar(long id)
         {
             return _contaRepositorio.Buscar(id);
@@ -92,6 +83,50 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
             Conta contaParaExcluir = _contaRepositorio.Buscar(conta.Id);
 
             _contaRepositorio.Excluir(contaParaExcluir);
+        }
+
+        public void AlterarStatusConta(long contaId)
+        {
+            Conta contaBuscadaDoBanco = _contaRepositorio.Buscar(contaId);
+
+            contaBuscadaDoBanco.AlterarStatus();
+
+            _contaRepositorio.Editar(contaBuscadaDoBanco);
+        }
+
+        public Conta Sacar(long contaId, double valor)
+        {
+            Conta contaBuscadaDoBanco = _contaRepositorio.Buscar(contaId);
+
+            contaBuscadaDoBanco.Sacar(valor);
+
+            _contaRepositorio.Editar(contaBuscadaDoBanco);
+
+            return contaBuscadaDoBanco;
+        }
+
+        public Conta Depositar(long contaId, double valor)
+        {
+            Conta contaBuscadaDoBanco = _contaRepositorio.Buscar(contaId);
+
+            contaBuscadaDoBanco.Depositar(valor);
+
+            _contaRepositorio.Editar(contaBuscadaDoBanco);
+
+            return contaBuscadaDoBanco;
+        }
+
+        public Conta Transferir(long contaId, long contaMovimentadaId, double valor)
+        {
+            Conta contaBuscadaDoBanco = _contaRepositorio.Buscar(contaId);
+            Conta contaMovimentadaBuscadaDoBanco = _contaRepositorio.Buscar(contaMovimentadaId);
+
+            contaBuscadaDoBanco.Transferir(contaMovimentadaBuscadaDoBanco, valor);
+
+            _contaRepositorio.Editar(contaBuscadaDoBanco);
+            _contaRepositorio.Editar(contaMovimentadaBuscadaDoBanco);
+
+            return contaBuscadaDoBanco;
         }
     }
 }
