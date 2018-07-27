@@ -124,7 +124,7 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
             _moqClienteRepositorio.Setup(mcr => mcr.BuscarListaPorQuantidadeDefinida(quantidadeDefinida)).Returns((new List<Cliente>()).AsQueryable());
 
             //Acao
-            IQueryable<Cliente> clientesBuscados = _clienteServico.BuscarTodos();
+            IQueryable<Cliente> clientesBuscados = _clienteServico.BuscarListaPorQuantidadeDefinida(quantidadeDefinida);
 
             //Verificacao
 
