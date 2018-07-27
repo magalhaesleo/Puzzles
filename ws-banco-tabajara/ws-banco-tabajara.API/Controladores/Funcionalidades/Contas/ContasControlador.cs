@@ -35,15 +35,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         {
             Conta conta = _contaServico.Buscar(id);
 
-            Movimentacao deposito = new Movimentacao
-            {
-                Conta = conta,
-                Data = DateTime.Now,
-                TipoOperacao = TipoOperacaoMovimentacao.CREDITO,
-                Valor = valorDeposito
-            };
-
-            conta.Movimentacoes.Add(deposito);
+            conta.Depositar(valorDeposito);
 
             return conta;
         }
@@ -53,15 +45,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         {
             Conta conta = _contaServico.Buscar(id);
 
-            Movimentacao saque = new Movimentacao
-            {
-                Conta = conta,
-                Data = DateTime.Now,
-                TipoOperacao = TipoOperacaoMovimentacao.DEBITO,
-                Valor = valorSaque
-            };
-
-            conta.Movimentacoes.Add(saque);
+            conta.Sacar(valorSaque);
 
             return conta;
         }
@@ -71,15 +55,9 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         {
             Conta conta = _contaServico.Buscar(id);
 
-            Movimentacao saque = new Movimentacao
-            {
-                Conta = conta,
-                Data = DateTime.Now,
-                TipoOperacao = TipoOperacaoMovimentacao.DEBITO,
-                Valor = valorSaque
-            };
+            Conta contaDestino = _contaServico.Buscar(idContaDestino);
 
-            conta.Movimentacoes.Add(saque);
+            conta.Transferir(contaDestino, valorTransferencia);
 
             return conta;
         }
