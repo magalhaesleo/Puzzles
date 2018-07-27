@@ -11,7 +11,7 @@ namespace ws_banco_tabajara.Application.Interfaces
     {
         T Adicionar(T entidade);
         void Editar(T entidade);
-        void Excluir(T entidade);
+        void Excluir(long id);
         IQueryable<T> BuscarTodos();
         T Buscar(long id);
     }

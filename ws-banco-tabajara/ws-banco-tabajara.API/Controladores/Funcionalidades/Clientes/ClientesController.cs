@@ -67,9 +67,10 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Clientes
         #region DELETE
        
         [HttpDelete]
-        public IHttpActionResult Excluir(Cliente cliente)
+        [Route("{id:int}")]
+        public IHttpActionResult Excluir(long idCliente)
         {
-            _clienteServico.Excluir(cliente);
+            _clienteServico.Excluir(idCliente);
 
             return Ok(true);
         }

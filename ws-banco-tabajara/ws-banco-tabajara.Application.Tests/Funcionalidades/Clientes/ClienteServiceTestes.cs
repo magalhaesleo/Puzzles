@@ -65,14 +65,18 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
             //Cenario
             Cliente clienteParaRemover = ObjectMother.ObterClienteValido();
 
+            clienteParaRemover.Id = 1;
+
+            _moqClienteRepositorio.Setup(mcr => mcr.Buscar(clienteParaRemover.Id)).Returns(clienteParaRemover);
+
             _moqClienteRepositorio.Setup(mcr => mcr.Excluir(clienteParaRemover));
 
             //Acao
-            _clienteServico.Excluir(clienteParaRemover);
+            _clienteServico.Excluir(clienteParaRemover.Id);
 
             //Verificacao
             _moqClienteRepositorio.Verify(mcr => mcr.Excluir(clienteParaRemover));
-            
+            _moqClienteRepositorio.Verify(mcr => mcr.Buscar(clienteParaRemover.Id));
         }
 
 

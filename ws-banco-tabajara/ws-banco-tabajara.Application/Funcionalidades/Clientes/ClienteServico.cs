@@ -48,9 +48,10 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
             _clienteRepositorio.Editar(clienteBuscadoNoBanco);
         }
 
-        public void Excluir(Cliente cliente)
+        public void Excluir(long idCliente)
         {
-            _clienteRepositorio.Excluir(cliente);
+            Cliente clienteBuscadoParaExclusao = _clienteRepositorio.Buscar(idCliente);
+            _clienteRepositorio.Excluir(clienteBuscadoParaExclusao);
         }
     }
 }
