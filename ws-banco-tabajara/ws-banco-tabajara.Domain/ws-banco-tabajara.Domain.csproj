@@ -47,6 +47,7 @@
     <Compile Include="Funcionalidades\Clientes\Cliente.cs" />
     <Compile Include="Funcionalidades\Clientes\IClienteRepositorio.cs" />
     <Compile Include="Funcionalidades\Contas\Conta.cs" />
+    <Compile Include="Funcionalidades\Contas\Excecoes\SaldoInsuficienteExcecao.cs" />
     <Compile Include="Funcionalidades\Contas\IContaRepositorio.cs" />
     <Compile Include="Funcionalidades\Extratos\Extrato.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\Movimentacao.cs" />
