@@ -39,7 +39,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         [HttpGet]
         public IHttpActionResult BuscarTodos()
         {
-           IQueryable<Conta> contas = _contaServico.BuscarTodos();
+            IQueryable<Conta> contas = _contaServico.BuscarTodos();
 
             return HandleQueryable<Conta>(contas);
         }
@@ -112,5 +112,26 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
 
         //    return Ok(conta);
         //}
+
+        [HttpPut]
+        [Route("{id:long}/depositar")]
+        public IHttpActionResult Depositar(long id, [FromBody]double valorDeposito)
+        {
+            return HandleCallback(() => _contaServico.Depositar(id, valorDeposito));
+        }
+
+        [HttpPut]
+        [Route("{id:long}/sacar")]
+        public IHttpActionResult Sacar(long id, [FromBody]double valorSaque)
+        {
+            return HandleCallback(() => _contaServico.Sacar(id, valorSaque));
+        }
+
+        [HttpPut]
+        [Route("{id:long}/transferir/{idContaDestino:long}")]
+        public Conta Transferir(long id, long idContaDestino, [FromBody]double valorTransferencia)
+        {
+            return _contaServico.Transferir(id, idContaDestino, valorTransferencia);
+        }
     }
 }
