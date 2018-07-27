@@ -16,17 +16,14 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
     {
 
         private Mock<IClienteRepositorio> _moqClienteRepositorio;
-        private Mock<IContaRepositorio> _moqContaRepositorio;
+        
         private ClienteServico _clienteServico;
 
         [SetUp]
         public void Inicializar()
         {
-
             _moqClienteRepositorio = new Mock<IClienteRepositorio>();
-            _moqContaRepositorio = new Mock<IContaRepositorio>();
-
-            _clienteServico = new ClienteServico(_moqClienteRepositorio.Object, _moqContaRepositorio.Object);
+            _clienteServico = new ClienteServico(_moqClienteRepositorio.Object);
         }
 
         [Test]
@@ -68,14 +65,18 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
             //Cenario
             Cliente clienteParaRemover = ObjectMother.ObterClienteValido();
 
+            clienteParaRemover.Id = 1;
+
+            _moqClienteRepositorio.Setup(mcr => mcr.Buscar(clienteParaRemover.Id)).Returns(clienteParaRemover);
+
             _moqClienteRepositorio.Setup(mcr => mcr.Excluir(clienteParaRemover));
 
             //Acao
-            _clienteServico.Excluir(clienteParaRemover);
+            _clienteServico.Excluir(clienteParaRemover.Id);
 
             //Verificacao
             _moqClienteRepositorio.Verify(mcr => mcr.Excluir(clienteParaRemover));
-            
+            _moqClienteRepositorio.Verify(mcr => mcr.Buscar(clienteParaRemover.Id));
         }
 
 
@@ -115,6 +116,22 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Clientes
             
         }
 
-       
+        [Test]
+        public void Cliente_Application_BuscarListaPorQuantidadeDefinida_Sucesso()
+        {
+            //Cenario
+            int quantidadeDefinida = 1;
+            _moqClienteRepositorio.Setup(mcr => mcr.BuscarListaPorQuantidadeDefinida(quantidadeDefinida)).Returns((new List<Cliente>()).AsQueryable());
+
+            //Acao
+            IQueryable<Cliente> clientesBuscados = _clienteServico.BuscarListaPorQuantidadeDefinida(quantidadeDefinida);
+
+            //Verificacao
+
+            _moqClienteRepositorio.Verify(mcr => mcr.BuscarListaPorQuantidadeDefinida(quantidadeDefinida));
+            clientesBuscados.Should().NotBeNull();
+
+        }
+
     }
 }

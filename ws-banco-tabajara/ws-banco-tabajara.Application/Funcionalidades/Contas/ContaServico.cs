@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Domain.Excecoes;
+using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 
 namespace ws_banco_tabajara.Application.Funcionalidades.Contas
@@ -11,12 +12,19 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
     public class ContaServico : IContaServico
     {
         private IContaRepositorio _contaRepositorio;
-        public ContaServico(IContaRepositorio contaRepositorio)
+        private IClienteRepositorio _clienteRepositorio;
+        public ContaServico(IContaRepositorio contaRepositorio, IClienteRepositorio clienteRepositorio)
         {
             _contaRepositorio = contaRepositorio;
+            _clienteRepositorio = clienteRepositorio;
         }
         public Conta Adicionar(Conta conta)
         {
+            if (conta.Titular == null)
+                throw new ContaSemTitularExcecao();
+
+            conta.Titular = _clienteRepositorio.Buscar(conta.Titular.Id);
+
             Conta contaAdicionada = _contaRepositorio.Adicionar(conta);
 
             return contaAdicionada;
@@ -56,9 +64,11 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
            
         }
 
-        public void Excluir(Conta conta)
+        public void Excluir(long idConta)
         {
-            _contaRepositorio.Excluir(conta);
+            Conta contaBuscadaNoBanco = _contaRepositorio.Buscar(idConta);
+            
+            _contaRepositorio.Excluir(contaBuscadaNoBanco);
         }
     }
 }

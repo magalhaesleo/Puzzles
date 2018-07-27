@@ -116,20 +116,33 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Clientes
         }
 
         [Test]
-        public void Cliente_InfraDadosORM_ExcluirClienteComContaVinculada_Sucesso()
+        public void Cliente_InfraDadosORM_BuscarListaPorQuantidadeDefinida_Sucesso()
         {
             //Cenario
-            long idClienteComContaAdicionadoBaseSQL = 1;
-            Cliente clienteComConta = _clienteRepositorioSQL.Buscar(idClienteComContaAdicionadoBaseSQL);
+            int quantidadeDefinida = 2;
+            
+            int quantidadeClientesAdicionadosPorEsteTeste = 0;
+
+            for (int i = 0; i < 5; i++)
+            {
+                Cliente clienteParaAdicionar = ObjectMother.ObterClienteValido();
+
+                clienteParaAdicionar.Nome = "Cliente" + i;
+
+                _clienteRepositorioSQL.Adicionar(clienteParaAdicionar);
+
+                quantidadeClientesAdicionadosPorEsteTeste++;
+            }
 
             //Acao
-
-            _clienteRepositorioSQL.Excluir(clienteComConta);
-
-            Cliente clienteBuscadoAposExclusao = _clienteRepositorioSQL.Buscar(idClienteComContaAdicionadoBaseSQL);
+            IQueryable<Cliente> clientesBuscados = _clienteRepositorioSQL.BuscarListaPorQuantidadeDefinida(quantidadeDefinida);
 
             //Verificacao
-            clienteBuscadoAposExclusao.Should().BeNull();
+
+            clientesBuscados.Count().Should().Be(quantidadeDefinida);
+            
+
         }
+
     }
 }

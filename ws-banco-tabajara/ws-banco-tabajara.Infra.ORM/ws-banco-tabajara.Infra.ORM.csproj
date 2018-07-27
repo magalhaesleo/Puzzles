@@ -60,6 +60,15 @@
     <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoRepositorioSQL.cs" />
     <Compile Include="Funcionalidades\Contas\ContaConfiguracao.cs" />
     <Compile Include="Funcionalidades\Contas\ContaRepositorioSQL.cs" />
+    <Compile Include="Migrations\201807261939450_InitialCreate.cs" />
+    <Compile Include="Migrations\201807261939450_InitialCreate.Designer.cs">
+      <DependentUpon>201807261939450_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807271806427_migrationsAdicionandoOnDeleteCascadeParaCliente.cs" />
+    <Compile Include="Migrations\201807271806427_migrationsAdicionandoOnDeleteCascadeParaCliente.Designer.cs">
+      <DependentUpon>201807271806427_migrationsAdicionandoOnDeleteCascadeParaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +83,14 @@
       <Project>{e50e7472-9dc4-4102-8b42-fed4a52af6dd}</Project>
       <Name>ws-banco-tabajara.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807261939450_InitialCreate.resx">
+      <DependentUpon>201807261939450_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271806427_migrationsAdicionandoOnDeleteCascadeParaCliente.resx">
+      <DependentUpon>201807271806427_migrationsAdicionandoOnDeleteCascadeParaCliente.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

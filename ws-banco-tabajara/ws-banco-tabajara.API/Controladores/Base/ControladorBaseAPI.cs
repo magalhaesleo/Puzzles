@@ -12,6 +12,7 @@ using ws_banco_tabajara.Domain.Excecoes;
 
 namespace ws_banco_tabajara.API.Controladores.Base
 {
+
     public class ControladorBaseAPI : ApiController
     {
         #region Handlers

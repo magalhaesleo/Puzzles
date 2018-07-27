@@ -96,10 +96,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ws-banco-tabajara.Infra.ORM\ws-banco-tabajara.Infra.ORM.csproj">
       <Project>{8245A6C7-4D7F-4E02-900D-2F1C6F247988}</Project>
       <Name>ws-banco-tabajara.Infra.ORM</Name>
