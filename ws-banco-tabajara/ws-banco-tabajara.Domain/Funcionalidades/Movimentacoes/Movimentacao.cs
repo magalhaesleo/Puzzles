@@ -22,19 +22,30 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes
         {
             string descricao = "";
 
+            bool contaMovimentadaExcluida = false;
+
+            if (ContaMovimentada == null)
+                contaMovimentadaExcluida = true;
+
             switch (this.TipoOperacao)
             {
                 case TipoOperacaoMovimentacao.CREDITO:
-                    descricao += "Crédito de " + this.Valor;
+                    descricao += "Crédito de R$" + this.Valor;
                     break;
                 case TipoOperacaoMovimentacao.DEBITO:
-                    descricao += "Débito de " + this.Valor;
+                    descricao += "Débito de R$" + this.Valor;
                     break;
                 case TipoOperacaoMovimentacao.TRANSFERENCIA_ENVIADA:
-                    descricao += "Transferência realizada para a conta " + this.ContaMovimentada.Numero + " no valor de " + this.Valor;
+                    if(!contaMovimentadaExcluida)
+                        descricao += "Transferência realizada para a conta " + this.ContaMovimentada.Numero + " no valor de R$" + this.Valor;
+                    else
+                        descricao += "Transferência realizada para uma conta encerrada no valor de R$" + this.Valor;
                     break;
                 case TipoOperacaoMovimentacao.TRANSFERENCIA_RECEBIDA:
-                    descricao += "Transferência recebida da conta " + this.ContaMovimentada.Numero + " no valor de " + this.Valor;
+                    if (!contaMovimentadaExcluida)
+                        descricao += "Transferência recebida da conta " + this.ContaMovimentada.Numero + " no valor de R$" + this.Valor;
+                    else
+                        descricao += "Transferência recebida de uma conta encerrada no valor de R$" + this.Valor;
                     break;
             }
 
