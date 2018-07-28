@@ -98,7 +98,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
             Conta contaExcluir = new Conta();
             contaExcluir.Id = id;
 
-             _contaServico.Excluir(contaExcluir);
+             _contaServico.Excluir(id);
 
             return Ok();
         }
@@ -112,8 +112,10 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         { 
             _contaServico.AlterarStatusConta(id);
 
-        //    return Ok(conta);
-        //}
+            return Ok();
+        }
+
+        #endregion AlterarStatus
 
         [HttpPut]
         [Route("{id:long}/depositar")]
