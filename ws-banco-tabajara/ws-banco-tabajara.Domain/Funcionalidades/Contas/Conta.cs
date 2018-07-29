@@ -36,8 +36,8 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             }
             set { }
         }
-        [System.Xml.Serialization.XmlIgnore]
-        public virtual ICollection<Movimentacao> Movimentacoes { get; set; }
+
+        public virtual List<Movimentacao> Movimentacoes { get; set; }
 
         public void AlterarStatus()
         {
@@ -114,7 +114,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
                 DataEmissao = DateTime.Now,
                 Limite = this.Limite,
                 Saldo = this.Saldo,
-                Movimentacoes = this.Movimentacoes
+                Movimentacoes = this.Movimentacoes.ToList()
             };
         }
     }

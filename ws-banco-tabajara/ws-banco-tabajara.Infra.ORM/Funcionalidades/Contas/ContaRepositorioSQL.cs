@@ -25,7 +25,12 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
 
         public Conta Buscar(long id)
         {
-            return _contextoBancoTabajara.Contas.Find(id);
+            Conta contaBuscada = _contextoBancoTabajara.Contas
+                  .Include("Titular")
+                  .Include("Movimentacoes")
+                  .SingleOrDefault(x => x.Id == id);
+
+            return contaBuscada;
         }
 
         public IQueryable<Conta> BuscarListaPorQuantidadeDefinida(int quantidade)
