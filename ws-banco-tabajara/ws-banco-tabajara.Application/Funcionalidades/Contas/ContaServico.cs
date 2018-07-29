@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ws_banco_tabajara.Domain.Excecoes;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
+using ws_banco_tabajara.Domain.Funcionalidades.Extratos;
 
 namespace ws_banco_tabajara.Application.Funcionalidades.Contas
 {
@@ -128,6 +129,15 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
             _contaRepositorio.Editar(contaMovimentadaBuscadaDoBanco);
 
             return contaBuscadaDoBanco;
+        }
+
+        public Extrato GerarExtrato(long contaId)
+        {
+            Conta contaBuscadaDoBanco = _contaRepositorio.Buscar(contaId);
+
+            Extrato extrato = contaBuscadaDoBanco.GerarExtrato();
+
+            return extrato;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ws_banco_tabajara.Domain.Base;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas.Excecoes;
+using ws_banco_tabajara.Domain.Funcionalidades.Extratos;
 using ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes;
 
 namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
@@ -102,6 +103,19 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             contaMovimentada.Movimentacoes.Add(transferenciaRecebida);
 
             contaMovimentada.Saldo += valorTransferencia;
+        }
+
+        public Extrato GerarExtrato()
+        {
+            return new Extrato
+            {
+                NumeroConta = this.Numero,
+                NomeCliente = this.Titular.Nome,
+                DataEmissao = DateTime.Now,
+                Limite = this.Limite,
+                Saldo = this.Saldo,
+                Movimentacoes = this.Movimentacoes
+            };
         }
     }
 }
