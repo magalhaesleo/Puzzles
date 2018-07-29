@@ -10,8 +10,8 @@ namespace ws_banco_tabajara.Application.Interfaces
     public interface IServico<T>  where T:Entidade
     {
         T Adicionar(T entidade);
-        void Editar(T entidade);
-        void Excluir(long id);
+        bool Editar(T entidade);
+        bool Excluir(long id);
         IQueryable<T> BuscarTodos();
         T Buscar(long id);
     }

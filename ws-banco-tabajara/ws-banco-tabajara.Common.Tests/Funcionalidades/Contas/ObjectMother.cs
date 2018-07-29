@@ -14,7 +14,7 @@ namespace ws_banco_tabajara.Common.Tests.Funcionalidades
         public static Conta ObterContaValida()
         {
             Conta conta = new Conta();
-
+            conta.Id = 1;
             conta.Numero = "32432443";
             conta.Saldo = 500;
             conta.Limite = 1000;

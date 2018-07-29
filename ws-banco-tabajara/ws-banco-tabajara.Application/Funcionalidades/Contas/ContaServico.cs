@@ -50,7 +50,7 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
             return _contaRepositorio.BuscarTodos();
         }
 
-        public void Editar(Conta conta)
+        public bool Editar(Conta conta)
         {
             //Verifica se conta possui um titular para continuar
             if (conta.Titular == null)
@@ -74,24 +74,25 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
             contaReferencia.Ativa = conta.Ativa;
 
             //Salva no banco
-            _contaRepositorio.Editar(contaReferencia);
-           
+            return _contaRepositorio.Editar(contaReferencia);
+
         }
 
-        public void Excluir(long idConta)
+        public bool Excluir(long idConta)
         {
             Conta contaParaExcluir = _contaRepositorio.Buscar(idConta);
 
-            _contaRepositorio.Excluir(contaParaExcluir);
+            return _contaRepositorio.Excluir(contaParaExcluir);
         }
 
-        public void AlterarStatusConta(long contaId)
+        public bool AlterarStatusConta(long contaId)
         {
             Conta contaBuscadaDoBanco = _contaRepositorio.Buscar(contaId);
 
             contaBuscadaDoBanco.AlterarStatus();
 
-            _contaRepositorio.Editar(contaBuscadaDoBanco);
+            return _contaRepositorio.Editar(contaBuscadaDoBanco);
+
         }
 
         public Conta Sacar(long contaId, double valor)

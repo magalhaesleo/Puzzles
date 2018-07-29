@@ -37,8 +37,9 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         #region Adicionar
 
         [HttpPost]
-        public IHttpActionResult PostConta(Conta conta)
+        public IHttpActionResult Adicionar(Conta conta)
         {
+
             return HandleCallback(() => _contaServico.Adicionar(conta));
         }
 
@@ -49,9 +50,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         [HttpGet]
         public IHttpActionResult BuscarTodos()
         {
-           IQueryable<Conta> contas = _contaServico.BuscarTodos();
-
-            KeyValuePair<string,string> queryString = Request.GetQueryNameValuePairs()
+            KeyValuePair<string, string> queryString = Request.GetQueryNameValuePairs()
                                   .Where(x => x.Key.Equals("quantidade"))
                                   .FirstOrDefault();
 
@@ -64,7 +63,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
             else
             {
                 contasBuscadas = _contaServico.BuscarTodos();
-            } 
+            }
 
             return HandleQueryable<Conta>(contasBuscadas);
         }
@@ -79,13 +78,13 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         #endregion Buscar
 
         #region Atualizar
-  
+
         [HttpPut]
         public IHttpActionResult Editar(Conta conta)
         {
-            _contaServico.Editar(conta);
 
-            return Ok();
+            return HandleCallback(() => _contaServico.Editar(conta));
+
         }
 
         #endregion Atualizar
@@ -98,7 +97,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
             Conta contaExcluir = new Conta();
             contaExcluir.Id = id;
 
-             _contaServico.Excluir(id);
+            _contaServico.Excluir(id);
 
             return Ok();
         }
@@ -108,11 +107,9 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         #region AlterarStatus
         [HttpPatch]
         [Route("{id:int}/{alterarStatus}")]
-        public IHttpActionResult AtualizarStatus(long id)
-        { 
-            _contaServico.AlterarStatusConta(id);
-
-            return Ok();
+        public IHttpActionResult AlterarStatus(long id)
+        {
+            return HandleCallback(() => _contaServico.AlterarStatusConta(id));
         }
 
         #endregion AlterarStatus
