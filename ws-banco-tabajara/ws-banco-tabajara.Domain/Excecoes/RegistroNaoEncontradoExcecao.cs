@@ -7,9 +7,9 @@ using ws_banco_tabajara.Domain.Base;
 
 namespace ws_banco_tabajara.Domain.Excecoes
 {
-    public class ExcecaoRegistroNaoEncontrado : ExcecaoDeNegocio
+    public class RegistroNaoEncontradoExcecao : ExcecaoDeNegocio
     {
-        public ExcecaoRegistroNaoEncontrado() : base(CodigosDeErro.NotFound, "Registro não encontrado")
+        public RegistroNaoEncontradoExcecao() : base(CodigosDeErro.NotFound, "Registro não encontrado")
         {
         }
     }

@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 
-namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.ClienteMapaEF
+namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes
 {
-    public class ClienteMapaEF : EntityTypeConfiguration<Cliente>
+    public class ClienteConfiguracao : EntityTypeConfiguration<Cliente>
     {
-        public ClienteMapaEF()
+        public ClienteConfiguracao()
         {
             ToTable("TBCLIENTE");
 

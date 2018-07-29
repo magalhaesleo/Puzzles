@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Infra.ORM.Contextos;
 
-namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.RepositorioSqlEF
+namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes
 {
-    public class ClienteRepositorioSqlEF : IClienteRepositorio
+    public class ClienteRepositorioSQL : IClienteRepositorio
     {
         private ContextoBancoTabajara _contextoBancoTabajara;
 
-        public ClienteRepositorioSqlEF(ContextoBancoTabajara contextoBancoTabajara)
+        public ClienteRepositorioSQL(ContextoBancoTabajara contextoBancoTabajara)
         {
             _contextoBancoTabajara = contextoBancoTabajara;
         }
@@ -41,10 +41,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.RepositorioSqlEF
 
         public IQueryable<Cliente> BuscarTodos()
         {
-            var clientesEncontrados = from TBCLIENTE in _contextoBancoTabajara.Clientes
-                                    select TBCLIENTE;
-
-            return clientesEncontrados;
+            return _contextoBancoTabajara.Clientes;
 
         }
 

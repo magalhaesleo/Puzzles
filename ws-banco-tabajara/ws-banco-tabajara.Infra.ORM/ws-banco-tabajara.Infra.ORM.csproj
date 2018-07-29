@@ -54,8 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contextos\ContextoBancoTabajara.cs" />
-    <Compile Include="Funcionalidades\Clientes\ClienteMapaEF\ClienteMapaEF.cs" />
-    <Compile Include="Funcionalidades\Clientes\RepositorioSqlEF\ClienteRepositorioSqlEF.cs" />
+    <Compile Include="Funcionalidades\Clientes\ClienteConfiguracao.cs" />
+    <Compile Include="Funcionalidades\Clientes\ClienteRepositorioSQL.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoConfiguracao.cs" />
     <Compile Include="Funcionalidades\Movimentacoes\MovimentacaoRepositorioSQL.cs" />
     <Compile Include="Funcionalidades\Contas\ContaConfiguracao.cs" />

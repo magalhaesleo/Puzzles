@@ -60,7 +60,7 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
             Cliente clienteAdicionadoBanco = _clienteRepositorio.Buscar(conta.Titular.Id);
 
             if (clienteAdicionadoBanco == null)
-                throw new ExcecaoRegistroNaoEncontrado();
+                throw new RegistroNaoEncontradoExcecao();
 
             //Busca no banco para pegar a conta referencia
             Conta contaReferencia = _contaRepositorio.Buscar(conta.Id);

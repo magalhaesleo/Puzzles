@@ -26,7 +26,7 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
 
         public Cliente Buscar(long id)
         {
-            return _clienteRepositorio.Buscar(id) ?? throw new ExcecaoRegistroNaoEncontrado();
+            return _clienteRepositorio.Buscar(id) ?? throw new RegistroNaoEncontradoExcecao();
         }
 
         public IQueryable<Cliente> BuscarListaPorQuantidadeDefinida(int quantidadeDesejada)
@@ -56,7 +56,7 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
 
         public bool Excluir(long idCliente)
         {
-            Cliente clienteBuscadoParaExclusao = _clienteRepositorio.Buscar(idCliente) ?? throw new ExcecaoRegistroNaoEncontrado();
+            Cliente clienteBuscadoParaExclusao = _clienteRepositorio.Buscar(idCliente) ?? throw new RegistroNaoEncontradoExcecao();
            return _clienteRepositorio.Excluir(clienteBuscadoParaExclusao);
         }
     }

@@ -13,7 +13,7 @@ using ws_banco_tabajara.Application.Funcionalidades.Contas;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 using ws_banco_tabajara.Infra.ORM.Contextos;
-using ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.RepositorioSqlEF;
+using ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes;
 using ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas;
 
 namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
@@ -30,7 +30,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         public ContasController() : base()
         {
             _contaRepositorio = new ContaRepositorioSQL(bancoTabajaraContexto);
-            _clienteRepositorio = new ClienteRepositorioSqlEF(bancoTabajaraContexto);
+            _clienteRepositorio = new ClienteRepositorioSQL(bancoTabajaraContexto);
             _contaServico = new ContaServico(_contaRepositorio, _clienteRepositorio);
         }
 

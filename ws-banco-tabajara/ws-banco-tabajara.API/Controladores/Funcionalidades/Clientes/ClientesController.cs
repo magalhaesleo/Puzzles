@@ -7,11 +7,11 @@ using System.Web.Http.Description;
 using ws_banco_tabajara.Application.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Infra.ORM.Contextos;
-using ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.RepositorioSqlEF;
 using ws_banco_tabajara.API.Controladores.Base;
 using ws_banco_tabajara.Domain.Excecoes;
 using System;
 using System.Net.Http;
+using ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes;
 
 namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Clientes
 {
@@ -20,12 +20,12 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Clientes
     {
         private ContextoBancoTabajara bancoTabajaraContexto = new ContextoBancoTabajara();
 
-        IClienteServico _clienteServico;
+        public IClienteServico _clienteServico;
         IClienteRepositorio _clienteRepositorio;
 
         public ClientesController() : base()
         {
-            _clienteRepositorio = new ClienteRepositorioSqlEF(bancoTabajaraContexto);
+            _clienteRepositorio = new ClienteRepositorioSQL(bancoTabajaraContexto);
             _clienteServico = new ClienteServico(_clienteRepositorio);
         }
 
@@ -48,7 +48,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Clientes
             }
             else
             {
-                clientesEncontrados = _clienteRepositorio.BuscarTodos();
+                clientesEncontrados = _clienteServico.BuscarTodos();
             }
    
            return HandleQueryable<Cliente>(clientesEncontrados);
@@ -95,7 +95,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Clientes
 
             acaoDeExcluir.Invoke();
 
-            return Ok(true);
+            return Ok();
         }
 
         #endregion

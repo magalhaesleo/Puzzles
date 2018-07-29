@@ -58,7 +58,7 @@ namespace ws_banco_tabajara.Controller.Tests.Funcionalidades.Contas
             httpResponse.Content.First().Id.Should().Be(conta.Id);
         }
         [Test]
-        public void Conta_Controller_Get_Quantidade_Especifica_Sucesso()
+        public void Conta_Controller_Get_Limitado_Sucesso()
         {
             Conta conta = ObjectMother.ObterContaValida();
             IQueryable<Conta> response = new List<Conta>() { conta, conta }.AsQueryable();
@@ -76,7 +76,7 @@ namespace ws_banco_tabajara.Controller.Tests.Funcionalidades.Contas
             httpResponse.Content.Should().HaveCount(quantidadeParaBuscar);
         }
         [Test]
-        public void Conta_Controller_Get_Id_Especifico_Sucesso()
+        public void Conta_Controller_Get_IdEspecifico_Sucesso()
         {
             Conta conta = ObjectMother.ObterContaValida();
             conta.Id = 1;
