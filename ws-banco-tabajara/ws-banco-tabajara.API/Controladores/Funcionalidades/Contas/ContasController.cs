@@ -114,6 +114,7 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
 
         #endregion AlterarStatus
 
+        #region MovimentacoesConta
         [HttpPut]
         [Route("{id:long}/depositar")]
         public IHttpActionResult Depositar(long id, [FromBody]double valorDeposito)
@@ -134,5 +135,6 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         {
             return HandleCallback(() => _contaServico.Transferir(id, idContaDestino, valorTransferencia));
         }
+        #endregion MovimentacoesConta
     }
 }
