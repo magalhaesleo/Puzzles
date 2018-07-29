@@ -48,16 +48,16 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Clientes.RepositorioSqlEF
 
         }
 
-        public void Editar(Cliente cliente)
+        public bool Editar(Cliente cliente)
         {
-            _contextoBancoTabajara.SaveChanges();
+            return _contextoBancoTabajara.SaveChanges() != 0;
         }
 
-        public void Excluir(Cliente cliente)
+        public bool Excluir(Cliente cliente)
         {
             _contextoBancoTabajara.Clientes.Remove(cliente);
 
-            _contextoBancoTabajara.SaveChanges();
+            return _contextoBancoTabajara.SaveChanges() != 0;
         }
     }
 }

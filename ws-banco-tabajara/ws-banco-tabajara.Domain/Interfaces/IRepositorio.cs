@@ -10,8 +10,8 @@ namespace ws_banco_tabajara.Domain.Interfaces
     public interface IRepositorio<T> where T : Entidade
     {
         T Adicionar(T entidade);
-        void Editar(T entidade);
-        void Excluir(T entidade);
+        bool Editar(T entidade);
+        bool Excluir(T entidade);
         IQueryable<T> BuscarTodos();
 
         T Buscar(long id);

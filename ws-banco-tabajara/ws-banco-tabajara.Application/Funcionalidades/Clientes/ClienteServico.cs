@@ -39,7 +39,7 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
             return _clienteRepositorio.BuscarTodos();
         }
 
-        public void Editar(Cliente clienteReferencia)
+        public bool Editar(Cliente clienteReferencia)
         {
             // Obtém a entidade Indexada pelo EF e valida
             Cliente clienteBuscadoNoBanco = _clienteRepositorio.Buscar(clienteReferencia.Id);
@@ -51,13 +51,13 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Clientes
             clienteBuscadoNoBanco.CPF = clienteReferencia.CPF;
            
             // Realiza o update no objeto do banco
-            _clienteRepositorio.Editar(clienteBuscadoNoBanco);
+            return _clienteRepositorio.Editar(clienteBuscadoNoBanco);
         }
 
-        public void Excluir(long idCliente)
+        public bool Excluir(long idCliente)
         {
             Cliente clienteBuscadoParaExclusao = _clienteRepositorio.Buscar(idCliente) ?? throw new ExcecaoRegistroNaoEncontrado();
-            _clienteRepositorio.Excluir(clienteBuscadoParaExclusao);
+           return _clienteRepositorio.Excluir(clienteBuscadoParaExclusao);
         }
     }
 }

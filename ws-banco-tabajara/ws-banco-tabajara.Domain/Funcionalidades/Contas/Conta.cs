@@ -27,7 +27,6 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
 
         public double Limite { get; set; }
 
-        //SaldoTotal é composto por Saldo + Limite
         public double SaldoTotal
         {
             get
@@ -36,7 +35,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             }
             set { }
         }
-
+        [System.Xml.Serialization.XmlIgnore]
         public virtual ICollection<Movimentacao> Movimentacoes { get; set; }
 
         public void AlterarStatus()

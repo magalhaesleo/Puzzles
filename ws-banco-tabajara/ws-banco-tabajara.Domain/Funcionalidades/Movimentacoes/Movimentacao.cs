@@ -15,7 +15,6 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes
         public TipoOperacaoMovimentacao TipoOperacao { get; set; }
 
         public double Valor { get; set; }
-
         public virtual Conta Conta { get; set; }
         public virtual Conta ContaMovimentada { get; set; }
         public override string ToString()

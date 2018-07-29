@@ -35,19 +35,21 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
 
         public IQueryable<Conta> BuscarTodos()
         {
-           return _contextoBancoTabajara.Contas;
+            IQueryable<Conta> contas = _contextoBancoTabajara.Contas.Include("Titular").Include("Movimentacoes");
+
+            return contas;
         }
 
-        public void Editar(Conta conta)
+        public bool Editar(Conta conta)
         {
-            _contextoBancoTabajara.SaveChanges();
+            return _contextoBancoTabajara.SaveChanges() != 0;
         }
 
-        public void Excluir(Conta conta)
+        public bool Excluir(Conta conta)
         {
             _contextoBancoTabajara.Contas.Remove(conta);
 
-            _contextoBancoTabajara.SaveChanges();
+            return _contextoBancoTabajara.SaveChanges() != 0;
         }
     }
 }

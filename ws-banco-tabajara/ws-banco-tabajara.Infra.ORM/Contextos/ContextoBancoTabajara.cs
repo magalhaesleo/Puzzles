@@ -19,7 +19,7 @@ namespace ws_banco_tabajara.Infra.ORM.Contextos
     {
         public ContextoBancoTabajara(string nomeBanco) : base(nomeBanco)
         {
-            Configuration.LazyLoadingEnabled = true;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public ContextoBancoTabajara() : this("Puzzles_BancoTabajaraBD")
