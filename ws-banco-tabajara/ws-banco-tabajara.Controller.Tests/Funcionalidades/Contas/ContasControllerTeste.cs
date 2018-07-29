@@ -24,19 +24,18 @@ namespace ws_banco_tabajara.Controller.Tests.Funcionalidades.Contas
     {
         private ContasController _contasController;
         private Mock<IContaServico> _contaServicoMock;
-        private HttpRequestMessage _requisicao;
 
         private Mock<Conta> _contaMock;
 
         [SetUp]
         public void IniciarCenario()
         {
-            _requisicao = new HttpRequestMessage();
-            _requisicao.SetConfiguration(new HttpConfiguration());
+            HttpRequestMessage requisicao = new HttpRequestMessage();
+            requisicao.SetConfiguration(new HttpConfiguration());
             _contaServicoMock = new Mock<IContaServico>();
             _contasController = new ContasController()
             {
-                Request = _requisicao,
+                Request = requisicao,
                 _contaServico = _contaServicoMock.Object,
             };
             _contaMock = new Mock<Conta>();
