@@ -139,5 +139,10 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
 
             return extrato;
         }
+
+        public Conta BuscarPorIdentificacaoDeCliente(long idCliente)
+        {
+            return _contaRepositorio.BuscarPorIdentificacaoDeCliente(idCliente);
+        }
     }
 }

@@ -17,5 +17,7 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
         Conta Sacar(long idConta, double valor);
         Conta Transferir(long idConta, long idContaMovimentada, double valor);
         Extrato GerarExtrato(long idConta);
+
+        Conta BuscarPorIdentificacaoDeCliente(long idCliente);
     }
 }

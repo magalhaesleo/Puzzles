@@ -103,16 +103,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Funcionalidades\Contas\" />
-    <Folder Include="Funcionalidades\Clientes\" />
     <Folder Include="Funcionalidades\Extratos\" />
     <Folder Include="Funcionalidades\Movimentacoes\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ws-banco-tabajara.API\ws-banco-tabajara.API.csproj">
-      <Project>{AF595527-36AD-462C-9133-F9483A7C6FA6}</Project>
-      <Name>ws-banco-tabajara.API</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ws-banco-tabajara.Application\ws-banco-tabajara.Application.csproj">
       <Project>{56345671-095A-4C76-AF7D-FA9528F1E54F}</Project>
       <Name>ws-banco-tabajara.Application</Name>

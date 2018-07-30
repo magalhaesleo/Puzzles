@@ -11,5 +11,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Clientes
     public interface IClienteRepositorio : IRepositorio<Cliente>
     {
         IQueryable<Cliente> BuscarListaPorQuantidadeDefinida(int quantidadeDesejada);
+
+      
     }
 }
