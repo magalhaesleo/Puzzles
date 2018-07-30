@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ws_banco_tabajara.Common.Tests.Funcionalidades;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas.Excecoes;
+using ws_banco_tabajara.Domain.Funcionalidades.Extratos;
 using ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes;
 
 namespace ws_banco_tabajara.Domain.Tests.Funcionalidades.Contas
@@ -120,6 +121,20 @@ namespace ws_banco_tabajara.Domain.Tests.Funcionalidades.Contas
             conta.AlterarStatus();
 
             conta.Ativa.Should().Be(!statusAntigo);
+        }
+
+        [Test]
+        public void Conta_Dominio_GerarExtrato_Sucesso()
+        {
+            Conta conta = ObjectMother.ObterContaValida();
+
+            Extrato extrato = conta.GerarExtrato();
+
+            extrato.Limite.Should().Be(conta.Limite);
+            extrato.Saldo.Should().Be(conta.Saldo);
+            extrato.NumeroConta.Should().Be(conta.Numero);
+            extrato.NomeCliente.Should().Be(conta.Titular.Nome);
+            extrato.Movimentacoes.Count().Should().Be(conta.Movimentacoes.Count());
         }
     }
 }

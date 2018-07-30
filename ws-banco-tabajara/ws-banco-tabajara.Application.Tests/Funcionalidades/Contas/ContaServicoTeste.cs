@@ -10,6 +10,7 @@ using ws_banco_tabajara.Application.Funcionalidades.Contas;
 using ws_banco_tabajara.Common.Tests.Funcionalidades;
 using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
+using ws_banco_tabajara.Domain.Funcionalidades.Extratos;
 using ws_banco_tabajara.Domain.Funcionalidades.Movimentacoes;
 
 namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
@@ -218,6 +219,22 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
             _contaRepositorioMoq.Verify(crm => crm.Buscar(idParaBuscarContaMovimentada));
             _contaRepositorioMoq.Verify(crm => crm.Editar(_contaMoq.Object));
             _contaRepositorioMoq.Verify(crm => crm.Editar(contaMovimentadaMock.Object));
+        }
+
+        [Test]
+        public void Conta_Aplicacao_GerarExtrato_Sucesso()
+        {
+            Extrato extrato = ObjectMother.ObterExtratoValido();
+            long idParaBuscar = 1;
+
+            _contaRepositorioMoq.Setup(crm => crm.Buscar(idParaBuscar)).Returns(_contaMoq.Object);
+
+            _contaMoq.Setup(c => c.GerarExtrato());
+
+            extrato = _contaServico.GerarExtrato(idParaBuscar);
+
+            extrato.Should().NotBeNull();
+            _contaRepositorioMoq.Verify(crm => crm.Buscar(idParaBuscar));
         }
     }
 }

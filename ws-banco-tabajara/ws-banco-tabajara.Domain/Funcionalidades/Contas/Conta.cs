@@ -105,7 +105,7 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
             contaMovimentada.Saldo += valorTransferencia;
         }
 
-        public Extrato GerarExtrato()
+        public virtual Extrato GerarExtrato()
         {
             return new Extrato
             {
