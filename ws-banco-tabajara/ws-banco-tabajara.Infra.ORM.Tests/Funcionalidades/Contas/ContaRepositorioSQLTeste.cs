@@ -131,7 +131,7 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Contas
             Conta contaAdicionadaTeste = _contaRepositorio.Buscar(idContaAdicionadaTeste);
 
             Movimentacao movimentacaoEnviada = ObjectMother.ObterMovimentacaoTransferenciaEnviada(contaAdicionadaBaseSql, contaAdicionadaTeste);
-            Movimentacao movimentacaoRecebida = ObjectMother.ObterMovimentacaoTransferenciaEnviada(contaAdicionadaTeste, contaAdicionadaBaseSql);
+            Movimentacao movimentacaoRecebida = ObjectMother.ObterMovimentacaoTransferenciaRecebida(contaAdicionadaTeste, contaAdicionadaBaseSql);
 
             _movimentacaoRepositorioSQL.Adicionar(movimentacaoEnviada);
             _movimentacaoRepositorioSQL.Adicionar(movimentacaoRecebida);
@@ -145,5 +145,17 @@ namespace ws_banco_tabajara.Infra.ORM.Tests.Funcionalidades.Contas
             contaAdicionadaTeste.Should().NotBeNull();
         }
 
+        [Test]
+        public void Conta_InfraData_BuscarPorIdentificacaoDeCliente_Sucesso()
+        {
+            _cliente = ObjectMother.ObterClienteValido();
+            _conta = ObjectMother.ObterContaComCliente(_cliente);
+
+            Conta contaAdicionada = _contaRepositorio.Adicionar(_conta);
+
+            Conta contaBuscadaPelaIdentificacaoDeCliente = _contaRepositorio.BuscarPorIdentificacaoDeCliente(contaAdicionada.Titular.Id);
+
+            contaBuscadaPelaIdentificacaoDeCliente.Titular.Id.Should().Be(contaAdicionada.Titular.Id);
+        }
     }
 }

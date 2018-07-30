@@ -75,6 +75,13 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
             return HandleCallback(() => _contaServico.Buscar(id));
         }
 
+        [HttpGet]
+        [Route("cliente/{idCliente:int}")]
+        public IHttpActionResult BuscarPorIdentificacaoDeCliente(long idCliente)
+        {
+            return HandleCallback(() => _contaServico.BuscarPorIdentificacaoDeCliente(idCliente));
+        }
+
         #endregion Buscar
 
         #region Atualizar

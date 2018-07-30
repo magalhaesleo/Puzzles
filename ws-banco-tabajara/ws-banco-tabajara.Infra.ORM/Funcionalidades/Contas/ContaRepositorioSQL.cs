@@ -40,9 +40,7 @@ namespace ws_banco_tabajara.Infra.ORM.Funcionalidades.Contas
 
         public Conta BuscarPorIdentificacaoDeCliente(long idCliente)
         {
-            var contaBuscada = from TBCONTA in _contextoBancoTabajara.Contas where TBCONTA.Titular.Id == idCliente select TBCONTA;
-
-            return contaBuscada;
+           return _contextoBancoTabajara.Contas.Include("Titular").Include("Movimentacoes").Where(conta => conta.Titular.Id == idCliente).FirstOrDefault();
         }
 
         public IQueryable<Conta> BuscarTodos()

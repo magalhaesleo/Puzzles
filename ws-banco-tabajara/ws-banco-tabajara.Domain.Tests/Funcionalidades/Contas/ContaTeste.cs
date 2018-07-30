@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Common.Tests.Funcionalidades;
+using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas.Excecoes;
 using ws_banco_tabajara.Domain.Funcionalidades.Extratos;
@@ -126,15 +127,16 @@ namespace ws_banco_tabajara.Domain.Tests.Funcionalidades.Contas
         [Test]
         public void Conta_Dominio_GerarExtrato_Sucesso()
         {
-            Conta conta = ObjectMother.ObterContaValida();
-
+            Cliente clienteParaVincularNaConta = ObjectMother.ObterClienteValido();
+            Conta conta = ObjectMother.ObterContaComCliente(clienteParaVincularNaConta);
+            
             Extrato extrato = conta.GerarExtrato();
 
             extrato.Limite.Should().Be(conta.Limite);
             extrato.Saldo.Should().Be(conta.Saldo);
             extrato.NumeroConta.Should().Be(conta.Numero);
             extrato.NomeCliente.Should().Be(conta.Titular.Nome);
-            extrato.Movimentacoes.Count().Should().Be(conta.Movimentacoes.Count());
+            extrato.Movimentacoes.Count().Should().Be(0);
         }
     }
 }

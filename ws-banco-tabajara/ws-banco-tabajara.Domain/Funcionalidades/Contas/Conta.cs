@@ -107,15 +107,17 @@ namespace ws_banco_tabajara.Domain.Funcionalidades.Contas
 
         public virtual Extrato GerarExtrato()
         {
-            return new Extrato
-            {
-                NumeroConta = this.Numero,
-                NomeCliente = this.Titular.Nome,
-                DataEmissao = DateTime.Now,
-                Limite = this.Limite,
-                Saldo = this.Saldo,
-                Movimentacoes = this.Movimentacoes.ToList()
-            };
+            Extrato novoExtratoDeConta = new Extrato();
+            novoExtratoDeConta.NumeroConta = this.Numero;
+            novoExtratoDeConta.NomeCliente = this.Titular.Nome;
+            novoExtratoDeConta.DataEmissao = DateTime.Now;
+            novoExtratoDeConta.Limite = this.Limite;
+            novoExtratoDeConta.Saldo = this.Saldo;
+
+            if (this.Movimentacoes.ToList() != null)
+                novoExtratoDeConta.Movimentacoes = this.Movimentacoes.ToList();
+
+            return novoExtratoDeConta;
         }
     }
 }

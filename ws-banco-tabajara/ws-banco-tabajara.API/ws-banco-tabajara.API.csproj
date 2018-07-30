@@ -221,10 +221,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controladores\Funcionalidades\Extratos\" />
-    <Folder Include="Controladores\Funcionalidades\Movimentacoes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

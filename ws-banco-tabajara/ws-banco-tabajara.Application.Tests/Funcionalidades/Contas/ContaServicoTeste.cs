@@ -23,7 +23,8 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
         private Mock<Conta> _contaBuscadaNoBancoMoq;
         private Mock<IContaRepositorio> _contaRepositorioMoq;
         private Mock<IClienteRepositorio> _clienteRepositorioMoq;
-        private Mock<Cliente> _cliente;
+        private Mock<Cliente> _clienteMock;
+        private Mock<Extrato> _extratoMock;
 
         [SetUp]
         public void IniciarCenario()
@@ -31,9 +32,10 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
             _contaRepositorioMoq = new Mock<IContaRepositorio>();
             _clienteRepositorioMoq = new Mock<IClienteRepositorio>();
             _contaServico = new ContaServico(_contaRepositorioMoq.Object, _clienteRepositorioMoq.Object);
-            _cliente = new Mock<Cliente>();
+            _clienteMock = new Mock<Cliente>();
             _contaMoq = new Mock<Conta>();
-            _contaMoq.Setup(c => c.Titular).Returns(_cliente.Object);
+            _extratoMock = new Mock<Extrato>();
+            _contaMoq.Setup(c => c.Titular).Returns(_clienteMock.Object);
             _contaBuscadaNoBancoMoq = new Mock<Conta>();        }
 
         [Test]
@@ -114,7 +116,7 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
 
             _contaRepositorioMoq.Setup(crm => crm.Editar(_contaBuscadaNoBancoMoq.Object));
 
-            _clienteRepositorioMoq.Setup(cr => cr.Buscar(_contaMoq.Object.Titular.Id)).Returns(_cliente.Object);
+            _clienteRepositorioMoq.Setup(cr => cr.Buscar(_contaMoq.Object.Titular.Id)).Returns(_clienteMock.Object);
 
             //Acao
             _contaServico.Editar(_contaMoq.Object);
@@ -224,17 +226,33 @@ namespace ws_banco_tabajara.Application.Tests.Funcionalidades.Contas
         [Test]
         public void Conta_Aplicacao_GerarExtrato_Sucesso()
         {
-            Extrato extrato = ObjectMother.ObterExtratoValido();
-            long idParaBuscar = 1;
+            
+            long idDeContaParaBuscarExtrato = 1;
 
-            _contaRepositorioMoq.Setup(crm => crm.Buscar(idParaBuscar)).Returns(_contaMoq.Object);
+            _contaRepositorioMoq.Setup(crm => crm.Buscar(idDeContaParaBuscarExtrato)).Returns(_contaMoq.Object);
 
-            _contaMoq.Setup(c => c.GerarExtrato());
+            _contaMoq.Setup(c => c.GerarExtrato()).Returns(_extratoMock.Object);
 
-            extrato = _contaServico.GerarExtrato(idParaBuscar);
+            Extrato extratoGerado = _contaServico.GerarExtrato(idDeContaParaBuscarExtrato);
 
-            extrato.Should().NotBeNull();
-            _contaRepositorioMoq.Verify(crm => crm.Buscar(idParaBuscar));
+            extratoGerado.Should().NotBeNull();
+            _contaRepositorioMoq.Verify(crm => crm.Buscar(idDeContaParaBuscarExtrato));
+            _contaMoq.Verify(cm => cm.GerarExtrato());
+        }
+
+        [Test]
+        public void Conta_Aplicacao_BuscarPorIdentificacaoDeCliente_Sucesso()
+        {
+            //Cenario
+            byte idCliente= 1;
+            _contaRepositorioMoq.Setup(crm => crm.BuscarPorIdentificacaoDeCliente(idCliente)).Returns(_contaMoq.Object);
+
+            //Acao
+            Conta contaBuscada = _contaServico.BuscarPorIdentificacaoDeCliente(idCliente);
+
+            //Verificao
+            _contaRepositorioMoq.Verify(crm => crm.BuscarPorIdentificacaoDeCliente(idCliente));
+            contaBuscada.Should().NotBeNull();
         }
     }
 }

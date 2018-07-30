@@ -15,6 +15,7 @@ using ws_banco_tabajara.API.Controladores.Funcionalidades.Contas;
 using ws_banco_tabajara.Application.Funcionalidades.Contas;
 using ws_banco_tabajara.Common.Tests.Funcionalidades;
 using ws_banco_tabajara.Controller.Tests.Inicializador;
+using ws_banco_tabajara.Domain.Funcionalidades.Clientes;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
 using ws_banco_tabajara.Domain.Funcionalidades.Extratos;
 
@@ -204,5 +205,27 @@ namespace ws_banco_tabajara.Controller.Tests.Funcionalidades.Contas
             httpResponse.Content.Should().NotBeNull();
             _contaServicoMock.Verify(s => s.GerarExtrato(idConta), Times.Once);
         }
+
+        [Test]
+        public void Conta_Controller_Get_BuscarPorIdentificacaoDeCliente_Sucesso()
+        {
+            byte idCliente = 1;
+            Cliente clienteDaConta = ObjectMother.ObterClienteValido();
+            clienteDaConta.Id = idCliente;
+
+            Conta conta = ObjectMother.ObterContaComCliente(clienteDaConta);
+
+            _contaServicoMock.Setup(s => s.BuscarPorIdentificacaoDeCliente(conta.Titular.Id)).Returns(conta);
+
+            IHttpActionResult callback = _contasController.BuscarPorIdentificacaoDeCliente(conta.Titular.Id);
+
+
+            _contaServicoMock.Verify(s => s.BuscarPorIdentificacaoDeCliente(conta.Titular.Id), Times.Once);
+            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<Conta>>().Subject;
+            httpResponse.Content.Should().NotBeNull();
+            httpResponse.Content.Titular.Id.Should().Be(conta.Titular.Id);
+        }
+
+
     }
 }
