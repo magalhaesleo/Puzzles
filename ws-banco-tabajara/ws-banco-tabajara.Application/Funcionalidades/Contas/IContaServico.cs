@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ws_banco_tabajara.Application.Interfaces;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
+using ws_banco_tabajara.Domain.Funcionalidades.Extratos;
 
 namespace ws_banco_tabajara.Application.Funcionalidades.Contas
 {
@@ -15,5 +16,6 @@ namespace ws_banco_tabajara.Application.Funcionalidades.Contas
         Conta Depositar(long idConta, double valor);
         Conta Sacar(long idConta, double valor);
         Conta Transferir(long idConta, long idContaMovimentada, double valor);
+        Extrato GerarExtrato(long idConta);
     }
 }

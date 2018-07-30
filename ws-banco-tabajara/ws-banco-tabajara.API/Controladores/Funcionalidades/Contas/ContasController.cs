@@ -135,6 +135,18 @@ namespace ws_banco_tabajara.API.Controladores.Funcionalidades.Contas
         {
             return HandleCallback(() => _contaServico.Transferir(id, idContaDestino, valorTransferencia));
         }
+
         #endregion MovimentacoesConta
+
+        #region GerarExtrato
+
+        [HttpGet]
+        [Route("{id:long}/extrato")]
+        public IHttpActionResult GerarExtrato(long id)
+        {
+            return HandleCallback(() => _contaServico.GerarExtrato(id));
+        }
+
+        #endregion
     }
 }

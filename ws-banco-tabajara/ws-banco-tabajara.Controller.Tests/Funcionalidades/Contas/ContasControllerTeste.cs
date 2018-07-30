@@ -16,6 +16,7 @@ using ws_banco_tabajara.Application.Funcionalidades.Contas;
 using ws_banco_tabajara.Common.Tests.Funcionalidades;
 using ws_banco_tabajara.Controller.Tests.Inicializador;
 using ws_banco_tabajara.Domain.Funcionalidades.Contas;
+using ws_banco_tabajara.Domain.Funcionalidades.Extratos;
 
 namespace ws_banco_tabajara.Controller.Tests.Funcionalidades.Contas
 {
@@ -188,8 +189,20 @@ namespace ws_banco_tabajara.Controller.Tests.Funcionalidades.Contas
             var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<Conta>>().Subject;
             httpResponse.Content.Should().NotBeNull();
             _contaServicoMock.Verify(s => s.Transferir(conta.Id, contaDestino.Id, valorTransferido), Times.Once);
-
         }
 
+        [Test]
+        public void Conta_Controller_Get_Extrato_Sucesso()
+        {
+            Extrato extrato = ObjectMother.ObterExtratoValido();
+            long idConta = 1;
+            _contaServicoMock.Setup(c => c.GerarExtrato(idConta)).Returns(extrato);
+
+            IHttpActionResult callback = _contasController.GerarExtrato(idConta);
+
+            var httpResponse = callback.Should().BeOfType<OkNegotiatedContentResult<Extrato>>().Subject;
+            httpResponse.Content.Should().NotBeNull();
+            _contaServicoMock.Verify(s => s.GerarExtrato(idConta), Times.Once);
+        }
     }
 }

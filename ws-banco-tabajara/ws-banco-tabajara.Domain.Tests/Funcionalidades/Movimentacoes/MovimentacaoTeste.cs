@@ -18,7 +18,6 @@ namespace ws_banco_tabajara.Domain.Tests.Funcionalidades.Movimentacoes
         private Movimentacao _movimentacao;
         private Mock<Conta> _conta;
         private Mock<Conta> _contaMovimentada;
-       // private Mock<Cliente>
 
         [SetUp]
         public void IniciarCenario()
